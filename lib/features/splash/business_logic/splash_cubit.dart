@@ -5,7 +5,7 @@ part 'splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashInitial()) {
-    // Initialize splash screen timing
+    // Initialize splash screens timing
     _initSplash();
   }
 

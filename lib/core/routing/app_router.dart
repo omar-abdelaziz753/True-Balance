@@ -6,6 +6,10 @@ import 'package:truee_balance_app/features/auth/presentation/screens/forget_pass
 import 'package:truee_balance_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_screen.dart';
+import 'package:truee_balance_app/features/home/presentation/screens/home_screen.dart';
+import 'package:truee_balance_app/features/main_layout/business_logic/main_layout_cubit.dart';
+import 'package:truee_balance_app/features/main_layout/presentation/main_layout.dart';
+import 'package:truee_balance_app/features/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
 
@@ -28,7 +32,7 @@ class AppRouter {
       /// User Screens
       // case Routes.onBoardingScreen:
       //   return transition(
-      //     screen: const OnBoardnigScreen(),
+      //     screens: const OnBoardnigScreen(),
       //     // cubit: SplashCubit()..startSplash(),
       //   );
       case Routes.splashScreen:
@@ -66,6 +70,13 @@ class AppRouter {
           screen: CreateNewPasswordScreen(email: email),
           // cubit: SplashCubit(),
         );
+      case Routes.mainLayoutScreen:
+        final int index = settings.arguments as int;
+
+        return transition(
+          screen: MainLayout(index: index),
+          cubit: MainLayoutCubit(),
+        );
       /// ================================================================================= ///
 
       /// Provider Screens
@@ -73,6 +84,17 @@ class AppRouter {
         return null;
     }
   }
+
+  List<Widget> screens = [
+    HomeScreen(),
+    Container(
+      color: Colors.green,
+    ),
+    Container(
+      color: Colors.yellow,
+    ),
+    SettingScreen(),
+  ];
 
   // List<Widget> screens = [
   //   BlocProvider(

@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/networks_helper/dio_helper/end_points.dart';
-
-import '../../cache_helper/cache_helper.dart';
 
 class DioHelper {
   static Dio dio = Dio();
@@ -21,14 +20,10 @@ class DioHelper {
   }
 
   Future<String?> _getAuthorizationToken() async {
-    String? role = await CacheHelper.getSecuredString(key: CacheKeys.role);
-    if (role == "provider") {
-      return await CacheHelper.getSecuredString(key: CacheKeys.userToken);
-    }
     return await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   }
 
-  Future<Response?> get({required String endPoint, Map<String, dynamic>? data,}) async {
+  Future<Response?> getWithQ({required String endPoint, Map<String, dynamic>? data,}) async {
     String? token = await _getAuthorizationToken();
 
     dio.options.headers = {
@@ -40,6 +35,18 @@ class DioHelper {
           // "${await CacheHelper.getSecuredString(key: CacheKeys.userToken)}",
     };
     return await dio.get(endPoint, queryParameters: data);
+  }
+
+  Future<Response?> get({required String endPoint, Map<String, dynamic>? data,}) async {
+    String? token = await _getAuthorizationToken();
+
+    dio.options.headers = {
+      "Accept": "application/json",
+      "language": CacheHelper.getCurrentLanguage(),
+      // "Lang": CacheHelper.getCurrentLanguage().toString(),
+      "authorization": token,
+    };
+    return await dio.get(endPoint, data: data);
   }
 
   Future<Response?> post({required String endPoint, data, Options? options}) async {

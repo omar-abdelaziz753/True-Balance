@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/background/custom_main_body_widget.dart';
-import 'package:truee_balance_app/features/auth/presentation/widgets/create_new_password_form_widget.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/custom_header_widget.dart';
+import 'package:truee_balance_app/features/auth/presentation/widgets/login_form_widget.dart';
 
-class CreateNewPasswordScreen extends StatelessWidget {
-  const CreateNewPasswordScreen({super.key, required this.email});
-
-  final String email;
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +26,12 @@ class CreateNewPasswordScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           CustomHeaderWidget(
-                            title1: 'Create a New ',
-                            title2: 'Password',
+                            title1: 'Welcome ',
+                            title2: 'Back',
                             description:
-                            'We’ve sent an OTP code to your Email $email',
+                                'Please enter your Phone Number Or Email & password to access your account.',
                           ),
-
-                          Expanded(child: CreateNewPasswordFormWidget()),
+                          Expanded(child: LoginFormWidget()),
                         ],
                       ),
                     ),
@@ -45,6 +42,27 @@ class CreateNewPasswordScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CustomMainBodyWidget extends StatelessWidget {
+  const CustomMainBodyWidget({super.key, required this.bodyWidget});
+
+  final Widget bodyWidget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Opacity(
+          opacity: 0.1,
+          child: SvgPicture.asset(
+            'assets/images/svg/bg_image.svg',
+          ),
+        ),
+        bodyWidget,
+      ],
     );
   }
 }

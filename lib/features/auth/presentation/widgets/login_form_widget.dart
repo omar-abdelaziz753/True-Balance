@@ -108,6 +108,7 @@ class LoginFormWidget extends StatelessWidget {
             textStyle: Styles.captionEmphasis.copyWith(
               color: AppColors.neutralColor100,
             ),
+            onPressed: () => context.pushNamed(Routes.mainLayoutScreen, arguments: 0),
           ),
           // 18.verticalSpace,
           Row(

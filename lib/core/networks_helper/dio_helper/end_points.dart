@@ -1,20 +1,24 @@
 class EndPoints {
   /// BaseUrl
-  static const String baseUrl = 'https://herfaapp.vercel.app/';
+  static const String baseUrl = 'https://powerline-app.vercel.app/';
 
-  /// User Application EndPoints
   /// Auth
-  static const String login = 'auth/login';
-  static const String register = 'auth/register';
-  static const String logout = 'auth/logOut';
-  static const String twilioOtp = 'auth/twilioOTP';
-  static const String emailOtp = 'auth/emailOTP';
-  static const String getAllNotifications = 'general/getServiceRequestNotification';
-  // static String getAllNotifications(String providerId) => 'getServiceRequestNotification/$providerId';
-  static const String updateNotificationStatus = 'provider/askForAcceptService';
-  static String confirmPhoneEmailOtp(String phoneNumberOrEmail) => 'auth/confirmPhoneEmailOTP/$phoneNumberOrEmail';
-  static String setPassword(String phoneNumberOrEmail) => 'auth/setPassword/$phoneNumberOrEmail';
-  static String activateAccount(String role) => 'user/activeAccount/$role';
+  static const String login = 'hr/login';
+  static const String checkInEP = 'employee/checkIn';
+  static const String checkOutEP = 'employee/checkOut';
+  static const String makeStationCleanerEp = 'task/cleaningJobTask';
+  static const String getAllPumpsEp = 'station/getPumps';
+  static const String getPumpTypesEp = 'station/getPumpTypes';
+  static const String makeInventoryJobTaskEp = 'task/inventoryJobTask';
+  static const String getAllProfileDataEP = 'employee/profile';
+  static const String logout = 'hr/logout';
+  static const String getTasks = 'todo/getAllTasks';
+  static const String changeTaskStatusEP = 'todo/changeStatus';
+  static const String supplierRequest = 'supplier/supplierRequest';
+  static const String reviewRequest = 'supplier/reviewRequest';
+  static const String getContacts = 'contact/getContacts';
+  static String getMessagesDetails(String messageId) => 'message/getMessages/$messageId';
+  static String supplies(String status, {int page = 1}) => 'supplier/getStaSupplierReq?status=$status&page=$page';
 
 
   /// Home

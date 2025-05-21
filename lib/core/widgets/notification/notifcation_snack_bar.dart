@@ -175,7 +175,7 @@
 //     displayDuration: const Duration(seconds: 4),
 //     dismissType: DismissType.onSwipe,
 //     onTap: () {
-//       // Handle notification tap - you can navigate to a specific screen based on data
+//       // Handle notification tap - you can navigate to a specific screens based on data
 //       if (event.data.containsKey("route")) {
 //         final route = event.data["route"];
 //         Navigator.of(context).pushNamed(route);
