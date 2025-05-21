@@ -29,8 +29,7 @@ class TrueBalanceApp extends StatelessWidget {
         ), child: Builder(
         builder: (context) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Test My Mac',
-          // title: 'True Balance',
+          title: 'True Balance',
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
