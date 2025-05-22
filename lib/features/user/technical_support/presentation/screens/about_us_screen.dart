@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/features/user/technical_support/presentation/widgets/custom_scroll_able_content_widget.dart';
+import 'package:truee_balance_app/core/widgets/scroll_bar/custom_scroll_able_content_widget.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/widgets/custom_section_in_about_us_widget.dart';
 
 class AboutUsScreen extends StatelessWidget {
@@ -51,56 +51,47 @@ class AboutUsScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20.h),
                   Expanded(
-                    child: RawScrollbar(
-                      controller: scrollController,
-                      thumbVisibility: true,
-                      thumbColor: AppColors.primaryColor900,
-                      trackColor: AppColors.neutralColor200,
-                      thickness: 4.w,
-                      radius: Radius.circular(4.r),
-                      scrollbarOrientation: ScrollbarOrientation.left,
-                      child: CustomScrollAbleContentWidget(
-                        scrollController: scrollController,
-                        contentWidget: Column(
-                          children: [
-                            CustomSectionInAboutUsWidget(
-                              number: '1',
-                              title: 'About Us',
-                              description:
-                              "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
-                            ),
-                            CustomSectionInAboutUsWidget(
-                              number: '2',
-                              title: 'Our Mission',
-                              description:
-                              "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
-                            ),
-                            CustomSectionInAboutUsWidget(
-                              number: '3',
-                              title: 'Contact Information',
-                              description:
-                              "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",
-                            ),
-                            CustomSectionInAboutUsWidget(
-                              number: '4',
-                              title: 'About Us',
-                              description:
-                              "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
-                            ),
-                            CustomSectionInAboutUsWidget(
-                              number: '5',
-                              title: 'Our Mission',
-                              description:
-                              "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
-                            ),
-                            CustomSectionInAboutUsWidget(
-                              number: '6',
-                              title: 'Contact Information',
-                              description:
-                              "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",
-                            ),
-                          ],
-                        ),
+                    child: CustomScrollAbleContentWidget(
+                      scrollController: scrollController,
+                      contentWidget: Column(
+                        children: [
+                          CustomSectionInAboutUsWidget(
+                            number: '1',
+                            title: 'About Us',
+                            description:
+                            "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
+                          ),
+                          CustomSectionInAboutUsWidget(
+                            number: '2',
+                            title: 'Our Mission',
+                            description:
+                            "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
+                          ),
+                          CustomSectionInAboutUsWidget(
+                            number: '3',
+                            title: 'Contact Information',
+                            description:
+                            "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",
+                          ),
+                          CustomSectionInAboutUsWidget(
+                            number: '4',
+                            title: 'About Us',
+                            description:
+                            "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
+                          ),
+                          CustomSectionInAboutUsWidget(
+                            number: '5',
+                            title: 'Our Mission',
+                            description:
+                            "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
+                          ),
+                          CustomSectionInAboutUsWidget(
+                            number: '6',
+                            title: 'Contact Information',
+                            description:
+                            "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",
+                          ),
+                        ],
                       ),
                     ),
                   ),
