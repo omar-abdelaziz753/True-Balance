@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
+import 'package:truee_balance_app/core/widgets/images/images/image_widget.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData? iconData;
+  final String? imagePath;
   final String? text;
   final Color? color;
   final Color? textColor;
+  final Color? imageColor;
   final double? fontSize;
   final FontWeight? fontWeight;
   final double? width;
@@ -28,6 +31,8 @@ class CustomButtonWidget extends StatelessWidget {
     super.key,
     this.onPressed,
     this.iconData,
+    this.imagePath,
+    this.imageColor,
     this.text,
     this.color,
     this.textColor,
@@ -85,7 +90,13 @@ class CustomButtonWidget extends StatelessWidget {
                   color: textColor ?? AppColors.neutralColor100,
                   size: 25.sp,
                 ),
-              if (iconData != null) 7.horizontalSpace,
+              if (imagePath != null)
+                ImagesWidget(
+                  image: imagePath!,
+                  color: imageColor ?? AppColors.neutralColor100,
+                  fit: BoxFit.scaleDown,
+                ),
+              if (iconData != null || imagePath != null) 8.horizontalSpace,
               Text(
                 text!,
                 style: textStyle ?? Styles.contentEmphasis.copyWith(

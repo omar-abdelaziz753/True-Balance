@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/routing/app_router.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/features/main_layout/business_logic/main_layout_cubit.dart';
+import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key, this.index = 0});
