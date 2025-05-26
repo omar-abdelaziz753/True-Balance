@@ -26,19 +26,35 @@ class TrueBalanceApp extends StatelessWidget {
         value: const SystemUiOverlayStyle(
           statusBarBrightness: Brightness.light,
           statusBarIconBrightness: Brightness.light,
-        ), child: Builder(
-        builder: (context) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'True Balance',
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          navigatorKey: AppConstants.navigatorKey,
-          initialRoute: Routes.bookingScreen,
-          onGenerateRoute: appRouter.generateRoute,
-          builder: EasyLoading.init(),
+// <<<<<<< create_booking
+//         ), child: Builder(
+//         builder: (context) => MaterialApp(
+//           debugShowCheckedModeBanner: false,
+//           title: 'True Balance',
+//           localizationsDelegates: context.localizationDelegates,
+//           supportedLocales: context.supportedLocales,
+//           locale: context.locale,
+//           navigatorKey: AppConstants.navigatorKey,
+//           initialRoute: Routes.bookingScreen,
+//           onGenerateRoute: appRouter.generateRoute,
+//           builder: EasyLoading.init(),
+// =======
+// >>>>>>> main
         ),
-      ),
+        child: Builder(
+          builder: (context) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'True Balance',
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            navigatorKey: AppConstants.navigatorKey,
+            // initialRoute: Routes.splashScreen,
+            initialRoute: Routes.ourServicesScreen,
+            onGenerateRoute: appRouter.generateRoute,
+            builder: EasyLoading.init(),
+          ),
+        ),
       ),
     );
   }

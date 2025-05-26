@@ -11,6 +11,7 @@ import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/booking_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/home_screen.dart';
+import 'package:truee_balance_app/features/user/home/presentation/screens/our_services.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 import 'package:truee_balance_app/features/user/main_layout/presentation/main_layout.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
@@ -78,6 +79,11 @@ class AppRouter {
       case Routes.technicalSupportScreen:
         return transition(
           screen: const TechnicalSupportScreen(),
+        );
+      case Routes.ourServicesScreen:
+        return transition(
+          screen: OurServicesScreen(),
+          // cubit: ,
         );
       case Routes.myTicketsScreen:
         return transition(
