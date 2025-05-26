@@ -7,6 +7,7 @@ import 'package:truee_balance_app/features/auth/presentation/screens/login_scree
 import 'package:truee_balance_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/home_screen.dart';
+import 'package:truee_balance_app/features/user/home/presentation/screens/our_services.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 import 'package:truee_balance_app/features/user/main_layout/presentation/main_layout.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
@@ -88,6 +89,11 @@ class AppRouter {
       case Routes.technicalSupportScreen:
         return transition(
           screen: TechnicalSupportScreen(),
+          // cubit: ,
+        );
+      case Routes.ourServicesScreen:
+        return transition(
+          screen: OurServicesScreen(),
           // cubit: ,
         );
       case Routes.myTicketsScreen:
