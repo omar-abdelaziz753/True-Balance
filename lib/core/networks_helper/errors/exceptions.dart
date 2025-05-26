@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
@@ -43,7 +44,7 @@ class ToastManager {
           color: Colors.transparent,
           child: AnimatedOpacity(
             opacity: 1.0,
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               decoration: BoxDecoration(
@@ -53,7 +54,7 @@ class ToastManager {
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 6.r,
-                    offset: Offset(2, 4),
+                    offset: const Offset(2, 4),
                   ),
                 ],
               ),
@@ -106,8 +107,8 @@ class ServerException implements Exception {
     final Map<String, dynamic>? errorData = data is String
         ? jsonDecode(data)
         : data is Map<String, dynamic>
-        ? data
-        : null;
+            ? data
+            : null;
 
     debugPrint("Parsed errorData: $errorData");
 
@@ -239,7 +240,8 @@ void handleDioException(DioException e) {
             ErrorModel(
               message: "Gateway Timeout",
               statusCode: 504,
-              error: {}, stack: '',
+              error: {},
+              stack: '',
             ),
           );
         default:
@@ -276,7 +278,9 @@ void handleApiError(Map<String, dynamic> response) {
     String errors = response['errors'].values.join("\n");
 
     ToastManager.showCustomToast(
-      message: errors.isNotEmpty ? errors : 'Unknown validation error', // Fallback message
+      message: errors.isNotEmpty
+          ? errors
+          : 'Unknown validation error', // Fallback message
       backgroundColor: AppColors.redColor200,
       icon: Icons.error_outline,
       duration: const Duration(seconds: 3),

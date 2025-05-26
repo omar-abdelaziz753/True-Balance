@@ -60,9 +60,10 @@ class SettingScreen extends StatelessWidget {
                             title: 'My Booking',
                             subtitle:
                                 'appointments with the ability to follow up',
-                            onTap: () => context.pushNamed(Routes.myBookingScreen),
+                            onTap: () =>
+                                context.pushNamed(Routes.myBookingScreen),
                           ),
-                          CustomDividerWidget(),
+                          const CustomDividerWidget(),
                           CustomRowInSettingWidget(
                             imagePath:
                                 'assets/images/svg/my_addresses_icon.svg',
@@ -71,7 +72,7 @@ class SettingScreen extends StatelessWidget {
                                 'All your current address for easy booking',
                             onTap: () {},
                           ),
-                          CustomDividerWidget(),
+                          const CustomDividerWidget(),
                           CustomRowInSettingWidget(
                             imagePath:
                                 'assets/images/svg/technical_support_icon.svg',
@@ -80,7 +81,7 @@ class SettingScreen extends StatelessWidget {
                             onTap: () => context
                                 .pushNamed(Routes.technicalSupportScreen),
                           ),
-                          CustomDividerWidget(),
+                          const CustomDividerWidget(),
                           CustomRowInSettingWidget(
                             imagePath:
                                 'assets/images/svg/account_information_icon.svg',
@@ -116,7 +117,7 @@ class SettingScreen extends StatelessWidget {
                                 'preferred language for displaying content.',
                             onTap: () {},
                           ),
-                          CustomDividerWidget(),
+                          const CustomDividerWidget(),
                           CustomRowInSettingWidget(
                             imagePath: 'assets/images/svg/logout_icon.svg',
                             title: 'Logout',

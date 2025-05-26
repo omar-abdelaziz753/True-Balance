@@ -1,11 +1,9 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:lottie/lottie.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:lottie/lottie.dart';
 
 void showChangePasswordBottomSheet(
   BuildContext context, {

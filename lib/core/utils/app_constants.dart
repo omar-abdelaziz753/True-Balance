@@ -12,15 +12,9 @@ class AppConstants {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static int userMainLayoutInitialScreenIndex = 0;
 
-  static screenWidth(context) =>
-      MediaQuery
-          .sizeOf(context)
-          .width;
+  static screenWidth(context) => MediaQuery.sizeOf(context).width;
 
-  static screenHeight(context) =>
-      MediaQuery
-          .sizeOf(context)
-          .height;
+  static screenHeight(context) => MediaQuery.sizeOf(context).height;
 
   static double borderRadius = 8.r;
 
@@ -72,11 +66,11 @@ class AppConstants {
     }
 
     // Fallback: Default no profile image
-    return AssetImage('assets/images/pngs/no_profile_image.png');
+    return const AssetImage('assets/images/pngs/no_profile_image.png');
   }
 
-  static Future<void> pickTime(BuildContext context,
-      TextEditingController controller) async {
+  static Future<void> pickTime(
+      BuildContext context, TextEditingController controller) async {
     TimeOfDay? pickedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),

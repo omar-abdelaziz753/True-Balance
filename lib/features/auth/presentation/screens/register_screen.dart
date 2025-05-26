@@ -19,16 +19,16 @@ class RegisterScreen extends StatelessWidget {
                 constraints: BoxConstraints(
                   minHeight: constraints.maxHeight,
                 ),
-                child: IntrinsicHeight(
+                child: const IntrinsicHeight(
                   child: Center(
                     child: Column(
                       children: [
                         CustomHeaderWidget(
                           title1: 'Welcome to ',
                           title2: 'TrueBalance',
-                          description: 'Please enter your email & we will send a confirmation code to your email',
+                          description:
+                              'Please enter your email & we will send a confirmation code to your email',
                         ),
-
                         Expanded(child: ResisterFormWidget()),
                       ],
                     ),

@@ -19,9 +19,7 @@ class TechnicalSupportScreen extends StatelessWidget {
       appBar: CustomBasicAppBar(
         leading: BackButton(
           color: AppColors.neutralColor100,
-          onPressed: () {
-            print('back');
-          },
+          onPressed: () {},
         ),
         // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
         title: 'Technical Support',
@@ -38,101 +36,98 @@ class TechnicalSupportScreen extends StatelessWidget {
               topRight: Radius.circular(12.r),
             ),
           ),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: constraints.maxWidth,
-                    minHeight: constraints.maxHeight,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'How can we help You?',
-                        style: Styles.highlightEmphasis.copyWith(
-                          color: AppColors.neutralColor1000,
-                        ),
+          child: LayoutBuilder(builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: constraints.maxWidth,
+                  minHeight: constraints.maxHeight,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'How can we help You?',
+                      style: Styles.highlightEmphasis.copyWith(
+                        color: AppColors.neutralColor1000,
                       ),
-                      18.verticalSpace,
-
-                      Row(
-                        spacing: 16.w,
-                        children: [
-                          Expanded(
-                            child: CustomButtonWidget(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 12.h
-                              ),
-                              color: AppColors.primaryColor900,
-                              text: 'Contact Us',
-                              textStyle: Styles.captionEmphasis.copyWith(
-                                color: AppColors.neutralColor100,
-                              ),
-                              imagePath: 'assets/images/svg/contact_us_icon_in_button.svg',
+                    ),
+                    18.verticalSpace,
+                    Row(
+                      spacing: 16.w,
+                      children: [
+                        Expanded(
+                          child: CustomButtonWidget(
+                            padding: EdgeInsets.symmetric(vertical: 12.h),
+                            color: AppColors.primaryColor900,
+                            text: 'Contact Us',
+                            textStyle: Styles.captionEmphasis.copyWith(
+                              color: AppColors.neutralColor100,
                             ),
+                            imagePath:
+                                'assets/images/svg/contact_us_icon_in_button.svg',
                           ),
-                          Expanded(
-                            child: CustomButtonWidget(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 12.h
-                              ),
-                              color: AppColors.primaryColor900.withAlpha(20),
-                              text: 'My Tickets',
-                              textStyle: Styles.captionEmphasis.copyWith(
-                                color: AppColors.primaryColor900,
-                              ),
-                              imagePath: 'assets/images/svg/my_tickets_icon_in_button.svg',
-                              imageColor: AppColors.primaryColor900,
-                              onPressed: () =>
-                                  context.pushNamed(Routes.myTicketsScreen),
+                        ),
+                        Expanded(
+                          child: CustomButtonWidget(
+                            padding: EdgeInsets.symmetric(vertical: 12.h),
+                            color: AppColors.primaryColor900.withAlpha(20),
+                            text: 'My Tickets',
+                            textStyle: Styles.captionEmphasis.copyWith(
+                              color: AppColors.primaryColor900,
                             ),
+                            imagePath:
+                                'assets/images/svg/my_tickets_icon_in_button.svg',
+                            imageColor: AppColors.primaryColor900,
+                            onPressed: () =>
+                                context.pushNamed(Routes.myTicketsScreen),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: 18.w,
+                        bottom: 18.w,
+                      ),
+                      child: Column(
+                        spacing: 16.h,
+                        children: [
+                          CustomRowInTechnicalSupportWidget(
+                            title: 'About Us',
+                            onTap: () =>
+                                context.pushNamed(Routes.aboutUsScreen),
+                          ),
+                          const CustomDividerWidget(),
+                          CustomRowInTechnicalSupportWidget(
+                            title: 'FAQs',
+                            onTap: () {},
+                          ),
+                          const CustomDividerWidget(),
+                          CustomRowInTechnicalSupportWidget(
+                            title: 'Terms & Conditions',
+                            onTap: () => context
+                                .pushNamed(Routes.termsAndConditionsScreen),
+                          ),
+                          const CustomDividerWidget(),
+                          CustomRowInTechnicalSupportWidget(
+                            title: 'Privacy Policy',
+                            onTap: () =>
+                                context.pushNamed(Routes.privacyPolicyScreen),
+                          ),
+                          const CustomDividerWidget(),
+                          CustomRowInTechnicalSupportWidget(
+                            title: 'Visit our website',
+                            onTap: () {},
                           ),
                         ],
                       ),
-
-                      Container(
-                        padding: EdgeInsets.only(
-                          top: 18.w,
-                          bottom: 18.w,
-                        ),
-                        child: Column(
-                          spacing: 16.h,
-                          children: [
-                            CustomRowInTechnicalSupportWidget(
-                              title: 'About Us',
-                              onTap: () => context.pushNamed(Routes.aboutUsScreen),
-                            ),
-                            CustomDividerWidget(),
-                            CustomRowInTechnicalSupportWidget(
-                              title: 'FAQs',
-                              onTap: () {},
-                            ),
-                            CustomDividerWidget(),
-                            CustomRowInTechnicalSupportWidget(
-                              title: 'Terms & Conditions',
-                              onTap: () => context.pushNamed(Routes.termsAndConditionsScreen),
-                            ),
-                            CustomDividerWidget(),
-                            CustomRowInTechnicalSupportWidget(
-                              title: 'Privacy Policy',
-                              onTap: () => context.pushNamed(Routes.privacyPolicyScreen),
-                            ),
-                            CustomDividerWidget(),
-                            CustomRowInTechnicalSupportWidget(
-                              title: 'Visit our website',
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              );
-            }
-          ),
+              ),
+            );
+          }),
         ),
       ),
     );

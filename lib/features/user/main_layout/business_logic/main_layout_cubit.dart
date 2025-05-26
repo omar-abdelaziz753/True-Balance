@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
+
 part 'main_layout_state.dart';
 
 class MainLayoutCubit extends Cubit<MainLayoutState> {

@@ -31,10 +31,9 @@ class CreateNewPasswordScreen extends StatelessWidget {
                             title1: 'Create a New ',
                             title2: 'Password',
                             description:
-                            'We’ve sent an OTP code to your Email $email',
+                                'We’ve sent an OTP code to your Email $email',
                           ),
-
-                          Expanded(child: CreateNewPasswordFormWidget()),
+                          const Expanded(child: CreateNewPasswordFormWidget()),
                         ],
                       ),
                     ),

@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
-      appBar: CustomMainAppBarInHomeWidget(
+      appBar: const CustomMainAppBarInHomeWidget(
         userName: 'Omar Abdelaziz',
         location: 'My Address Here',
         profileImageAsset: 'assets/images/png/profile_image.png',
@@ -29,4 +29,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

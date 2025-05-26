@@ -9,7 +9,7 @@ class AppBarBackButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap ??
-              () {
+          () {
             context.pop();
           },
       child: Padding(
@@ -17,13 +17,13 @@ class AppBarBackButtonWidget extends StatelessWidget {
         // padding: EdgeInsets.symmetric(horizontal: 10.w),
         // padding: EdgeInsets.symmetric(horizontal: 12.w),
         // child: Transform.rotate(
-          // angle: isArabic ? 0 : 3.1416, // 180 degrees for English
-          // child: SvgPicture.asset(
-          //   'assets/images/svgs/back_icon.svg',
-          //   width: 34.w,
-          //   height: 34.h,
-          // ),
-          child: BackButton(),
+        // angle: isArabic ? 0 : 3.1416, // 180 degrees for English
+        // child: SvgPicture.asset(
+        //   'assets/images/svgs/back_icon.svg',
+        //   width: 34.w,
+        //   height: 34.h,
+        // ),
+        child: const BackButton(),
         // ),
       ),
     );

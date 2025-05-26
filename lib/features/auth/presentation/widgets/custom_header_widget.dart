@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/text/custom_text_rich_widget.dart';
 
 class CustomHeaderWidget extends StatelessWidget {
   const CustomHeaderWidget({
