@@ -68,15 +68,15 @@ class BookingDetailsScreen extends StatelessWidget {
                         child: Column(
                           spacing: 12.h,
                           children: [
-                            CustomRowMakeTitleAndDescWidget(
+                            const CustomRowMakeTitleAndDescWidget(
                               title: 'Date',
                               description: 'January 5',
                             ),
-                            CustomRowMakeTitleAndDescWidget(
+                            const CustomRowMakeTitleAndDescWidget(
                               title: 'Time',
                               description: '7:00 AM',
                             ),
-                            CustomRowMakeTitleAndDescWidget(
+                            const CustomRowMakeTitleAndDescWidget(
                               title: 'Check in',
                               description: 'December 23, 2022',
                             ),
@@ -104,15 +104,15 @@ class BookingDetailsScreen extends StatelessWidget {
                         child: Column(
                           spacing: 12.h,
                           children: [
-                            CustomRowMakeTitleAndDescWidget(
+                            const CustomRowMakeTitleAndDescWidget(
                               title: 'Name',
                               description: 'Omar AbdelAziz',
                             ),
-                            CustomRowMakeTitleAndDescWidget(
+                            const CustomRowMakeTitleAndDescWidget(
                               title: 'Phone Number',
                               description: '+201 027 324 902',
                             ),
-                            CustomRowMakeTitleAndDescWidget(
+                            const CustomRowMakeTitleAndDescWidget(
                               title: 'Therapists Name',
                               description: 'Ahmed Hossam',
                             ),
@@ -140,7 +140,7 @@ class BookingDetailsScreen extends StatelessWidget {
                         child: Column(
                           spacing: 12.h,
                           children: [
-                            CustomRowMakeTitleAndDescWidget(
+                            const CustomRowMakeTitleAndDescWidget(
                               title: 'Total',
                               description: '\$150.00',
                             ),
@@ -153,7 +153,6 @@ class BookingDetailsScreen extends StatelessWidget {
               },
             ),
           ),
-
           Positioned(
             left: 18.w,
             right: 18.w,
@@ -165,16 +164,14 @@ class BookingDetailsScreen extends StatelessWidget {
                 color: AppColors.neutralColor100,
               ),
               onPressed: () {
-                showChangePasswordBottomSheet(
-                    context,
+                showChangePasswordBottomSheet(context,
                     title1: "our Ticket ",
                     title2: "Successfully",
-                    description: "Your ticket is now under review by our support team.",
-                    buttonText: " Ok",
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }
-                );
+                    description:
+                        "Your ticket is now under review by our support team.",
+                    buttonText: " Ok", onPressed: () {
+                  Navigator.pop(context);
+                });
               },
             ),
           ),

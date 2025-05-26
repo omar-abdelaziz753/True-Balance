@@ -84,8 +84,8 @@ class CustomDropdownButtonWidgetState<T>
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
-              border: Border.all(color: AppColors.neutralColor600, width: 1.w),
-              color: AppColors.neutralColor100,
+              border: Border.all(color: AppColors.neutralColor1000, width: 1.w),
+              color: AppColors.neutralColor100.withValues(alpha: 0.1),
             ),
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.h),
             child: Row(
@@ -125,28 +125,25 @@ class CustomDropdownButtonWidgetState<T>
                     10.horizontalSpace,
                     Text(
                       selectedValue == null
-                          ? (widget.hint ?? 'auth.chooseGender'.tr())
+                          ? (widget.hint ?? 'selectItem'.tr())
                           : (widget.isString
                               ? selectedValue.toString()
                               : widget.getItemText!(selectedValue as T)),
                       style: Styles.contentEmphasis.copyWith(
-                        color: AppColors.neutralColor600,
-                      ),
+                          // color: AppColors.neutralColor600,
+                          ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
                 AnimatedRotation(
                   turns: isDropdownOpen ? 0.5 : 0, // Rotates 180° when open
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                    ),
-                    child: SvgPicture.asset(
-                      'assets/images/svgs/arrow-down_icon.svg',
-                    ),
-                  ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.w,
+                      ),
+                      child: const Icon(Icons.arrow_drop_down_rounded)),
                 ),
               ],
             ),
@@ -162,74 +159,73 @@ class CustomDropdownButtonWidgetState<T>
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
                 border: Border.all(
-                  color: AppColors.neutralColor300,
+                  color: AppColors.neutralColor1000,
                   width: 1.w,
                 ),
-                color: AppColors.neutralColor100,
+                color: AppColors.neutralColor100.withValues(alpha: 0.1),
               ),
               child: Column(
-                children:
-                    widget.items.map((T item) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedValue = item;
-                            isDropdownOpen = false;
-                          });
-                          _animationController.reverse();
-                          if (widget.onChanged != null) widget.onChanged!(item);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10.h,
-                            horizontal: 10.w,
-                          ),
-                          child: Row(
-                            children: [
-                              if (widget.getItemIcon != null)
-                                Padding(
-                                  padding: EdgeInsets.only(right: 8.w),
-                                  child: CacheNetworkImagesWidget(
-                                    image: widget.getItemIcon!(item),
-                                    width: 24.w,
-                                    height: 24.h,
-                                    boxFit: BoxFit.contain,
-                                  ),
-                                ),
-                              10.horizontalSpace,
-                              Expanded(
-                                child: Text(
-                                  widget.isString
-                                      ? item.toString()
-                                      : widget.getItemText!(item),
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: Colors.black,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                children: widget.items.map((T item) {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedValue = item;
+                        isDropdownOpen = false;
+                      });
+                      _animationController.reverse();
+                      if (widget.onChanged != null) widget.onChanged!(item);
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.h,
+                        horizontal: 10.w,
+                      ),
+                      child: Row(
+                        children: [
+                          if (widget.getItemIcon != null)
+                            Padding(
+                              padding: EdgeInsets.only(right: 8.w),
+                              child: CacheNetworkImagesWidget(
+                                image: widget.getItemIcon!(item),
+                                width: 24.w,
+                                height: 24.h,
+                                boxFit: BoxFit.contain,
                               ),
-                              Radio<T>(
-                                value: item,
-                                visualDensity: VisualDensity.compact,
-                                groupValue: widget.value,
-                                onChanged: (T? newValue) {
-                                  setState(() {
-                                    selectedValue = newValue;
-                                    isDropdownOpen = false;
-                                  });
-                                  _animationController.reverse();
-                                  if (widget.onChanged != null) {
-                                    widget.onChanged!(newValue);
-                                  }
-                                },
-                                activeColor: AppColors.primaryColor700,
+                            ),
+                          10.horizontalSpace,
+                          Expanded(
+                            child: Text(
+                              widget.isString
+                                  ? item.toString()
+                                  : widget.getItemText!(item),
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                color: Colors.black,
                               ),
-                            ],
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
+                          Radio<T>(
+                            value: item,
+                            visualDensity: VisualDensity.compact,
+                            groupValue: widget.value,
+                            onChanged: (T? newValue) {
+                              setState(() {
+                                selectedValue = newValue;
+                                isDropdownOpen = false;
+                              });
+                              _animationController.reverse();
+                              if (widget.onChanged != null) {
+                                widget.onChanged!(newValue);
+                              }
+                            },
+                            activeColor: AppColors.primaryColor700,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
               ),
             ),
           ),

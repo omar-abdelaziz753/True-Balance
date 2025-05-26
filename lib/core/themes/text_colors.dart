@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 
 abstract class Styles {
@@ -33,6 +32,7 @@ abstract class Styles {
       );
     }
   }
+
   /// ==========================HEADING================================ ///
   /// ================================================================= ///
   static TextStyle heading3 = getLocalizedTextStyle(
@@ -65,8 +65,8 @@ abstract class Styles {
     fontWeight: FontWeight.normal,
     color: Colors.black,
   );
-  /// ================================================================= ///
 
+  /// ================================================================= ///
 
   /// ==========================BODY TEXT=============================== ///
   /// ================================================================= ///

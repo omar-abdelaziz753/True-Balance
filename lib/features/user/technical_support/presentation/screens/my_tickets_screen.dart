@@ -19,9 +19,7 @@ class MyTicketsScreen extends StatelessWidget {
       appBar: CustomBasicAppBar(
         leading: BackButton(
           color: AppColors.neutralColor100,
-          onPressed: () {
-            print('back');
-          },
+          onPressed: () {},
         ),
         // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
         title: 'My Tickets',
@@ -39,40 +37,39 @@ class MyTicketsScreen extends StatelessWidget {
                 topRight: Radius.circular(12.r),
               ),
             ),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                return SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: ListView.separated(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 16,
-                      padding: EdgeInsets.only(
-                        top: 0,
-                        bottom: 100.h,
-                      ),
-                      separatorBuilder: (context, index) => const CustomDividerWidget(),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 16.h,
-                          ),
-                          child: const CustomRowInMyTicketsWidget(
-                            ticketNumber: 'Ticket No. #TICKET-12987',
-                            message: "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
-                          ),
-                        );
-                      },
-                    ),
+            child: LayoutBuilder(builder: (context, constraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
                   ),
-                );
-              }
-            ),
+                  child: ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 16,
+                    padding: EdgeInsets.only(
+                      top: 0,
+                      bottom: 100.h,
+                    ),
+                    separatorBuilder: (context, index) =>
+                        const CustomDividerWidget(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 16.h,
+                        ),
+                        child: const CustomRowInMyTicketsWidget(
+                          ticketNumber: 'Ticket No. #TICKET-12987',
+                          message:
+                              "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            }),
           ),
-
           Positioned(
             left: 18.w,
             right: 18.w,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/background/custom_main_body_widget.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/custom_header_widget.dart';
@@ -22,7 +21,7 @@ class LoginScreen extends StatelessWidget {
                   constraints: BoxConstraints(
                     minHeight: constraints.maxHeight,
                   ),
-                  child: IntrinsicHeight(
+                  child: const IntrinsicHeight(
                     child: Center(
                       child: Column(
                         children: [
@@ -30,7 +29,7 @@ class LoginScreen extends StatelessWidget {
                             title1: 'Welcome ',
                             title2: 'Back',
                             description:
-                            'Please enter your Phone Number Or Email & password to access your account.',
+                                'Please enter your Phone Number Or Email & password to access your account.',
                           ),
                           Expanded(child: LoginFormWidget()),
                         ],

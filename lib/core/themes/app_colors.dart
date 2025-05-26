@@ -28,7 +28,7 @@ class AppColors {
   static final secondaryColor10 = hexToColor('#f58220');
 
   /// NEUTRAL Colors
-  static final neutralColor100 = hexToColor('#fcfcfc');
+  static final neutralColor100 = hexToColor('#FCFCFC');
   static final neutralColor200 = hexToColor('#e0e0e0');
   static final neutralColor300 = hexToColor('#c5c5c5');
   static final neutralColor400 = hexToColor('#a9a9a9');

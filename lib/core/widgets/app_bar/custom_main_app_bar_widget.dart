@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -48,7 +49,8 @@ class CustomMainAppBarWidget extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 26.r,
-                backgroundImage: AppConstants.getProfileImage(profilePic, userImage),
+                backgroundImage:
+                    AppConstants.getProfileImage(profilePic, userImage),
               ),
               SizedBox(width: 12.w),
               SizedBox(
@@ -81,7 +83,7 @@ class CustomMainAppBarWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               actionIconsWidget ?? const SizedBox.shrink(),
             ],
           ),

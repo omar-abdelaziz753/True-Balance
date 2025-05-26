@@ -58,7 +58,7 @@ class CustomButtonWidget extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         width: width ?? MediaQuery.of(context).size.width * 0.9,
-        // height: height ?? 50.h,
+        height: height ?? 50.h,
         margin: margin,
         padding: padding ?? EdgeInsets.symmetric(horizontal: 2.w),
         decoration: BoxDecoration(
@@ -99,11 +99,12 @@ class CustomButtonWidget extends StatelessWidget {
               if (iconData != null || imagePath != null) 8.horizontalSpace,
               Text(
                 text!,
-                style: textStyle ?? Styles.contentEmphasis.copyWith(
-                  color: textColor ?? AppColors.neutralColor100,
-                  fontSize: fontSize,
-                  fontWeight: fontWeight,
-                ),
+                style: textStyle ??
+                    Styles.contentEmphasis.copyWith(
+                      color: textColor ?? AppColors.neutralColor100,
+                      fontSize: fontSize,
+                      fontWeight: fontWeight,
+                    ),
               ),
             ],
           ),

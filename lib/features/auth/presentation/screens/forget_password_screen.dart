@@ -19,7 +19,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 constraints: BoxConstraints(
                   minHeight: constraints.maxHeight,
                 ),
-                child: IntrinsicHeight(
+                child: const IntrinsicHeight(
                   child: Center(
                     child: Column(
                       children: [

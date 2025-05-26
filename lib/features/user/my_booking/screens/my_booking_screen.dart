@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/features/user/my_booking/widgets/custom_booking_container_widget.dart';
 
@@ -51,7 +49,8 @@ class MyBookingScreen extends StatelessWidget {
                       separatorBuilder: (context, index) => 18.verticalSpace,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () => context.pushNamed(Routes.bookingDetailsScreen),
+                          onTap: () =>
+                              context.pushNamed(Routes.bookingDetailsScreen),
                           child: CustomBookingContainerWidget(
                             specialization: 'Specialization $index',
                             doctorName: 'Omar AbdelAziz Mohamed',

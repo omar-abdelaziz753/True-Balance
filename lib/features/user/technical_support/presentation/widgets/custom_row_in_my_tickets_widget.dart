@@ -7,7 +7,9 @@ import 'package:truee_balance_app/core/widgets/circle_avatar/custom_circle_avata
 
 class CustomRowInMyTicketsWidget extends StatelessWidget {
   const CustomRowInMyTicketsWidget({
-    super.key, required this.ticketNumber, required this.message,
+    super.key,
+    required this.ticketNumber,
+    required this.message,
   });
 
   final String ticketNumber;
@@ -40,7 +42,7 @@ class CustomRowInMyTicketsWidget extends StatelessWidget {
             ],
           ),
         ),
-        CustomCircleAvatarNumberOfMessagesWidget(
+        const CustomCircleAvatarNumberOfMessagesWidget(
           numberOfMessages: '3',
         ),
       ],

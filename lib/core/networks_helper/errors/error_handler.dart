@@ -25,7 +25,8 @@ class ErrorHandler {
       final responseMessage = response.data['message'];
       final errors = response.data['errors'];
 
-      if (responseMessage == "error.wrongVerification".tr() && errors is Map<String, dynamic>) {
+      if (responseMessage == "error.wrongVerification".tr() &&
+          errors is Map<String, dynamic>) {
         message = _mapValidationErrors(errors);
       } else {
         message = responseMessage ?? "error.unexpected".tr();
@@ -42,7 +43,6 @@ class ErrorHandler {
   static String _mapValidationErrors(Map<String, dynamic> errors) {
     return errors.values.map((value) => "- $value").join("\n");
   }
-
 
   /// Handles all Dio-related errors
   static FailureException handleDioError(DioException e) {
@@ -85,7 +85,8 @@ class ErrorHandler {
   static void _showToast(String message, {bool isError = false}) {
     ToastManager.showCustomToast(
       message: message,
-      backgroundColor: isError ? AppColors.redColor200 : AppColors.greenColor200,
+      backgroundColor:
+          isError ? AppColors.redColor200 : AppColors.greenColor200,
       icon: isError ? Icons.error_outline : Icons.check_circle_outline,
       duration: const Duration(seconds: 3),
     );
@@ -97,8 +98,8 @@ class ErrorHandler {
     if (context != null) {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => UnauthorizedScreen()),
-            (route) => false,
+        MaterialPageRoute(builder: (context) => const UnauthorizedScreen()),
+        (route) => false,
       );
     }
   }
@@ -109,8 +110,10 @@ class ErrorHandler {
     if (context != null) {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => ServerErrorScreen()), // Navigate to Server Error Screen
-            (route) => false,
+        MaterialPageRoute(
+            builder: (context) =>
+                const ServerErrorScreen()), // Navigate to Server Error Screen
+        (route) => false,
       );
     }
   }
