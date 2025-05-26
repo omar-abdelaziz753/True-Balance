@@ -9,7 +9,7 @@ import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
-import 'package:truee_balance_app/features/user/create%20booking/presentation/booking_screen.dart';
+import 'package:truee_balance_app/features/user/create%20booking/presentation/presentation/booking_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/home_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/our_services.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
