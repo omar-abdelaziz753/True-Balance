@@ -14,5 +14,4 @@ class Routes {
   static const String privacyPolicyScreen = '/privacyPolicyScreen';
   static const String openANewTicketScreen = '/openANewTicketScreen';
   static const String myBookingScreen = '/myBookingScreen';
-  static const String bookingDetailsScreen = '/bookingDetailsScreen';
 }

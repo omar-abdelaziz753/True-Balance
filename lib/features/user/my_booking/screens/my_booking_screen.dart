@@ -6,7 +6,7 @@ import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/features/my_booking/widgets/custom_booking_container_widget.dart';
+import 'package:truee_balance_app/features/user/my_booking/widgets/custom_booking_container_widget.dart';
 
 class MyBookingScreen extends StatelessWidget {
   const MyBookingScreen({super.key});

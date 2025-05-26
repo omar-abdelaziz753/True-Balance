@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
@@ -76,6 +78,7 @@ class MyTicketsScreen extends StatelessWidget {
             right: 18.w,
             bottom: 32.h,
             child: CustomButtonWidget(
+              onPressed: () => context.pushNamed(Routes.openANewTicketScreen),
               padding: EdgeInsets.symmetric(
                 vertical: 12.h,
               ),

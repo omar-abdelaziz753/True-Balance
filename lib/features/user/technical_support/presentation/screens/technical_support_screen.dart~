@@ -112,7 +112,7 @@ class TechnicalSupportScreen extends StatelessWidget {
                             CustomDividerWidget(),
                             CustomRowInTechnicalSupportWidget(
                               title: 'Terms & Conditions',
-                              onTap: () => context.pushNamed(Routes.termsAndConditionsScreen),
+                              onTap: () {},
                             ),
                             CustomDividerWidget(),
                             CustomRowInTechnicalSupportWidget(

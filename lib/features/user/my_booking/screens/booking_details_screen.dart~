@@ -5,7 +5,6 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/bottom_sheet/show_change_password_bottom_sheet.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/features/user/my_booking/widgets/custom_row_make_title_and_desc_widget.dart';
 
 class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen({super.key});
@@ -180,6 +179,39 @@ class BookingDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class CustomRowMakeTitleAndDescWidget extends StatelessWidget {
+  const CustomRowMakeTitleAndDescWidget({
+    super.key, required this.title, required this.description,
+  });
+
+  final String title, description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      spacing: 12.w,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: Styles.captionEmphasis.copyWith(
+            color: AppColors.neutralColor600,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            description,
+            style: Styles.contentEmphasis.copyWith(
+              color: AppColors.neutralColor1000,
+            ),
+            textAlign: TextAlign.end,
+          ),
+        ),
+      ],
     );
   }
 }

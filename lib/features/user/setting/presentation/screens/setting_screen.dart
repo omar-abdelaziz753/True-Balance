@@ -60,7 +60,7 @@ class SettingScreen extends StatelessWidget {
                             title: 'My Booking',
                             subtitle:
                                 'appointments with the ability to follow up',
-                            onTap: () {},
+                            onTap: () => context.pushNamed(Routes.myBookingScreen),
                           ),
                           CustomDividerWidget(),
                           CustomRowInSettingWidget(

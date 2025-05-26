@@ -9,12 +9,17 @@ import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_
 import 'package:truee_balance_app/features/user/home/presentation/screens/home_screen.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 import 'package:truee_balance_app/features/user/main_layout/presentation/main_layout.dart';
+import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
+import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/my_tickets_screen.dart';
+import 'package:truee_balance_app/features/user/technical_support/presentation/screens/open_a_new_ticket_screen.dart';
+import 'package:truee_balance_app/features/user/technical_support/presentation/screens/privacy_policy_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/technical_support_screen.dart';
+import 'package:truee_balance_app/features/user/technical_support/presentation/screens/terms_and_conditions_screen.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -90,9 +95,34 @@ class AppRouter {
           screen: MyTicketsScreen(),
           // cubit: ,
         );
+      case Routes.openANewTicketScreen:
+        return transition(
+          screen: OpenANewTicketScreen(),
+          // cubit: ,
+        );
+      case Routes.myBookingScreen:
+        return transition(
+          screen: MyBookingScreen(),
+          // cubit: ,
+        );
+      case Routes.bookingDetailsScreen:
+        return transition(
+          screen: BookingDetailsScreen(),
+          // cubit: ,
+        );
       case Routes.aboutUsScreen:
         return transition(
           screen: AboutUsScreen(),
+          // cubit: ,
+        );
+      case Routes.termsAndConditionsScreen:
+        return transition(
+          screen: TermsAndConditionsScreen(),
+          // cubit: ,
+        );
+      case Routes.privacyPolicyScreen:
+        return transition(
+          screen: PrivacyPolicyScreen(),
           // cubit: ,
         );
 

@@ -17,6 +17,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
   const VerifyOtpWidgetWidget({super.key, required this.data});
 
   final Map<String, dynamic> data;
+
   // final String screenName;
 
   @override
@@ -127,7 +128,6 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
             ),
           ),
           32.verticalSpace,
-
           CustomButtonWidget(
             text: data['screenName'] == 'forgetPassword' ? 'Verify' : 'Next',
             padding: EdgeInsets.symmetric(
@@ -137,12 +137,23 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
               color: AppColors.neutralColor100,
             ),
             onPressed: () {
-              if(data['screenName'] == 'forgetPassword') {
-                context.pushNamed(Routes.createNewPasswordScreen, arguments: data['email']);
+              if (data['screenName'] == 'forgetPassword') {
+                context.pushNamed(Routes.createNewPasswordScreen,
+                    arguments: data['email']);
               } else {
-                showChangePasswordBottomSheet(context);
+                showChangePasswordBottomSheet(
+                  context,
+                  title1: "Congratulation!",
+                  title2: "your password has been changed",
+                  description:
+                      "Your password has been updated. Login to continue.",
+                  buttonText: "Login",
+                  onPressed: () {
+                    context.pushNamed(Routes.loginScreen);
+                  }
+                );
               }
-              },
+            },
           ),
           if (data['screenName'] == 'forgetPassword')
             Row(
