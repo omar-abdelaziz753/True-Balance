@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -38,7 +39,7 @@ class ForgetPasswordFormWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Email',
+                  'email'.tr(),
                   style: Styles.contentEmphasis.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
@@ -47,7 +48,7 @@ class ForgetPasswordFormWidget extends StatelessWidget {
                 CustomTextFormFieldWidget(
                   controller: TextEditingController(),
                   keyboardType: TextInputType.emailAddress,
-                  hintText: 'Enter your Email',
+                  hintText: 'enterYourEmail'.tr(),
                   hintStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor600,
                   ),
@@ -58,7 +59,7 @@ class ForgetPasswordFormWidget extends StatelessWidget {
           ),
           32.verticalSpace,
           CustomButtonWidget(
-            text: 'Next',
+            text: 'next'.tr(),
             padding: EdgeInsets.symmetric(
               vertical: 14.h,
             ),
@@ -77,7 +78,7 @@ class ForgetPasswordFormWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Don\'t have an account?',
+                'dontHaveAccount'.tr(),
                 style: Styles.captionEmphasis.copyWith(
                   color: AppColors.neutralColor300,
                 ),
@@ -97,7 +98,7 @@ class ForgetPasswordFormWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Sign Up',
+                      'signUp'.tr(),
                       style: Styles.captionEmphasis.copyWith(
                         color: AppColors.primaryColor900,
                         decoration: TextDecoration.underline,

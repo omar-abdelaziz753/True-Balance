@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +32,7 @@ class LoginFormWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Phone Number / Email',
+            'phoneNumber'.tr(),
             style: Styles.contentEmphasis.copyWith(
               color: AppColors.neutralColor1000,
             ),
@@ -40,7 +41,7 @@ class LoginFormWidget extends StatelessWidget {
           CustomTextFormFieldWidget(
             controller: TextEditingController(),
             keyboardType: TextInputType.emailAddress,
-            hintText: 'Enter your Phone Number / Email',
+            hintText: 'enterYourPhoneNumber'.tr(),
             hintStyle: Styles.captionRegular.copyWith(
               color: AppColors.neutralColor600,
             ),
@@ -48,7 +49,7 @@ class LoginFormWidget extends StatelessWidget {
           ),
           18.verticalSpace,
           Text(
-            'Password',
+            'password'.tr(),
             style: Styles.contentEmphasis.copyWith(
               color: AppColors.neutralColor1000,
             ),
@@ -57,7 +58,7 @@ class LoginFormWidget extends StatelessWidget {
           CustomTextFormFieldWidget(
             controller: TextEditingController(),
             keyboardType: TextInputType.emailAddress,
-            hintText: 'Enter Your Password',
+            hintText: 'enterYourPassword'.tr(),
             hintStyle: Styles.captionRegular.copyWith(
               color: AppColors.neutralColor600,
             ),
@@ -88,7 +89,7 @@ class LoginFormWidget extends StatelessWidget {
                 ),
                 onPressed: () => context.pushNamed(Routes.forgetPasswordScreen),
                 child: Text(
-                  'Forgot Password?',
+                  'forgetPassword'.tr(),
                   style: Styles.captionRegular.copyWith(
                     color: AppColors.primaryColor900,
                     decoration: TextDecoration.underline,
@@ -101,7 +102,7 @@ class LoginFormWidget extends StatelessWidget {
           ),
           23.verticalSpace,
           CustomButtonWidget(
-            text: 'Login',
+            text: 'login'.tr(),
             padding: EdgeInsets.symmetric(
               vertical: 14.h,
             ),
@@ -115,7 +116,7 @@ class LoginFormWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Don\'t have an account?',
+                'dontHaveAnAccount'.tr(),
                 style: Styles.captionEmphasis.copyWith(
                   color: AppColors.neutralColor300,
                 ),
@@ -136,7 +137,7 @@ class LoginFormWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Sign Up',
+                      'signUp'.tr(),
                       style: Styles.captionEmphasis.copyWith(
                         color: AppColors.primaryColor900,
                         decoration: TextDecoration.underline,

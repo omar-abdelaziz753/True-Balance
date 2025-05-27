@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/custom_header_widget.dart';
@@ -19,17 +20,17 @@ class RegisterScreen extends StatelessWidget {
                 constraints: BoxConstraints(
                   minHeight: constraints.maxHeight,
                 ),
-                child: const IntrinsicHeight(
+                child: IntrinsicHeight(
                   child: Center(
                     child: Column(
                       children: [
                         CustomHeaderWidget(
-                          title1: 'Welcome to ',
-                          title2: 'TrueBalance',
+                          title1: 'welcomeTo'.tr(),
+                          title2: 'trueBalance'.tr(),
                           description:
-                              'Please enter your email & we will send a confirmation code to your email',
+                              'descriptionOfHeaderInRegister'.tr(),
                         ),
-                        Expanded(child: ResisterFormWidget()),
+                        const Expanded(child: ResisterFormWidget()),
                       ],
                     ),
                   ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -35,14 +36,14 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Our Services',
+                  'ourServices'.tr(),
                   style: Styles.captionAccent.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
                 ),
 
                 Text(
-                  'See all',
+                  'seeAll'.tr(),
                   style: Styles.captionAccent.copyWith(
                     color: AppColors.secondaryColor500,
                     decoration: TextDecoration.underline,
@@ -90,14 +91,14 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Best Therapists',
+                  'bestTherapists'.tr(),
                   style: Styles.captionAccent.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
                 ),
 
                 Text(
-                  'See all',
+                  'seeAll'.tr(),
                   style: Styles.captionAccent.copyWith(
                     color: AppColors.secondaryColor500,
                     decoration: TextDecoration.underline,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,7 +23,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: 'Privacy Policy',
+        title: 'privacyPolicy'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),

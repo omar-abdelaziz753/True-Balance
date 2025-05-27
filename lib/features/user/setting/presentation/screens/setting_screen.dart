@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -41,7 +42,7 @@ class SettingScreen extends StatelessWidget {
                   children: [
                     /// General Setting
                     Text(
-                      'General',
+                      'general'.tr(),
                       style: Styles.highlightEmphasis.copyWith(
                         color: AppColors.neutralColor1000,
                       ),
@@ -57,7 +58,7 @@ class SettingScreen extends StatelessWidget {
                         children: [
                           CustomRowInSettingWidget(
                             imagePath: 'assets/images/svg/my_booing_icon.svg',
-                            title: 'My Booking',
+                            title: 'myBooking'.tr(),
                             subtitle:
                                 'appointments with the ability to follow up',
                             onTap: () =>
@@ -67,17 +68,17 @@ class SettingScreen extends StatelessWidget {
                           CustomRowInSettingWidget(
                             imagePath:
                                 'assets/images/svg/my_addresses_icon.svg',
-                            title: 'My address',
+                            title: 'myAddresses'.tr(),
                             subtitle:
-                                'All your current address for easy booking',
+                                'allYourCurrentAddress'.tr(),
                             onTap: () {},
                           ),
                           const CustomDividerWidget(),
                           CustomRowInSettingWidget(
                             imagePath:
                                 'assets/images/svg/technical_support_icon.svg',
-                            title: 'Technical support',
-                            subtitle: 'How can we help you today?',
+                            title: 'technicalSupport'.tr(),
+                            subtitle: 'howCanWeHelp'.tr(),
                             onTap: () => context
                                 .pushNamed(Routes.technicalSupportScreen),
                           ),
@@ -85,9 +86,9 @@ class SettingScreen extends StatelessWidget {
                           CustomRowInSettingWidget(
                             imagePath:
                                 'assets/images/svg/account_information_icon.svg',
-                            title: 'account information',
+                            title: 'accountInformation'.tr(),
                             subtitle:
-                                'Change Your account information & password',
+                                'changeYourAccount'.tr(),
                             onTap: () {},
                           ),
                         ],
@@ -96,7 +97,7 @@ class SettingScreen extends StatelessWidget {
 
                     /// More Setting
                     Text(
-                      'More',
+                      'more'.tr(),
                       style: Styles.highlightEmphasis.copyWith(
                         color: AppColors.neutralColor1000,
                       ),
@@ -112,16 +113,16 @@ class SettingScreen extends StatelessWidget {
                         children: [
                           CustomRowInSettingWidget(
                             imagePath: 'assets/images/svg/language_icon.svg',
-                            title: 'Language',
+                            title: 'language'.tr(),
                             subtitle:
-                                'preferred language for displaying content.',
+                                'descriptionOfLanguage'.tr(),
                             onTap: () {},
                           ),
                           const CustomDividerWidget(),
                           CustomRowInSettingWidget(
                             imagePath: 'assets/images/svg/logout_icon.svg',
-                            title: 'Logout',
-                            subtitle: 'Log out of the account',
+                            title: 'logOut'.tr(),
+                            subtitle: 'descriptionOfLogout'.tr(),
                             onTap: () {},
                           ),
                         ],

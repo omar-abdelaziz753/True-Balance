@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,7 +37,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'New Password',
+                  'newPassword'.tr(),
                   style: Styles.contentEmphasis.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
@@ -46,7 +47,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
                 CustomTextFormFieldWidget(
                   controller: TextEditingController(),
                   keyboardType: TextInputType.emailAddress,
-                  hintText: 'Enter Your Password',
+                  hintText: 'enterYourPassword'.tr(),
                   hintStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor600,
                   ),
@@ -62,7 +63,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
                 18.verticalSpace,
 
                 Text(
-                  'Confirm New Password',
+                  'confirmNewPassword'.tr(),
                   style: Styles.contentEmphasis.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
@@ -72,7 +73,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
                 CustomTextFormFieldWidget(
                   controller: TextEditingController(),
                   keyboardType: TextInputType.emailAddress,
-                  hintText: 'Enter your Confirm New Password',
+                  hintText: 'enterYourConfirmNewPassword'.tr(),
                   hintStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor600,
                   ),
@@ -92,7 +93,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
           32.verticalSpace,
 
           CustomButtonWidget(
-            text: 'Submit',
+            text: 'submit'.tr(),
             padding: EdgeInsets.symmetric(
               vertical: 14.h,
             ),
@@ -105,7 +106,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Don’t have an account?',
+                'dontHaveAnAccount'.tr(),
                 style: Styles.captionEmphasis.copyWith(
                   color: AppColors.neutralColor300,
                 ),
@@ -125,7 +126,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Sign Up',
+                      'signUp'.tr(),
                       style: Styles.captionEmphasis.copyWith(
                         color: AppColors.primaryColor900,
                         decoration: TextDecoration.underline,

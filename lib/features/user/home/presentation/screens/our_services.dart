@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -18,7 +19,7 @@ class OurServicesScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: 'Our Services',
+        title: 'ourServices'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -32,7 +33,7 @@ class OurServicesScreen extends StatelessWidget {
             topRight: Radius.circular(12.r),
           ),
         ),
-        child: ServicesGridWidget(),
+        child: const ServicesGridWidget(),
       ),
     );
   }

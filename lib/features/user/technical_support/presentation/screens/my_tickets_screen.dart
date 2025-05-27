@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -22,7 +23,7 @@ class MyTicketsScreen extends StatelessWidget {
           onPressed: () {},
         ),
         // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
-        title: 'My Tickets',
+        title: 'myTickets'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -58,10 +59,10 @@ class MyTicketsScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           vertical: 16.h,
                         ),
-                        child: const CustomRowInMyTicketsWidget(
-                          ticketNumber: 'Ticket No. #TICKET-12987',
+                        child: CustomRowInMyTicketsWidget(
+                          ticketNumber: '${'ticketNo'.tr()} #TICKET-12987',
                           message:
-                              "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
+                              "descriptionOfMyTickets".tr(),
                         ),
                       );
                     },
@@ -79,7 +80,7 @@ class MyTicketsScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 vertical: 12.h,
               ),
-              text: 'Open A New Ticket',
+              text: 'openANewTicket'.tr(),
               textStyle: Styles.contentEmphasis.copyWith(
                 color: AppColors.neutralColor100,
               ),

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,7 +19,7 @@ class FormWidget extends StatelessWidget {
         children: [
           18.verticalSpace,
           Text(
-            "Service type",
+            "serviceType".tr(),
             style: Styles.highlightAccent,
           ),
           8.verticalSpace,
@@ -32,7 +33,7 @@ class FormWidget extends StatelessWidget {
           ),
           18.verticalSpace,
           Text(
-            "your Location",
+            "yourLocation".tr(),
             style: Styles.highlightAccent,
           ),
           12.verticalSpace,
@@ -57,7 +58,7 @@ class FormWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "My address",
+                        "myAddress".tr(),
                         style: Styles.contentAccent,
                       ),
                       4.verticalSpace,
@@ -77,7 +78,7 @@ class FormWidget extends StatelessWidget {
           ),
           18.verticalSpace,
           Text(
-            "Session details",
+            "sessionDetails".tr(),
             style: Styles.highlightAccent,
           ),
           12.verticalSpace,
@@ -105,7 +106,7 @@ class FormWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "My address",
+                        "myAddress".tr(),
                         style: Styles.contentAccent,
                       ),
                       4.verticalSpace,
@@ -134,7 +135,7 @@ class FormWidget extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "Total",
+                  "total".tr(),
                   style: Styles.footnoteSemiboldBold.copyWith(
                     color: AppColors.neutralColor600,
                   ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/background/custom_main_body_widget.dart';
@@ -21,17 +22,17 @@ class LoginScreen extends StatelessWidget {
                   constraints: BoxConstraints(
                     minHeight: constraints.maxHeight,
                   ),
-                  child: const IntrinsicHeight(
+                  child: IntrinsicHeight(
                     child: Center(
                       child: Column(
                         children: [
                           CustomHeaderWidget(
-                            title1: 'Welcome ',
-                            title2: 'Back',
+                            title1: 'welcome'.tr(),
+                            title2: 'back'.tr(),
                             description:
-                                'Please enter your Phone Number Or Email & password to access your account.',
+                                'descriptionOfHeaderInLogin'.tr(),
                           ),
-                          Expanded(child: LoginFormWidget()),
+                          const Expanded(child: LoginFormWidget()),
                         ],
                       ),
                     ),

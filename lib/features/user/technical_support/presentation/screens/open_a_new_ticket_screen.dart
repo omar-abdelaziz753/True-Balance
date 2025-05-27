@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -22,7 +23,7 @@ class OpenANewTicketScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: 'Open A New Ticket',
+        title: 'openANewTicket'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -48,7 +49,7 @@ class OpenANewTicketScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Message status',
+                        'messageStatus'.tr(),
                         style: Styles.contentEmphasis.copyWith(
                           color: AppColors.neutralColor1000,
                         ),
@@ -56,19 +57,19 @@ class OpenANewTicketScreen extends StatelessWidget {
                       8.verticalSpace,
 
                       CustomDropdownButtonWidget(
-                        hint: 'Select Your Message status',
+                        hint: 'selectYourMessageStatus'.tr(),
                         getItemText: (p0) {
                           return p0;
                         },
                         items: [
-                          'Normal',
-                          'Urgent',
+                          'normal'.tr(),
+                          'urgent'.tr(),
                         ],
                       ),
                       18.verticalSpace,
 
                       Text(
-                        'Message details',
+                        'messageDetails'.tr(),
                         style: Styles.contentEmphasis.copyWith(
                           color: AppColors.neutralColor1000,
                         ),
@@ -77,7 +78,7 @@ class OpenANewTicketScreen extends StatelessWidget {
 
                       CustomTextFormFieldWidget(
                         maxLines: 8,
-                        hintText: 'Enter Your Message details',
+                        hintText: 'enterYourMessageDetails'.tr(),
                         hintStyle: Styles.captionRegular.copyWith(
                           color: AppColors.neutralColor600,
                         ),
@@ -96,17 +97,17 @@ class OpenANewTicketScreen extends StatelessWidget {
             bottom: 32.h,
             child: CustomButtonWidget(
               padding: EdgeInsets.symmetric(vertical: 14.h),
-              text: 'Send',
+              text: 'send'.tr(),
               textStyle: Styles.captionEmphasis.copyWith(
                 color: AppColors.neutralColor100,
               ),
               onPressed: () {
                 showChangePasswordBottomSheet(
                     context,
-                    title1: "our Ticket ",
-                    title2: "Successfully",
-                    description: "Your ticket is now under review by our support team.",
-                    buttonText: " Ok",
+                    title1: "ourTicket".tr(),
+                    title2: "successfully".tr(),
+                    description: "yourTicketIsNow".tr(),
+                    buttonText: "ok".tr(),
                     onPressed: () {
                       Navigator.pop(context);
                     }

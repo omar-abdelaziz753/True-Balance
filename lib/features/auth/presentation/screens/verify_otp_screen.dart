@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/custom_header_widget.dart';
@@ -27,10 +28,10 @@ class VerifyOtpScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomHeaderWidget(
-                          title1: 'Enter Verification ',
-                          title2: 'Code',
+                          title1: 'enterVerification'.tr(),
+                          title2: 'code'.tr(),
                           description:
-                              'We’ve sent an OTP code to your Email ${data['email']}',
+                              '${'descriptionOfHeaderInVerify'.tr()}${data['email']}',
                           isEdit: true,
                           onEditTap: () {},
                         ),

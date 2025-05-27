@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -20,7 +21,7 @@ class MyBookingScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: 'My Booking',
+        title: 'myBooking'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -52,10 +53,10 @@ class MyBookingScreen extends StatelessWidget {
                           onTap: () =>
                               context.pushNamed(Routes.bookingDetailsScreen),
                           child: CustomBookingContainerWidget(
-                            specialization: 'Specialization $index',
+                            specialization: '${'specialization'.tr()}$index',
                             doctorName: 'Omar AbdelAziz Mohamed',
                             rating: 4.8,
-                            ratingText: '4,479 rate',
+                            ratingText: '4,479 ${'rate'.tr()}',
                             image: Placeholder(
                               fallbackHeight: 95.h,
                               fallbackWidth: 95.w,

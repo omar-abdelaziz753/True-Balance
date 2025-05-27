@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/background/custom_main_body_widget.dart';
@@ -28,10 +29,10 @@ class CreateNewPasswordScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           CustomHeaderWidget(
-                            title1: 'Create a New ',
-                            title2: 'Password',
+                            title1: 'createANew'.tr(),
+                            title2: 'password'.tr(),
                             description:
-                                'We’ve sent an OTP code to your Email $email',
+                                'descriptionOfHeaderInCreate'.tr() + email,
                           ),
                           const Expanded(child: CreateNewPasswordFormWidget()),
                         ],

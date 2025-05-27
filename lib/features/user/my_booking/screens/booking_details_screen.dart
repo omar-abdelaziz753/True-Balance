@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -21,7 +22,7 @@ class BookingDetailsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: 'Booking Details',
+        title: 'bookingDetails'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -68,16 +69,16 @@ class BookingDetailsScreen extends StatelessWidget {
                         child: Column(
                           spacing: 12.h,
                           children: [
-                            const CustomRowMakeTitleAndDescWidget(
-                              title: 'Date',
+                            CustomRowMakeTitleAndDescWidget(
+                              title: 'date'.tr(),
                               description: 'January 5',
                             ),
-                            const CustomRowMakeTitleAndDescWidget(
-                              title: 'Time',
+                            CustomRowMakeTitleAndDescWidget(
+                              title: 'time'.tr(),
                               description: '7:00 AM',
                             ),
-                            const CustomRowMakeTitleAndDescWidget(
-                              title: 'Check in',
+                            CustomRowMakeTitleAndDescWidget(
+                              title: 'checkIn'.tr(),
                               description: 'December 23, 2022',
                             ),
                           ],
@@ -104,16 +105,16 @@ class BookingDetailsScreen extends StatelessWidget {
                         child: Column(
                           spacing: 12.h,
                           children: [
-                            const CustomRowMakeTitleAndDescWidget(
-                              title: 'Name',
+                            CustomRowMakeTitleAndDescWidget(
+                              title: 'name'.tr(),
                               description: 'Omar AbdelAziz',
                             ),
-                            const CustomRowMakeTitleAndDescWidget(
-                              title: 'Phone Number',
+                            CustomRowMakeTitleAndDescWidget(
+                              title: 'phoneNumberOnly'.tr(),
                               description: '+201 027 324 902',
                             ),
-                            const CustomRowMakeTitleAndDescWidget(
-                              title: 'Therapists Name',
+                            CustomRowMakeTitleAndDescWidget(
+                              title: 'therapistsName'.tr(),
                               description: 'Ahmed Hossam',
                             ),
                           ],
@@ -140,8 +141,8 @@ class BookingDetailsScreen extends StatelessWidget {
                         child: Column(
                           spacing: 12.h,
                           children: [
-                            const CustomRowMakeTitleAndDescWidget(
-                              title: 'Total',
+                            CustomRowMakeTitleAndDescWidget(
+                              title: 'total'.tr(),
                               description: '\$150.00',
                             ),
                           ],
@@ -159,17 +160,17 @@ class BookingDetailsScreen extends StatelessWidget {
             bottom: 32.h,
             child: CustomButtonWidget(
               padding: EdgeInsets.symmetric(vertical: 14.h),
-              text: 'Tips for better experience',
+              text: 'tipsForBetterExperience'.tr(),
               textStyle: Styles.captionEmphasis.copyWith(
                 color: AppColors.neutralColor100,
               ),
               onPressed: () {
                 showChangePasswordBottomSheet(context,
-                    title1: "our Ticket ",
-                    title2: "Successfully",
+                    title1: "ourTicket".tr(),
+                    title2: "successfully".tr(),
                     description:
-                        "Your ticket is now under review by our support team.",
-                    buttonText: " Ok", onPressed: () {
+                        "yourTicketIsNow".tr(),
+                    buttonText: "ok".tr(), onPressed: () {
                   Navigator.pop(context);
                 });
               },

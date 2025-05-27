@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -22,7 +23,7 @@ class TechnicalSupportScreen extends StatelessWidget {
           onPressed: () {},
         ),
         // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
-        title: 'Technical Support',
+        title: 'technicalSupport'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -47,7 +48,7 @@ class TechnicalSupportScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'How can we help You?',
+                      'howCanWeHelpYou'.tr(),
                       style: Styles.highlightEmphasis.copyWith(
                         color: AppColors.neutralColor1000,
                       ),
@@ -60,7 +61,7 @@ class TechnicalSupportScreen extends StatelessWidget {
                           child: CustomButtonWidget(
                             padding: EdgeInsets.symmetric(vertical: 12.h),
                             color: AppColors.primaryColor900,
-                            text: 'Contact Us',
+                            text: 'contactUs'.tr(),
                             textStyle: Styles.captionEmphasis.copyWith(
                               color: AppColors.neutralColor100,
                             ),
@@ -72,7 +73,7 @@ class TechnicalSupportScreen extends StatelessWidget {
                           child: CustomButtonWidget(
                             padding: EdgeInsets.symmetric(vertical: 12.h),
                             color: AppColors.primaryColor900.withAlpha(20),
-                            text: 'My Tickets',
+                            text: 'myTickets'.tr(),
                             textStyle: Styles.captionEmphasis.copyWith(
                               color: AppColors.primaryColor900,
                             ),
@@ -94,30 +95,30 @@ class TechnicalSupportScreen extends StatelessWidget {
                         spacing: 16.h,
                         children: [
                           CustomRowInTechnicalSupportWidget(
-                            title: 'About Us',
+                            title: 'aboutUs'.tr(),
                             onTap: () =>
                                 context.pushNamed(Routes.aboutUsScreen),
                           ),
                           const CustomDividerWidget(),
                           CustomRowInTechnicalSupportWidget(
-                            title: 'FAQs',
+                            title: 'faqs'.tr(),
                             onTap: () {},
                           ),
                           const CustomDividerWidget(),
                           CustomRowInTechnicalSupportWidget(
-                            title: 'Terms & Conditions',
+                            title: 'termsAndConditions'.tr(),
                             onTap: () => context
                                 .pushNamed(Routes.termsAndConditionsScreen),
                           ),
                           const CustomDividerWidget(),
                           CustomRowInTechnicalSupportWidget(
-                            title: 'Privacy Policy',
+                            title: 'privacyPolicy'.tr(),
                             onTap: () =>
                                 context.pushNamed(Routes.privacyPolicyScreen),
                           ),
                           const CustomDividerWidget(),
                           CustomRowInTechnicalSupportWidget(
-                            title: 'Visit our website',
+                            title: 'visitOurWebsite'.tr(),
                             onTap: () {},
                           ),
                         ],

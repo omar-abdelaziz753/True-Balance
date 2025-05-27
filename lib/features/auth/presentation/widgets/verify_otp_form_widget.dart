@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,7 +100,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  errorText: 'Error',
+                  errorText: 'error'.tr(),
                   errorTextStyle: Styles.contentEmphasis.copyWith(
                     color: AppColors.redColor100,
                   ),
@@ -107,7 +108,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                 18.verticalSpace,
 
                 CustomRichText(
-                  text1: "The Code Will Expire ",
+                  text1: "theCodeWillExpire".tr(),
                   textStyle1: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
@@ -115,7 +116,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                   textStyle2: Styles.captionRegular.copyWith(
                     color: AppColors.primaryColor900,
                   ),
-                  text3: " Resend",
+                  text3: "resend".tr(),
                   textStyle3: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor600,
                   ),
@@ -129,7 +130,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
           ),
           32.verticalSpace,
           CustomButtonWidget(
-            text: data['screenName'] == 'forgetPassword' ? 'Verify' : 'Next',
+            text: data['screenName'] == 'forgetPassword' ? 'verify'.tr() : 'next'.tr(),
             padding: EdgeInsets.symmetric(
               vertical: 14.h,
             ),
@@ -143,11 +144,11 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
               } else {
                 showChangePasswordBottomSheet(
                   context,
-                  title1: "Congratulation!",
-                  title2: "your password has been changed",
+                  title1: "congratulation".tr(),
+                  title2: "yourPasswordHasBeenChanged".tr(),
                   description:
-                      "Your password has been updated. Login to continue.",
-                  buttonText: "Login",
+                      "loginToContinue".tr(),
+                  buttonText: "login".tr(),
                   onPressed: () {
                     context.pushNamed(Routes.loginScreen);
                   }
@@ -160,7 +161,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Don’t have an account?',
+                  'dontHaveAnAccount'.tr(),
                   style: Styles.captionEmphasis.copyWith(
                     color: AppColors.neutralColor300,
                   ),
@@ -180,7 +181,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        'Sign Up',
+                        'signUp'.tr(),
                         style: Styles.captionEmphasis.copyWith(
                           color: AppColors.primaryColor900,
                           decoration: TextDecoration.underline,

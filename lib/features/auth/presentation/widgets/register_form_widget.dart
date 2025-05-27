@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +32,7 @@ class ResisterFormWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Email',
+            'email'.tr(),
             style: Styles.contentEmphasis.copyWith(
               color: AppColors.neutralColor1000,
             ),
@@ -40,7 +41,7 @@ class ResisterFormWidget extends StatelessWidget {
           CustomTextFormFieldWidget(
             controller: TextEditingController(),
             keyboardType: TextInputType.emailAddress,
-            hintText: 'Enter Your Email',
+            hintText: 'enterYourEmail'.tr(),
             hintStyle: Styles.captionRegular.copyWith(
               color: AppColors.neutralColor600,
             ),
@@ -48,7 +49,7 @@ class ResisterFormWidget extends StatelessWidget {
           ),
           18.verticalSpace,
           Text(
-            'Phone Number',
+            'phoneNumberOnly'.tr(),
             style: Styles.contentEmphasis.copyWith(
               color: AppColors.neutralColor1000,
             ),
@@ -57,7 +58,7 @@ class ResisterFormWidget extends StatelessWidget {
           CustomTextFormFieldWidget(
             controller: TextEditingController(),
             keyboardType: TextInputType.emailAddress,
-            hintText: 'Enter your Phone Number',
+            hintText: 'enterYourPhoneNumber'.tr(),
             hintStyle: Styles.captionRegular.copyWith(
               color: AppColors.neutralColor600,
             ),
@@ -65,7 +66,7 @@ class ResisterFormWidget extends StatelessWidget {
           ),
           18.verticalSpace,
           Text(
-            'Password',
+            'password'.tr(),
             style: Styles.contentEmphasis.copyWith(
               color: AppColors.neutralColor1000,
             ),
@@ -74,7 +75,7 @@ class ResisterFormWidget extends StatelessWidget {
           CustomTextFormFieldWidget(
             controller: TextEditingController(),
             keyboardType: TextInputType.emailAddress,
-            hintText: 'Enter Your Password',
+            hintText: 'enterYourPassword'.tr(),
             hintStyle: Styles.captionRegular.copyWith(
               color: AppColors.neutralColor600,
             ),
@@ -89,7 +90,7 @@ class ResisterFormWidget extends StatelessWidget {
           ),
           32.verticalSpace,
           CustomButtonWidget(
-            text: 'Next',
+            text: 'next'.tr(),
             padding: EdgeInsets.symmetric(
               vertical: 14.h,
             ),
@@ -108,7 +109,7 @@ class ResisterFormWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Already have an account?',
+                'alreadyHaveAccount',
                 style: Styles.captionEmphasis.copyWith(
                   color: AppColors.neutralColor300,
                 ),
@@ -128,7 +129,7 @@ class ResisterFormWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Login',
+                      'login'.tr(),
                       style: Styles.captionEmphasis.copyWith(
                         color: AppColors.primaryColor900,
                         decoration: TextDecoration.underline,

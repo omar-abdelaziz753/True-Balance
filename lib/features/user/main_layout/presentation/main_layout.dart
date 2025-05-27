@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,10 +55,10 @@ class _MainLayoutState extends State<MainLayout> {
               unselectedLabelStyle: Styles.captionEmphasis,
               onTap: (index) => cubit.changeBottomNavBar(index),
               items: [
-                _bottomItem('assets/images/svg/home_icon.svg', 'Home', currentIndex == 0),
-                _bottomItem('assets/images/svg/therapists_icon.svg', 'Therapists', currentIndex == 1),
-                _bottomItem('assets/images/svg/resources_icon.svg', 'Resources', currentIndex == 2),
-                _bottomItem('assets/images/svg/setting_icon.svg', 'Setting', currentIndex == 3),
+                _bottomItem('assets/images/svg/home_icon.svg', 'home'.tr(), currentIndex == 0),
+                _bottomItem('assets/images/svg/therapists_icon.svg', 'therapists'.tr(), currentIndex == 1),
+                _bottomItem('assets/images/svg/resources_icon.svg', 'resources'.tr(), currentIndex == 2),
+                _bottomItem('assets/images/svg/setting_icon.svg', 'setting'.tr(), currentIndex == 3),
               ],
             ),
           ),

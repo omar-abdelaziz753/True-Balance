@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -33,16 +34,16 @@ class BookingDetailsWidget extends StatelessWidget {
           child: Column(
             spacing: 12.h,
             children: [
-              const CustomRowMakeTitleAndDescWidget(
-                title: 'Date',
+              CustomRowMakeTitleAndDescWidget(
+                title: 'date'.tr(),
                 description: 'January 5',
               ),
-              const CustomRowMakeTitleAndDescWidget(
-                title: 'Time',
+              CustomRowMakeTitleAndDescWidget(
+                title: 'time'.tr(),
                 description: '7:00 AM',
               ),
-              const CustomRowMakeTitleAndDescWidget(
-                title: 'Check in',
+              CustomRowMakeTitleAndDescWidget(
+                title: 'checkIn'.tr(),
                 description: 'December 23, 2022',
               ),
             ],
@@ -69,16 +70,16 @@ class BookingDetailsWidget extends StatelessWidget {
           child: Column(
             spacing: 12.h,
             children: [
-              const CustomRowMakeTitleAndDescWidget(
-                title: 'Name',
+              CustomRowMakeTitleAndDescWidget(
+                title: 'name'.tr(),
                 description: 'Omar AbdelAziz',
               ),
-              const CustomRowMakeTitleAndDescWidget(
-                title: 'Phone Number',
+              CustomRowMakeTitleAndDescWidget(
+                title: 'phoneNumberOnly'.tr(),
                 description: '+201 027 324 902',
               ),
-              const CustomRowMakeTitleAndDescWidget(
-                title: 'Therapists Name',
+                CustomRowMakeTitleAndDescWidget(
+                title: 'therapistsName'.tr(),
                 description: 'Ahmed Hossam',
               ),
             ],
@@ -105,8 +106,8 @@ class BookingDetailsWidget extends StatelessWidget {
           child: Column(
             spacing: 12.h,
             children: [
-              const CustomRowMakeTitleAndDescWidget(
-                title: 'Total',
+              CustomRowMakeTitleAndDescWidget(
+                title: 'total'.tr(),
                 description: '\$150.00',
               ),
             ],
