@@ -99,5 +99,12 @@
   "contactUs": "Contact Us",
   "faqs": "FAQs",
   "termsAndConditions": "Terms & Conditions",
-  "visitOurWebsite": "Visit our website"
+  "visitOurWebsite": "Visit our website",
+  "chooseYouraccounttype": "Choose Your account type",
+  "normaluser": "Normal user",
+  "therapist": "Therapist",
+  "appointments": "Appointments",
+  "appointmentsDetails": "Appointments Details",
+  "status": "status",
+  "scanQR":"Scan QR"
 }

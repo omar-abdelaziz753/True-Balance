@@ -99,5 +99,12 @@
   "contactUs": "اتصل بنا",
   "faqs": "الأسئلة الشائعة",
   "termsAndConditions": "الشروط والأحكام",
-  "visitOurWebsite": "قم بزيارة موقعنا"
+  "visitOurWebsite": "قم بزيارة موقعنا",
+  "chooseYouraccounttype": "اختر نوع حسابك",
+  "normaluser": "مستخدم عادي",
+  "therapist": "معالج",
+  "appointments": "المواعيد",
+  "appointmentsDetails": "تفاصيل المواعيد",
+  "status": "حالة",
+  "scanQR": "مسح الكود "
 }

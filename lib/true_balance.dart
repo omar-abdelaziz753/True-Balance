@@ -50,7 +50,7 @@ class TrueBalanceApp extends StatelessWidget {
             locale: context.locale,
             navigatorKey: AppConstants.navigatorKey,
             // initialRoute: Routes.splashScreen,
-            initialRoute: Routes.ourServicesScreen,
+            initialRoute: Routes.appointmentsScreen,
             onGenerateRoute: appRouter.generateRoute,
             builder: EasyLoading.init(),
           ),
