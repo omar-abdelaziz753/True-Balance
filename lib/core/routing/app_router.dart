@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
+import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
+import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/create_new_password_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/login_screen.dart';
@@ -47,6 +49,7 @@ class AppRouter {
       case Routes.loginScreen:
         return transition(
           screen: const LoginScreen(),
+          cubit: AuthCubit(getIt()),
         );
       case Routes.registerScreen:
         return transition(
@@ -73,7 +76,7 @@ class AppRouter {
         final int index = settings.arguments as int;
 
         return transition(
-          screen: MainLayout(index: index),
+          screen: const MainLayout(index: 0),
           cubit: MainLayoutCubit(),
         );
       case Routes.technicalSupportScreen:
@@ -81,14 +84,9 @@ class AppRouter {
           screen: const TechnicalSupportScreen(),
         );
       case Routes.ourServicesScreen:
-        return transition(
-          screen: OurServicesScreen(),
-          // cubit: ,
-        );
+        return transition(screen: const OurServicesScreen());
       case Routes.myTicketsScreen:
-        return transition(
-          screen: const MyTicketsScreen(),
-        );
+        return transition(screen: const MyTicketsScreen());
       case Routes.openANewTicketScreen:
         return transition(
           screen: const OpenANewTicketScreen(),
