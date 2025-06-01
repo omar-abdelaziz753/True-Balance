@@ -6,8 +6,12 @@ import 'package:truee_balance_app/features/auth/presentation/screens/forget_pass
 import 'package:truee_balance_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_screen.dart';
+import 'package:truee_balance_app/features/choose_your_account/business_logic/cubit/chosse_account_cubit.dart';
+import 'package:truee_balance_app/features/choose_your_account/presentation/screens/choose_your_account_screen.dart';
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
+import 'package:truee_balance_app/features/therapists/appointments/presentation/screens/appointments_screen.dart';
+import 'package:truee_balance_app/features/therapists/appointments_details/presentation/screens/appointments_details_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/presentation/booking_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/home_screen.dart';
@@ -44,6 +48,22 @@ class AppRouter {
           screen: const SplashScreen(),
           cubit: SplashCubit(),
         );
+      case Routes.chooseYourAccountScreen:
+        return transition(
+          screen: const ChooseYourAccountScreen(),
+          cubit: ChosseAccountCubit(),
+        );
+      case Routes.appointmentsScreen:
+        return transition(
+          screen: const AppointmentsScreen(),
+          // cubit:
+        );
+      case Routes.appointmentsDetailsScreen:
+        return transition(
+          screen: const AppointmentsDetailsScreen(),
+          // cubit:
+        );
+
       case Routes.loginScreen:
         return transition(
           screen: const LoginScreen(),

@@ -8,6 +8,8 @@ Future<void> setupDependencyInjection() async {
   /// Dio
   getIt.registerLazySingleton<DioHelper>(() => DioHelper());
 
+  
+
   /// User DI
   /// ApiServices
   // getIt.registerLazySingleton<UserAuthApiServices>(() => UserAuthApiServices(getIt()));
