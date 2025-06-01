@@ -35,8 +35,13 @@ class TrueBalanceApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             navigatorKey: AppConstants.navigatorKey,
+// <<<<<<< create_booking
             initialRoute: Routes.splashScreen,
-            // initialRoute: Routes.ourServicesScreen,
+//             // initialRoute: Routes.ourServicesScreen,
+// =======
+//             // initialRoute: Routes.splashScreen,
+//             initialRoute: Routes.appointmentsScreen,
+// >>>>>>> main
             onGenerateRoute: appRouter.generateRoute,
             builder: EasyLoading.init(),
           ),
