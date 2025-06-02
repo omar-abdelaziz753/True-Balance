@@ -23,42 +23,28 @@ class DioHelper {
     return await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   }
 
-  Future<Response?> getWithQ({required String endPoint, Map<String, dynamic>? data,}) async {
-    String? token = await _getAuthorizationToken();
-
-    dio.options.headers = {
-      "Accept": "application/json",
-      // "language": CacheHelper.getCurrentLanguage().toString(),
-      "language": CacheHelper.getCurrentLanguage(),
-      // "authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTM2OTc2NDE2MmMyYTlhNzY0M2I5YyIsImZ1bGxOYW1lIjoiQWJhbm91YiBVc2VyIiwiZW1haWwiOiJ1c2VyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzMDExMTM3fQ.lM0i17w3PqLFKDXi-p9V8WO4ExbWF_lFBcqvjS139fg'
-      "authorization": token,
-          // "${await CacheHelper.getSecuredString(key: CacheKeys.userToken)}",
-    };
-    return await dio.get(endPoint, queryParameters: data);
-  }
-
-  Future<Response?> get({required String endPoint, Map<String, dynamic>? data,}) async {
+  Future<Response?> get({
+    required String endPoint,
+    Map<String, dynamic>? data,
+  }) async {
     String? token = await _getAuthorizationToken();
 
     dio.options.headers = {
       "Accept": "application/json",
       "language": CacheHelper.getCurrentLanguage(),
-      // "Lang": CacheHelper.getCurrentLanguage().toString(),
-      "authorization": token,
+      "authorization": "Bearer $token",
     };
     return await dio.get(endPoint, data: data);
   }
 
-  Future<Response?> post({required String endPoint, data, Options? options}) async {
+  Future<Response?> post(
+      {required String endPoint, data, Options? options}) async {
     String? token = await _getAuthorizationToken();
 
     dio.options.headers = {
       "Accept": "application/json",
       "language": CacheHelper.getCurrentLanguage(),
-      // "Lang": CacheHelper.getCurrentLanguage().toString(),
-      "authorization": token,
-      // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTM2OTc2NDE2MmMyYTlhNzY0M2I5YyIsImZ1bGxOYW1lIjoiQWJhbm91YiBVc2VyIiwiZW1haWwiOiJ1c2VyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQzMDExMTM3fQ.lM0i17w3PqLFKDXi-p9V8WO4ExbWF_lFBcqvjS139fg'
-      //     "${await CacheHelper.getSecuredString(key: CacheKeys.userToken)}",
+      "authorization": "Bearer $token",
     };
     return await dio.post(endPoint, data: data, options: options);
   }
@@ -68,11 +54,8 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      // "language": 'ar',
-      // "language": CacheHelper.getCurrentLanguage().toString(),
-      "language": CacheHelper.getData(key: 'selectedLanguage') ?? 'ar', // Default to Arabic if not set
+      "language": CacheHelper.getData(key: 'selectedLanguage') ?? 'ar',
       "authorization": token,
-
     };
     return await dio.put(endPoint, data: data);
   }
@@ -82,10 +65,8 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      // "language": 'ar',
       "language": CacheHelper.getCurrentLanguage().toString(),
-      "authorization": token,
-
+      "authorization": "Bearer $token",
     };
     return await dio.patch(endPoint, data: data);
   }
@@ -95,7 +76,6 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      // "language": 'ar',
       "language": CacheHelper.getCurrentLanguage().toString(),
       "authorization": token,
     };

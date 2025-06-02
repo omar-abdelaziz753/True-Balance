@@ -16,6 +16,7 @@ class AuthRepository {
 
   AuthRepository(this.authApiServices);
 
+  /// login
   Future<ApiResult<String>> userLogin({
     required String email,
     required String password,
@@ -57,6 +58,8 @@ class AuthRepository {
     AppConstants.userToken =
         await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   }
+
+  /// Register
 
   Future<ApiResult<String>> userRegister({
     required String name,
@@ -106,5 +109,31 @@ class AuthRepository {
 
     return ApiResult.failure(
         FailureException(errMessage: 'Unexpected error occurred'));
+  }
+
+  /// logout
+  Future<ApiResult<String>> logout() async {
+    final response = await authApiServices.logout();
+
+    try {
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        AppConstants.userToken = null;
+        await CacheHelper.clearAllSecuredData();
+        return const ApiResult.success('Logout Success');
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.error);
+      }
+      return ApiResult.failure(
+        ServerException.fromResponse(e.response!.statusCode, e.response!),
+      );
+    }
   }
 }
