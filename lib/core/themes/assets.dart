@@ -25,6 +25,9 @@ class Assets {
   /// Assets for assetsImagesSvgAppointmentsRounded
   /// assets/images/svg/appointments_rounded.svg
   static const String assetsImagesSvgAppointmentsRounded = "assets/images/svg/appointments_rounded.svg";
+  /// Assets for assetsImagesSvgBackground
+  /// assets/images/svg/Background.svg
+  static const String assetsImagesSvgBackground = "assets/images/svg/Background.svg";
 
   /// Assets for assetsImagesSvgBgImage
   /// assets/images/svg/bg_image.svg
