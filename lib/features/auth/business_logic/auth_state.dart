@@ -20,4 +20,10 @@ class RegisterSuccessState extends AuthState {}
 
 class RegisterFailureState extends AuthState {}
 
+class LogoutLoading extends AuthState {}
+
+class LogoutSuccess extends AuthState {}
+
+class LogoutError extends AuthState {}
+
 class OtpSuccessState extends AuthState {}

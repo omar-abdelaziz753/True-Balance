@@ -47,4 +47,9 @@ class AuthApiServices {
       data: formDataMap,
     );
   }
+
+  /// logout 
+  Future<Response?> logout() async {
+    return _dioFactory.post(endPoint: EndPoints.logout);
+  } 
 }

@@ -1,12 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
+import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/container/custom_divider_widget.dart';
+import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/widgets/custom_row_in_setting_widget.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -69,8 +72,7 @@ class SettingScreen extends StatelessWidget {
                             imagePath:
                                 'assets/images/svg/my_addresses_icon.svg',
                             title: 'myAddresses'.tr(),
-                            subtitle:
-                                'allYourCurrentAddress'.tr(),
+                            subtitle: 'allYourCurrentAddress'.tr(),
                             onTap: () {},
                           ),
                           const CustomDividerWidget(),
@@ -87,8 +89,7 @@ class SettingScreen extends StatelessWidget {
                             imagePath:
                                 'assets/images/svg/account_information_icon.svg',
                             title: 'accountInformation'.tr(),
-                            subtitle:
-                                'changeYourAccount'.tr(),
+                            subtitle: 'changeYourAccount'.tr(),
                             onTap: () {},
                           ),
                         ],
@@ -114,16 +115,30 @@ class SettingScreen extends StatelessWidget {
                           CustomRowInSettingWidget(
                             imagePath: 'assets/images/svg/language_icon.svg',
                             title: 'language'.tr(),
-                            subtitle:
-                                'descriptionOfLanguage'.tr(),
+                            subtitle: 'descriptionOfLanguage'.tr(),
                             onTap: () {},
                           ),
                           const CustomDividerWidget(),
-                          CustomRowInSettingWidget(
-                            imagePath: 'assets/images/svg/logout_icon.svg',
-                            title: 'logOut'.tr(),
-                            subtitle: 'descriptionOfLogout'.tr(),
-                            onTap: () {},
+                          BlocProvider(
+                            create: (context) => AuthCubit(getIt()),
+                            child: BlocConsumer<AuthCubit, AuthState>(
+                              listener: (context, state) {
+                                if (state is LogoutSuccess) {
+                                  context.pushNamed(Routes.loginScreen);
+                                }
+                              },
+                              builder: (context, state) {
+                                return CustomRowInSettingWidget(
+                                  imagePath:
+                                      "assets/images/svg/logout_icon.svg",
+                                  title: 'logOut'.tr(),
+                                  subtitle: 'descriptionOfLogout'.tr(),
+                                  onTap: () {
+                                    context.read<AuthCubit>().logout();
+                                  },
+                                );
+                              },
+                            ),
                           ),
                         ],
                       ),
