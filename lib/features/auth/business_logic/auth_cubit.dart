@@ -64,11 +64,11 @@ class AuthCubit extends Cubit<AuthState> {
       phone: phoneController.text,
       email: emailController.text,
       password: passwordController.text,
-      rePassword: rePasswordController.text,
+      rePassword: passwordController.text,
       verificationCode: verificationCodeController.text.isEmpty
           ? null
           : verificationCodeController.text,
-      location: locationController.text,
+      location: "aaaaa",
     );
 
     result.when(

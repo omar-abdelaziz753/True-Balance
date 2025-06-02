@@ -83,7 +83,7 @@ class AuthRepository {
       if (response!.statusCode == 200 || response.statusCode == 201) {
         if (verificationCode == null) {
           customToast(
-              msg: response.data["data"]["verification_code"],
+              msg: response.data["data"]["verification_code"].toString(),
               color: AppColors.primaryColor400);
         } else {
           UserDataModel model = UserDataModel.fromJson(response.data);

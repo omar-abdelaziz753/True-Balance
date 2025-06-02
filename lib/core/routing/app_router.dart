@@ -80,6 +80,7 @@ class AppRouter {
       case Routes.registerScreen:
         return transition(
           screen: const RegisterScreen(),
+          cubit: AuthCubit(getIt()),
         );
       case Routes.verifyOtpScreen:
         final Map<String, dynamic> data =

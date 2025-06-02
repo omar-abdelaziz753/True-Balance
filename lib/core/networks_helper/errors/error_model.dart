@@ -1,7 +1,7 @@
 class ErrorModel {
   final String message;
   final int? statusCode;
-  final Map<String, dynamic> error;
+  final Map<String, dynamic>? error;
   final String? stack;
 
   ErrorModel({

@@ -12,7 +12,6 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 
 class ToastManager {
-  // static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static OverlayEntry? _overlayEntry;
 
   static void showCustomToast({
@@ -21,7 +20,6 @@ class ToastManager {
     IconData icon = Icons.error_outline,
     Duration duration = const Duration(seconds: 5),
   }) {
-    // Get the OverlayState from navigatorKey
     final overlayState = AppConstants.navigatorKey.currentState?.overlay;
 
     if (overlayState == null) {
@@ -31,7 +29,6 @@ class ToastManager {
       return;
     }
 
-    // Remove existing toast if any
     _overlayEntry?.remove();
     _overlayEntry = null;
 
@@ -85,7 +82,6 @@ class ToastManager {
 
     overlayState.insert(_overlayEntry!);
 
-    // Remove toast after duration
     Future.delayed(duration, () {
       _overlayEntry?.remove();
       _overlayEntry = null;
@@ -98,36 +94,74 @@ class ServerException implements Exception {
 
   ServerException(this.errorModel);
 
+  // factory ServerException.fromResponse(int? statusCode, dynamic response,
+  //     {String? message}) {
+  //   debugPrint("Raw response: $response");
+
+  //   final data = response is Response ? response.data : response;
+
+  //   final errorData = data is String
+  //       ? jsonDecode(data)
+  //       : data is Map<String, dynamic>
+  //           ? data
+  //           : <String, dynamic>{};
+
+  //   debugPrint("Parsed errorData: $errorData");
+
+  //   final String errorMessage = errorData["message"] ??
+  //       errorData["error"] ??
+  //       message ??
+  //       'An unexpected error occurred';
+
+  //   final errorModel = ErrorModel(
+  //     message: errorMessage,
+  //     error: errorData["error"] is Map<String, dynamic>
+  //         ? errorData["error"]
+  //         : null,
+  //   );
+
+  //   ToastManager.showCustomToast(
+  //     message: errorModel.message,
+  //     backgroundColor: Colors.red,
+  //     icon: Icons.error_outline,
+  //     duration: const Duration(seconds: 3),
+  //   );
+
+  //   return ServerException(errorModel);
+  // }
+
   factory ServerException.fromResponse(int? statusCode, dynamic response,
       {String? message}) {
     debugPrint("Raw response: $response");
 
     final data = response is Response ? response.data : response;
 
-    final Map<String, dynamic>? errorData = data is String
+    final errorData = data is String
         ? jsonDecode(data)
         : data is Map<String, dynamic>
             ? data
-            : null;
+            : <String, dynamic>{}; // Safe fallback
 
     debugPrint("Parsed errorData: $errorData");
 
-    final String errorMessage =
-        errorData?["message"] ?? message ?? 'An unexpected error occurred';
+    final String errorMessage = errorData["message"] ??
+        errorData["error"] ?? // <- used if "message" is missing
+        message ??
+        'An unexpected error occurred';
+
+    final errorField = errorData["errors"];
 
     final errorModel = ErrorModel(
       message: errorMessage,
-      statusCode: errorData?["status_code"] ?? statusCode ?? 0,
-      error: errorData?["error"],
-      stack: errorData?["stack"],
+      error: errorField  is Map<String, dynamic> ? errorField : null,
     );
 
-    // ToastManager.showCustomToast(
-    //   message: errorModel.message,
-    //   backgroundColor: Colors.red,
-    //   icon: Icons.error_outline,
-    //   duration: const Duration(seconds: 3),
-    // );
+    ToastManager.showCustomToast(
+      message: errorModel.message,
+      backgroundColor: Colors.red,
+      icon: Icons.error_outline,
+      duration: const Duration(seconds: 3),
+    );
 
     return ServerException(errorModel);
   }
@@ -271,16 +305,12 @@ ApiResult<String> handleConnectionError() {
 
 void handleApiError(Map<String, dynamic> response) {
   String message = response['message'] ?? 'An unknown error occurred';
-  // bool isValidationError = message == 'error.wrongVerification'.tr();
 
   if (response.containsKey('errors') && response['errors'] is Map) {
-    /// Collect all error messages and join them into one string
     String errors = response['errors'].values.join("\n");
 
     ToastManager.showCustomToast(
-      message: errors.isNotEmpty
-          ? errors
-          : 'Unknown validation error', // Fallback message
+      message: errors.isNotEmpty ? errors : 'Unknown validation error',
       backgroundColor: AppColors.redColor200,
       icon: Icons.error_outline,
       duration: const Duration(seconds: 3),
@@ -289,7 +319,6 @@ void handleApiError(Map<String, dynamic> response) {
     throw FailureException(errMessage: errors);
   }
 
-  // Default error handling (for cases without 'errors' key)
   ToastManager.showCustomToast(
     message: message.isNotEmpty ? message : 'An unknown error occurred',
     backgroundColor: AppColors.redColor200,

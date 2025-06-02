@@ -1,18 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pinput/pinput.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/helper_functions/validation.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/core/widgets/bottom_sheet/show_change_password_bottom_sheet.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/core/widgets/text/custom_text_rich_widget.dart';
-import 'package:pinput/pinput.dart';
+import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 
 class VerifyOtpWidgetWidget extends StatelessWidget {
   const VerifyOtpWidgetWidget({super.key, required this.data});
@@ -23,6 +25,8 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    hideLoading();
+    final cubit = context.read<AuthCubit>();
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -47,8 +51,8 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
               children: [
                 /// OTP Fields
                 Pinput(
-                  controller: TextEditingController(),
-                  length: 4,
+                  controller: cubit.verificationCodeController,
+                  length: 5,
                   autofocus: true,
                   obscureText: false,
                   keyboardType: TextInputType.number,
@@ -56,7 +60,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                   pinAnimationType: PinAnimationType.fade,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(4),
+                    LengthLimitingTextInputFormatter(5),
                   ],
                   onChanged: (pin) {},
                   onCompleted: (pin) {},
@@ -86,21 +90,26 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  validator: (pin) => AppValidator.validateOTP(pin),
-                  errorPinTheme: PinTheme(
-                    width: 50.w,
-                    height: 50.h,
-                    textStyle: Styles.contentEmphasis.copyWith(
-                      color: AppColors.neutralColor1000,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.redColor100),
-                      borderRadius: BorderRadius.circular(
-                        AppConstants.borderRadius,
-                      ),
-                    ),
-                  ),
-                  errorText: 'error'.tr(),
+                  validator: (pin) {
+                    if (pin?.length != 5) {
+                      return 'error'.tr();
+                    }
+                    return null;
+                  },
+                  // errorPinTheme: PinTheme(
+                  //   width: 50.w,
+                  //   height: 50.h,
+                  //   textStyle: Styles.contentEmphasis.copyWith(
+                  //     color: AppColors.neutralColor1000,
+                  //   ),
+                  //   decoration: BoxDecoration(
+                  //     border: Border.all(color: AppColors.redColor100),
+                  //     borderRadius: BorderRadius.circular(
+                  //       AppConstants.borderRadius,
+                  //     ),
+                  //   ),
+                  // ),
+                  // errorText: 'error'.tr(),
                   errorTextStyle: Styles.contentEmphasis.copyWith(
                     color: AppColors.redColor100,
                   ),
@@ -129,32 +138,38 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
             ),
           ),
           32.verticalSpace,
-          CustomButtonWidget(
-            text: data['screenName'] == 'forgetPassword' ? 'verify'.tr() : 'next'.tr(),
-            padding: EdgeInsets.symmetric(
-              vertical: 14.h,
-            ),
-            textStyle: Styles.captionEmphasis.copyWith(
-              color: AppColors.neutralColor100,
-            ),
-            onPressed: () {
-              if (data['screenName'] == 'forgetPassword') {
-                context.pushNamed(Routes.createNewPasswordScreen,
-                    arguments: data['email']);
-              } else {
-                showChangePasswordBottomSheet(
-                  context,
-                  title1: "congratulation".tr(),
-                  title2: "yourPasswordHasBeenChanged".tr(),
-                  description:
-                      "loginToContinue".tr(),
-                  buttonText: "login".tr(),
-                  onPressed: () {
-                    context.pushNamed(Routes.loginScreen);
-                  }
-                );
+          BlocListener<AuthCubit, AuthState>(
+            listenWhen: (previous, current) => previous != current,
+            listener: (context, state) {
+              if (state is OtpSuccessState) {
+                showChangePasswordBottomSheet(context,
+                    title1: "congratulation".tr(),
+                    title2: "yourPasswordHasBeenChanged".tr(),
+                    description: "loginToContinue".tr(),
+                    buttonText: "login".tr(), onPressed: () {
+                  context.pushNamed(Routes.loginScreen);
+                });
               }
             },
+            child: CustomButtonWidget(
+              text: data['screenName'] == 'forgetPassword'
+                  ? 'verify'.tr()
+                  : 'next'.tr(),
+              padding: EdgeInsets.symmetric(
+                vertical: 14.h,
+              ),
+              textStyle: Styles.captionEmphasis.copyWith(
+                color: AppColors.neutralColor100,
+              ),
+              onPressed: () {
+                if (data['screenName'] == 'forgetPassword') {
+                  context.pushNamed(Routes.createNewPasswordScreen,
+                      arguments: data['email']);
+                } else {
+                  cubit.userRegister();
+                }
+              },
+            ),
           ),
           if (data['screenName'] == 'forgetPassword')
             Row(
