@@ -20,4 +20,5 @@ class Routes {
   static const String chooseYourAccountScreen = '/chooseYourAccountScreen';
   static const String appointmentsScreen = '/appointmentsScreen';
   static const String appointmentsDetailsScreen = '/appointmentsDetailsScreen';
+  static const String bestTherapistsScreen = '/bestTherapistsScreen';
 }

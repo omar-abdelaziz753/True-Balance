@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesPngBestTherapistsDoctor
+  /// assets/images/png/best_therapists_doctor.png
+  static const String assetsImagesPngBestTherapistsDoctor = "assets/images/png/best_therapists_doctor.png";
+
   /// Assets for assetsImagesPngProfileImage
   /// assets/images/png/profile_image.png
   static const String assetsImagesPngProfileImage = "assets/images/png/profile_image.png";
@@ -18,6 +22,9 @@ class Assets {
   /// assets/images/svg/app_logo_icon.svg
   static const String assetsImagesSvgAppLogoIcon = "assets/images/svg/app_logo_icon.svg";
 
+  /// Assets for assetsImagesSvgAppointmentsRounded
+  /// assets/images/svg/appointments_rounded.svg
+  static const String assetsImagesSvgAppointmentsRounded = "assets/images/svg/appointments_rounded.svg";
   /// Assets for assetsImagesSvgBackground
   /// assets/images/svg/Background.svg
   static const String assetsImagesSvgBackground = "assets/images/svg/Background.svg";
@@ -25,6 +32,10 @@ class Assets {
   /// Assets for assetsImagesSvgBgImage
   /// assets/images/svg/bg_image.svg
   static const String assetsImagesSvgBgImage = "assets/images/svg/bg_image.svg";
+
+  /// Assets for assetsImagesSvgChosseAccount
+  /// assets/images/svg/chosse_account.svg
+  static const String assetsImagesSvgChosseAccount = "assets/images/svg/chosse_account.svg";
 
   /// Assets for assetsImagesSvgEditEmail
   /// assets/images/svg/edit_email.svg
