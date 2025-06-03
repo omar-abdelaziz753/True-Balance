@@ -20,6 +20,20 @@ class RegisterSuccessState extends AuthState {}
 
 class RegisterFailureState extends AuthState {}
 
+class ForgetPasswordLoadingState extends AuthState {}
+
+class ForgetPasswordSuccessState extends AuthState {}
+
+class ForgetPasswordFailureState extends AuthState {}
+
+class VerfiyCodeLoadingState extends AuthState {}
+
+class VerfiyCodeSuccessState extends AuthState {}
+
+class VerfiyCodeFailureState extends AuthState {}
+
+class CreateNewPasswordState extends AuthState {}
+
 class LogoutLoading extends AuthState {}
 
 class LogoutSuccess extends AuthState {}

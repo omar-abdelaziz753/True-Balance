@@ -106,6 +106,52 @@
   "appointments": "Appointments",
   "appointmentsDetails": "Appointments Details",
   "status": "status",
-  "scanQR":"Scan QR"
-  
+  "scanQR": "Scan QR",
+
+  "validation": {
+    "required": "This field is required.",
+    "address": {
+      "required": "Address is required."
+    },
+    "note": {
+      "required": "Note is required."
+    },
+    "city": {
+      "required": "City is required."
+    },
+    "building_number": {
+      "required": "Building number is required."
+    },
+    "apartment_number": {
+      "required": "Apartment number is required."
+    },
+    "username": {
+      "required": "Username is required.",
+      "minLength": "Username must be at least 3 characters.",
+      "invalid": "Username is invalid."
+    },
+    "email": {
+      "required": "Email is required.",
+      "invalid": "Email is invalid."
+    },
+    "password": {
+      "required": "Password is required.",
+      "minLength": "Password must be at least 6 characters.",
+      "uppercase": "Password must contain an uppercase letter.",
+      "number": "Password must contain a number.",
+      "specialChar": "Password must contain a special character."
+    },
+    "confirmPassword": {
+      "required": "Confirmation password is required.",
+      "mismatch": "Passwords do not match."
+    },
+    "phone": {
+      "required": "Phone number is required.",
+      "invalid": "Invalid Saudi phone number."
+    },
+    "otp": {
+      "required": "OTP is required.",
+      "invalid": "Invalid OTP code."
+    }
+  }
 }

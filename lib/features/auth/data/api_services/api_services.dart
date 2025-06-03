@@ -48,8 +48,36 @@ class AuthApiServices {
     );
   }
 
-  /// logout 
+  /// forgetpassword
+  Future<Response?> forgetPassword({
+    required String email,
+  }) {
+    return _dioFactory.post(
+      endPoint: EndPoints.forgetPassword,
+      data: {
+        'email': email,
+      },
+    );
+  }
+
+  /// verfiy code
+  Future<Response?> verfiyCode({
+    required String password,
+    required String verificationCode,
+    required String passwordConfirm,
+  }) {
+    return _dioFactory.post(
+      endPoint: EndPoints.verfiyCode,
+      data: {
+        'code': verificationCode,
+        'password': password,
+        'password_confirmation': passwordConfirm
+      },
+    );
+  }
+
+  /// logout
   Future<Response?> logout() async {
     return _dioFactory.post(endPoint: EndPoints.logout);
-  } 
+  }
 }
