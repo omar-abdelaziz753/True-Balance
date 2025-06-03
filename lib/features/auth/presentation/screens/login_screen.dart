@@ -29,8 +29,7 @@ class LoginScreen extends StatelessWidget {
                           CustomHeaderWidget(
                             title1: 'welcome'.tr(),
                             title2: 'back'.tr(),
-                            description:
-                                'descriptionOfHeaderInLogin'.tr(),
+                            description: 'descriptionOfHeaderInLogin'.tr(),
                           ),
                           const Expanded(child: LoginFormWidget()),
                         ],

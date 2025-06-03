@@ -8,7 +8,6 @@ class AuthApiServices {
   final DioHelper _dioFactory;
 
   /// Login
-
   Future<Response?> login({
     required String email,
     required String password,
