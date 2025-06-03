@@ -62,9 +62,9 @@ class Assets {
   /// assets/images/svg/my_addresses_icon.svg
   static const String assetsImagesSvgMyAddressesIcon = "assets/images/svg/my_addresses_icon.svg";
 
-  /// Assets for assetsImagesSvgMyBooingIcon
-  /// assets/images/svg/my_booing_icon.svg
-  static const String assetsImagesSvgMyBooingIcon = "assets/images/svg/my_booing_icon.svg";
+  /// Assets for assetsImagesSvgMyBookingIcon
+  /// assets/images/svg/my_booking_icon.svg
+  static const String assetsImagesSvgMyBookingIcon = "assets/images/svg/my_booking_icon.svg";
 
   /// Assets for assetsImagesSvgMyTicketsIconInButton
   /// assets/images/svg/my_tickets_icon_in_button.svg

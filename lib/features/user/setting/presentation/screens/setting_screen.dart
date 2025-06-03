@@ -60,7 +60,7 @@ class SettingScreen extends StatelessWidget {
                         spacing: 18.h,
                         children: [
                           CustomRowInSettingWidget(
-                            imagePath: 'assets/images/svg/my_booing_icon.svg',
+                            imagePath: 'assets/images/svg/my_booking_icon.svg',
                             title: 'myBooking'.tr(),
                             subtitle:
                                 'appointments with the ability to follow up',
