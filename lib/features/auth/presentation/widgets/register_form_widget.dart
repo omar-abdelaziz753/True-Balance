@@ -45,10 +45,6 @@ class ResisterFormWidget extends StatelessWidget {
                 hintStyle: Styles.captionRegular
                     .copyWith(color: AppColors.neutralColor600),
                 borderColor: AppColors.neutralColor600,
-                suffixIcon: IconButton(
-                  onPressed: cubit.toggleObscure,
-                  icon: Icon(Iconsax.eye, color: AppColors.neutralColor600),
-                ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'nameRequired'.tr();
@@ -106,24 +102,38 @@ class ResisterFormWidget extends StatelessWidget {
                   style: Styles.contentEmphasis
                       .copyWith(color: AppColors.neutralColor1000)),
               8.verticalSpace,
-              CustomTextFormFieldWidget(
-                controller: cubit.passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                hintText: 'enterYourPassword'.tr(),
-                hintStyle: Styles.captionRegular
-                    .copyWith(color: AppColors.neutralColor600),
-                borderColor: AppColors.neutralColor600,
-                suffixIcon: IconButton(
-                  onPressed: cubit.toggleObscure,
-                  icon: Icon(Iconsax.eye, color: AppColors.neutralColor600),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'passwordRequired'.tr();
-                  } else if (value.length < 6) {
-                    return 'passwordTooShort'.tr();
-                  }
-                  return null;
+              BlocBuilder<AuthCubit, AuthState>(
+                buildWhen: (previous, current) =>
+                    current is TogglePasswordState,
+                builder: (context, state) {
+                  return CustomTextFormFieldWidget(
+                    controller: cubit.passwordController,
+                    obscureText: cubit.isObscure,
+                    keyboardType: TextInputType.visiblePassword,
+                    hintText: 'enterYourPassword'.tr(),
+                    hintStyle: Styles.captionRegular.copyWith(
+                      color: AppColors.neutralColor600,
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'passwordIsRequired'.tr();
+                      }
+                      return null;
+                    },
+                    borderColor: AppColors.neutralColor600,
+                    suffixIcon: IconButton(
+                      onPressed: () => cubit.toggleObscure(),
+                      icon: cubit.isObscure
+                          ? Icon(
+                              Iconsax.eye,
+                              color: AppColors.neutralColor600,
+                            )
+                          : Icon(
+                              Iconsax.eye_slash,
+                              color: AppColors.neutralColor600,
+                            ),
+                    ),
+                  );
                 },
               ),
               32.verticalSpace,

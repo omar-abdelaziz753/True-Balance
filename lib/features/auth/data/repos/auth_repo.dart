@@ -111,6 +111,69 @@ class AuthRepository {
         FailureException(errMessage: 'Unexpected error occurred'));
   }
 
+  /// forgetPassword 
+  
+  Future<ApiResult<String>> forgetPassword({
+    required String email,
+  }) async {
+    final response = await authApiServices.forgetPassword(
+      email: email,
+    );
+
+    try {
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        customToast(
+              msg: response.data["data"]["verification_code"].toString(),
+              color: AppColors.primaryColor400);
+        return const ApiResult.success('Email sent successfully');
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.error);
+      }
+      return ApiResult.failure(
+        ServerException.fromResponse(e.response!.statusCode, e.response!),
+      );
+    }
+  }
+ /// verfiy code 
+  Future<ApiResult<String>> verfiyCode({
+    required String password,
+    required String verificationCode,
+    required String passwordConfirm,
+  }) async {
+    final response = await authApiServices.verfiyCode(
+      password: password,
+      verificationCode: verificationCode,
+      passwordConfirm: passwordConfirm,
+    );
+
+    try {
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        return const ApiResult.success('Verification Success');
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.error);
+      }
+      return ApiResult.failure(
+        ServerException.fromResponse(e.response!.statusCode, e.response!),
+      );
+    }
+  }
+
   /// logout
   Future<ApiResult<String>> logout() async {
     final response = await authApiServices.logout();

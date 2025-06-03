@@ -92,12 +92,13 @@ class AppRouter {
       case Routes.forgetPasswordScreen:
         return transition(
           screen: const ForgetPasswordScreen(),
+          cubit: AuthCubit(getIt()),
         );
       case Routes.createNewPasswordScreen:
         final String email = settings.arguments as String;
 
         return transition(
-          screen: CreateNewPasswordScreen(email: email),
+          screen: const CreateNewPasswordScreen(),
         );
       case Routes.mainLayoutScreen:
         final int index = settings.arguments as int;

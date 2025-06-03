@@ -87,6 +87,40 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  /// forgetpassword
+  Future<void> forgetPassword() async {
+    showLoading();
+    emit(ForgetPasswordLoadingState());
+    final result = await authRepository.forgetPassword(
+      email: emailController.text,
+    );
+    result.when(success: (data) {
+      hideLoading();
+      emit(ForgetPasswordSuccessState());
+    }, failure: (error) {
+      hideLoading();
+      emit(ForgetPasswordFailureState());
+    });
+  }
+
+  /// verfiy code
+  Future<void> verfiyCode() async {
+    showLoading();
+    emit(VerfiyCodeLoadingState());
+    final result = await authRepository.verfiyCode(
+      password: passwordController.text,
+      verificationCode: verificationCodeController.text,
+      passwordConfirm: rePasswordController.text,
+    );
+    result.when(success: (data) {
+      hideLoading();
+      emit(VerfiyCodeSuccessState());
+    }, failure: (error) {
+      hideLoading();
+      emit(VerfiyCodeFailureState());
+    });
+  }
+
   /// logout
   Future logout() async {
     showLoading();
@@ -101,4 +135,3 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 }
- 

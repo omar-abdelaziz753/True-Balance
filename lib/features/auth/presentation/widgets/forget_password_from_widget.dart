@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -9,12 +10,16 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
+import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
+import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_screen.dart';
 
 class ForgetPasswordFormWidget extends StatelessWidget {
   const ForgetPasswordFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<AuthCubit>();
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -46,31 +51,64 @@ class ForgetPasswordFormWidget extends StatelessWidget {
                 ),
                 8.verticalSpace,
                 CustomTextFormFieldWidget(
-                  controller: TextEditingController(),
+                  controller: cubit.emailController,
                   keyboardType: TextInputType.emailAddress,
                   hintText: 'enterYourEmail'.tr(),
                   hintStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor600,
                   ),
                   borderColor: AppColors.neutralColor600,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'emailRequired'.tr();
+                    } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                        .hasMatch(value.trim())) {
+                      return 'emailInvalid'.tr();
+                    }
+                    return null;
+                  },
                 ),
               ],
             ),
           ),
           32.verticalSpace,
-          CustomButtonWidget(
-            text: 'next'.tr(),
-            padding: EdgeInsets.symmetric(
-              vertical: 14.h,
-            ),
-            textStyle: Styles.captionEmphasis.copyWith(
-              color: AppColors.neutralColor100,
-            ),
-            onPressed: () => context.pushNamed(
-              Routes.verifyOtpScreen,
-              arguments: {
-                'email': 'Omar@gmail.com',
-                'screenName': 'forgetPassword',
+          BlocListener<AuthCubit, AuthState>(
+            listener: (context, state) {
+              if (state is ForgetPasswordSuccessState) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return BlocProvider.value(
+                      value: cubit,
+                      child: VerifyOtpScreen(data: {
+                        'email': cubit.emailController.text.trim(),
+                        'screenName': 'forgetPassword',
+                      }),
+                    );
+                  }),
+                );
+
+                // context.pushNamed(
+                //   Routes.verifyOtpScreen,
+                //   arguments: {
+                //     'email': cubit.emailController.text.trim(),
+                //     'screenName': 'forgetPassword',
+                //   },
+                // );
+              }
+            },
+            child: CustomButtonWidget(
+              text: 'next'.tr(),
+              padding: EdgeInsets.symmetric(
+                vertical: 14.h,
+              ),
+              textStyle: Styles.captionEmphasis.copyWith(
+                color: AppColors.neutralColor100,
+              ),
+              onPressed: () {
+                if (cubit.emailController.text.isNotEmpty) {
+                  cubit.forgetPassword();
+                }
               },
             ),
           ),

@@ -39,6 +39,7 @@ class AppValidator {
       return null;
     }
   }
+
   static String? validateApartmentNumber(String? value) {
     if (value == null || value.isEmpty) {
       return 'validation.apartment_number.required'.tr();

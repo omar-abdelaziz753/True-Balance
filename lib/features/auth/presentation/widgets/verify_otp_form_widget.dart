@@ -15,6 +15,7 @@ import 'package:truee_balance_app/core/widgets/bottom_sheet/show_change_password
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/core/widgets/text/custom_text_rich_widget.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
+import 'package:truee_balance_app/features/auth/presentation/screens/create_new_password_screen.dart';
 
 class VerifyOtpWidgetWidget extends StatelessWidget {
   const VerifyOtpWidgetWidget({super.key, required this.data});
@@ -150,6 +151,9 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                   context.pushNamed(Routes.loginScreen);
                 });
               }
+
+              // context.pushNamed(Routes.createNewPasswordScreen,
+              //     arguments: data['email']);
             },
             child: CustomButtonWidget(
               text: data['screenName'] == 'forgetPassword'
@@ -163,8 +167,16 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
               ),
               onPressed: () {
                 if (data['screenName'] == 'forgetPassword') {
-                  context.pushNamed(Routes.createNewPasswordScreen,
-                      arguments: data['email']);
+                  // cubit.verfiyCode();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return BlocProvider.value(
+                        value: cubit,
+                        child: const CreateNewPasswordScreen(),
+                      );
+                    }),
+                  );
                 } else {
                   cubit.userRegister();
                 }
