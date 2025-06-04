@@ -20,7 +20,9 @@ class TechnicalSupportScreen extends StatelessWidget {
       appBar: CustomBasicAppBar(
         leading: BackButton(
           color: AppColors.neutralColor100,
-          onPressed: () {},
+          onPressed: () {
+            context.pop();
+          },
         ),
         // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
         title: 'technicalSupport'.tr(),

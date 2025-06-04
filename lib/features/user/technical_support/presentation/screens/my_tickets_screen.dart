@@ -20,13 +20,24 @@ class MyTicketsScreen extends StatelessWidget {
       appBar: CustomBasicAppBar(
         leading: BackButton(
           color: AppColors.neutralColor100,
-          onPressed: () {},
+          onPressed: () {
+            context.pop();
+          },
         ),
-        // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
         title: 'myTickets'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
+      // CustomBasicAppBar(
+      //   leading: BackButton(
+      //     color: AppColors.neutralColor100,
+      //     onPressed: () {},
+      //   ),
+      //   // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
+      //   title: 'myTickets'.tr(),
+      //   backgroundColor: AppColors.primaryColor900,
+      //   svgAsset: 'assets/images/svg/bg_image.svg',
+      // ),
       body: Stack(
         children: [
           Container(
@@ -61,8 +72,7 @@ class MyTicketsScreen extends StatelessWidget {
                         ),
                         child: CustomRowInMyTicketsWidget(
                           ticketNumber: '${'ticketNo'.tr()} #TICKET-12987',
-                          message:
-                              "descriptionOfMyTickets".tr(),
+                          message: "descriptionOfMyTickets".tr(),
                         ),
                       );
                     },
