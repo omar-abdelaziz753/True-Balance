@@ -59,34 +59,31 @@ class AboutUsScreen extends StatelessWidget {
                           CustomSectionInAboutUsWidget(
                             number: '1',
                             title: 'aboutUs'.tr(),
-                            description:
-                                "descriptionOfAboutUs".tr(),
+                            description: "descriptionOfAboutUs".tr(),
                           ),
                           CustomSectionInAboutUsWidget(
                             number: '2',
                             title: 'ourMission'.tr(),
-                            description:
-                                "ourMissionDescription".tr(),
+                            description: "ourMissionDescription".tr(),
                           ),
                           CustomSectionInAboutUsWidget(
                             number: '3',
                             title: 'contactInformation'.tr(),
-                            description:
-                                'forFurtherSupport'.tr(),
+                            description: 'forFurtherSupport'.tr(),
                           ),
-                          CustomSectionInAboutUsWidget(
+                          const CustomSectionInAboutUsWidget(
                             number: '4',
                             title: 'About Us',
                             description:
                                 "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
                           ),
-                          CustomSectionInAboutUsWidget(
+                          const CustomSectionInAboutUsWidget(
                             number: '5',
                             title: 'Our Mission',
                             description:
                                 "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
                           ),
-                          CustomSectionInAboutUsWidget(
+                          const CustomSectionInAboutUsWidget(
                             number: '6',
                             title: 'Contact Information',
                             description:
