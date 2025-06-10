@@ -60,7 +60,8 @@ class SettingScreen extends StatelessWidget {
                         spacing: 18.h,
                         children: [
                           CustomRowInSettingWidget(
-                            imagePath: 'assets/images/svg/my_booking_icon.svg',
+                            imagePath: Icons.wallet,
+                            iconcolor: AppColors.primaryColor900,
                             title: 'myBooking'.tr(),
                             subtitle:
                                 'appointments with the ability to follow up',
@@ -129,14 +130,24 @@ class SettingScreen extends StatelessWidget {
                               },
                               builder: (context, state) {
                                 return CustomRowInSettingWidget(
-                                  imagePath:
-                                      "assets/images/svg/logout_icon.svg",
+                                  imagePath: Icons.logout,
+                                  iconcolor: Colors.red,
                                   title: 'logOut'.tr(),
                                   subtitle: 'descriptionOfLogout'.tr(),
                                   onTap: () {
                                     context.read<AuthCubit>().logout();
                                   },
                                 );
+
+                                // CustomRowInSettingWidget(
+                                //   imagePath:
+                                //       "assets/images/svg/logout_icon.svg",
+                                //   title: 'logOut'.tr(),
+                                //   subtitle: 'descriptionOfLogout'.tr(),
+                                //   onTap: () {
+                                //     context.read<AuthCubit>().logout();
+                                //   },
+                                // );
                               },
                             ),
                           ),

@@ -17,6 +17,7 @@ import 'package:truee_balance_app/features/therapists/appointments_details/prese
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/presentation/booking_screen.dart';
+import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/home_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/our_services.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
@@ -95,17 +96,17 @@ class AppRouter {
           cubit: AuthCubit(getIt()),
         );
       case Routes.createNewPasswordScreen:
-        final String email = settings.arguments as String;
-
         return transition(
           screen: const CreateNewPasswordScreen(),
         );
       case Routes.mainLayoutScreen:
-        final int index = settings.arguments as int;
-
         return transition(
-          screen: const MainLayout(index: 0),
+          screen: const MainLayoutScreen(),
           cubit: MainLayoutCubit(),
+        );
+      case Routes.doctorDetailsScreen:
+        return transition(
+          screen: const DoctorDetailsScreen(),
         );
       case Routes.technicalSupportScreen:
         return transition(
@@ -154,6 +155,13 @@ class AppRouter {
     Container(
       color: Colors.green,
     ),
+    BlocProvider(
+      create: (context) => CreateBookingCubit(),
+      child: const BookingScreen(),
+    ),
+    // Container(
+    //   color: Colors.red,
+    // ),
     Container(
       color: Colors.yellow,
     ),

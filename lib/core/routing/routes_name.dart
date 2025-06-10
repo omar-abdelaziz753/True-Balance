@@ -21,4 +21,5 @@ class Routes {
   static const String appointmentsScreen = '/appointmentsScreen';
   static const String appointmentsDetailsScreen = '/appointmentsDetailsScreen';
   static const String bestTherapistsScreen = '/bestTherapistsScreen';
+  static const String doctorDetailsScreen = '/doctor_details_screen';
 }
