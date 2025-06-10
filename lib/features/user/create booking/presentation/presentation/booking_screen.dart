@@ -90,11 +90,14 @@ class BookingScreen extends StatelessWidget {
               BlocBuilder<CreateBookingCubit, CreateBookingState>(
                 buildWhen: (previous, current) => current is ChangeStepState,
                 builder: (context, state) {
-                  return CustomButtonWidget(
-                    text: cubit.currentStep == 2 ? 'Booking Now' : 'Next',
-                    onPressed: () {
-                      cubit.nextStep();
-                    },
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 23.sp),
+                    child: CustomButtonWidget(
+                      text: cubit.currentStep == 2 ? 'Booking Now' : 'Next',
+                      onPressed: () {
+                        cubit.nextStep();
+                      },
+                    ),
                   );
                 },
               ),

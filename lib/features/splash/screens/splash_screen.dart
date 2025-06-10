@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,7 +36,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToNext() {
-    context.pushNamed(Routes.loginScreen);
+    if (AppConstants.userToken != null) {
+      context.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
+    } else {
+      context.pushNamedAndRemoveUntil(Routes.loginScreen);
+    }
   }
 
   @override

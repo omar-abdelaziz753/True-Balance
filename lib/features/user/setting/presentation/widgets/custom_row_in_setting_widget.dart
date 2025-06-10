@@ -6,16 +6,20 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 
 class CustomRowInSettingWidget extends StatelessWidget {
-  const CustomRowInSettingWidget({
-    super.key,
-    required this.imagePath,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  final String imagePath, title, subtitle;
+  const CustomRowInSettingWidget(
+      {super.key,
+      this.imagePath,
+      required this.title,
+      required this.subtitle,
+      required this.onTap,
+      this.iconcolor
+      // this.icon,
+      });
+  final dynamic imagePath;
+  final String title, subtitle;
   final VoidCallback onTap;
+  // final Widget? icon;
+  final Color? iconcolor;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +28,22 @@ class CustomRowInSettingWidget extends StatelessWidget {
       child: Row(
         spacing: 8.w,
         children: [
-          SvgPicture.asset(
-            imagePath,
-            fit: BoxFit.scaleDown,
-          ),
+          imagePath is String
+              ? SvgPicture.asset(
+                  imagePath!,
+                  fit: BoxFit.scaleDown,
+                )
+              : Container(
+                  padding: EdgeInsets.all(10.sp),
+                  decoration: BoxDecoration(
+                      color: iconcolor?.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(3.r)),
+                  child: Icon(
+                    imagePath,
+                    color: iconcolor,
+                    size: 24.sp,
+                  ),
+                ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
