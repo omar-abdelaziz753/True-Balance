@@ -10,6 +10,7 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/container/custom_divider_widget.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
+import 'package:truee_balance_app/features/localization/presentation/localization_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/widgets/custom_row_in_setting_widget.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class SettingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
       appBar: CustomBasicAppBar(
-        title: 'Setting',
+        title: 'setting'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -63,8 +64,7 @@ class SettingScreen extends StatelessWidget {
                             imagePath: Icons.wallet,
                             iconcolor: AppColors.primaryColor900,
                             title: 'myBooking'.tr(),
-                            subtitle:
-                                'appointments with the ability to follow up',
+                            subtitle: 'appointmentsWiththeAbility'.tr(),
                             onTap: () =>
                                 context.pushNamed(Routes.myBookingScreen),
                           ),
@@ -72,7 +72,7 @@ class SettingScreen extends StatelessWidget {
                           CustomRowInSettingWidget(
                             imagePath:
                                 'assets/images/svg/my_addresses_icon.svg',
-                            title: 'myAddresses'.tr(),
+                            title: 'myAddress'.tr(),
                             subtitle: 'allYourCurrentAddress'.tr(),
                             onTap: () {},
                           ),
@@ -117,7 +117,9 @@ class SettingScreen extends StatelessWidget {
                             imagePath: 'assets/images/svg/language_icon.svg',
                             title: 'language'.tr(),
                             subtitle: 'descriptionOfLanguage'.tr(),
-                            onTap: () {},
+                            onTap: () {
+                              showLocalizationBottomSheet(context);
+                            },
                           ),
                           const CustomDividerWidget(),
                           BlocProvider(
@@ -132,7 +134,7 @@ class SettingScreen extends StatelessWidget {
                                 return CustomRowInSettingWidget(
                                   imagePath: Icons.logout,
                                   iconcolor: Colors.red,
-                                  title: 'logOut'.tr(),
+                                  title: 'logout'.tr(),
                                   subtitle: 'descriptionOfLogout'.tr(),
                                   onTap: () {
                                     context.read<AuthCubit>().logout();

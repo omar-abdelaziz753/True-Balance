@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,7 +6,8 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/custom_count_of_no_of_notification_widget.dart';
 
-class CustomMainAppBarInHomeWidget extends StatelessWidget implements PreferredSizeWidget {
+class CustomMainAppBarInHomeWidget extends StatelessWidget
+    implements PreferredSizeWidget {
   final String userName;
   final String location;
   final String profileImageAsset;
@@ -71,7 +73,7 @@ class CustomMainAppBarInHomeWidget extends StatelessWidget implements PreferredS
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Welcome Back,',
+                                'welcomeBack'.tr(),
                                 style: Styles.footnoteRegular.copyWith(
                                   color: AppColors.neutralColor100,
                                 ),
@@ -88,11 +90,10 @@ class CustomMainAppBarInHomeWidget extends StatelessWidget implements PreferredS
                         )
                       ],
                     ),
-
                     Row(
                       children: [
                         Text(
-                          'Your Location: ',
+                          'yourLocation'.tr(),
                           style: Styles.footnoteRegular.copyWith(
                             color: AppColors.neutralColor100,
                           ),

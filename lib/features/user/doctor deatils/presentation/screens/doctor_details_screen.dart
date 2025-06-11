@@ -92,7 +92,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                 ),
               ),
               10.verticalSpace,
-              Text("About",
+              Text('about'.tr(),
                   style: Styles.contentEmphasis
                       .copyWith(fontWeight: FontWeight.w600, fontSize: 14.sp)),
               const SizedBox(height: 8),
@@ -107,7 +107,7 @@ class DoctorDetailsScreen extends StatelessWidget {
               Row(
                 spacing: 6.sp,
                 children: [
-                  Text("Best Therapists",
+                  Text('bestTherapists'.tr(),
                       style: Styles.contentEmphasis.copyWith(
                           fontWeight: FontWeight.w600, fontSize: 14.sp)),
                   const Icon(Icons.star, color: Color(0XFFFFDB43), size: 18),
@@ -126,9 +126,11 @@ class DoctorDetailsScreen extends StatelessWidget {
                         color: AppColors.neutralColor600),
                   ),
                   const Spacer(),
-                  const Text(
-                    "See all",
-                    style: TextStyle(
+                  Text(
+                    'seeAll'.tr(),
+                    style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                      decorationColor: Color(0xffF58220),
                       color: Color(
                         0xffF58220,
                       ),
@@ -156,7 +158,7 @@ class DoctorDetailsScreen extends StatelessWidget {
         color: Colors.white,
         child: CustomButtonWidget(
           margin: EdgeInsets.only(bottom: 20.sp, left: 20.sp, right: 20.sp),
-          text: 'Booking'.tr(),
+          text: 'booking'.tr(),
           textStyle: Styles.captionEmphasis.copyWith(
             color: AppColors.neutralColor100,
           ),

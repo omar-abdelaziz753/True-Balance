@@ -50,10 +50,13 @@ class MainLayoutScreen extends StatelessWidget {
                     Icons.card_travel,
                     color: Colors.white,
                   ),
-                  Text(
-                    "Booking",
-                    style: Styles.featureEmphasis
-                        .copyWith(color: Colors.white, fontSize: 12.sp),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Text(
+                      'booking'.tr(),
+                      style:
+                          Styles.footnoteEmphasis.copyWith(color: Colors.white),
+                    ),
                   )
                 ],
               ),

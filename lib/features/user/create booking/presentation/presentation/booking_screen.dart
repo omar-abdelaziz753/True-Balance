@@ -93,7 +93,9 @@ class BookingScreen extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.only(bottom: 23.sp),
                     child: CustomButtonWidget(
-                      text: cubit.currentStep == 2 ? 'Booking Now' : 'Next',
+                      text: cubit.currentStep == 2
+                          ? 'bookingNow'.tr()
+                          : 'next'.tr(),
                       onPressed: () {
                         cubit.nextStep();
                       },

@@ -23,8 +23,8 @@ class FormWidget extends StatelessWidget {
             style: Styles.highlightAccent,
           ),
           8.verticalSpace,
-          const CustomDropdownButtonWidget(
-            hint: 'selectItem',
+          CustomDropdownButtonWidget(
+            hint: 'selectItem'.tr(),
             items: [
               "home",
               "home",
@@ -71,13 +71,17 @@ class FormWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(Icons.keyboard_arrow_right_outlined,
-                    color: AppColors.primaryColor900)
+                Icon(
+                  context.locale.languageCode == 'ar'
+                      ? Icons.keyboard_arrow_left_outlined
+                      : Icons.keyboard_arrow_right_outlined,
+                  color: AppColors.primaryColor900,
+                )
               ],
             ),
           ),
           18.verticalSpace,
-          Text(
+          Text( 
             "sessionDetails".tr(),
             style: Styles.highlightAccent,
           ),

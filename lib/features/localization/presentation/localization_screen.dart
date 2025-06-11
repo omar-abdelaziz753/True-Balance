@@ -30,44 +30,29 @@ void showLocalizationBottomSheet(BuildContext context) {
                   Text(
                     'language'.tr(),
                     style: Styles.heading3.copyWith(
-                      color: AppColors.neutralColor1000,
+                      color: AppColors.neutralColor900,
                     ),
                   ),
                   SizedBox(height: 20.h),
                   LanguageOption(
                     label: 'العربية'.tr(),
                     selected: currentLocale == 'ar_EG',
-                    onTap: () async {
-                      final currentContext = context; // Store context before async call
-
-                      await localizationCubit.changeLanguage(
-                        context: currentContext,
-                        lang: 'ar',
-                        country: 'EG',
-                      );
-
-                      if (currentContext.mounted) { // Ensure the context is still valid
-                        Phoenix.rebirth(currentContext);
-                      }
+                    onTap: () {
+                      localizationCubit
+                          .changeLanguage(
+                              context: context, lang: 'ar', country: 'EG')
+                          .then((value) => Phoenix.rebirth(context));
                     },
                   ),
-
                   SizedBox(height: 10.h),
                   LanguageOption(
                     label: 'English'.tr(),
                     selected: currentLocale == 'en_UK',
-                    onTap: () async {
-                      final currentContext = context; // Store context before async call
-
-                      await localizationCubit.changeLanguage(
-                        context: currentContext,
-                        lang: 'en',
-                        country: 'UK',
-                      );
-
-                      if (currentContext.mounted) { // Ensure the context is still valid
-                        Phoenix.rebirth(currentContext);
-                      }
+                    onTap: () {
+                      localizationCubit
+                          .changeLanguage(
+                              context: context, lang: 'en', country: 'UK')
+                          .then((value) => Phoenix.rebirth(context));
                     },
                   ),
                 ],
