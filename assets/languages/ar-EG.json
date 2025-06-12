@@ -10,6 +10,7 @@
   "signUp": "تسجيل",
   "dontHaveAnAccount": "ليس لديك حساب؟",
   "forgot": "نسيت ",
+  "forgotPassword": "نسيت كلمة المرور؟",
   "descriptionOfHeaderInForgot": "يرجى إدخال بريدك الإلكتروني وسنرسل لك رمز تأكيد",
   "email": "البريد الإلكتروني",
   "enterYourEmail": "أدخل بريدك الإلكتروني",

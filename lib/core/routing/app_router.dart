@@ -24,6 +24,7 @@ import 'package:truee_balance_app/features/user/main_layout/business_logic/main_
 import 'package:truee_balance_app/features/user/main_layout/presentation/main_layout.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
+import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/my_tickets_screen.dart';
@@ -127,6 +128,10 @@ class AppRouter {
       case Routes.bookingDetailsScreen:
         return transition(
           screen: const BookingDetailsScreen(),
+        );
+      case Routes.notificationsScreen:
+        return transition(
+          screen: const NotificationScreen(),
         );
       case Routes.aboutUsScreen:
         return transition(

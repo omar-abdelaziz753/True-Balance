@@ -10,6 +10,7 @@
   "signUp": "Sign Up",
   "dontHaveAnAccount": "Don’t have an account?",
   "forgot": "Forgot ",
+  "forgotPassword": "Forgot Password?",
   "descriptionOfHeaderInForgot": "Please enter your email and we will send a confirmation code to your email",
   "email": "Email",
   "enterYourEmail": "Enter your Email",

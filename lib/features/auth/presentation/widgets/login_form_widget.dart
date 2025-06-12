@@ -116,7 +116,7 @@ class LoginFormWidget extends StatelessWidget {
                   onPressed: () =>
                       context.pushNamed(Routes.forgetPasswordScreen),
                   child: Text(
-                    'forgetPassword'.tr(),
+                    'forgotPassword'.tr(),
                     style: Styles.captionRegular.copyWith(
                       color: AppColors.primaryColor900,
                       decoration: TextDecoration.underline,
