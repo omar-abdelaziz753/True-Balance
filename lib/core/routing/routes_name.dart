@@ -22,4 +22,5 @@ class Routes {
   static const String appointmentsDetailsScreen = '/appointmentsDetailsScreen';
   static const String bestTherapistsScreen = '/bestTherapistsScreen';
   static const String doctorDetailsScreen = '/doctor_details_screen';
+  static const String notificationsScreen = '/notifications_screen';
 }
