@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -57,7 +58,7 @@ class NotificationScreen extends StatelessWidget {
           color: AppColors.neutralColor100,
           onPressed: () => Navigator.pop(context),
         ),
-        title: "Notifications",
+        title: 'notifications'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -65,7 +66,7 @@ class NotificationScreen extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.all(18.sp),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.neutralColor100,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12.r),
             topRight: Radius.circular(12.r),

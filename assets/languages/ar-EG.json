@@ -114,6 +114,7 @@
   "status": "الحالة",
   "scanQR": "مسح QR",
   "about": "حول",
+  "notifications": "الاشعارات",
   "validation": {
     "required": "هذا الحقل مطلوب.",
     "address": {

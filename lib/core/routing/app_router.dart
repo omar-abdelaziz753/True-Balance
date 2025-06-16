@@ -158,7 +158,7 @@ class AppRouter {
   List<Widget> screens = [
     const HomeScreen(),
     Container(
-      color: Colors.green,
+      color: Colors.white,
     ),
     BlocProvider(
       create: (context) => CreateBookingCubit(),
@@ -168,7 +168,7 @@ class AppRouter {
     //   color: Colors.red,
     // ),
     Container(
-      color: Colors.yellow,
+      color: Colors.white,
     ),
     const SettingScreen(),
   ];
