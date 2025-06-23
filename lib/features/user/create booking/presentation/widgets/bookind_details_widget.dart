@@ -42,10 +42,10 @@ class BookingDetailsWidget extends StatelessWidget {
                 title: 'time'.tr(),
                 description: '7:00 AM',
               ),
-              CustomRowMakeTitleAndDescWidget(
-                title: 'checkIn'.tr(),
-                description: 'December 23, 2022',
-              ),
+              // CustomRowMakeTitleAndDescWidget(
+              //   title: 'checkIn'.tr(),
+              //   description: 'December 23, 2022',
+              // ),
             ],
           ),
         ),
@@ -78,41 +78,41 @@ class BookingDetailsWidget extends StatelessWidget {
                 title: 'phoneNumberOnly'.tr(),
                 description: '+201 027 324 902',
               ),
-                CustomRowMakeTitleAndDescWidget(
+              CustomRowMakeTitleAndDescWidget(
                 title: 'therapistsName'.tr(),
                 description: 'Ahmed Hossam',
               ),
             ],
           ),
         ),
-        Container(
-          padding: EdgeInsets.all(12.sp),
-          decoration: BoxDecoration(
-            color: AppColors.neutralColor100,
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(0, 2.h),
-                blurRadius: 8.r,
-                spreadRadius: 0,
-                color: Colors.black.withAlpha(20),
-              ),
-            ],
-            borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(
-              color: AppColors.neutralColor1000.withAlpha(20),
-              width: 1.sp,
-            ),
-          ),
-          child: Column(
-            spacing: 12.h,
-            children: [
-              CustomRowMakeTitleAndDescWidget(
-                title: 'total'.tr(),
-                description: '\$150.00',
-              ),
-            ],
-          ),
-        ),
+        // Container(
+        //   padding: EdgeInsets.all(12.sp),
+        //   decoration: BoxDecoration(
+        //     color: AppColors.neutralColor100,
+        //     boxShadow: [
+        //       BoxShadow(
+        //         offset: Offset(0, 2.h),
+        //         blurRadius: 8.r,
+        //         spreadRadius: 0,
+        //         color: Colors.black.withAlpha(20),
+        //       ),
+        //     ],
+        //     borderRadius: BorderRadius.circular(12.r),
+        //     border: Border.all(
+        //       color: AppColors.neutralColor1000.withAlpha(20),
+        //       width: 1.sp,
+        //     ),
+        //   ),
+        //   child: Column(
+        //     spacing: 12.h,
+        //     children: [
+        //       CustomRowMakeTitleAndDescWidget(
+        //         title: 'total'.tr(),
+        //         description: '\$150.00',
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }

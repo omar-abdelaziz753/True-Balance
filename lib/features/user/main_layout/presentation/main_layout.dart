@@ -183,20 +183,13 @@ class MainLayoutScreen extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.card_travel,
-                    color: currentIndex == 2
-                        ? AppColors.neutralColor100
-                        : AppColors.neutralColor300,
+                    color: AppColors.neutralColor100,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: Text(
-                      'booking'.tr(),
-                      style: currentIndex == 2
-                          ? Styles.footnoteBold
-                              .copyWith(color: AppColors.neutralColor100)
-                          : Styles.footnoteEmphasis
-                              .copyWith(color: AppColors.neutralColor300),
-                    ),
+                    child: Text('booking'.tr(),
+                        style: Styles.footnoteBold
+                            .copyWith(color: AppColors.neutralColor100)),
                   )
                 ],
               ),
