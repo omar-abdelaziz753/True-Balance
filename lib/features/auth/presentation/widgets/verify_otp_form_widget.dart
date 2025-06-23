@@ -151,7 +151,6 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                   context.pushNamed(Routes.loginScreen);
                 });
               }
-
               // context.pushNamed(Routes.createNewPasswordScreen,
               //     arguments: data['email']);
             },

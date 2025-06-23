@@ -76,7 +76,7 @@ class BookingScreen extends StatelessWidget {
                             }),
                           ),
                           if (cubit.currentStep == 0)
-                            const FormWidget()
+                            const FormWidget1()
                           else if (cubit.currentStep == 1)
                             const SessionSelector()
                           else
