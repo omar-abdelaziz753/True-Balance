@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/routing/app_router.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:truee_balance_app/features/user/setting/presentation/screens/test.dart';
 
 class TrueBalanceApp extends StatelessWidget {
   const TrueBalanceApp({
@@ -35,8 +36,9 @@ class TrueBalanceApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             navigatorKey: AppConstants.navigatorKey,
-            initialRoute: Routes.splashScreen,
+            initialRoute: Routes.chooseYourAccountScreen,
             onGenerateRoute: appRouter.generateRoute,
+            // home: const TestScreen(),
             builder: EasyLoading.init(),
           ),
         ),
