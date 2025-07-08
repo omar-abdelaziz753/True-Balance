@@ -225,7 +225,7 @@ class MainLayoutScreen extends StatelessWidget {
                   const SizedBox(width: 40), // space for the FAB
                   _buildNavItem(
                     icon: 'assets/images/svg/resources_icon.svg',
-                    label: 'resources'.tr(),
+                    label: 'My Sessions'.tr(),
                     index: 3,
                     currentIndex: currentIndex,
                     onTap: () => cubit.changeBottomNavBar(3),

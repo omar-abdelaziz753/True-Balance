@@ -37,26 +37,30 @@ class ChooseYourAccountScreen extends StatelessWidget {
               buildWhen: (previous, current) =>
                   current is ChosseAccountChangeState,
               builder: (context, state) {
-                return Row(
+                return Column(
+                  spacing: 12.h,
                   children: [
-                    Expanded(
-                      child: ChooseAccountWidget(
-                        isSelected: chosseaccountcubit.selectd == 1,
-                        onTap: () {
-                          chosseaccountcubit.changeSelected(1);
-                        },
-                        title: 'normaluser'.tr(),
-                      ),
+                    ChooseAccountWidget(
+                      isSelected: chosseaccountcubit.selectd == 1,
+                      onTap: () {
+                        chosseaccountcubit.changeSelected(1);
+                      },
+                      title: 'Patient '.tr(),
                     ),
                     12.horizontalSpace,
-                    Expanded(
-                      child: ChooseAccountWidget(
-                        isSelected: chosseaccountcubit.selectd == 0,
-                        onTap: () {
-                          chosseaccountcubit.changeSelected(0);
-                        },
-                        title: 'therapist'.tr(),
-                      ),
+                    ChooseAccountWidget(
+                      isSelected: chosseaccountcubit.selectd == 0,
+                      onTap: () {
+                        chosseaccountcubit.changeSelected(0);
+                      },
+                      title: 'therapist'.tr(),
+                    ),
+                    ChooseAccountWidget(
+                      isSelected: chosseaccountcubit.selectd == 2,
+                      onTap: () {
+                        chosseaccountcubit.changeSelected(2);
+                      },
+                      title: 'Doctors'.tr(),
                     )
                   ],
                 );
@@ -67,8 +71,6 @@ class ChooseYourAccountScreen extends StatelessWidget {
               text: 'next'.tr(),
               onPressed: () {},
             ),
-          
-        
           ],
         ),
       ),

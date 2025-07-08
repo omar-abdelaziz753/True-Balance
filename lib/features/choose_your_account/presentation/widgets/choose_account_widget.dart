@@ -33,30 +33,51 @@ class ChooseAccountWidget extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(18.0.sp),
-          child: Column(
-            children: [
-              Text(
-                title,
-                style: isSelected
-                    ? Styles.contentEmphasis
-                        .copyWith(color: AppColors.neutralColor1000)
-                    : Styles.captionRegular.copyWith(
-                        color: AppColors.neutralColor600,
-                      ),
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-              ),
-              12.verticalSpace,
-              SvgPicture.asset(
-                "assets/images/svg/chosse_account.svg",
-                width: 100.w,
-                height: 100.h,
-              ),
-              8.verticalSpace,
-            ],
-          ),
-        ),
+            padding: EdgeInsets.all(18.0.sp),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  "assets/images/svg/chosse_account.svg",
+                  width: 60.w,
+                  height: 60.h,
+                ),
+                12.horizontalSpace,
+                Text(
+                  title,
+                  style: isSelected
+                      ? Styles.contentEmphasis
+                          .copyWith(color: AppColors.neutralColor1000)
+                      : Styles.captionRegular.copyWith(
+                          color: AppColors.neutralColor600,
+                        ),
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            )
+            // Column(
+            //   children: [
+            //     Text(
+            //       title,
+            //       style: isSelected
+            //           ? Styles.contentEmphasis
+            //               .copyWith(color: AppColors.neutralColor1000)
+            //           : Styles.captionRegular.copyWith(
+            //               color: AppColors.neutralColor600,
+            //             ),
+            //       overflow: TextOverflow.ellipsis,
+            //       textAlign: TextAlign.center,
+            //     ),
+            //     12.verticalSpace,
+            //     SvgPicture.asset(
+            //       "assets/images/svg/chosse_account.svg",
+            //       width: 100.w,
+            //       height: 100.h,
+            //     ),
+            //     8.verticalSpace,
+            //   ],
+            // ),
+            ),
       ),
     );
   }
