@@ -41,14 +41,16 @@ class ChooseYourAccountScreen extends StatelessWidget {
                   spacing: 12.h,
                   children: [
                     ChooseAccountWidget(
+                      image: 'assets/images/png/patient.png',
                       isSelected: chosseaccountcubit.selectd == 1,
                       onTap: () {
                         chosseaccountcubit.changeSelected(1);
                       },
-                      title: 'Patient '.tr(),
+                      title: 'Patient'.tr(),
                     ),
                     12.horizontalSpace,
                     ChooseAccountWidget(
+                      image: 'assets/images/png/therapists.png',
                       isSelected: chosseaccountcubit.selectd == 0,
                       onTap: () {
                         chosseaccountcubit.changeSelected(0);
@@ -56,6 +58,7 @@ class ChooseYourAccountScreen extends StatelessWidget {
                       title: 'therapist'.tr(),
                     ),
                     ChooseAccountWidget(
+                      image: 'assets/images/png/doctors.png',
                       isSelected: chosseaccountcubit.selectd == 2,
                       onTap: () {
                         chosseaccountcubit.changeSelected(2);
