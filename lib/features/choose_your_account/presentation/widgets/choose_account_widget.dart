@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
@@ -11,11 +10,13 @@ class ChooseAccountWidget extends StatelessWidget {
     required this.title,
     required this.onTap,
     required this.isSelected,
+    required this.image,
   });
 
   final String title;
   final VoidCallback onTap;
   final bool isSelected;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +37,8 @@ class ChooseAccountWidget extends StatelessWidget {
             padding: EdgeInsets.all(18.0.sp),
             child: Row(
               children: [
-                SvgPicture.asset(
-                  "assets/images/svg/chosse_account.svg",
+                Image.asset(
+                  image,
                   width: 60.w,
                   height: 60.h,
                 ),
