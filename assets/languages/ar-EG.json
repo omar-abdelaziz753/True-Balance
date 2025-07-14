@@ -73,6 +73,7 @@
   "specialization": "التخصص",
   "rate": "التقييم",
   "general": "عام",
+  "patientsmedical": "ملخص شامل للحالة الطبية للمريض",
   "allYourCurrentAddress": "كل عناوينك الحالية لتسهيل الحجز",
   "howCanWeHelp": "كيف يمكننا مساعدتك اليوم؟",
   "accountInformation": "معلومات الحساب",
@@ -115,6 +116,8 @@
   "scanQR": "مسح QR",
   "about": "حول",
   "notifications": "الاشعارات",
+  "medicalReports": "التقارير الطبية",
+  "download": "تحميل",
   "validation": {
     "required": "هذا الحقل مطلوب.",
     "address": {
