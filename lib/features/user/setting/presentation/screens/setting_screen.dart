@@ -6,6 +6,7 @@ import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/container/custom_divider_widget.dart';
@@ -70,11 +71,12 @@ class SettingScreen extends StatelessWidget {
                           ),
                           const CustomDividerWidget(),
                           CustomRowInSettingWidget(
-                            imagePath:
-                                'assets/images/svg/my_addresses_icon.svg',
-                            title: 'myAddress'.tr(),
-                            subtitle: 'allYourCurrentAddress'.tr(),
-                            onTap: () {},
+                            imagePath: Assets.assetsImagesSvgMedicalReportsIcon,
+                            title: 'medicalReports'.tr(),
+                            subtitle: 'patientsmedical'.tr(),
+                            onTap: () {
+                              context.pushNamed(Routes.medicalReportsScreen);
+                            },
                           ),
                           const CustomDividerWidget(),
                           CustomRowInSettingWidget(

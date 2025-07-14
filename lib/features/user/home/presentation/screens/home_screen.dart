@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
             ),
             12.verticalSpace,
 
-            /// Replace this part inside your build method
+         
             SizedBox(
               height: 120.h,
               child: ListView.separated(
@@ -76,7 +76,8 @@ class HomeScreen extends StatelessWidget {
 
                   return CustomServiceCardWidget(
                     title: titles[index],
-                    icon: Placeholder(
+                    icon: 
+                    Placeholder(
                       fallbackHeight: 44.h,
                       fallbackWidth: 44.w,
                       color: Colors.black.withAlpha(20),

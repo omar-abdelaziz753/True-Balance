@@ -22,6 +22,7 @@ import 'package:truee_balance_app/features/user/home/presentation/screens/home_s
 import 'package:truee_balance_app/features/user/home/presentation/screens/our_services.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 import 'package:truee_balance_app/features/user/main_layout/presentation/main_layout.dart';
+import 'package:truee_balance_app/features/user/medical_reports/presentation/screens/medical_reports_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
 import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
@@ -136,6 +137,10 @@ class AppRouter {
       case Routes.aboutUsScreen:
         return transition(
           screen: const AboutUsScreen(),
+        );
+      case Routes.medicalReportsScreen:
+        return transition(
+          screen: const MedicalReportsScreen(),
         );
       case Routes.termsAndConditionsScreen:
         return transition(
