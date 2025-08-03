@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (AppConstants.userToken != null) {
       context.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
     } else {
-      context.pushNamedAndRemoveUntil(Routes.loginScreen);
+      context.pushNamedAndRemoveUntil(Routes.onBoardingScreen);
     }
   }
 

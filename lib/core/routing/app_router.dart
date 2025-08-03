@@ -10,6 +10,8 @@ import 'package:truee_balance_app/features/auth/presentation/screens/register_sc
 import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_screen.dart';
 import 'package:truee_balance_app/features/choose_your_account/business_logic/cubit/chosse_account_cubit.dart';
 import 'package:truee_balance_app/features/choose_your_account/presentation/screens/choose_your_account_screen.dart';
+import 'package:truee_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dart';
+import 'package:truee_balance_app/features/onBoarding/screens/on_boarding_screen.dart';
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
 import 'package:truee_balance_app/features/therapists/appointments/presentation/screens/appointments_screen.dart';
@@ -154,6 +156,11 @@ class AppRouter {
         return transition(
           cubit: CreateBookingCubit(),
           screen: const BookingScreen(),
+        );
+      case Routes.onBoardingScreen:
+        return transition(
+          cubit: OnBoardingCubit(),
+          screen: const OnBoardingScreen(),
         );
       default:
         return null;
