@@ -1,4 +1,4 @@
-package com.truee.balance.truee_balance_app
+package com.truee.balance.truebalanceapp
 
 import io.flutter.embedding.android.FlutterActivity
 

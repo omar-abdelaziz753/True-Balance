@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "916707231766",
+    "project_id": "true-balance-651de",
+    "storage_bucket": "true-balance-651de.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916707231766:android:36dc5398db262480cf4d37",
+        "android_client_info": {
+          "package_name": "com.truee.balance.truebalanceapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGHOBhsd-5z6NITba8jAKfI5ctvDnJPKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
