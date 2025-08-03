@@ -153,8 +153,8 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 //   }
 // }
 
-class FormWidget1 extends StatelessWidget {
-  const FormWidget1({super.key});
+class FormWidget extends StatelessWidget {
+  const FormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
