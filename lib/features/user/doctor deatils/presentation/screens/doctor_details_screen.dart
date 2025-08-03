@@ -125,17 +125,17 @@ class DoctorDetailsScreen extends StatelessWidget {
                         fontSize: 12.sp,
                         color: AppColors.neutralColor600),
                   ),
-                  const Spacer(),
-                  Text(
-                    'seeAll'.tr(),
-                    style: const TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Color(0xffF58220),
-                      color: Color(
-                        0xffF58220,
-                      ),
-                    ),
-                  ),
+                  // const Spacer(),
+                  // Text(
+                  //   'seeAll'.tr(),
+                  //   style: const TextStyle(
+                  //     decoration: TextDecoration.underline,
+                  //     decorationColor: Color(0xffF58220),
+                  //     color: Color(
+                  //       0xffF58220,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               ListView.separated(

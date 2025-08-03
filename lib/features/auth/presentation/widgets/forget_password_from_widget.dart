@@ -33,126 +33,129 @@ class ForgetPasswordFormWidget extends StatelessWidget {
           topRight: Radius.circular(12.r),
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: AppConstants.screenHeight(context) / 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: Form(
+        key: cubit.formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: AppConstants.screenHeight(context) / 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'email'.tr(),
+                    style: Styles.contentEmphasis.copyWith(
+                      color: AppColors.neutralColor1000,
+                    ),
+                  ),
+                  8.verticalSpace,
+                  CustomTextFormFieldWidget(
+                    controller: cubit.emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    hintText: 'enterYourEmail'.tr(),
+                    hintStyle: Styles.captionRegular.copyWith(
+                      color: AppColors.neutralColor600,
+                    ),
+                    borderColor: AppColors.neutralColor600,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'emailRequired'.tr();
+                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                          .hasMatch(value.trim())) {
+                        return 'emailInvalid'.tr();
+                      }
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+            ),
+            32.verticalSpace,
+            BlocListener<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is ForgetPasswordSuccessState) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return BlocProvider.value(
+                        value: cubit,
+                        child: VerifyOtpScreen(data: {
+                          'email': cubit.emailController.text.trim(),
+                          'screenName': 'forgetPassword',
+                        }),
+                      );
+                    }),
+                  );
+
+                  // context.pushNamed(
+                  //   Routes.verifyOtpScreen,
+                  //   arguments: {
+                  //     'email': cubit.emailController.text.trim(),
+                  //     'screenName': 'forgetPassword',
+                  //   },
+                  // );
+                }
+              },
+              child: CustomButtonWidget(
+                text: 'next'.tr(),
+                padding: EdgeInsets.symmetric(
+                  vertical: 14.h,
+                ),
+                textStyle: Styles.captionEmphasis.copyWith(
+                  color: AppColors.neutralColor100,
+                ),
+                onPressed: () {
+                  if (cubit.formKey.currentState!.validate()) {
+                    cubit.forgetPassword();
+                  }
+                },
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'email'.tr(),
-                  style: Styles.contentEmphasis.copyWith(
-                    color: AppColors.neutralColor1000,
+                  'dontHaveAccount'.tr(),
+                  style: Styles.captionEmphasis.copyWith(
+                    color: AppColors.neutralColor300,
                   ),
                 ),
-                8.verticalSpace,
-                CustomTextFormFieldWidget(
-                  controller: cubit.emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  hintText: 'enterYourEmail'.tr(),
-                  hintStyle: Styles.captionRegular.copyWith(
-                    color: AppColors.neutralColor600,
+                TextButton(
+                  onPressed: () => context.pushNamed(Routes.registerScreen),
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.only(
+                        left: 6.w,
+                        top: 18.w,
+                        bottom: 18.w,
+                        // right: 10.w,
+                      ),
+                      minimumSize: Size.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      foregroundColor: AppColors.primaryColor200),
+                  child: Row(
+                    children: [
+                      Text(
+                        'signUp'.tr(),
+                        style: Styles.captionEmphasis.copyWith(
+                          color: AppColors.primaryColor900,
+                          decoration: TextDecoration.underline,
+                          decorationThickness: 1.5.w,
+                          decorationColor: AppColors.primaryColor900,
+                        ),
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/svg/sign_up_icon.svg',
+                      )
+                    ],
                   ),
-                  borderColor: AppColors.neutralColor600,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'emailRequired'.tr();
-                    } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                        .hasMatch(value.trim())) {
-                      return 'emailInvalid'.tr();
-                    }
-                    return null;
-                  },
                 ),
               ],
             ),
-          ),
-          32.verticalSpace,
-          BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {
-              if (state is ForgetPasswordSuccessState) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return BlocProvider.value(
-                      value: cubit,
-                      child: VerifyOtpScreen(data: {
-                        'email': cubit.emailController.text.trim(),
-                        'screenName': 'forgetPassword',
-                      }),
-                    );
-                  }),
-                );
-
-                // context.pushNamed(
-                //   Routes.verifyOtpScreen,
-                //   arguments: {
-                //     'email': cubit.emailController.text.trim(),
-                //     'screenName': 'forgetPassword',
-                //   },
-                // );
-              }
-            },
-            child: CustomButtonWidget(
-              text: 'next'.tr(),
-              padding: EdgeInsets.symmetric(
-                vertical: 14.h,
-              ),
-              textStyle: Styles.captionEmphasis.copyWith(
-                color: AppColors.neutralColor100,
-              ),
-              onPressed: () {
-                if (cubit.emailController.text.isNotEmpty) {
-                  cubit.forgetPassword();
-                }
-              },
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'dontHaveAccount'.tr(),
-                style: Styles.captionEmphasis.copyWith(
-                  color: AppColors.neutralColor300,
-                ),
-              ),
-              TextButton(
-                onPressed: () => context.pushNamed(Routes.registerScreen),
-                style: TextButton.styleFrom(
-                    padding: EdgeInsets.only(
-                      left: 6.w,
-                      top: 18.w,
-                      bottom: 18.w,
-                      // right: 10.w,
-                    ),
-                    minimumSize: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    foregroundColor: AppColors.primaryColor200),
-                child: Row(
-                  children: [
-                    Text(
-                      'signUp'.tr(),
-                      style: Styles.captionEmphasis.copyWith(
-                        color: AppColors.primaryColor900,
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 1.5.w,
-                        decorationColor: AppColors.primaryColor900,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      'assets/images/svg/sign_up_icon.svg',
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

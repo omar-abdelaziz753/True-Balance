@@ -217,14 +217,14 @@ class MainLayoutScreen extends StatelessWidget {
                   ),
                   _buildNavItem(
                     icon: 'assets/images/svg/therapists_icon.svg',
-                    label: 'therapists'.tr(),
+                    label: 'doctors'.tr(),
                     index: 1,
                     currentIndex: currentIndex,
                     onTap: () => cubit.changeBottomNavBar(1),
                   ),
                   const SizedBox(width: 40), // space for the FAB
                   _buildNavItem(
-                    icon: 'assets/images/svg/resources_icon.svg',
+                    icon: 'assets/images/svg/mysessions_icon.svg',
                     label: 'My Sessions'.tr(),
                     index: 3,
                     currentIndex: currentIndex,

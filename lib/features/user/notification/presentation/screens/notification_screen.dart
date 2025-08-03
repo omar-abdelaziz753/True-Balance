@@ -78,7 +78,6 @@ class NotificationScreen extends StatelessWidget {
             final item = notifications[index];
             final bool showDateHeader =
                 index == 0 || item.date != notifications[index - 1].date;
-
             return NotificationItemWidget(
               showDateHeader: showDateHeader,
               item: item,

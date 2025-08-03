@@ -80,6 +80,7 @@ class CustomMainAppBarInHomeWidget extends StatelessWidget
                                   color: AppColors.neutralColor100,
                                 ),
                               ),
+                              4.verticalSpace,
                               Text(
                                 userName,
                                 style: Styles.contentEmphasis.copyWith(
@@ -92,27 +93,27 @@ class CustomMainAppBarInHomeWidget extends StatelessWidget
                         )
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          'yourLocation'.tr(),
-                          style: Styles.footnoteRegular.copyWith(
-                            color: AppColors.neutralColor100,
-                          ),
-                        ),
-                        Text(
-                          location,
-                          style: Styles.captionRegular.copyWith(
-                            color: AppColors.neutralColor100,
-                          ),
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          color: Colors.white,
-                          size: 16.sp,
-                        )
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Text(
+                    //       'yourLocation'.tr(),
+                    //       style: Styles.footnoteRegular.copyWith(
+                    //         color: AppColors.neutralColor100,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       location,
+                    //       style: Styles.captionRegular.copyWith(
+                    //         color: AppColors.neutralColor100,
+                    //       ),
+                    //     ),
+                    //     Icon(
+                    //       Icons.keyboard_arrow_down_rounded,
+                    //       color: Colors.white,
+                    //       size: 16.sp,
+                    //     )
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

@@ -117,6 +117,8 @@
   "notifications": "Notifications",
   "medicalReports": "Medical reports",
   "download": "Download",
+  "bestDoctors": "Best Doctors",
+  "doctors": "Doctors",
   "validation": {
     "required": "This field is required.",
     "address": {

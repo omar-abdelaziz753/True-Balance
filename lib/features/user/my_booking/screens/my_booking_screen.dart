@@ -54,7 +54,7 @@ class MyBookingScreen extends StatelessWidget {
                               context.pushNamed(Routes.bookingDetailsScreen),
                           child: CustomBookingContainerWidget(
                             specialization: '${'specialization'.tr()}$index',
-                            doctorName: 'Omar AbdelAziz Mohamed',
+                            doctorName: 'Ahmed Adel',
                             rating: 4.8,
                             ratingText: '4,479 ${'rate'.tr()}',
                             image: Placeholder(
