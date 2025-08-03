@@ -162,9 +162,7 @@ class AppRouter {
 
   List<Widget> screens = [
     const HomeScreen(),
-    Container(
-      color: Colors.white,
-    ),
+    const BestTherapistsScreen(),
     BlocProvider(
       create: (context) => CreateBookingCubit(),
       child: const BookingScreen(),

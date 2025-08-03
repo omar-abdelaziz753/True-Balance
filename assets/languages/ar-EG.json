@@ -118,6 +118,8 @@
   "notifications": "الاشعارات",
   "medicalReports": "التقارير الطبية",
   "download": "تحميل",
+ "bestDoctors": "أفضل الأطباء",
+ "doctors": "الأطباء",
   "validation": {
     "required": "هذا الحقل مطلوب.",
     "address": {

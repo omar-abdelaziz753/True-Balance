@@ -35,7 +35,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             18.verticalSpace,
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -57,13 +56,11 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             12.verticalSpace,
-
-         
             SizedBox(
               height: 120.h,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemCount: 4,
+                itemCount: 3,
                 physics: const BouncingScrollPhysics(),
                 separatorBuilder: (_, __) => 12.horizontalSpace,
                 itemBuilder: (context, index) {
@@ -71,28 +68,31 @@ class HomeScreen extends StatelessWidget {
                     'Physiotherapy',
                     'Occupational Therapy',
                     'Speech Therapy',
-                    'Speech Therapy',
                   ];
-
+                  final images = [
+                    'assets/images/png/physiotherapy.png',
+                    'assets/images/png/sports.png',
+                    'assets/images/png/post.png',
+                  ];
                   return CustomServiceCardWidget(
                     title: titles[index],
-                    icon: 
-                    Placeholder(
-                      fallbackHeight: 44.h,
-                      fallbackWidth: 44.w,
-                      color: Colors.black.withAlpha(20),
-                    ),
+                    image: images[index],
+                    // icon:
+                    // Placeholder(
+                    //   fallbackHeight: 44.h,
+                    //   fallbackWidth: 44.w,
+                    //   color: Colors.black.withAlpha(20),
+                    // ),
                   );
                 },
               ),
             ),
             30.verticalSpace,
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'bestTherapists'.tr(),
+                  'bestDoctors'.tr(),
                   style: Styles.captionAccent.copyWith(
                     color: AppColors.neutralColor1000,
                   ),

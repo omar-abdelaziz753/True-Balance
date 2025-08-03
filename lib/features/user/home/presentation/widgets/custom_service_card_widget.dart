@@ -6,12 +6,14 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 
 class CustomServiceCardWidget extends StatelessWidget {
   final String title;
-  final Widget icon;
-
+  // final Widget icon;
+  final String image;
   const CustomServiceCardWidget({
     super.key,
     required this.title,
-    required this.icon,
+    required this.image,
+
+    // required this.icon,
   });
 
   @override
@@ -39,7 +41,11 @@ class CustomServiceCardWidget extends StatelessWidget {
         spacing: 8.h,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          icon,
+          Image.asset(
+            image,
+            width: 44.w,
+            height: 44.h,
+          ),
           Text(
             title,
             style: Styles.captionRegular.copyWith(

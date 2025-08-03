@@ -32,11 +32,23 @@ class AuthRepository {
 
         await saveCaches(model);
 
+        customToast(
+          msg: 'Login Success',
+          color: Colors.green,
+        );
+
         return const ApiResult.success('Login Success');
       } else {
-        return ApiResult.failure(
-          ServerException.fromResponse(response.statusCode, response),
+        final rawError = response.data?['error'] ?? 'Login Failed';
+        final errorMessage = rawError.toString().split('.').last;
+
+        customToast(
+          msg: errorMessage,
+          color: Colors.red,
         );
+        // return ApiResult.failure(
+        //   ServerException.fromResponse(response.statusCode, response),
+        // );
       }
     } on DioException catch (e) {
       try {
@@ -111,8 +123,8 @@ class AuthRepository {
         FailureException(errMessage: 'Unexpected error occurred'));
   }
 
-  /// forgetPassword 
-  
+  /// forgetPassword
+
   Future<ApiResult<String>> forgetPassword({
     required String email,
   }) async {
@@ -123,8 +135,8 @@ class AuthRepository {
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {
         customToast(
-              msg: response.data["data"]["verification_code"].toString(),
-              color: AppColors.primaryColor400);
+            msg: response.data["data"]["verification_code"].toString(),
+            color: AppColors.primaryColor400);
         return const ApiResult.success('Email sent successfully');
       } else {
         return ApiResult.failure(
@@ -142,7 +154,8 @@ class AuthRepository {
       );
     }
   }
- /// verfiy code 
+
+  /// verfiy code
   Future<ApiResult<String>> verfiyCode({
     required String password,
     required String verificationCode,

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
@@ -179,7 +180,7 @@ class ResisterFormWidget extends StatelessWidget {
                         .copyWith(color: AppColors.neutralColor300),
                   ),
                   TextButton(
-                    onPressed: () => context.pop(),
+                    onPressed: () => context.pushNamed(Routes.loginScreen),
                     style: TextButton.styleFrom(
                       padding:
                           EdgeInsets.only(left: 6.w, top: 18.w, bottom: 18.w),
