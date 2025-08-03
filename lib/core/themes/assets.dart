@@ -14,6 +14,18 @@ class Assets {
   /// assets/images/png/doctors.png
   static const String assetsImagesPngDoctors = "assets/images/png/doctors.png";
 
+  /// Assets for assetsImagesPngOnBoarding1
+  /// assets/images/png/onBoarding1.png
+  static const String assetsImagesPngOnBoarding1 = "assets/images/png/onBoarding1.png";
+
+  /// Assets for assetsImagesPngOnBoarding2
+  /// assets/images/png/onBoarding2.png
+  static const String assetsImagesPngOnBoarding2 = "assets/images/png/onBoarding2.png";
+
+  /// Assets for assetsImagesPngOnBoarding3
+  /// assets/images/png/onBoarding3.png
+  static const String assetsImagesPngOnBoarding3 = "assets/images/png/onBoarding3.png";
+
   /// Assets for assetsImagesPngPatient
   /// assets/images/png/patient.png
   static const String assetsImagesPngPatient = "assets/images/png/patient.png";
@@ -109,6 +121,10 @@ class Assets {
   /// Assets for assetsImagesSvgMyTicketsIconInButton
   /// assets/images/svg/my_tickets_icon_in_button.svg
   static const String assetsImagesSvgMyTicketsIconInButton = "assets/images/svg/my_tickets_icon_in_button.svg";
+
+  /// Assets for assetsImagesSvgMysessionsIcon
+  /// assets/images/svg/mysessions_icon.svg
+  static const String assetsImagesSvgMysessionsIcon = "assets/images/svg/mysessions_icon.svg";
 
   /// Assets for assetsImagesSvgNotificationIcon
   /// assets/images/svg/notification_icon.svg

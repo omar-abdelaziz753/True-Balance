@@ -118,7 +118,12 @@
   "medicalReports": "Medical reports",
   "download": "Download",
   "bestDoctors": "Best Doctors",
+  "skip": "Skip",
+  "findtheright":"Find the right doctor and schedule your session in just a few taps anytime, anywhere",
+  "keepall":"Keep all your medical documents organized & accessible for your doctor safe & paperless",
+  "accessyourpersonalized":"Access your personalized treatment plan, track upcoming sessions, and stay on top of your health journey",
   "doctors": "Doctors",
+  "startNow": "Start Now",
   "validation": {
     "required": "This field is required.",
     "address": {
