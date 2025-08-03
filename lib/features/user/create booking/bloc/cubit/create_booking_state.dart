@@ -6,6 +6,10 @@ final class CreateBookingInitial extends CreateBookingState {}
 
 final class ChangeStepState extends CreateBookingState {}
 
-class DateSelectedState extends CreateBookingState {}
+final class DateSelectedState extends CreateBookingState {}
 
-class TimeSelectedState extends CreateBookingState {}
+final class TimeSelectedState extends CreateBookingState {}
+
+final class PickDateAndTimeState extends CreateBookingState {}
+
+final class RemoveDateAndTimeState extends CreateBookingState {}

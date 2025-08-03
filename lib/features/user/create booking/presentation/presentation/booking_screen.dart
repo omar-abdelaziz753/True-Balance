@@ -8,7 +8,8 @@ import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dar
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/widgets/bookind_details_widget.dart';
-import 'package:truee_balance_app/features/user/create%20booking/presentation/widgets/session_select_widget.dart';
+import 'package:truee_balance_app/features/user/create%20booking/presentation/widgets/form_widget.dart';
+import 'package:truee_balance_app/features/user/create%20booking/presentation/widgets/session_selector.dart';
 
 class BookingScreen extends StatelessWidget {
   const BookingScreen({super.key});
@@ -55,13 +56,13 @@ class BookingScreen extends StatelessWidget {
                         spacing: 12.sp,
                         children: [
                           Row(
-                            children: List.generate(2, (index) {
+                            children: List.generate(3, (index) {
                               return Expanded(
                                 child: Container(
                                   height: 4.sp,
                                   margin: EdgeInsets.only(
                                     left: index == 0 ? 0 : 2.sp,
-                                    right: index == 1 ? 0 : 2.sp,
+                                    right: index == 2 ? 0 : 2.sp,
                                   ),
                                   decoration: BoxDecoration(
                                     color: index <= cubit.currentStep
@@ -75,7 +76,9 @@ class BookingScreen extends StatelessWidget {
                             }),
                           ),
                           if (cubit.currentStep == 0)
-                            const SessionSelector()
+                            const FormWidget()
+                          else if (cubit.currentStep == 1)
+                            const SelectDateAndTimeWidget()
                           else
                             const BookingDetailsWidget(),
                         ],
