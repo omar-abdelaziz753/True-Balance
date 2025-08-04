@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/custom_header_widget.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/verify_otp_form_widget.dart';
@@ -13,43 +14,43 @@ class VerifyOtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor900,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
-                ),
-                child: IntrinsicHeight(
-                  child: Center(
-                    child: Column(
-                      children: [
-                        CustomHeaderWidget(
-                          title1: 'enterVerification'.tr(),
-                          title2: 'code'.tr(),
-                          description:
-                              '${'descriptionOfHeaderInVerify'.tr()}${data['email']}',
-                          isEdit: true,
-                          onEditTap: () {},
-                        ),
-                        Expanded(
-                          child: VerifyOtpWidgetWidget(
-                            data: {
-                              'screenName': data['screenName'],
-                              'email': data['email'],
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+      backgroundColor: const Color(0xffF6F8FA),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: AppColors.primaryColor900,
+              child: Stack(
+                children: [
+                  Image.asset(
+                    'assets/images/png/back_g.png',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
                   ),
+                  CustomHeaderWidget(
+                    title1: 'enterVerification'.tr(),
+                    title2: 'code'.tr(),
+                    description:
+                        '${'descriptionOfHeaderInVerify'.tr()}${data['email']}',
+                    isEdit: true,
+                    onEditTap: () {},
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              transform: Matrix4.translationValues(0, -80.sp, 0),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18.sp),
+                child: VerifyOtpWidgetWidget(
+                  data: {
+                    'screenName': data['screenName'],
+                    'email': data['email'],
+                  },
                 ),
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );

@@ -8,6 +8,7 @@ import 'package:truee_balance_app/features/auth/presentation/screens/forget_pass
 import 'package:truee_balance_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_screen.dart';
+import 'package:truee_balance_app/features/chat/presentation/screens/chat_screen.dart';
 import 'package:truee_balance_app/features/choose_your_account/business_logic/cubit/chosse_account_cubit.dart';
 import 'package:truee_balance_app/features/choose_your_account/presentation/screens/choose_your_account_screen.dart';
 import 'package:truee_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dart';
@@ -161,6 +162,11 @@ class AppRouter {
         return transition(
           cubit: OnBoardingCubit(),
           screen: const OnBoardingScreen(),
+        );
+      case Routes.chatScreen:
+        return transition(
+          // cubit:,
+          screen: const ChatScreen(),
         );
       default:
         return null;

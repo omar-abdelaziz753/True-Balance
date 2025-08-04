@@ -23,7 +23,7 @@ class LoginFormWidget extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.symmetric(
           horizontal: 18.w,
-          vertical: 23.h,
+          vertical: 18.h,
         ),
         decoration: BoxDecoration(
           color: AppColors.neutralColor100,
@@ -106,8 +106,8 @@ class LoginFormWidget extends StatelessWidget {
                   style: TextButton.styleFrom(
                       padding: EdgeInsets.only(
                         left: 6.w,
-                        top: 18.w,
-                        bottom: 18.w,
+                        top: 12.w,
+                        bottom: 10.w,
                         // right: 10.w,
                       ),
                       minimumSize: Size.zero,
