@@ -24,7 +24,7 @@ class ForgetPasswordFormWidget extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: 18.w,
-        vertical: 23.h,
+        vertical: 18.h,
       ),
       decoration: BoxDecoration(
         color: AppColors.neutralColor100,

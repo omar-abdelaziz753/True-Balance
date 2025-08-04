@@ -52,7 +52,7 @@ abstract class Styles {
   );
   static TextStyle heroAccent = getLocalizedTextStyle(
     fontSize: 28,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
     color: Colors.black,
   );
   static TextStyle heroEmphasis = getLocalizedTextStyle(

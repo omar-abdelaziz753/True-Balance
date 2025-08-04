@@ -22,86 +22,68 @@ class CustomHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        24.verticalSpace,
-        SvgPicture.asset(
-          'assets/images/svg/app_logo_icon.svg',
-          width: 150.w,
-        ),
-        60.verticalSpace,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title1,
-              style: Styles.heroAccent.copyWith(
-                color: AppColors.neutralColor100,
-              ),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          24.verticalSpace,
+          SafeArea(
+            child: SvgPicture.asset(
+              'assets/images/svg/app_logo_icon.svg',
+              // width: 110.w,
+              // width: double.infinity,
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
-              decoration: BoxDecoration(
-                color: AppColors.secondaryColor500,
-                borderRadius: BorderRadius.circular(4.r),
-              ),
-              child: Text(
-                title2,
-                style: Styles.heroAccent.copyWith(
+          ),
+          24.verticalSpace,
+          Text(
+            title1,
+            style: Styles.heroAccent.copyWith(
+              color: AppColors.neutralColor100,
+            ),
+          ),
+          Text(
+            title2,
+            style: Styles.heroAccent.copyWith(
+              color: AppColors.neutralColor100,
+            ),
+          ),
+          8.verticalSpace,
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 38.w,
+            ),
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: Styles.captionRegular.copyWith(
                   color: AppColors.neutralColor100,
                 ),
-              ),
-            ),
-          ],
-        ),
-        8.verticalSpace,
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 38.w,
-          ),
-          // child: Row(
-          //   children: [
-          //     Text(
-          //       description,
-          //       style: Styles.captionRegular.copyWith(
-          //         color: AppColors.neutralColor200,
-          //         // height: 2.h,
-          //       ),
-          //       textAlign: TextAlign.center,
-          //     ),
-          //     SvgPicture.asset(
-          //       'assets/images/svg/edit_email.svg',
-          //     )
-          //   ],
-          // ),
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: Styles.captionRegular.copyWith(
-                color: AppColors.neutralColor200,
-              ),
-              children: [
-                TextSpan(
-                  text: description, // e.g., "Xxxx@Example.Com ",
-                ),
-                if (isEdit == true)
-                  WidgetSpan(
-                    alignment: PlaceholderAlignment.middle,
-                    child: InkWell(
-                      onTap: onEditTap,
-                      child: SvgPicture.asset(
-                        'assets/images/svg/edit_email.svg',
-                        width: 14.w,
-                        height: 14.h,
+                children: [
+                  TextSpan(
+                    text: description,
+                  ),
+                  if (isEdit == true)
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: InkWell(
+                        onTap: onEditTap,
+                        child: SvgPicture.asset(
+                          'assets/images/svg/edit_email.svg',
+                          width: 14.w,
+                          height: 14.h,
+                        ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        32.verticalSpace,
-      ],
+          50.verticalSpace,
+        ],
+      ),
     );
   }
 }

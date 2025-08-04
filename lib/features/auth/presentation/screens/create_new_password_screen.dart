@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/background/custom_main_body_widget.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/create_new_password_form_widget.dart';
 import 'package:truee_balance_app/features/auth/presentation/widgets/custom_header_widget.dart';
@@ -15,38 +15,36 @@ class CreateNewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<AuthCubit>();
-
     return Scaffold(
-      backgroundColor: AppColors.primaryColor900,
-      body: CustomMainBodyWidget(
-        bodyWidget: SafeArea(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return SingleChildScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: constraints.maxHeight,
+      backgroundColor: const Color(0xffF6F8FA),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: AppColors.primaryColor900,
+              child: Stack(
+                children: [
+                  Image.asset(
+                    'assets/images/png/back_g.png',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
                   ),
-                  child: IntrinsicHeight(
-                    child: Center(
-                      child: Column(
-                        children: [
-                          CustomHeaderWidget(
-                            title1: 'createANew'.tr(),
-                            title2: 'password'.tr(),
-                            description: 'descriptionOfHeaderInCreate'.tr() +
-                                cubit.emailController.text,
-                          ),
-                          const Expanded(child: CreateNewPasswordFormWidget()),
-                        ],
-                      ),
-                    ),
+                  CustomHeaderWidget(
+                    title1: 'createANew'.tr(),
+                    title2: 'password'.tr(),
+                    description: 'descriptionOfHeaderInCreate'.tr() +
+                        cubit.emailController.text,
                   ),
-                ),
-              );
-            },
-          ),
+                ],
+              ),
+            ),
+            Container(
+              transform: Matrix4.translationValues(0, -80.sp, 0),
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 18.sp),
+                  child: const CreateNewPasswordFormWidget()),
+            ),
+          ],
         ),
       ),
     );
