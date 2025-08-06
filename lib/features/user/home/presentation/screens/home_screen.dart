@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_main_app_bar_in_home_widget.dart';
+import 'package:truee_balance_app/features/user/home/presentation/widgets/banner_widget.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/custom_service_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
         notificationCount: '3',
       ),
       body: Container(
-        padding: EdgeInsets.all(18.sp),
+        padding: EdgeInsets.all(20.sp),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -34,6 +33,7 @@ class HomeScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
+            const BannerWidget(),
             18.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,17 +122,12 @@ class HomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.r),
                       border: Border.all(
-                        color: const Color.fromARGB(255, 24, 20, 20),
+                        color: AppColors.neutralColor10.withAlpha(10),
                       ),
+                      color: AppColors.neutralColor10.withAlpha(10),
                     ),
                     child: Column(
                       children: [
-                        Expanded(
-                          child: SvgPicture.asset(
-                            Assets.assetsImagesSvgBackground,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
                         Text(
                           "Wade Warren",
                           style: Styles.contentRegular,

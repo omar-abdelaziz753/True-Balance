@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 import 'package:truee_balance_app/features/chat/presentation/widgets/chat_list_widget.dart';
@@ -46,20 +48,27 @@ class ChatScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Container(
+        width: double.infinity,
+        color: Colors.white,
         padding: EdgeInsets.only(
           left: 20.sp,
           top: 10.sp,
           right: 20.sp,
-          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 40,
         ),
         child: Form(
           child: Row(
             children: [
               Expanded(
                 child: CustomTextFormFieldWidget(
-                  borderWidth: 3.w,
+                  hintText: "Write your message...",
+                  controller: TextEditingController(),
+                  borderWidth: 1.w,
                   borderColor: AppColors.neutralColor300,
-                  // backgroundColor: AppColors.neutralColor600,
+                  suffixIcon: SvgPicture.asset(
+                    Assets.assetsImagesSvgSendIcon,
+                    fit: BoxFit.scaleDown,
+                  ),
                   isChat: true,
                   validator: (value) {
                     if (value!.trim().isEmpty) {
@@ -70,21 +79,8 @@ class ChatScreen extends StatelessWidget {
                   onChanged: (value) {
                     // singleChatCubit.showSendBUtton(letters: value);
                   },
-                  controller: TextEditingController(),
-                  // labelText: "message".tr(),
                 ),
               ),
-              Visibility(
-                // visible: singleChatCubit.isTypeing,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    size: 30.sp,
-                    Icons.send,
-                    color: AppColors.neutralColor300,
-                  ),
-                ),
-              )
             ],
           ),
         ),
