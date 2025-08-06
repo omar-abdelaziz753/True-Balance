@@ -140,38 +140,12 @@ class MainLayoutScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.neutralColor100,
           body: AppRouter().screens[currentIndex],
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {
-          //     cubit.changeBottomNavBar(2);
-          //   },
-          //   backgroundColor: AppColors.primaryColor900,
-          //   shape: const CircleBorder(),
-          //   // elevation: 6,
-          //   elevation: 0,
-
-          //   child: Padding(
-          //     // padding: const EdgeInsets.all(8.0),
-          //     padding: EdgeInsets.all(13.sp),
-          //     child: Column(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       children: [
-          //         Icon(Icons.card_travel, color: AppColors.neutralColor100),
-          //         Text(
-          //           'booking'.tr(),
-          //           style: Styles.footnoteEmphasis.copyWith(
-          //               fontSize: 10.sp, color: AppColors.neutralColor100),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-
           floatingActionButton: GestureDetector(
             onTap: () {
               cubit.changeBottomNavBar(2);
             },
             child: Container(
-              padding: EdgeInsets.all(10.sp),
+              padding: EdgeInsets.all(11.sp),
               decoration: BoxDecoration(
                 color: AppColors.secondaryColor500,
                 shape: BoxShape.circle,
@@ -182,22 +156,16 @@ class MainLayoutScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
-                    Icons.card_travel,
+                    size: 30.sp,
+                    Icons.wallet,
                     color: AppColors.neutralColor100,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Text('booking'.tr(),
-                        style: Styles.footnoteBold
-                            .copyWith(color: AppColors.neutralColor100)),
-                  )
                 ],
               ),
             ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-
           bottomNavigationBar: BottomAppBar(
             shape: const CircularNotchedRectangle(),
             elevation: 0.0,

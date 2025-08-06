@@ -77,12 +77,6 @@ class HomeScreen extends StatelessWidget {
                   return CustomServiceCardWidget(
                     title: titles[index],
                     image: images[index],
-                    // icon:
-                    // Placeholder(
-                    //   fallbackHeight: 44.h,
-                    //   fallbackWidth: 44.w,
-                    //   color: Colors.black.withAlpha(20),
-                    // ),
                   );
                 },
               ),
@@ -126,18 +120,22 @@ class HomeScreen extends StatelessWidget {
                       ),
                       color: AppColors.neutralColor10.withAlpha(10),
                     ),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Wade Warren",
-                          style: Styles.contentRegular,
-                        ),
-                        5.verticalSpace,
-                        Text(
-                          "Physiotherapist",
-                          style: Styles.captionAccent,
-                        )
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        spacing: 4.h,
+                        children: [
+                          Text(
+                            "Wade Warren",
+                            style: Styles.contentRegular,
+                          ),
+                          5.verticalSpace,
+                          Text(
+                            "Physiotherapist",
+                            style: Styles.contentRegular,
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
