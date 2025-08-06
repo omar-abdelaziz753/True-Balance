@@ -17,10 +17,13 @@ import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.da
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
 import 'package:truee_balance_app/features/therapists/appointments/presentation/screens/appointments_screen.dart';
 import 'package:truee_balance_app/features/therapists/appointments_details/presentation/screens/appointments_details_screen.dart';
+import 'package:truee_balance_app/features/therapists/main_layout_therapists/business_logic/main_layout_therapists_cubit.dart';
+import 'package:truee_balance_app/features/therapists/main_layout_therapists/presentation/main_layout_therapists.dart';
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/presentation/booking_screen.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
+import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/home_screen.dart';
 import 'package:truee_balance_app/features/user/home/presentation/screens/our_services.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
@@ -109,6 +112,11 @@ class AppRouter {
           screen: const MainLayoutScreen(),
           cubit: MainLayoutCubit(),
         );
+      case Routes.mainLayoutTherapistsScreen:
+        return transition(
+          screen: const MainLayoutTherapistsScreen(),
+          cubit: MainLayoutTherapistsCubit(),
+        );
       case Routes.doctorDetailsScreen:
         return transition(
           screen: const DoctorDetailsScreen(),
@@ -174,7 +182,10 @@ class AppRouter {
   }
 
   List<Widget> screens = [
-    const HomeScreen(),
+    BlocProvider(
+      create: (context) => HomeCubit(),
+      child: const HomeScreen(),
+    ),
     const BestTherapistsScreen(),
     BlocProvider(
       create: (context) => CreateBookingCubit(),
@@ -187,5 +198,11 @@ class AppRouter {
       color: Colors.white,
     ),
     const SettingScreen(),
+  ];
+
+  List<Widget> screensTherapists = [
+    const AppointmentsScreen(),
+    const NotificationScreen(),
+    Container()
   ];
 }
