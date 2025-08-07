@@ -139,7 +139,9 @@ class SettingScreen extends StatelessWidget {
                                   title: 'logout'.tr(),
                                   subtitle: 'descriptionOfLogout'.tr(),
                                   onTap: () {
-                                    context.read<AuthCubit>().logout();
+                                    // context.read<AuthCubit>().logout();
+                                    context.pushNamedAndRemoveUntil(
+                                        Routes.loginScreen);
                                   },
                                 );
 
