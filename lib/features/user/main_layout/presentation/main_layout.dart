@@ -167,6 +167,7 @@ class MainLayoutScreen extends StatelessWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomAppBar(
+            height: 60.h,
             shape: const CircularNotchedRectangle(),
             elevation: 0.0,
             notchMargin: 8.0,
@@ -190,7 +191,7 @@ class MainLayoutScreen extends StatelessWidget {
                     currentIndex: currentIndex,
                     onTap: () => cubit.changeBottomNavBar(1),
                   ),
-                  const SizedBox(width: 40), // space for the FAB
+                  const SizedBox(width: 40),
                   _buildNavItem(
                     icon: 'assets/images/svg/mysessions_icon.svg',
                     label: 'My Sessions'.tr(),
