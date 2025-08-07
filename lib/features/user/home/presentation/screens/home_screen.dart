@@ -103,8 +103,9 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             12.verticalSpace,
+            /// Doctors
             SizedBox(
-              height: 120.h,
+              height: 169.h,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: 4,
@@ -112,31 +113,9 @@ class HomeScreen extends StatelessWidget {
                 separatorBuilder: (_, __) => 12.horizontalSpace,
                 itemBuilder: (context, index) {
                   return Container(
-                    // padding: EdgeInsets.all(12.sp),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      border: Border.all(
-                        color: AppColors.neutralColor10.withAlpha(10),
-                      ),
-                      color: AppColors.neutralColor10.withAlpha(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        spacing: 4.h,
-                        children: [
-                          Text(
-                            "Wade Warren",
-                            style: Styles.contentRegular,
-                          ),
-                          5.verticalSpace,
-                          Text(
-                            "Physiotherapist",
-                            style: Styles.contentRegular,
-                          )
-                        ],
-                      ),
-                    ),
+                    width: 160.w,
+                    height: 169.h,
+
                   );
                 },
               ),

@@ -1,65 +1,69 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'doctor_model.g.dart';
+part 'all_doctors_data_model.g.dart';
 
 @JsonSerializable()
-class DoctorResponse {
-  final DoctorData data;
+class AllDoctorsDataModel {
+  final DoctorsResponseData data;
   final String status;
   final String error;
   final int code;
 
-  DoctorResponse({
+  AllDoctorsDataModel({
     required this.data,
     required this.status,
     required this.error,
     required this.code,
   });
 
-  factory DoctorResponse.fromJson(Map<String, dynamic> json) => _$DoctorResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$DoctorResponseToJson(this);
+  factory AllDoctorsDataModel.fromJson(Map<String, dynamic> json) =>
+      _$AllDoctorsDataModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AllDoctorsDataModelToJson(this);
 }
 
 @JsonSerializable()
-class DoctorData {
-  final List<Doctor> data;
+class DoctorsResponseData {
+  final List<DoctorModel> data;
   final PaginationLinks links;
   final PaginationMeta meta;
 
-  DoctorData({
+  DoctorsResponseData({
     required this.data,
     required this.links,
     required this.meta,
   });
 
-  factory DoctorData.fromJson(Map<String, dynamic> json) => _$DoctorDataFromJson(json);
-  Map<String, dynamic> toJson() => _$DoctorDataToJson(this);
+  factory DoctorsResponseData.fromJson(Map<String, dynamic> json) =>
+      _$DoctorsResponseDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DoctorsResponseDataToJson(this);
 }
 
 @JsonSerializable()
-class Doctor {
+class DoctorModel {
   final int id;
   final String name;
   final String email;
   final String image;
   final String phone;
+  final String type;
   final String specialization;
-  final int rate;
-  final int ratesCount;
 
-  Doctor({
+  DoctorModel({
     required this.id,
     required this.name,
     required this.email,
     required this.image,
     required this.phone,
+    required this.type,
     required this.specialization,
-    required this.rate,
-    required this.ratesCount,
   });
 
-  factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
-  Map<String, dynamic> toJson() => _$DoctorToJson(this);
+  factory DoctorModel.fromJson(Map<String, dynamic> json) =>
+      _$DoctorModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DoctorModelToJson(this);
 }
 
 @JsonSerializable()
@@ -76,7 +80,9 @@ class PaginationLinks {
     this.next,
   });
 
-  factory PaginationLinks.fromJson(Map<String, dynamic> json) => _$PaginationLinksFromJson(json);
+  factory PaginationLinks.fromJson(Map<String, dynamic> json) =>
+      _$PaginationLinksFromJson(json);
+
   Map<String, dynamic> toJson() => _$PaginationLinksToJson(this);
 }
 
@@ -87,7 +93,7 @@ class PaginationMeta {
   final int from;
   @JsonKey(name: 'last_page')
   final int lastPage;
-  final List<PageLink> links;
+  final List<PaginationLink> links;
   final String path;
   @JsonKey(name: 'per_page')
   final int perPage;
@@ -105,22 +111,26 @@ class PaginationMeta {
     required this.total,
   });
 
-  factory PaginationMeta.fromJson(Map<String, dynamic> json) => _$PaginationMetaFromJson(json);
+  factory PaginationMeta.fromJson(Map<String, dynamic> json) =>
+      _$PaginationMetaFromJson(json);
+
   Map<String, dynamic> toJson() => _$PaginationMetaToJson(this);
 }
 
 @JsonSerializable()
-class PageLink {
+class PaginationLink {
   final String? url;
   final String label;
   final bool active;
 
-  PageLink({
+  PaginationLink({
     this.url,
     required this.label,
     required this.active,
   });
 
-  factory PageLink.fromJson(Map<String, dynamic> json) => _$PageLinkFromJson(json);
-  Map<String, dynamic> toJson() => _$PageLinkToJson(this);
+  factory PaginationLink.fromJson(Map<String, dynamic> json) =>
+      _$PaginationLinkFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PaginationLinkToJson(this);
 }
