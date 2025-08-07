@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
@@ -56,20 +55,66 @@ class SessionSelector extends StatelessWidget {
             final selectedDateIndex =
                 context.read<CreateBookingCubit>().selectedDateIndex;
 
-            return SizedBox(
-              height: 90.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: dates.length,
-                itemBuilder: (context, index) {
+            // return SizedBox(
+            //   height: 90.h,
+            //   child: ListView.builder(
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: dates.length,
+            //     itemBuilder: (context, index) {
+            //       final isSelected = selectedDateIndex == index;
+            //       return GestureDetector(
+            //         onTap: () =>
+            //             context.read<CreateBookingCubit>().selectDate(index),
+            //         child: Container(
+            //           width: 120.w,
+            //           margin: EdgeInsets.only(right: 10.w),
+            //           padding: EdgeInsets.all(12.sp),
+            //           decoration: BoxDecoration(
+            //             color: isSelected
+            //                 ? AppColors.primaryColor900
+            //                 : Colors.white,
+            //             border: Border.all(color: AppColors.primaryColor900),
+            //             borderRadius: BorderRadius.circular(8.r),
+            //           ),
+            //           child: Column(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               Text(
+            //                 dates[index]['day']!,
+            //                 style: Styles.footnoteSemiboldBold.copyWith(
+            //                   color: isSelected
+            //                       ? AppColors.neutralColor100
+            //                       : AppColors.neutralColor600,
+            //                 ),
+            //               ),
+            //               4.verticalSpace,
+            //               Text(
+            //                 dates[index]['date']!,
+            //                 style: Styles.contentAccent.copyWith(
+            //                   color: isSelected
+            //                       ? AppColors.neutralColor100
+            //                       : AppColors.neutralColor900,
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // );
+
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(dates.length, (index) {
                   final isSelected = selectedDateIndex == index;
                   return GestureDetector(
                     onTap: () =>
                         context.read<CreateBookingCubit>().selectDate(index),
                     child: Container(
-                      width: 120.w,
                       margin: EdgeInsets.only(right: 10.w),
-                      padding: EdgeInsets.all(12.sp),
+                      padding: EdgeInsets.all(16.sp),
                       decoration: BoxDecoration(
                         color: isSelected
                             ? AppColors.primaryColor900
@@ -78,6 +123,7 @@ class SessionSelector extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Column(
+                        spacing: 12.sp,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -88,7 +134,6 @@ class SessionSelector extends StatelessWidget {
                                   : AppColors.neutralColor600,
                             ),
                           ),
-                          4.verticalSpace,
                           Text(
                             dates[index]['date']!,
                             style: Styles.contentAccent.copyWith(
@@ -101,7 +146,7 @@ class SessionSelector extends StatelessWidget {
                       ),
                     ),
                   );
-                },
+                }),
               ),
             );
           },
