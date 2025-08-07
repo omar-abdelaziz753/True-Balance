@@ -35,7 +35,7 @@ class TrueBalanceApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             navigatorKey: AppConstants.navigatorKey,
-            initialRoute: Routes.mainLayoutTherapistsScreen,
+            initialRoute: Routes.mainLayoutScreen,
             onGenerateRoute: appRouter.generateRoute,
             // home: const TestScreen(),
             builder: EasyLoading.init(),
