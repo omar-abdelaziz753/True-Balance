@@ -8,4 +8,7 @@ class EndPoints {
   static const String logout = 'api/user/auth/logout';
   static const String forgetPassword = 'api/user/auth/forget-password';
   static const String verfiyCode = 'api/user/auth/verify-code';
+  static const String getSliders = 'api/frontend/sliders';
+  static const String getServies = '/api/frontend/services';
+  static const String getDoctors = 'api/frontend/doctors';
 }

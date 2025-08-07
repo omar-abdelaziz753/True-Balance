@@ -19,6 +19,7 @@ import 'package:truee_balance_app/features/therapists/appointments/presentation/
 import 'package:truee_balance_app/features/therapists/appointments_details/presentation/screens/appointments_details_screen.dart';
 import 'package:truee_balance_app/features/therapists/main_layout_therapists/business_logic/main_layout_therapists_cubit.dart';
 import 'package:truee_balance_app/features/therapists/main_layout_therapists/presentation/main_layout_therapists.dart';
+import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/presentation/booking_screen.dart';
@@ -183,10 +184,15 @@ class AppRouter {
 
   List<Widget> screens = [
     BlocProvider(
-      create: (context) => HomeCubit(),
+      create: (context) => HomeCubit(getIt())
+        ..getAllDoctors()
+        ..getSliders(),
       child: const HomeScreen(),
     ),
-    const BestTherapistsScreen(),
+    BlocProvider(
+      create: (context) => AllDoctorsCubit(getIt())..getAllDoctors(),
+      child: const BestTherapistsScreen(),
+    ),
     BlocProvider(
       create: (context) => CreateBookingCubit(),
       child: const BookingScreen(),

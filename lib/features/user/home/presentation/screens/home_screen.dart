@@ -1,3 +1,4 @@
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -140,21 +141,25 @@ class HomeScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 15),
                                 child: Image.asset(
+// <<<<<<< Services
                                   width: 81.w,
                                   height: 81.h,
                                   'assets/images/png/back_ground_iamge.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 20),
-                                child: Image.asset(
-                                  width: 75.w,
-                                  height: 75.h,
-                                  'assets/images/png/doctor_image.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+//                               Padding(
+//                                 padding: const EdgeInsets.only(top: 20),
+//                                 child: Image.asset(
+//                                   width: 75.w,
+//                                   height: 75.h,
+//                                   'assets/images/png/doctor_image.png',
+// =======
+//                                   'assets/images/png/best_doctor.png',
+// >>>>>>> main
+//                                   fit: BoxFit.cover,
+//                                 ),
+//                               ),
                             ],
                           ),
                           5.verticalSpace,

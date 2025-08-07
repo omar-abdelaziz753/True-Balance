@@ -1,20 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'doctor_model.dart';
+part of 'all_doctors_data_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DoctorResponse _$DoctorResponseFromJson(Map<String, dynamic> json) =>
-    DoctorResponse(
-      data: DoctorData.fromJson(json['data'] as Map<String, dynamic>),
+AllDoctorsDataModel _$AllDoctorsDataModelFromJson(Map<String, dynamic> json) =>
+    AllDoctorsDataModel(
+      data: DoctorsResponseData.fromJson(json['data'] as Map<String, dynamic>),
       status: json['status'] as String,
       error: json['error'] as String,
       code: (json['code'] as num).toInt(),
     );
 
-Map<String, dynamic> _$DoctorResponseToJson(DoctorResponse instance) =>
+Map<String, dynamic> _$AllDoctorsDataModelToJson(
+        AllDoctorsDataModel instance) =>
     <String, dynamic>{
       'data': instance.data,
       'status': instance.status,
@@ -22,41 +23,42 @@ Map<String, dynamic> _$DoctorResponseToJson(DoctorResponse instance) =>
       'code': instance.code,
     };
 
-DoctorData _$DoctorDataFromJson(Map<String, dynamic> json) => DoctorData(
+DoctorsResponseData _$DoctorsResponseDataFromJson(Map<String, dynamic> json) =>
+    DoctorsResponseData(
       data: (json['data'] as List<dynamic>)
-          .map((e) => Doctor.fromJson(e as Map<String, dynamic>))
+          .map((e) => DoctorModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       links: PaginationLinks.fromJson(json['links'] as Map<String, dynamic>),
       meta: PaginationMeta.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$DoctorDataToJson(DoctorData instance) =>
+Map<String, dynamic> _$DoctorsResponseDataToJson(
+        DoctorsResponseData instance) =>
     <String, dynamic>{
       'data': instance.data,
       'links': instance.links,
       'meta': instance.meta,
     };
 
-Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
+DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => DoctorModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       email: json['email'] as String,
       image: json['image'] as String,
       phone: json['phone'] as String,
+      type: json['type'] as String,
       specialization: json['specialization'] as String,
-      rate: (json['rate'] as num).toInt(),
-      ratesCount: (json['ratesCount'] as num).toInt(),
     );
 
-Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
+Map<String, dynamic> _$DoctorModelToJson(DoctorModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'email': instance.email,
       'image': instance.image,
       'phone': instance.phone,
+      'type': instance.type,
       'specialization': instance.specialization,
-      'rate': instance.rate,
-      'ratesCount': instance.ratesCount,
     };
 
 PaginationLinks _$PaginationLinksFromJson(Map<String, dynamic> json) =>
@@ -81,7 +83,7 @@ PaginationMeta _$PaginationMetaFromJson(Map<String, dynamic> json) =>
       from: (json['from'] as num).toInt(),
       lastPage: (json['last_page'] as num).toInt(),
       links: (json['links'] as List<dynamic>)
-          .map((e) => PageLink.fromJson(e as Map<String, dynamic>))
+          .map((e) => PaginationLink.fromJson(e as Map<String, dynamic>))
           .toList(),
       path: json['path'] as String,
       perPage: (json['per_page'] as num).toInt(),
@@ -101,13 +103,15 @@ Map<String, dynamic> _$PaginationMetaToJson(PaginationMeta instance) =>
       'total': instance.total,
     };
 
-PageLink _$PageLinkFromJson(Map<String, dynamic> json) => PageLink(
+PaginationLink _$PaginationLinkFromJson(Map<String, dynamic> json) =>
+    PaginationLink(
       url: json['url'] as String?,
       label: json['label'] as String,
       active: json['active'] as bool,
     );
 
-Map<String, dynamic> _$PageLinkToJson(PageLink instance) => <String, dynamic>{
+Map<String, dynamic> _$PaginationLinkToJson(PaginationLink instance) =>
+    <String, dynamic>{
       'url': instance.url,
       'label': instance.label,
       'active': instance.active,
