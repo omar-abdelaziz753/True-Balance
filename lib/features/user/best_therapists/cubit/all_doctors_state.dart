@@ -10,6 +10,6 @@ class DoctorsSuccess extends AllDoctorsState {}
 
 class DoctorsFailure extends AllDoctorsState {}
 
-class DoctorsPaginationLoading extends AllDoctorsState {}
+// class DoctorsPaginationLoading extends AllDoctorsState {}
 
 class DoctorsLoadingMore extends AllDoctorsState {}

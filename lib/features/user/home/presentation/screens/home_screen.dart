@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<HomeCubit>();
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
       appBar: CustomMainAppBarInHomeWidget(
@@ -70,30 +71,59 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               12.verticalSpace,
-              SizedBox(
-                height: 120.h,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  physics: const BouncingScrollPhysics(),
-                  separatorBuilder: (_, __) => 12.horizontalSpace,
-                  itemBuilder: (context, index) {
-                    final titles = [
-                      'Physiotherapy',
-                      'Occupational Therapy',
-                      'Speech Therapy',
-                    ];
-                    final images = [
-                      'assets/images/png/physiotherapy.png',
-                      'assets/images/png/sports.png',
-                      'assets/images/png/post.png',
-                    ];
-                    return CustomServiceCardWidget(
-                      title: titles[index],
-                      image: images[index],
+              BlocBuilder<HomeCubit, HomeState>(
+                buildWhen: (previous, current) =>
+                    current is ServicesLoading ||
+                    current is ServicesSuccess ||
+                    current is ServicesFailure,
+                builder: (context, state) {
+                  if (state is ServicesSuccess) {
+                    return SizedBox(
+                      height: 120.h,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: cubit.servicesModel!.data.data.length,
+                        physics: const BouncingScrollPhysics(),
+                        separatorBuilder: (_, __) => 12.horizontalSpace,
+                        itemBuilder: (context, index) {
+                          return CustomServiceCardWidget(
+                              title:
+                                  cubit.servicesModel!.data.data[index].title,
+                              image:
+                                  cubit.servicesModel!.data.data[index].icon);
+                        },
+                      ),
                     );
-                  },
-                ),
+                  }
+                  return Skeletonizer(
+                    enabled: true,
+                    child: SizedBox(
+                      height: 120.h,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 3,
+                        physics: const BouncingScrollPhysics(),
+                        separatorBuilder: (_, __) => 12.horizontalSpace,
+                        itemBuilder: (context, index) {
+                          final titles = [
+                            'Physiotherapy',
+                            'Occupational Therapy',
+                            'Speech Therapy',
+                          ];
+                          final images = [
+                            'assets/images/png/physiotherapy.png',
+                            'assets/images/png/sports.png',
+                            'assets/images/png/post.png',
+                          ];
+                          return CustomServiceCardWidget(
+                            title: titles[index],
+                            image: images[index],
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
               ),
               30.verticalSpace,
               GestureDetector(
@@ -121,6 +151,10 @@ class HomeScreen extends StatelessWidget {
               ),
               12.verticalSpace,
               BlocBuilder<HomeCubit, HomeState>(
+                buildWhen: (previous, current) =>
+                    current is DoctorsLoading ||
+                    current is DoctorsSuccess ||
+                    current is DoctorsFailure,
                 builder: (context, state) {
                   final cubit = context.read<HomeCubit>();
 
@@ -158,7 +192,6 @@ class HomeScreen extends StatelessWidget {
                                             padding:
                                                 const EdgeInsets.only(top: 15),
                                             child: Image.asset(
-                                              // <<<<<<< Services
                                               width: 81.w,
                                               height: 81.h,
                                               'assets/images/png/back_ground_iamge.png',
@@ -199,80 +232,64 @@ class HomeScreen extends StatelessWidget {
                             itemBuilder: (context, index) {
                               final data = cubit.doctorsModel!.data.data[index];
 
-                              return Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                  border: Border.all(
-                                    color:
-                                        AppColors.neutralColor10.withAlpha(10),
+                              return InkWell(
+                                onTap: () {
+                                  context.pushNamed(Routes.doctorDetailsScreen,
+                                      arguments: data);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    border: Border.all(
+                                      color: AppColors.neutralColor10
+                                          .withAlpha(10),
+                                    ),
                                   ),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Stack(
-                                      alignment: Alignment.topCenter,
-                                      children: [
-                                        Image.asset(
-                                          'assets/images/png/back_ground_doctor.png',
-                                          fit: BoxFit.cover,
-                                        ),
-
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.only(top: 15),
-                                        //   child: Image.asset(
-                                        //     // <<<<<<< Services
-                                        //     width: 81.w,
-                                        //     height: 81.h,
-                                        //     'assets/images/png/back_ground_iamge.png',
-                                        //     fit: BoxFit.cover,
-                                        //   ),
-                                        // ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 20),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(50.r),
-                                            child: CachedNetworkImage(
-                                              imageUrl: cubit.doctorsModel!.data
-                                                  .data[index].image,
-                                              fit: BoxFit.cover,
-                                              width: 75.w,
-                                              height: 75.h,
-                                            ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Stack(
+                                        alignment: Alignment.topCenter,
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/png/back_ground_doctor.png',
+                                            fit: BoxFit.cover,
                                           ),
-                                        )
-                                        //                               Padding(
-                                        //                                 padding: const EdgeInsets.only(top: 20),
-                                        //                                 child: Image.asset(
-                                        //                                   width: 75.w,
-                                        //                                   height: 75.h,
-                                        //                                   'assets/images/png/doctor_image.png',
-                                        // =======
-                                        //                                   'assets/images/png/best_doctor.png',
-                                        // >>>>>>> main
-                                        //                                   fit: BoxFit.cover,
-                                        //                                 ),
-                                        //                               ),
-                                      ],
-                                    ),
-                                    5.verticalSpace,
-                                    Text(
-                                      data.name,
-                                      style: Styles.highlightEmphasis.copyWith(
-                                          color: AppColors.neutralColor1000),
-                                    ),
-                                    5.verticalSpace,
-                                    Text(
-                                      data.specialization,
-                                      style: Styles.captionRegular.copyWith(
-                                        color: AppColors.neutralColor600,
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 20),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50.r),
+                                              child: CachedNetworkImage(
+                                                imageUrl: cubit.doctorsModel!
+                                                    .data.data[index].image,
+                                                fit: BoxFit.cover,
+                                                width: 75.w,
+                                                height: 75.h,
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
+                                      5.verticalSpace,
+                                      Text(
+                                        data.name,
+                                        style: Styles.highlightEmphasis
+                                            .copyWith(
+                                                color:
+                                                    AppColors.neutralColor1000),
+                                      ),
+                                      5.verticalSpace,
+                                      Text(
+                                        data.specialization,
+                                        style: Styles.captionRegular.copyWith(
+                                          color: AppColors.neutralColor600,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -280,6 +297,7 @@ class HomeScreen extends StatelessWidget {
                         );
                 },
               ),
+              30.verticalSpace,
             ],
           ),
         ),

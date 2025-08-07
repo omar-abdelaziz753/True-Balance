@@ -24,6 +24,7 @@ class BestTherapistsScreen extends StatelessWidget {
         if (state is DoctorsLoading) {
           return Skeletonizer(
             enabled: true,
+            containersColor: Colors.white,
             child: Scaffold(
               backgroundColor: AppColors.primaryColor900,
               appBar: CustomBasicAppBar(
@@ -91,15 +92,27 @@ class BestTherapistsScreen extends StatelessWidget {
                 Expanded(
                   child: ListView.separated(
                     itemBuilder: (context, index) {
-                      final data = cubit.doctorsModel!.data;
-                      final item = data.data[index];
-
-                      return TherapistCardWidget(doctorModel: item);
+                      return TherapistCardWidget(
+                          doctorModel: cubit.doctorsModel!.data.data[index]);
                     },
                     separatorBuilder: (context, index) => 16.verticalSpace,
                     itemCount: cubit.doctorsModel!.data.data.length,
                   ),
-                )
+                ),
+                BlocBuilder<AllDoctorsCubit, AllDoctorsState>(
+                  buildWhen: (previous, current) =>
+                      current is DoctorsLoadingMore ||
+                      current is DoctorsSuccess,
+                  builder: (context, state) {
+                    if (state is DoctorsLoadingMore) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+
+                    return const SizedBox.shrink();
+                  },
+                ),
               ],
             ),
           ),

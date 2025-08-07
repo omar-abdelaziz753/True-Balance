@@ -1,12 +1,13 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
+import 'package:truee_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
 
 class ReviewItemWidget extends StatelessWidget {
-  const ReviewItemWidget({super.key});
-
+  const ReviewItemWidget({super.key, required this.userRating});
+  final UserRating userRating;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,13 +18,12 @@ class ReviewItemWidget extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                radius: 27.r,
-                backgroundImage: const AssetImage(
-                  'assets/images/png/profile.png',
-                ),
-              ),
+                  radius: 27.r,
+                  backgroundImage: CachedNetworkImageProvider(
+                    userRating.userImage ?? "",
+                  )),
               SizedBox(width: 12.sp),
-              Text("Name Here",
+              Text(userRating.userName,
                   style: Styles.contentBold
                       .copyWith(color: AppColors.neutralColor1000)),
               const Spacer(),
@@ -33,7 +33,7 @@ class ReviewItemWidget extends StatelessWidget {
                   (index) => Icon(
                     Icons.star,
                     size: 16,
-                    color: index < 4
+                    color: index < userRating.userRate
                         ? AppColors.primaryColor900
                         : Colors.grey[300],
                   ),
@@ -47,7 +47,8 @@ class ReviewItemWidget extends StatelessWidget {
           ),
           12.verticalSpace,
           Text(
-            "The Service Was Great! The Service Provider Was Professional And Arrived On Time. I Would Recommend Them To Everyone. Thanks To Harfa App For The Excellent Experience.",
+            // "The Service Was Great! The Service Provider Was Professional And Arrived On Time. I Would Recommend Them To Everyone. Thanks To Harfa App For The Excellent Experience.",
+            userRating.userMessage,
             style: Styles.contentEmphasis.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 14.sp,
@@ -55,7 +56,8 @@ class ReviewItemWidget extends StatelessWidget {
           ),
           8.verticalSpace,
           Text(
-            "6 Hours Ago",
+            // "6 Hours Ago",
+            userRating.date,
             style: Styles.contentEmphasis.copyWith(
                 fontWeight: FontWeight.w500,
                 fontSize: 12.sp,

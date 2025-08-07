@@ -4,6 +4,7 @@ import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
 import 'package:truee_balance_app/features/user/home/data/apiServices/home_api_services.dart';
 import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
+import 'package:truee_balance_app/features/user/home/data/model/services/service_model.dart';
 import 'package:truee_balance_app/features/user/home/data/model/sliders/slider_model.dart';
 
 class HomeRepo {
@@ -62,28 +63,28 @@ class HomeRepo {
     );
   }
 
-  // Future<ApiResult<ServicesModel>> getAllServices() async {
-  //   try {
-  //     final response = await api.getAllServices();
+  Future<ApiResult<ServiceResponse>> getAllServices({required int page }) async {
+    try {
+      final response = await api.getAllServices( page: page);
 
-  //     if (response?.statusCode == 200 || response?.statusCode == 201) {
-  //       final model = ServicesModel.fromJson(response!.data);
-  //       return ApiResult.success(model);
-  //     } else {
-  //       return ApiResult.failure(
-  //         ServerException.fromResponse(response?.statusCode, response),
-  //       );
-  //     }
-  //   } on DioException catch (e) {
-  //     try {
-  //       handleDioException(e);
-  //     } on ServerException catch (ex) {
-  //       return ApiResult.failure(ex.errorModel.message);
-  //     }
-  //   }
+      if (response?.statusCode == 200 || response?.statusCode == 201) {
+        final model = ServiceResponse.fromJson(response!.data);
+        return ApiResult.success(model);
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response?.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.message);
+      }
+    }
 
-  //   return ApiResult.failure(
-  //     FailureException(errMessage: 'Unexpected error occurred'),
-  //   );
-  // }
+    return ApiResult.failure(
+      FailureException(errMessage: 'Unexpected error occurred'),
+    );
+  }
 }

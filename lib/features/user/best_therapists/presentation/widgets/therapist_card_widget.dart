@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -52,8 +53,8 @@ class TherapistCardWidget extends StatelessWidget {
               width: 90.w,
               alignment: Alignment.center,
               child: ClipOval(
-                child: Image.asset(
-                  Assets.assetsImagesPngBestTherapistsDoctor,
+                child: CachedNetworkImage(
+                  imageUrl: doctorModel.image,
                   width: 95.w,
                   height: 91.h,
                   fit: BoxFit.cover,
@@ -69,7 +70,6 @@ class TherapistCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       doctorModel.specialization,
-                      // 'Specialization Here',
                       style: Styles.footnoteEmphasis.copyWith(
                         color: AppColors.neutralColor600,
                       ),
@@ -91,9 +91,7 @@ class TherapistCardWidget extends StatelessWidget {
                         ),
                         4.horizontalSpace,
                         Text(
-                          // '4.8 | (4,479 Rate)',
                           '${doctorModel.rate} | (${doctorModel.ratesCount} Rate)',
-                          // '4.8 | (4,479 Rate)',
                           style: Styles.footnoteEmphasis.copyWith(
                             color: AppColors.neutralColor600,
                           ),
@@ -118,7 +116,6 @@ class TherapistCardSkeltonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      // margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         border: Border.all(

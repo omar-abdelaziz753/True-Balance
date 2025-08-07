@@ -23,6 +23,7 @@ import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctor
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/presentation/booking_screen.dart';
+import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
 import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
 import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
@@ -123,7 +124,9 @@ class AppRouter {
         final DoctorModel doctorModel = settings.arguments as DoctorModel;
 
         return transition(
-          screen: DoctorDetailsScreen(doctorModel: doctorModel),
+          cubit: DoctorDetailsCubit(getIt())
+            ..fetchDoctorDetails(doctorId: doctorModel.id),
+          screen: const DoctorDetailsScreen(),
         );
       case Routes.technicalSupportScreen:
         return transition(
@@ -189,6 +192,7 @@ class AppRouter {
     BlocProvider(
       create: (context) => HomeCubit(getIt())
         ..getAllDoctors()
+        ..getAllServices()
         ..getSliders(),
       child: const HomeScreen(),
     ),

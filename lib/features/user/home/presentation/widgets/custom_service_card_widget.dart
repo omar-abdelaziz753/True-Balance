@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -41,10 +42,12 @@ class CustomServiceCardWidget extends StatelessWidget {
         spacing: 8.h,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            image,
+          CachedNetworkImage(
+            imageUrl: image,
             width: 44.w,
             height: 44.h,
+            errorWidget: (context, url, error) => Icon(Icons.error,
+                color: AppColors.neutralColor1000, size: 44.sp),
           ),
           Text(
             title,

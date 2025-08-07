@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
+import 'package:truee_balance_app/features/user/home/data/model/services/service_model.dart';
 import 'package:truee_balance_app/features/user/home/data/model/sliders/slider_model.dart';
 import 'package:truee_balance_app/features/user/home/data/repo/home_repo.dart';
 
@@ -18,7 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   SliderModel? sliderModel;
   AllDoctorsDataModel? doctorsModel;
-  // ServicesModel? servicesModel;
+  ServiceResponse? servicesModel;
 
   Future<void> getSliders() async {
     emit(SliderLoading());
@@ -50,19 +51,19 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  // Future<void> getAllServices() async {
-  //   emit(ServicesLoading());
-  //   final result = await _homeRepo.getAllServices();
+  Future<void> getAllServices() async {
+    emit(ServicesLoading());
+    final result = await _homeRepo.getAllServices( page: 1);
 
-  //   result.when(
-  //     success: (data) {
-  //       servicesModel = data;
-  //       emit(ServicesSuccess());
-  //     },
-  //     failure: (error) {
-  //       emit(ServicesFailure());
-  //     },
-  //   );
-  // }
+    result.when(
+      success: (data) {
+        servicesModel = data;
+        emit(ServicesSuccess());
+      },
+      failure: (error) {
+        emit(ServicesFailure());
+      },
+    );
+  }
 
 }
