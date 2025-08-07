@@ -22,7 +22,7 @@ import 'package:truee_balance_app/features/therapists/main_layout_therapists/pre
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
-import 'package:truee_balance_app/features/user/create%20booking/presentation/presentation/booking_screen.dart';
+import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/booking_screen.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
 import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
@@ -169,8 +169,9 @@ class AppRouter {
           screen: const PrivacyPolicyScreen(),
         );
       case Routes.bookingScreen:
+        final argument = settings.arguments as int;
         return transition(
-          cubit: CreateBookingCubit(),
+          cubit: CreateBookingCubit(getIt())..getAvailableSlots(doctorId: argument),
           screen: const BookingScreen(),
         );
       case Routes.onBoardingScreen:
@@ -200,10 +201,10 @@ class AppRouter {
       create: (context) => AllDoctorsCubit(getIt())..getAllDoctors(),
       child: const BestTherapistsScreen(),
     ),
-    BlocProvider(
-      create: (context) => CreateBookingCubit(),
-      child: const BookingScreen(),
-    ),
+    // BlocProvider(
+    //   create: (context) => CreateBookingCubit(),
+      // child: const BookingScreen(),
+    // ),
     // Container(
     //   color: Colors.red,
     // ),

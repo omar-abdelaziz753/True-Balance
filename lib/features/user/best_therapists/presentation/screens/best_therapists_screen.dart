@@ -24,7 +24,8 @@ class BestTherapistsScreen extends StatelessWidget {
         if (state is DoctorsLoading) {
           return Skeletonizer(
             enabled: true,
-            containersColor: Colors.white,
+            // containersColor: Colors.white,
+
             child: Scaffold(
               backgroundColor: AppColors.primaryColor900,
               appBar: CustomBasicAppBar(

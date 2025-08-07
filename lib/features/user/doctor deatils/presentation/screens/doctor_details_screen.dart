@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
@@ -328,7 +330,8 @@ class DoctorDetailsScreen extends StatelessWidget {
                 color: AppColors.neutralColor100,
               ),
               onPressed: () {
-                
+                context.pushNamed(Routes.bookingScreen,
+                    arguments: cubit.doctorDetails!.data.id);
               },
             ),
           ),

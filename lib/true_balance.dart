@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/routing/app_router.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
+import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 
 class TrueBalanceApp extends StatelessWidget {
@@ -31,6 +32,7 @@ class TrueBalanceApp extends StatelessWidget {
           builder: (context) => MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'True Balance',
+            
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

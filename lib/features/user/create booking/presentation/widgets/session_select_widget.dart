@@ -8,31 +8,20 @@ import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/crea
 
 class SessionSelector extends StatelessWidget {
   final int numberOfDays;
-  final List<String> sessionTimes;
 
   const SessionSelector({
     super.key,
     this.numberOfDays = 30,
-    this.sessionTimes = const [
-      '7:00 AM',
-      '8:00 AM',
-      '10:00 AM',
-      '11:00 AM',
-      '12:00 AM',
-      '1:00 AM',
-      '7:00 AM',
-      '7:00 AM',
-      '7:00 AM',
-    ],
   });
 
-  List<Map<String, String>> generateSessionDates(int days) {
+  List<Map<String, dynamic>> generateSessionDates(int days) {
     final now = DateTime.now();
     return List.generate(days, (i) {
       final date = now.add(Duration(days: i));
       return {
         'day': DateFormat('EEEE').format(date),
         'date': DateFormat('MMMM d').format(date),
+        'datetime': date, // include raw DateTime
       };
     });
   }
@@ -110,8 +99,10 @@ class SessionSelector extends StatelessWidget {
                 children: List.generate(dates.length, (index) {
                   final isSelected = selectedDateIndex == index;
                   return GestureDetector(
-                    onTap: () =>
-                        context.read<CreateBookingCubit>().selectDate(index),
+                    onTap: () => context.read<CreateBookingCubit>().selectDate(
+                          index: index,
+                          date: dates[index]['datetime'],
+                        ),
                     child: Container(
                       margin: EdgeInsets.only(right: 10.w),
                       padding: EdgeInsets.all(16.sp),
@@ -158,15 +149,46 @@ class SessionSelector extends StatelessWidget {
         ),
         10.verticalSpace,
         BlocBuilder<CreateBookingCubit, CreateBookingState>(
-          buildWhen: (previous, current) => current is TimeSelectedState,
+          buildWhen: (previous, current) =>
+              current is TimeSelectedState ||
+              current is SlotsLoadingState ||
+              current is SlotsLoadedState ||
+              current is SlotsFailureState,
           builder: (context, state) {
             final selectedTimeIndex =
                 context.read<CreateBookingCubit>().selectedTimeIndex;
-
+            if (state is SlotsLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is SlotsFailureState) {
+              return Center(
+                child: Text(
+                  'noSlotsAvailable'.tr(),
+                  style: Styles.contentAccent.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
+                ),
+              );
+            } else if (state is SlotsLoadedState &&
+                context.read<CreateBookingCubit>().freeSlotsModel == null) {
+              return Center(
+                child: Text(
+                  'noSlotsAvailable'.tr(),
+                  style: Styles.contentAccent.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
+                ),
+              );
+            }
             return GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: sessionTimes.length,
+              itemCount: context
+                  .read<CreateBookingCubit>()
+                  .freeSlotsModel!
+                  .data
+                  .length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 10.h,
@@ -187,7 +209,10 @@ class SessionSelector extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Text(
-                      sessionTimes[index],
+                      context
+                          .read<CreateBookingCubit>()
+                          .freeSlotsModel!
+                          .data[index],
                       style: Styles.footnoteSemiboldBold.copyWith(
                         color: isSelected
                             ? AppColors.neutralColor100
