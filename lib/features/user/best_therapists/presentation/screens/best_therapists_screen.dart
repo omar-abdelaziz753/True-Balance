@@ -7,6 +7,7 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
 import 'package:truee_balance_app/features/user/best_therapists/presentation/widgets/therapist_card_widget.dart';
+import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
 
 class BestTherapistsScreen extends StatelessWidget {
   const BestTherapistsScreen({super.key});
@@ -45,7 +46,18 @@ class BestTherapistsScreen extends StatelessWidget {
                     Expanded(
                       child: ListView.separated(
                         itemBuilder: (context, index) {
-                          return const TherapistCardWidget();
+                          return TherapistCardWidget(
+                              doctorModel: DoctorModel(
+                            email: 'email',
+                            name: 'name',
+                            phone: 'phone',
+                            image: 'image',
+                            id: 1,
+                            specialization: 'specialization',
+                            type: 'type',
+                            rate: 0.0,
+                            ratesCount: 0,
+                          ));
                         },
                         separatorBuilder: (context, index) => 16.verticalSpace,
                         itemCount: 9,
@@ -79,7 +91,10 @@ class BestTherapistsScreen extends StatelessWidget {
                 Expanded(
                   child: ListView.separated(
                     itemBuilder: (context, index) {
-                      return const TherapistCardWidget();
+                      final data = cubit.doctorsModel!.data;
+                      final item = data.data[index];
+
+                      return TherapistCardWidget(doctorModel: item);
                     },
                     separatorBuilder: (context, index) => 16.verticalSpace,
                     itemCount: cubit.doctorsModel!.data.data.length,

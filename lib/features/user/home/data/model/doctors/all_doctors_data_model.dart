@@ -47,7 +47,9 @@ class DoctorModel {
   final String email;
   final String image;
   final String phone;
-  final String type;
+  final String type;  
+  final double rate;  
+  final double ratesCount;  
   final String specialization;
 
   DoctorModel({
@@ -56,6 +58,8 @@ class DoctorModel {
     required this.email,
     required this.image,
     required this.phone,
+    required this.rate,
+    required this.ratesCount,
     required this.type,
     required this.specialization,
   });

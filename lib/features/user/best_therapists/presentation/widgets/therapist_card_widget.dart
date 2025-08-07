@@ -6,19 +6,24 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
 
 class TherapistCardWidget extends StatelessWidget {
-  const TherapistCardWidget({super.key});
+  const TherapistCardWidget({
+    super.key,
+    required this.doctorModel,
+  });
+
+  final DoctorModel doctorModel;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(Routes.doctorDetailsScreen);
+        context.pushNamed(Routes.doctorDetailsScreen, arguments: doctorModel);
       },
       child: Container(
         width: double.infinity,
-        // margin: EdgeInsets.only(bottom: 12.h),
         padding: EdgeInsets.all(12.w),
         decoration: BoxDecoration(
           border: Border.all(
@@ -63,14 +68,15 @@ class TherapistCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Specialization Here',
+                      doctorModel.specialization,
+                      // 'Specialization Here',
                       style: Styles.footnoteEmphasis.copyWith(
                         color: AppColors.neutralColor600,
                       ),
                     ),
                     4.verticalSpace,
                     Text(
-                      'Ahmed Hossam',
+                      doctorModel.name,
                       style: Styles.contentBold.copyWith(
                         color: AppColors.neutralColor1000,
                       ),
@@ -85,7 +91,9 @@ class TherapistCardWidget extends StatelessWidget {
                         ),
                         4.horizontalSpace,
                         Text(
-                          '4.8 | (4,479 Rate)',
+                          // '4.8 | (4,479 Rate)',
+                          '${doctorModel.rate} | (${doctorModel.ratesCount} Rate)',
+                          // '4.8 | (4,479 Rate)',
                           style: Styles.footnoteEmphasis.copyWith(
                             color: AppColors.neutralColor600,
                           ),
@@ -102,10 +110,6 @@ class TherapistCardWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class TherapistCardSkeltonWidget extends StatelessWidget {
   const TherapistCardSkeltonWidget({super.key});
