@@ -8,9 +8,12 @@ import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/review_Item_widget.dart';
+import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
-  const DoctorDetailsScreen({super.key});
+  const DoctorDetailsScreen({super.key, required this.doctorModel});
+
+  final DoctorModel doctorModel;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,8 @@ class DoctorDetailsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: 'Wade Warren'.tr(),
+        title: doctorModel.name,
+        // title: 'Wade Warren'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
