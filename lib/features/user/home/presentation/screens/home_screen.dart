@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_main_app_bar_in_home_widget.dart';
@@ -31,117 +33,151 @@ class HomeScreen extends StatelessWidget {
             topRight: Radius.circular(12.r),
           ),
         ),
-        child: Column(
-          children: [
-            const BannerWidget(),
-            18.verticalSpace,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'ourServices'.tr(),
-                  style: Styles.captionAccent.copyWith(
-                    color: AppColors.neutralColor1000,
-                  ),
-                ),
-                Text(
-                  'seeAll'.tr(),
-                  style: Styles.captionAccent.copyWith(
-                    color: AppColors.secondaryColor500,
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.secondaryColor500,
-                    decorationThickness: 1.5.w,
-                  ),
-                ),
-              ],
-            ),
-            12.verticalSpace,
-            SizedBox(
-              height: 120.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                physics: const BouncingScrollPhysics(),
-                separatorBuilder: (_, __) => 12.horizontalSpace,
-                itemBuilder: (context, index) {
-                  final titles = [
-                    'Physiotherapy',
-                    'Occupational Therapy',
-                    'Speech Therapy',
-                  ];
-                  final images = [
-                    'assets/images/png/physiotherapy.png',
-                    'assets/images/png/sports.png',
-                    'assets/images/png/post.png',
-                  ];
-                  return CustomServiceCardWidget(
-                    title: titles[index],
-                    image: images[index],
-                  );
-                },
-              ),
-            ),
-            30.verticalSpace,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'bestDoctors'.tr(),
-                  style: Styles.captionAccent.copyWith(
-                    color: AppColors.neutralColor1000,
-                  ),
-                ),
-                Text(
-                  'seeAll'.tr(),
-                  style: Styles.captionAccent.copyWith(
-                    color: AppColors.secondaryColor500,
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.secondaryColor500,
-                    decorationThickness: 1.5.w,
-                  ),
-                ),
-              ],
-            ),
-            12.verticalSpace,
-            SizedBox(
-              height: 120.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 4,
-                physics: const BouncingScrollPhysics(),
-                separatorBuilder: (_, __) => 12.horizontalSpace,
-                itemBuilder: (context, index) {
-                  return Container(
-                    // padding: EdgeInsets.all(12.sp),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      border: Border.all(
-                        color: AppColors.neutralColor10.withAlpha(10),
-                      ),
-                      color: AppColors.neutralColor10.withAlpha(10),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const BannerWidget(),
+              18.verticalSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'ourServices'.tr(),
+                    style: Styles.captionAccent.copyWith(
+                      color: AppColors.neutralColor1000,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      context.pushNamed(Routes.ourServicesScreen);
+                    },
+                    child: Text(
+                      'seeAll'.tr(),
+                      style: Styles.captionAccent.copyWith(
+                        color: AppColors.secondaryColor500,
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppColors.secondaryColor500,
+                        decorationThickness: 1.5.w,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              12.verticalSpace,
+              SizedBox(
+                height: 120.h,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  physics: const BouncingScrollPhysics(),
+                  separatorBuilder: (_, __) => 12.horizontalSpace,
+                  itemBuilder: (context, index) {
+                    final titles = [
+                      'Physiotherapy',
+                      'Occupational Therapy',
+                      'Speech Therapy',
+                    ];
+                    final images = [
+                      'assets/images/png/physiotherapy.png',
+                      'assets/images/png/sports.png',
+                      'assets/images/png/post.png',
+                    ];
+                    return CustomServiceCardWidget(
+                      title: titles[index],
+                      image: images[index],
+                    );
+                  },
+                ),
+              ),
+              30.verticalSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'bestDoctors'.tr(),
+                    style: Styles.captionAccent.copyWith(
+                      color: AppColors.neutralColor1000,
+                    ),
+                  ),
+                  Text(
+                    'seeAll'.tr(),
+                    style: Styles.captionAccent.copyWith(
+                      color: AppColors.secondaryColor500,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColors.secondaryColor500,
+                      decorationThickness: 1.5.w,
+                    ),
+                  ),
+                ],
+              ),
+              12.verticalSpace,
+              SizedBox(
+                height: 160.h,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 6,
+                  physics: const BouncingScrollPhysics(),
+                  separatorBuilder: (_, __) => 12.horizontalSpace,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.r),
+                        border: Border.all(
+                          color: AppColors.neutralColor10.withAlpha(10),
+                        ),
+                      ),
                       child: Column(
-                        spacing: 4.h,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            "Wade Warren",
-                            style: Styles.contentRegular,
+                          Stack(
+                            alignment: Alignment.topCenter,
+                            children: [
+                              Image.asset(
+                                'assets/images/png/back_ground_doctor.png',
+                                fit: BoxFit.cover,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15),
+                                child: Image.asset(
+                                  width: 81.w,
+                                  height: 81.h,
+                                  'assets/images/png/back_ground_iamge.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Image.asset(
+                                  width: 75.w,
+                                  height: 75.h,
+                                  'assets/images/png/doctor_image.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
                           ),
                           5.verticalSpace,
                           Text(
-                            "Physiotherapist",
-                            style: Styles.contentRegular,
-                          )
+                            "Wade Warren",
+                            style: Styles.highlightEmphasis
+                                .copyWith(color: AppColors.neutralColor1000),
+                          ),
+                          5.verticalSpace,
+                          Text(
+                            "Specialization Here",
+                            style: Styles.captionRegular.copyWith(
+                              color: AppColors.neutralColor600,
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
