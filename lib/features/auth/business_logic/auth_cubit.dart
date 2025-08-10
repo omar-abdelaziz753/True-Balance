@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:truee_balance_app/core/helper_functions/navigate_based_onRole.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/auth/data/repos/auth_repo.dart';
 
@@ -16,8 +17,10 @@ class AuthCubit extends Cubit<AuthState> {
   // Controllers
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController(text:"Ahmed21@gmail.com");
-  final TextEditingController passwordController = TextEditingController(text: "12345678");
+  final TextEditingController emailController =
+      TextEditingController(text: "Ahmed21@gmail.com");
+  final TextEditingController passwordController =
+      TextEditingController(text: "12345678");
   final TextEditingController rePasswordController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController verificationCodeController =
@@ -47,6 +50,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
     result.when(success: (data) {
       hideLoading();
+      navigateBasedOnRole();
       emit(LoginSuccessState());
     }, failure: (error) {
       hideLoading();

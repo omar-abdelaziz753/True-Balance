@@ -14,5 +14,6 @@ class EndPoints {
     static const String getSlots = 'api/frontend/user/doctors/getSlots';
 
   static const String bookSession = 'api/frontend/user/consultations/book';
+  static const String getTherapist = 'api/frontend/therapists';
 
 }

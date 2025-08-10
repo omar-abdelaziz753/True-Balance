@@ -22,6 +22,7 @@ import 'package:truee_balance_app/features/therapists/main_layout_therapists/pre
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
+import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/all_therapist_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/booking_screen.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
@@ -171,8 +172,14 @@ class AppRouter {
       case Routes.bookingScreen:
         final argument = settings.arguments as int;
         return transition(
-          cubit: CreateBookingCubit(getIt())..getAvailableSlots(doctorId: argument),
+          cubit: CreateBookingCubit(getIt())
+            ..getAvailableSlots(doctorId: argument),
           screen: const BookingScreen(),
+        );
+      case Routes.allTherapistsScreen:
+        return transition(
+          cubit: CreateBookingCubit(getIt())..getAllTherapist(),
+          screen: const AllTherapistScreen(),
         );
       case Routes.onBoardingScreen:
         return transition(
@@ -201,12 +208,12 @@ class AppRouter {
       create: (context) => AllDoctorsCubit(getIt())..getAllDoctors(),
       child: const BestTherapistsScreen(),
     ),
-    // BlocProvider(
-    //   create: (context) => CreateBookingCubit(),
-      // child: const BookingScreen(),
-    // ),
+    BlocProvider(
+      create: (context) => CreateBookingCubit(getIt())..getAllTherapist(),
+      child: const AllTherapistScreen(),
+    ),
     // Container(
-    //   color: Colors.red,
+    //   color: Colors.white,
     // ),
     Container(
       color: Colors.white,
