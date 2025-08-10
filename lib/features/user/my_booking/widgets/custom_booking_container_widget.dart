@@ -22,7 +22,8 @@ class CustomBookingContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return
+     Container(
       width: double.infinity,
       padding: EdgeInsets.all(12.sp),
       decoration: BoxDecoration(

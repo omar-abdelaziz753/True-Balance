@@ -37,8 +37,12 @@
   "resend": " إعادة إرسال",
   "verify": " تحقق",
   "congratulation": " تهانينا!",
+  "bookingConfirmed":"تم حجز جلستك",
+  "youCanCheckYourBookings":"تم تحديد موعدك بنجاح. سنخطرك قبل أن يبدأ",
+  "bookings":"حجزي",
   "yourPasswordHasBeenChanged": "تم تغيير كلمة المرور الخاصة بك",
-  "loginToContinue": "تم تحديث كلمة المرور. سجل الدخول للمتابعة.",
+  "loginToContinue": "تم تحديث كلمة المرور. سجل الدخول للمتابعة",
+  
   "booking": "الحجز",
   "bookingSession": "جلسة الحجز",
   "date": "التاريخ",

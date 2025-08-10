@@ -145,7 +145,8 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
                       description: "loginToContinue".tr(),
                       buttonText: "login".tr(), onPressed: () {
                     context.pushNamedAndRemoveUntil(Routes.loginScreen);
-                  });
+                  }
+                  );
                 }
               },
               child: CustomButtonWidget(
