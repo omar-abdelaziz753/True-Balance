@@ -4,7 +4,7 @@ part 'doctor_details_model.g.dart';
 
 @JsonSerializable()
 class DoctorDetailsResponse {
-  final DoctorModel data;
+  final DoctorModelDetails data;
   final String status;
   final String error;
   final int code;
@@ -23,7 +23,7 @@ class DoctorDetailsResponse {
 }
 
 @JsonSerializable()
-class DoctorModel {
+class DoctorModelDetails {
   final int id;
   final String name;
   final String email;
@@ -35,7 +35,7 @@ class DoctorModel {
   final int ratesCount;
   final Ratings ratings;
 
-  DoctorModel({
+  DoctorModelDetails({
     required this.id,
     required this.name,
     required this.email,
@@ -48,7 +48,7 @@ class DoctorModel {
     required this.ratings,
   });
 
-  factory DoctorModel.fromJson(Map<String, dynamic> json) =>
+  factory DoctorModelDetails.fromJson(Map<String, dynamic> json) =>
       _$DoctorModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$DoctorModelToJson(this);
@@ -69,21 +69,21 @@ class Ratings {
 @JsonSerializable()
 class UserRating {
   @JsonKey(name: 'user_id')
-  final int userId;
+  final int? userId;
 
   @JsonKey(name: 'user_name')
-  final String userName;
+  final String? userName;
 
   @JsonKey(name: 'user_image')
   final String? userImage;
 
   @JsonKey(name: 'user_rate')
-  final int userRate;
+  final int? userRate;
 
   @JsonKey(name: 'user_message')
-  final String userMessage;
+  final String? userMessage;
 
-  final String date;
+  final String? date;
 
   UserRating({
     required this.userId,

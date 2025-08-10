@@ -66,6 +66,8 @@ class AuthRepository {
     await CacheHelper.saveSecuredString(
         key: CacheKeys.userToken, value: model.data.token);
     await CacheHelper.saveData(key: CacheKeys.userName, value: model.data.name);
+    await CacheHelper.saveData(
+        key: CacheKeys.userPhone, value: model.data.phone);
 
     AppConstants.userToken =
         await CacheHelper.getSecuredString(key: CacheKeys.userToken);

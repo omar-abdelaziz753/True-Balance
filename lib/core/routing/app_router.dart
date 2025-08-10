@@ -25,6 +25,7 @@ import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/crea
 import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/all_therapist_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/booking_screen.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
+import 'package:truee_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
 import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
 import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
@@ -170,11 +171,11 @@ class AppRouter {
           screen: const PrivacyPolicyScreen(),
         );
       case Routes.bookingScreen:
-        final argument = settings.arguments as int;
+        final argument = settings.arguments as DoctorModelDetails;
         return transition(
           cubit: CreateBookingCubit(getIt())
-            ..getAvailableSlots(doctorId: argument),
-          screen: const BookingScreen(),
+            ..getAvailableSlots(doctorId: argument.id),
+          screen: BookingScreen(doctorModel: argument),
         );
       case Routes.allTherapistsScreen:
         return transition(
