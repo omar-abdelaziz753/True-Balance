@@ -82,8 +82,10 @@ class HomeScreen extends StatelessWidget {
                       height: 120.h,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        itemCount: cubit.servicesModel!.data.data.length,
-                        physics: const BouncingScrollPhysics(),
+                        itemCount: cubit.servicesModel!.data.data.length > 5
+                            ? 5
+                            : cubit.servicesModel!.data.data.length,
+                        physics: const BouncingScrollPhysics(), 
                         separatorBuilder: (_, __) => 12.horizontalSpace,
                         itemBuilder: (context, index) {
                           return CustomServiceCardWidget(
