@@ -226,7 +226,7 @@ class HomeScreen extends StatelessWidget {
                           height: 160.h,
                           child: ListView.separated(
                             scrollDirection: Axis.horizontal,
-                            itemCount: 6,
+                            itemCount: cubit.doctorsModel!.data.data.length,
                             physics: const BouncingScrollPhysics(),
                             separatorBuilder: (_, __) => 12.horizontalSpace,
                             itemBuilder: (context, index) {

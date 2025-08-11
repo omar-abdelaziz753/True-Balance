@@ -18,4 +18,6 @@ class HomeApiServices {
     return _dioFactory
         .get(endPoint: EndPoints.getServies, data: {'page': page});
   }
+
+ 
 }

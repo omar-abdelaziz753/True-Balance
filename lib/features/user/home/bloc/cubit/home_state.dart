@@ -26,3 +26,5 @@ class ServicesLoading extends HomeState {}
 class ServicesSuccess extends HomeState {}
 
 class ServicesFailure extends HomeState {}
+
+class ServicesLoadingMore extends HomeState {}
