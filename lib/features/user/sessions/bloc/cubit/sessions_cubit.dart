@@ -27,7 +27,7 @@ class SessionsCubit extends Cubit<SessionsState> {
     );
   }
 
-  TreatmentPlansResponse? treatmentPlansResponse;
+  TreatmentPlansResponse? treatmentPlansResponse;  
 
   /// Get By Therapist
   Future<void> getByTherapist({required int therapistId}) async {
