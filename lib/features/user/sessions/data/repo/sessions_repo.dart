@@ -37,30 +37,5 @@ class SessionsRepo {
     );
   }
 
-  /// get by therapist
-  Future<ApiResult<TreatmentPlansResponse>> getByTherapist(
-      {required int therapistId}) async {
-    try {
-      final response = await _api.getByTherapist(therapistId: therapistId);
-
-      if (response?.statusCode == 200 || response?.statusCode == 201) {
-        final model = TreatmentPlansResponse.fromJson(response!.data);
-        return ApiResult.success(model);
-      } else {
-        return ApiResult.failure(
-          ServerException.fromResponse(response?.statusCode, response),
-        );
-      }
-    } on DioException catch (e) {
-      try {
-        handleDioException(e);
-      } on ServerException catch (ex) {
-        return ApiResult.failure(ex.errorModel.message);
-      }
-    }
-
-    return ApiResult.failure(
-      FailureException(errMessage: 'Unexpected error occurred'),
-    );
-  }
+  //
 }
