@@ -241,6 +241,8 @@ class DoctorDetailsScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           child: ClipOval(
                             child: CachedNetworkImage(
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                               imageUrl: cubit.doctorDetails!.data.image,
                               width: 95.w,
                               height: 91.h,

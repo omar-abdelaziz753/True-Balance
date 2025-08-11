@@ -11,9 +11,13 @@ class EndPoints {
   static const String getSliders = 'api/frontend/sliders';
   static const String getServies = '/api/frontend/services';
   static const String getDoctors = 'api/frontend/doctors';
-    static const String getSlots = 'api/frontend/user/doctors/getSlots';
+  static const String getSlots = 'api/frontend/user/doctors/getSlots';
 
   static const String bookSession = 'api/frontend/user/consultations/book';
   static const String getTherapist = 'api/frontend/therapists';
+  
 
+  /// Treatment Plans for Therapist
+  static String treatmentPlans(int therapistId) =>
+      'api/frontend/therapists/$therapistId/treatment-plans';
 }

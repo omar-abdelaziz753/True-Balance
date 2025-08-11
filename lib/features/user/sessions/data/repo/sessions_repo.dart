@@ -2,25 +2,22 @@ import 'package:dio/dio.dart';
 import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/api%20servies/create_booking_api_services.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/all_therapist_data_model.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/model/free_slots_model.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/treatment_plans_response.dart';
+import 'package:truee_balance_app/features/user/sessions/data/api%20servies/sessions_api_services.dart';
 
-class CreateBookingRepo {
-  final CreateBookingApiServices _api;
+class SessionsRepo {
+  final SessionsApiServices _api;
 
-  CreateBookingRepo(this._api);
+  SessionsRepo(this._api);
 
-  Future<ApiResult<FreeSlotsModel>> getSlots({
-    required int doctorId,
-    required String date,
-  }) async {
+  /// Get All Therapist
+  Future<ApiResult<AllTherapistDataModel>> getAllTherapist() async {
     try {
-      final response = await _api.getSlots(doctorId: doctorId, data: date);
+      final response = await _api.getAllTherapist();
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
-        final model = FreeSlotsModel.fromJson(response!.data);
+        final model = AllTherapistDataModel.fromJson(response!.data);
         return ApiResult.success(model);
       } else {
         return ApiResult.failure(
@@ -40,20 +37,15 @@ class CreateBookingRepo {
     );
   }
 
-  Future<ApiResult<dynamic>> bookSession({
-    required int doctorId,
-    required String date,
-    required String time,
-  }) async {
+  /// get by therapist
+  Future<ApiResult<TreatmentPlansResponse>> getByTherapist(
+      {required int therapistId}) async {
     try {
-      final response = await _api.bookSession(
-        doctorId: doctorId,
-        data: date,
-        time: time,
-      );
+      final response = await _api.getByTherapist(therapistId: therapistId);
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
-        return ApiResult.success(response?.data);
+        final model = TreatmentPlansResponse.fromJson(response!.data);
+        return ApiResult.success(model);
       } else {
         return ApiResult.failure(
           ServerException.fromResponse(response?.statusCode, response),
@@ -71,7 +63,4 @@ class CreateBookingRepo {
       FailureException(errMessage: 'Unexpected error occurred'),
     );
   }
-
- 
-  
 }

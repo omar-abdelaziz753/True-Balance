@@ -267,6 +267,9 @@ class HomeScreen extends StatelessWidget {
                                                 fit: BoxFit.cover,
                                                 width: 75.w,
                                                 height: 75.h,
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
                                           )

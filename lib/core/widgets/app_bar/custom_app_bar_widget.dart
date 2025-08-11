@@ -84,6 +84,7 @@ class CustomBasicAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       centerTitle: true,
       leading: leading,
+      
       actions: actions,
       title: Text(
         title,
