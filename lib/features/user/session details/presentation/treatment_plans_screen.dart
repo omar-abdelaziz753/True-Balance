@@ -9,19 +9,17 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
-import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
-import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
+import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
 
 class TreatmentPlansScreen extends StatelessWidget {
   const TreatmentPlansScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SessionsCubit>();
-    return BlocBuilder<SessionsCubit, SessionsState>(
+    final cubit = context.read<SessionDetailsCubit>();
+    return BlocBuilder<SessionDetailsCubit, SessionDetailsState>(
       buildWhen: (previous, current) =>
           previous is GetByTherapistLoadingState ||
-          current is GetByTherapistLoadingState ||
           current is GetByTherapistSuccessState ||
           current is GetByTherapistFailureState,
       builder: (context, state) {
@@ -305,7 +303,7 @@ class TreatmentPlansScreen extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        "${cubit.treatmentPlansResponse?.data?.totalNumberOfSessions}",
+                        "${cubit.treatmentPlansResponse?.data?.treatmentPlans!.length ?? "0"}",
                         style: Styles.contentEmphasis.copyWith(
                           color: AppColors.neutralColor1000,
                         ),
@@ -315,8 +313,7 @@ class TreatmentPlansScreen extends StatelessWidget {
                 ),
                 18.verticalSpace,
                 Expanded(
-                  child:
-                   ListView.separated(
+                  child: ListView.separated(
                     itemBuilder: (context, index) => Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(12.sp),
@@ -336,27 +333,32 @@ class TreatmentPlansScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Row(
-                        spacing: 10.sp,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              cubit.treatmentPlansResponse?.data
-                                      ?.treatmentPlans?[index].name ??
-                                  '',
-                              style: Styles.captionEmphasis.copyWith(
-                                color: AppColors.neutralColor1000,
+                      child: InkWell(
+                        onTap: () {
+                          context.pushNamed(
+                            Routes.treatmentdetailsScreen,
+                            arguments: cubit.treatmentPlansResponse?.data
+                                    ?.treatmentPlans?[index].id ??
+                                0,
+                          );
+                        },
+                        child: Row(
+                          spacing: 10.sp,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                cubit.treatmentPlansResponse?.data
+                                        ?.treatmentPlans?[index].name ??
+                                    '',
+                                style: Styles.captionEmphasis.copyWith(
+                                  color: AppColors.neutralColor1000,
+                                ),
                               ),
                             ),
-                          ),
-                          // const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              context.pushNamed(Routes.treatmentdetailsScreen);
-                            },
-                            child: Text(
+                            // const Spacer(),
+                            Text(
                               "See Details",
                               style: TextStyle(
                                 fontSize: 14.sp,
@@ -366,8 +368,8 @@ class TreatmentPlansScreen extends StatelessWidget {
                                 decorationColor: AppColors.secondaryColor500,
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     separatorBuilder: (context, index) => 18.verticalSpace,

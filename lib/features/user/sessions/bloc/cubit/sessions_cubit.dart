@@ -27,22 +27,5 @@ class SessionsCubit extends Cubit<SessionsState> {
     );
   }
 
-  TreatmentPlansResponse? treatmentPlansResponse;  
-
-  /// Get By Therapist
-  Future<void> getByTherapist({required int therapistId}) async {
-    emit(GetByTherapistLoadingState());
-    final result =
-        await _sessionsRepo!.getByTherapist(therapistId: therapistId);
-    result.when(
-      success: (data) {
-        treatmentPlansResponse = data;
-        emit(GetByTherapistSuccessState());
-      },
-      failure: (error) {
-        print('error: ${error.toString()}');
-        emit(GetByTherapistFailureState(message: error.toString()));
-      },
-    );
-  }
+  
 }

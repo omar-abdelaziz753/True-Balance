@@ -31,5 +31,6 @@ class Routes {
   static const String chatScreen = '/chat_screen';
   static const String treatmentplansScreen = '/treatmentplansScreen';
   static const String treatmentdetailsScreen = '/treatmentdetailsScreen';
+  static const String addSessionScreen = '/add_session_screen';
 
 }

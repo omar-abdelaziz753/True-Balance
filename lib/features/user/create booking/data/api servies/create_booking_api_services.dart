@@ -22,5 +22,5 @@ class CreateBookingApiServices {
         data: {'date': data, 'doctor_id': doctorId, "time": time});
   }
 
-  
+
 }

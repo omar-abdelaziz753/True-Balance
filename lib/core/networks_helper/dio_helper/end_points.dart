@@ -24,4 +24,9 @@ class EndPoints {
   /// get show services
   static String getShowServices(int serviceId) =>
       'api/frontend/services/$serviceId';
+  static String treatmentPlansdetails(int therapistId) =>
+      "api/frontend/treatment-plans/$therapistId";
+
+  static String addSession(int therapistId) =>
+      "api/frontend/treatment-plans/$therapistId/sessions";
 }

@@ -18,7 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController =
-      TextEditingController(text: "Ahmed21@gmail.com");
+      TextEditingController(text: "mohamedmarei21135@gmail.com");
   final TextEditingController passwordController =
       TextEditingController(text: "12345678");
   final TextEditingController rePasswordController = TextEditingController();
