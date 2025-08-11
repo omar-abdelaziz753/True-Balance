@@ -13,6 +13,8 @@ class AllTherapistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<SessionsCubit>();
+
     return BlocBuilder<SessionsCubit, SessionsState>(
       buildWhen: (previous, current) =>
           current is GetAllTherapistFailureState ||
@@ -20,16 +22,16 @@ class AllTherapistScreen extends StatelessWidget {
           current is GetAllTherapistFailureState,
       builder: (context, state) {
         if (state is GetAllTherapistLoadingState) {
-          return Skeletonizer(
-            enabled: true,
-            child: Scaffold(
+          return Scaffold(
+            backgroundColor: AppColors.primaryColor900,
+            appBar: CustomBasicAppBar(
+              title: 'mySessions'.tr(),
               backgroundColor: AppColors.primaryColor900,
-              appBar: CustomBasicAppBar(
-                title: 'mySessions'.tr(),
-                backgroundColor: AppColors.primaryColor900,
-                svgAsset: 'assets/images/svg/bg_image.svg',
-              ),
-              body: Container(
+              svgAsset: 'assets/images/svg/bg_image.svg',
+            ),
+            body: Skeletonizer(
+              enabled: true,
+              child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(18.sp),
                 decoration: BoxDecoration(
@@ -109,39 +111,39 @@ class AllTherapistScreen extends StatelessWidget {
           ),
           body: BlocBuilder<SessionsCubit, SessionsState>(
             builder: (context, state) {
-              final cubit = context.read<SessionsCubit>();
               return cubit.allTherapistDataModel == null
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : cubit.allTherapistDataModel?.data?.data?.isEmpty == true
-                      ? Center(
-                          child: Text('noTherapistAvailable'.tr()),
-                        )
-                      : Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.all(18.sp),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(12.r),
-                              topRight: Radius.circular(12.r),
+                  : Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(18.sp),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12.r),
+                          topRight: Radius.circular(12.r),
+                        ),
+                      ),
+                      child: cubit.allTherapistDataModel?.data?.data?.isEmpty ==
+                              true
+                          ? Center(
+                              child: Text('noTherapistAvailable'.tr()),
+                            )
+                          : ListView.separated(
+                              itemCount: cubit.allTherapistDataModel?.data?.data
+                                      ?.length ??
+                                  0,
+                              separatorBuilder: (context, index) =>
+                                  18.verticalSpace,
+                              itemBuilder: (context, index) {
+                                final data = cubit
+                                    .allTherapistDataModel?.data?.data?[index];
+                                return MySessionsForAllTherapistWidgets(
+                                    data: data!);
+                              },
                             ),
-                          ),
-                          child: ListView.separated(
-                            itemCount: cubit.allTherapistDataModel?.data?.data
-                                    ?.length ??
-                                0,
-                            separatorBuilder: (context, index) =>
-                                18.verticalSpace,
-                            itemBuilder: (context, index) {
-                              final data = cubit
-                                  .allTherapistDataModel?.data?.data?[index];
-                              return MySessionsForAllTherapistWidgets(
-                                  data: data!);
-                            },
-                          ),
-                        );
+                    );
             },
           ),
         );

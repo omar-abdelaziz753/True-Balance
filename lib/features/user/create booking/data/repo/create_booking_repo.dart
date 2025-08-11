@@ -3,9 +3,7 @@ import 'package:truee_balance_app/core/networks_helper/api_results/api_result.da
 import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/api%20servies/create_booking_api_services.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/model/all_therapist_data_model.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/free_slots_model.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/model/treatment_plans_response.dart';
 
 class CreateBookingRepo {
   final CreateBookingApiServices _api;
@@ -71,7 +69,4 @@ class CreateBookingRepo {
       FailureException(errMessage: 'Unexpected error occurred'),
     );
   }
-
- 
-  
 }

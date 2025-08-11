@@ -14,12 +14,4 @@ final class GetAllTherapistFailureState extends SessionsState {
   GetAllTherapistFailureState({required this.message});
 }
 
-/// Get By Therapist
-final class GetByTherapistLoadingState extends SessionsState {}
 
-final class GetByTherapistSuccessState extends SessionsState {}
-
-final class GetByTherapistFailureState extends SessionsState {
-  final String message;
-  GetByTherapistFailureState({required this.message});
-}
