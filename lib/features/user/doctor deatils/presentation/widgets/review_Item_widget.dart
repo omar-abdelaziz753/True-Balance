@@ -20,6 +20,8 @@ class ReviewItemWidget extends StatelessWidget {
               CircleAvatar(
                   radius: 27.r,
                   backgroundImage: CachedNetworkImageProvider(
+                    
+                  
                     userRating.userImage ?? "",
                   )),
               SizedBox(width: 12.sp),

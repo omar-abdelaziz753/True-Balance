@@ -22,8 +22,5 @@ class CreateBookingApiServices {
         data: {'date': data, 'doctor_id': doctorId, "time": time});
   }
 
-  /// Get All Therapist
-  Future<Response?> getAllTherapist() async {
-    return _dioFactory.get(endPoint: EndPoints.getTherapist);
-  }
+  
 }

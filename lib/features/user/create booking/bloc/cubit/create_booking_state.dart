@@ -1,6 +1,6 @@
 part of 'create_booking_cubit.dart';
 
-sealed class CreateBookingState {}
+abstract class CreateBookingState {}
 
 final class CreateBookingInitial extends CreateBookingState {}
 
@@ -26,13 +26,4 @@ class BookingSuccessState extends CreateBookingState {}
 
 class BookingFailureState extends CreateBookingState {}
 
-/// Get All Therapist
-final class GetAllTherapistLoadingState extends CreateBookingState {}
 
-final class GetAllTherapistSuccessState extends CreateBookingState {}
-
-final class GetAllTherapistFailureState extends CreateBookingState {
-  final String message;
-
-  GetAllTherapistFailureState({required this.message});
-}

@@ -114,6 +114,8 @@ class CustomDropdownButtonWidgetState<T>
                                 ),
                               ),
                             CachedNetworkImage(
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                               imageUrl: widget.getItemIcon!(selectedValue as T),
                               width: 24.w,
                               height: 24.h,

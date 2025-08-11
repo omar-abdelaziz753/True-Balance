@@ -22,7 +22,6 @@ import 'package:truee_balance_app/features/therapists/main_layout_therapists/pre
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
-import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/all_therapist_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/booking_screen.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
@@ -36,6 +35,10 @@ import 'package:truee_balance_app/features/user/medical_reports/presentation/scr
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
 import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
+import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
+import 'package:truee_balance_app/features/user/sessions/presentation/screen/all_therapist_screen.dart';
+import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_details_screen.dart';
+import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_plans_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/my_tickets_screen.dart';
@@ -161,9 +164,19 @@ class AppRouter {
         return transition(
           screen: const MedicalReportsScreen(),
         );
+      case Routes.treatmentplansScreen:
+        final therapist = settings.arguments as int;
+        return transition(
+          cubit: SessionsCubit(getIt())..getByTherapist(therapistId: therapist),
+          screen: const TreatmentPlansScreen(),
+        );
       case Routes.termsAndConditionsScreen:
         return transition(
           screen: const TermsAndConditionsScreen(),
+        );
+      case Routes.treatmentdetailsScreen:
+        return transition(
+          screen: const TreatmentDetailsScreen(),
         );
       case Routes.privacyPolicyScreen:
         return transition(
@@ -178,7 +191,7 @@ class AppRouter {
         );
       case Routes.allTherapistsScreen:
         return transition(
-          cubit: CreateBookingCubit(getIt())..getAllTherapist(),
+          cubit: SessionsCubit(getIt())..getAllTherapist(),
           screen: const AllTherapistScreen(),
         );
       case Routes.onBoardingScreen:
@@ -209,7 +222,7 @@ class AppRouter {
       child: const BestTherapistsScreen(),
     ),
     BlocProvider(
-      create: (context) => CreateBookingCubit(getIt())..getAllTherapist(),
+      create: (context) => SessionsCubit(getIt())..getAllTherapist(),
       child: const AllTherapistScreen(),
     ),
     // Container(
