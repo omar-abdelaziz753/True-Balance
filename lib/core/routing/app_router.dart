@@ -24,6 +24,7 @@ import 'package:truee_balance_app/features/user/best_therapists/presentation/scr
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:truee_balance_app/features/user/create%20booking/presentation/screen/booking_screen.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
+import 'package:truee_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
 import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
 import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
@@ -35,10 +36,14 @@ import 'package:truee_balance_app/features/user/medical_reports/presentation/scr
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
 import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
+// <<<<<<< Services
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/all_therapist_screen.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_details_screen.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_plans_screen.dart';
+// =======
+import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
+// >>>>>>> main
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/my_tickets_screen.dart';
@@ -148,6 +153,10 @@ class AppRouter {
         return transition(
           screen: const MyBookingScreen(),
         );
+      case Routes.profileScreen:
+        return transition(
+          screen: const ProfileScreen(),
+        );
       case Routes.bookingDetailsScreen:
         return transition(
           screen: const BookingDetailsScreen(),
@@ -183,11 +192,11 @@ class AppRouter {
           screen: const PrivacyPolicyScreen(),
         );
       case Routes.bookingScreen:
-        final argument = settings.arguments as int;
+        final argument = settings.arguments as DoctorModelDetails;
         return transition(
           cubit: CreateBookingCubit(getIt())
-            ..getAvailableSlots(doctorId: argument),
-          screen: const BookingScreen(),
+            ..getAvailableSlots(doctorId: argument.id),
+          screen: BookingScreen(doctorModel: argument),
         );
       case Routes.allTherapistsScreen:
         return transition(

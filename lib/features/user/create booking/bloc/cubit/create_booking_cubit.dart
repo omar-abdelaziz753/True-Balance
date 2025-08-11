@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/helper_functions/date_formate.dart';
+import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/all_therapist_data_model.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/free_slots_model.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/treatment_plans_response.dart';
@@ -36,6 +37,7 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
 
   FreeSlotsModel? freeSlotsModel;
   int doctorId = 0;
+
   Future<void> getAvailableSlots({
     required int doctorId,
   }) async {
@@ -45,7 +47,6 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
       doctorId: doctorId,
       date: formatDate(data.toString()),
     );
-
     result.when(
       success: (data) {
         freeSlotsModel = data;
@@ -57,24 +58,25 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
     );
   }
 
-  Future<void> bookSelectedSession({
-    required int doctorId,
-    required String date,
-    required String time,
-  }) async {
+  Future<void> bookSelectedSession() async {
     emit(BookingLoadingState());
+    showLoading();
 
     final result = await _createBookingRepo!.bookSession(
       doctorId: doctorId,
-      date: date,
-      time: time,
+      date: formatDate(data.toString()),
+      time: freeSlotsModel!.data[selectedTimeIndex],
     );
 
     result.when(
       success: (_) {
+        hideLoading();
+
         emit(BookingSuccessState());
       },
       failure: (error) {
+        hideLoading();
+
         emit(BookingFailureState());
       },
     );

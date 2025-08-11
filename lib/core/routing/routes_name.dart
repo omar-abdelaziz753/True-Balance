@@ -10,6 +10,7 @@ class Routes {
   static const String createNewPasswordScreen = '/createNewPasswordScreen';
   static const String technicalSupportScreen = '/technicalSupportScreen';
   static const String myTicketsScreen = '/myTicketsScreen';
+  static const String profileScreen = '/profileScreen';
   static const String aboutUsScreen = '/aboutUsScreen';
   static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
   static const String privacyPolicyScreen = '/privacyPolicyScreen';

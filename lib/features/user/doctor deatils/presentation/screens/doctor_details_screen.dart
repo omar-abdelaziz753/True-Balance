@@ -333,7 +333,7 @@ class DoctorDetailsScreen extends StatelessWidget {
               ),
               onPressed: () {
                 context.pushNamed(Routes.bookingScreen,
-                    arguments: cubit.doctorDetails!.data.id);
+                    arguments: cubit.doctorDetails!.data);
               },
             ),
           ),

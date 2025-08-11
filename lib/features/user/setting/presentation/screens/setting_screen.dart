@@ -64,6 +64,16 @@ class SettingScreen extends StatelessWidget {
                           CustomRowInSettingWidget(
                             imagePath: Icons.wallet,
                             iconcolor: AppColors.primaryColor900,
+                            title: 'profile'.tr(),
+                            subtitle: 'updateYourProfile'.tr(),
+                            onTap: () =>
+                                context.pushNamed(Routes.profileScreen),
+                                // context.pushNamed(Routes.profileScreen),
+                          ),
+                          const CustomDividerWidget(),
+                          CustomRowInSettingWidget(
+                            imagePath: Icons.wallet,
+                            iconcolor: AppColors.primaryColor900,
                             title: 'myBooking'.tr(),
                             subtitle: 'appointmentsWiththeAbility'.tr(),
                             onTap: () =>

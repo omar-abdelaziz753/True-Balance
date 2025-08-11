@@ -20,12 +20,16 @@ class ReviewItemWidget extends StatelessWidget {
               CircleAvatar(
                   radius: 27.r,
                   backgroundImage: CachedNetworkImageProvider(
+// <<<<<<< Services
                     
                   
-                    userRating.userImage ?? "",
+//                     userRating.userImage ?? "",
+// =======
+                    userRating.userImage ?? "https://via.placeholder.com/150",
+// >>>>>>> main
                   )),
               SizedBox(width: 12.sp),
-              Text(userRating.userName,
+              Text(userRating.userName ?? '',
                   style: Styles.contentBold
                       .copyWith(color: AppColors.neutralColor1000)),
               const Spacer(),
@@ -35,7 +39,7 @@ class ReviewItemWidget extends StatelessWidget {
                   (index) => Icon(
                     Icons.star,
                     size: 16,
-                    color: index < userRating.userRate
+                    color: index < (userRating.userRate ?? 5)
                         ? AppColors.primaryColor900
                         : Colors.grey[300],
                   ),
@@ -50,7 +54,7 @@ class ReviewItemWidget extends StatelessWidget {
           12.verticalSpace,
           Text(
             // "The Service Was Great! The Service Provider Was Professional And Arrived On Time. I Would Recommend Them To Everyone. Thanks To Harfa App For The Excellent Experience.",
-            userRating.userMessage,
+            userRating.userMessage ?? "",
             style: Styles.contentEmphasis.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 14.sp,
@@ -59,7 +63,7 @@ class ReviewItemWidget extends StatelessWidget {
           8.verticalSpace,
           Text(
             // "6 Hours Ago",
-            userRating.date,
+            userRating.date ?? "",
             style: Styles.contentEmphasis.copyWith(
                 fontWeight: FontWeight.w500,
                 fontSize: 12.sp,
