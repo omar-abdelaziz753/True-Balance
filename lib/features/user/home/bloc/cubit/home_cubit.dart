@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
 import 'package:truee_balance_app/features/user/home/data/model/services/service_model.dart';
@@ -51,19 +52,60 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
+  final ScrollController servicesScrollController = ScrollController();
+  int currentPage = 1;
+  int lastPage = 1;
+  bool isLoadingMore = false;
+
+  void setupServicesScrollController() {
+    servicesScrollController.addListener(() {
+      if (servicesScrollController.position.pixels >=
+              servicesScrollController.position.maxScrollExtent - 100 &&
+          !isLoadingMore) {
+        loadMoreServices();
+      }
+    });
+  }
   Future<void> getAllServices() async {
+     currentPage = 1;
     emit(ServicesLoading());
-    final result = await _homeRepo.getAllServices( page: 1);
+    final result = await _homeRepo.getAllServices( page: currentPage);
 
     result.when(
+      
       success: (data) {
         servicesModel = data;
+         currentPage = data.data.meta.currentPage;
+        lastPage = data.data.meta.lastPage;
         emit(ServicesSuccess());
       },
       failure: (error) {
         emit(ServicesFailure());
       },
     );
+  }
+
+  /// load more services
+Future<void> loadMoreServices() async {
+    if (isLoadingMore || currentPage >= lastPage) return;
+
+    isLoadingMore = true;
+    emit(ServicesLoadingMore());
+
+    final result = await _homeRepo.getAllServices(page: currentPage + 1);
+
+    result.when(
+      success: (data) {
+        servicesModel?.data.data.addAll(data.data.data);
+        currentPage = data.data.meta.currentPage;
+        emit(ServicesSuccess());
+      },
+      failure: (error) {
+        emit(ServicesFailure());
+      },
+    );
+
+    isLoadingMore = false;
   }
 
 }

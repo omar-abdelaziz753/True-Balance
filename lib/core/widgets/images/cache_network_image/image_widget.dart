@@ -62,12 +62,8 @@ class CacheNetworkImagesWidget extends StatelessWidget {
         fit: boxFit!,
       );
     } else {
-      return Image.asset(
-        image,
-        width: width,
-        height: height,
-        fit: boxFit!,
-      );
+      return Image.asset(image,
+          width: width, height: height, fit: boxFit ?? BoxFit.cover);
     }
   }
 }

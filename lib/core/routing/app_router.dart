@@ -140,7 +140,12 @@ class AppRouter {
           screen: const TechnicalSupportScreen(),
         );
       case Routes.ourServicesScreen:
-        return transition(screen: const OurServicesScreen());
+        return transition(
+          screen: const OurServicesScreen(),
+          cubit: HomeCubit(getIt())
+            ..getAllServices()
+            ..setupServicesScrollController(),
+        );
       case Routes.myTicketsScreen:
         return transition(screen: const MyTicketsScreen());
       case Routes.openANewTicketScreen:
@@ -230,7 +235,9 @@ class AppRouter {
       child: const HomeScreen(),
     ),
     BlocProvider(
-      create: (context) => AllDoctorsCubit(getIt())..getAllDoctors(),
+      create: (context) => AllDoctorsCubit(getIt())
+        ..getAllDoctors()
+        ..setupDoctorsScrollController(),
       child: const BestTherapistsScreen(),
     ),
     Container(

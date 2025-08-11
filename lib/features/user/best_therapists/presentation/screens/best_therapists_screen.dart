@@ -92,7 +92,7 @@ class BestTherapistsScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.separated(
-                    
+                  controller: cubit.doctorsScrollController,
                     itemBuilder: (context, index) {
                       return TherapistCardWidget(
                           doctorModel: cubit.doctorsModel!.data.data[index]);
