@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/helper_functions/date_formate.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/model/all_therapist_data_model.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/free_slots_model.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/model/treatment_plans_response.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/repo/create_booking_repo.dart';
 
 part 'create_booking_state.dart';
@@ -81,7 +79,4 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
       },
     );
   }
-
- 
-
 }

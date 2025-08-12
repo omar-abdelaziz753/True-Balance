@@ -10,16 +10,29 @@ class EndPoints {
   static const String verfiyCode = 'api/user/auth/verify-code';
   static const String getSliders = 'api/frontend/sliders';
   static const String getServies = '/api/frontend/services';
+
   static const String getDoctors = 'api/frontend/doctors';
   static const String getSlots = 'api/frontend/user/doctors/getSlots';
 
   static const String bookSession = 'api/frontend/user/consultations/book';
   static const String getTherapist = 'api/frontend/therapists';
+// <<<<<<< settings
   static const String getProfileData = 'api/user/profile/details';
   static const String updateProfileData = 'api/user/profile/updateData';
 
+// =======
+// >>>>>>> main
 
   /// Treatment Plans for Therapist
   static String treatmentPlans(int therapistId) =>
       'api/frontend/therapists/$therapistId/treatment-plans';
+
+  /// get show services
+  static String getShowServices(int serviceId) =>
+      'api/frontend/services/$serviceId';
+  static String treatmentPlansdetails(int therapistId) =>
+      "api/frontend/treatment-plans/$therapistId";
+
+  static String addSession(int therapistId) =>
+      "api/frontend/treatment-plans/$therapistId/sessions";
 }

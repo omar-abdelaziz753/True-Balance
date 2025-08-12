@@ -19,6 +19,8 @@ import 'package:truee_balance_app/features/therapists/appointments/presentation/
 import 'package:truee_balance_app/features/therapists/appointments_details/presentation/screens/appointments_details_screen.dart';
 import 'package:truee_balance_app/features/therapists/main_layout_therapists/business_logic/main_layout_therapists_cubit.dart';
 import 'package:truee_balance_app/features/therapists/main_layout_therapists/presentation/main_layout_therapists.dart';
+import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
+import 'package:truee_balance_app/features/user/add%20session/presentation/screens/add_session_screen.dart';
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
 import 'package:truee_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
@@ -36,15 +38,20 @@ import 'package:truee_balance_app/features/user/medical_reports/presentation/scr
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
 import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
-// <<<<<<< Services
+import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
+import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
+import 'package:truee_balance_app/features/user/session%20details/presentation/screens/treatment_details_screen.dart';
+import 'package:truee_balance_app/features/user/session%20details/presentation/screens/treatment_plans_screen.dart';
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/all_therapist_screen.dart';
+// <<<<<<< settings
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_details_screen.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_plans_screen.dart';
 import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
 // =======
-import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
+// =======
 // >>>>>>> main
+import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/my_tickets_screen.dart';
@@ -81,17 +88,14 @@ class AppRouter {
       case Routes.appointmentsScreen:
         return transition(
           screen: const AppointmentsScreen(),
-          // cubit:
         );
       case Routes.appointmentsDetailsScreen:
         return transition(
           screen: const AppointmentsDetailsScreen(),
-          // cubit:
         );
       case Routes.bestTherapistsScreen:
         return transition(
           screen: const BestTherapistsScreen(),
-          // cubit:
         );
 
       case Routes.loginScreen:
@@ -143,7 +147,12 @@ class AppRouter {
           screen: const TechnicalSupportScreen(),
         );
       case Routes.ourServicesScreen:
-        return transition(screen: const OurServicesScreen());
+        return transition(
+          screen: const OurServicesScreen(),
+          cubit: HomeCubit(getIt())
+            ..getAllServices()
+            ..setupServicesScrollController(),
+        );
       case Routes.myTicketsScreen:
         return transition(screen: const MyTicketsScreen());
       case Routes.openANewTicketScreen:
@@ -178,7 +187,8 @@ class AppRouter {
       case Routes.treatmentplansScreen:
         final therapist = settings.arguments as int;
         return transition(
-          cubit: SessionsCubit(getIt())..getByTherapist(therapistId: therapist),
+          cubit: SessionDetailsCubit(getIt())
+            ..getByTherapist(therapistId: therapist),
           screen: const TreatmentPlansScreen(),
         );
       case Routes.termsAndConditionsScreen:
@@ -186,8 +196,17 @@ class AppRouter {
           screen: const TermsAndConditionsScreen(),
         );
       case Routes.treatmentdetailsScreen:
+        final argument = settings.arguments as int;
         return transition(
+          cubit: SessionDetailsCubit(getIt())
+            ..treatmentPlansdetails(therapistId: argument),
           screen: const TreatmentDetailsScreen(),
+        );
+      case Routes.addSessionScreen:
+        final argument = settings.arguments as TreatmentPlanDetail;
+        return transition(
+          cubit: AddSessionCubit(getIt(), argument),
+          screen: const AddSessionScreen(),
         );
       case Routes.privacyPolicyScreen:
         return transition(
@@ -200,11 +219,7 @@ class AppRouter {
             ..getAvailableSlots(doctorId: argument.id),
           screen: BookingScreen(doctorModel: argument),
         );
-      case Routes.allTherapistsScreen:
-        return transition(
-          cubit: SessionsCubit(getIt())..getAllTherapist(),
-          screen: const AllTherapistScreen(),
-        );
+
       case Routes.onBoardingScreen:
         return transition(
           cubit: OnBoardingCubit(),
@@ -212,7 +227,6 @@ class AppRouter {
         );
       case Routes.chatScreen:
         return transition(
-          // cubit:,
           screen: const ChatScreen(),
         );
       default:
@@ -229,18 +243,17 @@ class AppRouter {
       child: const HomeScreen(),
     ),
     BlocProvider(
-      create: (context) => AllDoctorsCubit(getIt())..getAllDoctors(),
+      create: (context) => AllDoctorsCubit(getIt())
+        ..getAllDoctors()
+        ..setupDoctorsScrollController(),
       child: const BestTherapistsScreen(),
+    ),
+    Container(
+      color: Colors.white,
     ),
     BlocProvider(
       create: (context) => SessionsCubit(getIt())..getAllTherapist(),
       child: const AllTherapistScreen(),
-    ),
-    // Container(
-    //   color: Colors.white,
-    // ),
-    Container(
-      color: Colors.white,
     ),
     const SettingScreen(),
   ];

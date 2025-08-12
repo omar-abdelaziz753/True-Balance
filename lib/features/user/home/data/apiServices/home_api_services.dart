@@ -15,7 +15,8 @@ class HomeApiServices {
   }
 
   Future<Response?> getAllServices({required int page}) async {
-    return _dioFactory
-        .get(endPoint: EndPoints.getServies, data: {'page': page});
+    return _dioFactory.get(endPoint: EndPoints.getServies, data: {
+      'page': page,
+    });
   }
 }

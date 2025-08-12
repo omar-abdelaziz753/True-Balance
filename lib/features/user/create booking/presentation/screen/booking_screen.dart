@@ -133,7 +133,6 @@ class BookingScreen extends StatelessWidget {
                             color: AppColors.redColor200);
                       }
                     } else if (cubit.currentStep == 1) {
-                      // cubit.createBooking(doctorModel);
                       cubit.bookSelectedSession();
                     }
                   },
