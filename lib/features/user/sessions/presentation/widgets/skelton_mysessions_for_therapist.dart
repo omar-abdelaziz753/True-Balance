@@ -12,16 +12,16 @@ class SkeltonMySessionsForTherapist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Skeletonizer(
-      enabled: true,
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: AppColors.primaryColor900,
+      appBar: CustomBasicAppBar(
+        title: 'mySessions'.tr(),
         backgroundColor: AppColors.primaryColor900,
-        appBar: CustomBasicAppBar(
-          title: 'mySessions'.tr(),
-          backgroundColor: AppColors.primaryColor900,
-          svgAsset: 'assets/images/svg/bg_image.svg',
-        ),
-        body: Container(
+        svgAsset: 'assets/images/svg/bg_image.svg',
+      ),
+      body: Skeletonizer(
+        enabled: true,
+        child: Container(
           width: double.infinity,
           padding: EdgeInsets.all(18.sp),
           decoration: BoxDecoration(
