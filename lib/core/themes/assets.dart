@@ -10,9 +10,29 @@ class Assets {
   /// assets/images/png/back_ground_best_therapists.png
   static const String assetsImagesPngBackGroundBestTherapists = "assets/images/png/back_ground_best_therapists.png";
 
+  /// Assets for assetsImagesPngBackGroundDoctor
+  /// assets/images/png/back_ground_doctor.png
+  static const String assetsImagesPngBackGroundDoctor = "assets/images/png/back_ground_doctor.png";
+
+  /// Assets for assetsImagesPngBackGroundIamge
+  /// assets/images/png/back_ground_iamge.png
+  static const String assetsImagesPngBackGroundIamge = "assets/images/png/back_ground_iamge.png";
+
+  /// Assets for assetsImagesPngBannerImage
+  /// assets/images/png/banner_image.png
+  static const String assetsImagesPngBannerImage = "assets/images/png/banner_image.png";
+
+  /// Assets for assetsImagesPngBestDoctor
+  /// assets/images/png/best_doctor.png
+  static const String assetsImagesPngBestDoctor = "assets/images/png/best_doctor.png";
+
   /// Assets for assetsImagesPngBestTherapistsDoctor
   /// assets/images/png/best_therapists_doctor.png
   static const String assetsImagesPngBestTherapistsDoctor = "assets/images/png/best_therapists_doctor.png";
+
+  /// Assets for assetsImagesPngDoctorImage
+  /// assets/images/png/doctor_image.png
+  static const String assetsImagesPngDoctorImage = "assets/images/png/doctor_image.png";
 
   /// Assets for assetsImagesPngDoctors
   /// assets/images/png/doctors.png
@@ -94,6 +114,10 @@ class Assets {
   /// assets/images/svg/booking_icon.svg
   static const String assetsImagesSvgBookingIcon = "assets/images/svg/booking_icon.svg";
 
+  /// Assets for assetsImagesSvgCaneraIcon
+  /// assets/images/svg/canera_icon.svg
+  static const String assetsImagesSvgCaneraIcon = "assets/images/svg/canera_icon.svg";
+
   /// Assets for assetsImagesSvgChosseAccount
   /// assets/images/svg/chosse_account.svg
   static const String assetsImagesSvgChosseAccount = "assets/images/svg/chosse_account.svg";
@@ -138,6 +162,10 @@ class Assets {
   /// assets/images/svg/notification_icon.svg
   static const String assetsImagesSvgNotificationIcon = "assets/images/svg/notification_icon.svg";
 
+  /// Assets for assetsImagesSvgNotificationTherep
+  /// assets/images/svg/notification-therep.svg
+  static const String assetsImagesSvgNotificationTherep = "assets/images/svg/notification-therep.svg";
+
   /// Assets for assetsImagesSvgOvalIcon
   /// assets/images/svg/oval_icon.svg
   static const String assetsImagesSvgOvalIcon = "assets/images/svg/oval_icon.svg";
@@ -161,6 +189,10 @@ class Assets {
   /// Assets for assetsImagesSvgSettingIcon
   /// assets/images/svg/setting_icon.svg
   static const String assetsImagesSvgSettingIcon = "assets/images/svg/setting_icon.svg";
+
+  /// Assets for assetsImagesSvgSettingTherep
+  /// assets/images/svg/setting_therep.svg
+  static const String assetsImagesSvgSettingTherep = "assets/images/svg/setting_therep.svg";
 
   /// Assets for assetsImagesSvgSignUpIcon
   /// assets/images/svg/sign_up_icon.svg

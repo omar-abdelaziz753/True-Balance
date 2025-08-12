@@ -31,22 +31,22 @@ class DoctorDetailsScreen extends StatelessWidget {
           current is DoctorDetailsLoading,
       builder: (context, state) {
         if (state is DoctorDetailsLoading) {
-          return Skeletonizer(
-            enabled: true,
-            child: Scaffold(
-              backgroundColor: AppColors.primaryColor900,
-              appBar: CustomBasicAppBar(
-                leading: BackButton(
-                  color: AppColors.neutralColor100,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                title: "mohamed",
-                backgroundColor: AppColors.primaryColor900,
-                svgAsset: 'assets/images/svg/bg_image.svg',
+          return Scaffold(
+            backgroundColor: AppColors.primaryColor900,
+            appBar: CustomBasicAppBar(
+              leading: BackButton(
+                color: AppColors.neutralColor100,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              body: SingleChildScrollView(
+              title: "mohamed",
+              backgroundColor: AppColors.primaryColor900,
+              svgAsset: 'assets/images/svg/bg_image.svg',
+            ),
+            body: Skeletonizer(
+            enabled: true,
+              child: SingleChildScrollView(
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(18.sp),
@@ -171,17 +171,17 @@ class DoctorDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              bottomNavigationBar: Container(
-                color: Colors.white,
-                child: CustomButtonWidget(
-                  margin:
-                      EdgeInsets.only(bottom: 20.sp, left: 20.sp, right: 20.sp),
-                  text: 'booking'.tr(),
-                  textStyle: Styles.captionEmphasis.copyWith(
-                    color: AppColors.neutralColor100,
-                  ),
-                  onPressed: () {},
+            ),
+            bottomNavigationBar: Container(
+              color: Colors.white,
+              child: CustomButtonWidget(
+                margin:
+                    EdgeInsets.only(bottom: 20.sp, left: 20.sp, right: 20.sp),
+                text: 'booking'.tr(),
+                textStyle: Styles.captionEmphasis.copyWith(
+                  color: AppColors.neutralColor100,
                 ),
+                onPressed: () {},
               ),
             ),
           );

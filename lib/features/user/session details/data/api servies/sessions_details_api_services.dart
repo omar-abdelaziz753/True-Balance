@@ -17,4 +17,11 @@ class SessionsDetailsApiServices {
   Future<Response?> addSession({required int id, required date}) async {
     return _dioFactory.post(endPoint: EndPoints.addSession(id), data: date);
   }
+
+  Future<Response?> rateSession(
+      {required int id, required double number, required String text}) async {
+    return _dioFactory.post(
+        endPoint: EndPoints.rateSession(id),
+        data: {'rating': number.toInt(), 'review': text});
+  }
 }

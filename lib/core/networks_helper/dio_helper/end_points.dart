@@ -16,20 +16,25 @@ class EndPoints {
 
   static const String bookSession = 'api/frontend/user/consultations/book';
   static const String getTherapist = 'api/frontend/therapists';
-// <<<<<<< settings
   static const String getProfileData = 'api/user/profile/details';
   static const String updateProfileData = 'api/user/profile/updateData';
+  static const String makeTicket = 'api/frontend/clientTicket/create';
+  static const String sendMessage = 'api/frontend/clientTicket/createMessage';
+  static const String getTickets = 'api/frontend/clientTicket/list';
+  static const String ticketDetails = 'api/frontend/clientTicket/show';
 
+// <<<<<<< Services
   static const String getconsultations = 'api/frontend/user/consultations';
 
 // =======
 // >>>>>>> main
 
   /// Treatment Plans for Therapist
+// =======
+// >>>>>>> main
   static String treatmentPlans(int therapistId) =>
       'api/frontend/therapists/$therapistId/treatment-plans';
 
-  /// get show services
   static String getShowServices(int serviceId) =>
       'api/frontend/services/$serviceId';
   static String treatmentPlansdetails(int therapistId) =>
@@ -37,4 +42,6 @@ class EndPoints {
 
   static String addSession(int therapistId) =>
       "api/frontend/treatment-plans/$therapistId/sessions";
+  static String rateSession(int therapistId) =>
+      "api/frontend/treatment-plans/sessions/$therapistId/rate";
 }
