@@ -64,10 +64,10 @@ class AuthRepository {
 
   Future<void> saveCaches(UserDataModel model) async {
     await CacheHelper.saveSecuredString(
-        key: CacheKeys.userToken, value: model.data.token);
-    await CacheHelper.saveData(key: CacheKeys.userName, value: model.data.name);
+        key: CacheKeys.userToken, value: model.data!.token);
+    await CacheHelper.saveData(key: CacheKeys.userName, value: model.data!.name);
     await CacheHelper.saveData(
-        key: CacheKeys.userPhone, value: model.data.phone);
+        key: CacheKeys.userPhone, value: model.data!.phone);
 
     AppConstants.userToken =
         await CacheHelper.getSecuredString(key: CacheKeys.userToken);
@@ -104,7 +104,7 @@ class AuthRepository {
 
           await saveCaches(model);
 
-          customToast(msg: model.status, color: Colors.green);
+          customToast(msg: model.status!, color: Colors.green);
         }
 
         return const ApiResult.success('Register Success');
