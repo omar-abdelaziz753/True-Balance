@@ -15,7 +15,9 @@ class EndPoints {
 
   static const String bookSession = 'api/frontend/user/consultations/book';
   static const String getTherapist = 'api/frontend/therapists';
-  
+  static const String getProfileData = 'api/user/profile/details';
+  static const String updateProfileData = 'api/user/profile/updateData';
+
 
   /// Treatment Plans for Therapist
   static String treatmentPlans(int therapistId) =>

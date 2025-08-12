@@ -24,7 +24,7 @@ Map<String, dynamic> _$DoctorDetailsResponseToJson(
       'code': instance.code,
     };
 
-DoctorModelDetails _$DoctorModelFromJson(Map<String, dynamic> json) =>
+DoctorModelDetails _$DoctorModelDetailsFromJson(Map<String, dynamic> json) =>
     DoctorModelDetails(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
@@ -38,7 +38,7 @@ DoctorModelDetails _$DoctorModelFromJson(Map<String, dynamic> json) =>
       ratings: Ratings.fromJson(json['ratings'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$DoctorModelToJson(DoctorModelDetails instance) =>
+Map<String, dynamic> _$DoctorModelDetailsToJson(DoctorModelDetails instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

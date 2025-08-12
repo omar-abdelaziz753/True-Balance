@@ -49,9 +49,9 @@ class DoctorModelDetails {
   });
 
   factory DoctorModelDetails.fromJson(Map<String, dynamic> json) =>
-      _$DoctorModelFromJson(json);
+      _$DoctorModelDetailsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DoctorModelToJson(this);
+  Map<String, dynamic> toJson() => _$DoctorModelDetailsToJson(this);
 }
 
 @JsonSerializable()
