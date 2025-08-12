@@ -45,7 +45,6 @@ import 'package:truee_balance_app/features/user/session%20details/presentation/s
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/all_therapist_screen.dart';
 import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
-
 import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
@@ -243,12 +242,12 @@ class AppRouter {
         ..setupDoctorsScrollController(),
       child: const BestTherapistsScreen(),
     ),
-    Container(
-      color: Colors.white,
-    ),
     BlocProvider(
       create: (context) => SessionsCubit(getIt())..getAllTherapist(),
       child: const AllTherapistScreen(),
+    ),
+    Container(
+      color: Colors.white,
     ),
     const SettingScreen(),
   ];
