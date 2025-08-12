@@ -24,16 +24,16 @@ class TreatmentPlansScreen extends StatelessWidget {
           current is GetByTherapistFailureState,
       builder: (context, state) {
         if (state is GetByTherapistLoadingState) {
-          return Skeletonizer(
-            enabled: true,
-            child: Scaffold(
+          return Scaffold(
+            backgroundColor: AppColors.primaryColor900,
+            appBar: CustomBasicAppBar(
+              title: 'treatmentPlans'.tr(),
               backgroundColor: AppColors.primaryColor900,
-              appBar: CustomBasicAppBar(
-                title: 'treatmentPlans'.tr(),
-                backgroundColor: AppColors.primaryColor900,
-                svgAsset: 'assets/images/svg/bg_image.svg',
-              ),
-              body: Container(
+              svgAsset: 'assets/images/svg/bg_image.svg',
+            ),
+            body: Skeletonizer(
+              enabled: true,
+              child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(18.sp),
                 decoration: BoxDecoration(
@@ -196,7 +196,7 @@ class TreatmentPlansScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.primaryColor900,
           appBar: CustomBasicAppBar(
-            title: 'treatmentPlans'.tr(),
+            title: cubit.treatmentPlansResponse?.data!.therapist?.name ?? '',
             backgroundColor: AppColors.primaryColor900,
             svgAsset: 'assets/images/svg/bg_image.svg',
           ),

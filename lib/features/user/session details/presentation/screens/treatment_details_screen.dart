@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
@@ -45,7 +44,7 @@ class TreatmentDetailsScreen extends StatelessWidget {
           child: Scaffold(
             backgroundColor: AppColors.primaryColor900,
             appBar: CustomBasicAppBar(
-              title: 'treatmentname'.tr(),
+              title: cubit.treatmentPlanDetail?.name ?? "",
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
             ),
@@ -103,54 +102,8 @@ class TreatmentDetailsScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(12.sp),
                           child: ListView.separated(
-                              itemBuilder: (context, index) => Container(
-                                    width: double.infinity,
-                                    padding: EdgeInsets.all(10.sp),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.neutralColor100,
-                                      borderRadius: BorderRadius.circular(4.r),
-                                      border: Border.all(
-                                        color: AppColors.primaryColor900,
-                                        width: 1.w,
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          offset: Offset(0, 2.h),
-                                          blurRadius: 8.r,
-                                          spreadRadius: 0,
-                                          color: Colors.black.withAlpha(20),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Row(
-                                      spacing: 10.sp,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                            'Session ${(cubit.upcomingSessions[index].index!) + 1}',
-                                            style:
-                                                Styles.captionEmphasis.copyWith(
-                                              color: AppColors.neutralColor1000,
-                                            ),
-                                          ),
-                                        ),
-                                        // const Spacer(),
-                                        Text(
-                                          "See Details",
-                                          style: TextStyle(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColors.secondaryColor500,
-                                            decoration:
-                                                TextDecoration.underline,
-                                            decorationColor:
-                                                AppColors.secondaryColor500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                              itemBuilder: (context, index) => SeeDetailsWidget(
+                                    session: cubit.upcomingSessions[index],
                                   ),
                               separatorBuilder: (context, index) =>
                                   18.verticalSpace,
@@ -160,7 +113,7 @@ class TreatmentDetailsScreen extends StatelessWidget {
                           padding: EdgeInsets.all(12.sp),
                           child: ListView.separated(
                               itemBuilder: (context, index) => SeeDetailsWidget(
-                                    index: index,
+                                    session: cubit.completedSessions[index],
                                   ),
                               separatorBuilder: (context, index) =>
                                   18.verticalSpace,

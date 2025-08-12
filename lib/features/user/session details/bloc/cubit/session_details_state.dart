@@ -16,3 +16,9 @@ final class GetByTherapistDetailLoadingState extends SessionDetailsState {}
 final class GetByTherapistDetailSuccessState extends SessionDetailsState {}
 
 final class GetByTherapistDetailFailureState extends SessionDetailsState {}
+
+final class RateSessionSuccessState extends SessionDetailsState {}
+
+final class RateSessionFailureState extends SessionDetailsState {}
+
+final class RateSessionLoadingState extends SessionDetailsState {}

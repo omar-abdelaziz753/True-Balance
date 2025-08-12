@@ -40,6 +40,7 @@ import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_sc
 import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
 import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
 import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
+import 'package:truee_balance_app/features/user/session%20details/presentation/screens/session_details.dart';
 import 'package:truee_balance_app/features/user/session%20details/presentation/screens/treatment_details_screen.dart';
 import 'package:truee_balance_app/features/user/session%20details/presentation/screens/treatment_plans_screen.dart';
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
@@ -218,6 +219,11 @@ class AppRouter {
           cubit: CreateBookingCubit(getIt())
             ..getAvailableSlots(doctorId: argument.id),
           screen: BookingScreen(doctorModel: argument),
+        );
+      case Routes.sessionDetails:
+        final argument = settings.arguments as Session;
+        return transition(
+          screen: SessionDetails(session: argument),
         );
 
       case Routes.onBoardingScreen:
