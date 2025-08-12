@@ -52,7 +52,7 @@
 //         decoration: BoxDecoration(
 //           color: Colors.white,
 //           borderRadius: BorderRadius.circular(12.r),
-//           border: Border.all(color: AppColors.primaryColor200.withOpacity(0.3), width: 1),
+//           border: Border.all(color: AppColors.primaryColor200.withValues(alpha:0.3), width: 1),
 //         ),
 //         child: Row(
 //           crossAxisAlignment: CrossAxisAlignment.start,

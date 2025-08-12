@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,8 +21,7 @@ class CustomAppointmentContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Container(
+    return Container(
       width: double.infinity,
       padding: EdgeInsets.all(12.sp),
       decoration: BoxDecoration(
@@ -42,8 +40,7 @@ class CustomAppointmentContainerWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: 
-      Row(
+      child: Row(
         children: [
           SvgPicture.asset(
             imagePath,
@@ -52,8 +49,7 @@ class CustomAppointmentContainerWidget extends StatelessWidget {
           ),
           12.horizontalSpace,
           Expanded(
-            child: 
-            Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -74,7 +70,7 @@ class CustomAppointmentContainerWidget extends StatelessWidget {
                 SizedBox(height: 4.h),
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFFDB43).withOpacity(0.1),
+                    color: const Color(0xFFFFDB43).withValues(alpha: 0.1),
                     borderRadius:
                         BorderRadius.circular(AppConstants.borderRadius - 4.r),
                   ),

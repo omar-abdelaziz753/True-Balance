@@ -5,7 +5,6 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
 import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/details_row_widget.dart';
-import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/select_booking_Widget.dart';
 
 class RewviewWidget extends StatelessWidget {
   const RewviewWidget({
@@ -283,5 +282,3 @@ class RewviewWidget extends StatelessWidget {
     );
   }
 }
-
-

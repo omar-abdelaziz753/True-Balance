@@ -153,7 +153,8 @@ class OnBoardingScreen extends StatelessWidget {
                               position: onBoardingCubit.onBoardingIndex,
                               decorator: DotsDecorator(
                                 activeColor: AppColors.primaryColor900,
-                                color: const Color(0xFF005430).withOpacity(0.1),
+                                color: const Color(0xFF005430)
+                                    .withValues(alpha: 0.1),
                                 size: Size(30.r, 5.r),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4.r),

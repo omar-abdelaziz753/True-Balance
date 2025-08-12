@@ -21,7 +21,7 @@ import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_
 // //         borderRadius: BorderRadius.circular(AppConstants.borderRadius),
 // //         border: Border.all(
 // //           width: 1.w,
-// //           color: const Color(0xFF030303).withOpacity(0.1),
+// //           color: const Color(0xFF030303).withValues(alpha:0.1),
 // //         ),
 // //       ),
 // //       child: Padding(
@@ -68,7 +68,7 @@ import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_
 //         borderRadius: BorderRadius.circular(AppConstants.borderRadius),
 //         border: Border.all(
 //           width: 1.w,
-//           color: const Color(0xFF030303).withOpacity(0.1),
+//           color: const Color(0xFF030303).withValues(alpha:0.1),
 //         ),
 //       ),
 //       child: Padding(
@@ -117,7 +117,7 @@ class ServiceCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConstants.borderRadius),
         border: Border.all(
           width: 1.w,
-          color: const Color(0xFF030303).withOpacity(0.1),
+          color: const Color(0xFF030303).withValues(alpha: 0.1),
         ),
       ),
       child: Padding(

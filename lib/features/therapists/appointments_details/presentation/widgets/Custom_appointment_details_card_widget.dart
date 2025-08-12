@@ -57,7 +57,7 @@ class CustomAppointmentDetailsCardWidget extends StatelessWidget {
                   SizedBox(height: 4.h),
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFDB43).withOpacity(0.1),
+                      color: const Color(0xFFFFDB43).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(
                           AppConstants.borderRadius - 4.r),
                     ),

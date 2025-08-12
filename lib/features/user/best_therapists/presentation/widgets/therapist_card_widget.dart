@@ -29,7 +29,7 @@ class TherapistCardWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 1.w,
-            color: const Color(0xff0303031).withOpacity(0.1),
+            color: const Color(0xff0303031).withValues(alpha: 0.1),
           ),
           borderRadius: BorderRadius.circular(
             AppConstants.borderRadius + 4.r,
@@ -41,7 +41,7 @@ class TherapistCardWidget extends StatelessWidget {
             ),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-              const Color(0xffFCFCFC).withOpacity(0.1),
+              const Color(0xffFCFCFC).withValues(alpha: 0.1),
               BlendMode.dstATop,
             ),
           ),
@@ -120,7 +120,7 @@ class TherapistCardSkeltonWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.w,
-          color: const Color(0xff0303031).withOpacity(0.1),
+          color: const Color(0xff0303031).withValues(alpha: 0.1),
         ),
         borderRadius: BorderRadius.circular(
           AppConstants.borderRadius + 4.r,
@@ -132,7 +132,7 @@ class TherapistCardSkeltonWidget extends StatelessWidget {
           ),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
-            const Color(0xffFCFCFC).withOpacity(0.1),
+            const Color(0xffFCFCFC).withValues(alpha: 0.1),
             BlendMode.dstATop,
           ),
         ),

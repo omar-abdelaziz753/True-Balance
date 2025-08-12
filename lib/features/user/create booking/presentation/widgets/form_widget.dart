@@ -187,7 +187,7 @@ class FormWidget extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 12.h),
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           decoration: BoxDecoration(
-            color: AppColors.neutralColor100.withOpacity(0.1),
+            color: AppColors.neutralColor100.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10.r),
             border: Border.all(
               color: AppColors.neutralColor300,

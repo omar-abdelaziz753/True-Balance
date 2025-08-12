@@ -13,7 +13,7 @@ class OurServicesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Cubit = context.read<HomeCubit>();
+    final cubit = context.read<HomeCubit>();
 
     return BlocBuilder<HomeCubit, HomeState>(
       buildWhen: (previous, current) =>
@@ -52,7 +52,7 @@ class OurServicesScreen extends StatelessWidget {
                         ),
                         child: GridView.builder(
                           shrinkWrap: true,
-                          itemCount: Cubit.servicesModel?.data.data.length,
+                          itemCount: cubit.servicesModel?.data.data.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -100,8 +100,8 @@ class OurServicesScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: GridView.builder(
-                      controller: Cubit.servicesScrollController,
-                      itemCount: Cubit.servicesModel?.data.data.length ?? 0,
+                      controller: cubit.servicesScrollController,
+                      itemCount: cubit.servicesModel?.data.data.length ?? 0,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisSpacing: 18.h,
@@ -110,8 +110,8 @@ class OurServicesScreen extends StatelessWidget {
                       ),
                       itemBuilder: (context, index) {
                         return ServiceCardWidget(
-                          image: Cubit.servicesModel?.data.data[index].icon,
-                          title: Cubit.servicesModel?.data.data[index].title,
+                          image: cubit.servicesModel?.data.data[index].icon,
+                          title: cubit.servicesModel?.data.data[index].title,
                         );
                       },
                     ),

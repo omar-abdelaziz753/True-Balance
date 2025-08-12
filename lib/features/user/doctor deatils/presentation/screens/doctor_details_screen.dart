@@ -14,7 +14,7 @@ import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dar
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/review_Item_widget.dart';
+import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/review_item_widget.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
   const DoctorDetailsScreen({
@@ -62,7 +62,8 @@ class DoctorDetailsScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           border: Border.all(
                             width: 1.w,
-                            color: const Color(0xff0303031).withOpacity(0.1),
+                            color:
+                                const Color(0xff0303031).withValues(alpha: 0.1),
                           ),
                           borderRadius: BorderRadius.circular(
                             AppConstants.borderRadius + 4.r,
@@ -74,7 +75,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                             ),
                             fit: BoxFit.cover,
                             colorFilter: ColorFilter.mode(
-                              const Color(0xffFCFCFC).withOpacity(0.1),
+                              const Color(0xffFCFCFC).withValues(alpha: 0.1),
                               BlendMode.dstATop,
                             ),
                           ),
@@ -216,7 +217,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1.w,
-                        color: const Color(0xff0303031).withOpacity(0.1),
+                        color: const Color(0xff0303031).withValues(alpha: 0.1),
                       ),
                       borderRadius: BorderRadius.circular(
                         AppConstants.borderRadius + 4.r,
@@ -228,7 +229,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                         ),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
-                          const Color(0xffFCFCFC).withOpacity(0.1),
+                          const Color(0xffFCFCFC).withValues(alpha: 0.1),
                           BlendMode.dstATop,
                         ),
                       ),
