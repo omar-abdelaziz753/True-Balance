@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/user/create%20booking/data/model/treatment_plans_response.dart';
 import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
 import 'package:truee_balance_app/features/user/session%20details/data/repo/sessions_details_repo.dart';
@@ -61,5 +62,24 @@ class SessionDetailsCubit extends Cubit<SessionDetailsState> {
       entry.value.index = entry.key;
       return entry.value;
     }).toList();
+  }
+
+  Future<void> rateSession(
+      {required int id, required double number, required String text}) async {
+    showLoading();
+    emit(RateSessionLoadingState());
+    final result =
+        await _sessionsRepo.rateSession(id: id, number: number, text: text);
+    result.when(
+      success: (data) {
+        hideLoading();
+
+        emit(RateSessionSuccessState());
+      },
+      failure: (error) {
+        hideLoading();
+        emit(RateSessionFailureState());
+      },
+    );
   }
 }
