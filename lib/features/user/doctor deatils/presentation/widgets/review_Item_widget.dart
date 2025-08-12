@@ -20,13 +20,7 @@ class ReviewItemWidget extends StatelessWidget {
               CircleAvatar(
                   radius: 27.r,
                   backgroundImage: CachedNetworkImageProvider(
-// <<<<<<< Services
-                    
-                  
-//                     userRating.userImage ?? "",
-// =======
                     userRating.userImage ?? "https://via.placeholder.com/150",
-// >>>>>>> main
                   )),
               SizedBox(width: 12.sp),
               Text(userRating.userName ?? '',
@@ -53,7 +47,6 @@ class ReviewItemWidget extends StatelessWidget {
           ),
           12.verticalSpace,
           Text(
-            // "The Service Was Great! The Service Provider Was Professional And Arrived On Time. I Would Recommend Them To Everyone. Thanks To Harfa App For The Excellent Experience.",
             userRating.userMessage ?? "",
             style: Styles.contentEmphasis.copyWith(
               fontWeight: FontWeight.w500,
@@ -62,7 +55,6 @@ class ReviewItemWidget extends StatelessWidget {
           ),
           8.verticalSpace,
           Text(
-            // "6 Hours Ago",
             userRating.date ?? "",
             style: Styles.contentEmphasis.copyWith(
                 fontWeight: FontWeight.w500,

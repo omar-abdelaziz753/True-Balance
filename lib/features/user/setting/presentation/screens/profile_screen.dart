@@ -2,12 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_main_app_bar_in_home_widget.dart';
 import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -41,7 +38,6 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             18.verticalSpace,
-
             Stack(
               children: [
                 CircleAvatar(
@@ -63,7 +59,6 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
             10.verticalSpace,
-
             Text(
               'Ahmed Hossam',
               style: Styles.highlightEmphasis.copyWith(
@@ -71,7 +66,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             18.verticalSpace,
-
             Row(
               children: [
                 Text(
@@ -83,7 +77,6 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
             8.verticalSpace,
-
             CustomTextFormFieldWidget(
               hintText: 'Ahmed Hossam',
               borderColor: AppColors.neutralColor1000,
@@ -93,7 +86,9 @@ class ProfileScreen extends StatelessWidget {
               textStyle: Styles.captionRegular.copyWith(
                 color: AppColors.neutralColor1000,
               ),
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
           ],
         ),

@@ -10,7 +10,7 @@ import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart'
 import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
 import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/details_widget.dart';
 import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/rewview_widget.dart';
-import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/select_booking_Widget.dart';
+import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/select_booking_widget.dart';
 
 class AddSessionScreen extends StatelessWidget {
   const AddSessionScreen({super.key});

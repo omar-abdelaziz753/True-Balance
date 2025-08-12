@@ -29,7 +29,7 @@ class ChooseAccountWidget extends StatelessWidget {
           border: Border.all(
             width: 1.w,
             color: !isSelected
-                ? const Color(0xFF030303).withOpacity(0.1)
+                ? const Color(0xFF030303).withValues(alpha: 0.1)
                 : AppColors.primaryColor900,
           ),
         ),

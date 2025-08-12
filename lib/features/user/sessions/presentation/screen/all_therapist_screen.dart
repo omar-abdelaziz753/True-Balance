@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
-import 'package:truee_balance_app/features/user/sessions/presentation/widgets/my-sessions_for_all_therapist_widgets.dart';
+import 'package:truee_balance_app/features/user/sessions/presentation/widgets/my_sessions_for_all_therapist_widgets.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/widgets/skelton_mysessions_for_therapist.dart';
 
 class AllTherapistScreen extends StatelessWidget {
