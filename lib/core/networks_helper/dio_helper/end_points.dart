@@ -19,6 +19,10 @@ class EndPoints {
 // <<<<<<< settings
   static const String getProfileData = 'api/user/profile/details';
   static const String updateProfileData = 'api/user/profile/updateData';
+  static const String makeTicket = 'api/frontend/clientTicket/create';
+  static const String sendMessage = 'api/frontend/clientTicket/createMessage';
+  static const String getTickets = 'api/frontend/clientTicket/list';
+  static const String ticketDetails = 'api/frontend/clientTicket/show';
 
 // =======
 // >>>>>>> main

@@ -47,6 +47,7 @@ import 'package:truee_balance_app/features/user/sessions/presentation/screen/all
 import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
+import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/my_tickets_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/open_a_new_ticket_screen.dart';
@@ -139,6 +140,7 @@ class AppRouter {
       case Routes.technicalSupportScreen:
         return transition(
           screen: const TechnicalSupportScreen(),
+          cubit: TechnicalSupportCubit(getIt())..getAllTickets(),
         );
       case Routes.ourServicesScreen:
         return transition(
@@ -148,10 +150,14 @@ class AppRouter {
             ..setupServicesScrollController(),
         );
       case Routes.myTicketsScreen:
-        return transition(screen: const MyTicketsScreen());
+        return transition(
+          screen: const MyTicketsScreen(),
+          cubit: TechnicalSupportCubit(getIt())..getAllTickets(),
+        );
       case Routes.openANewTicketScreen:
         return transition(
           screen: const OpenANewTicketScreen(),
+          cubit: TechnicalSupportCubit(getIt()),
         );
       case Routes.myBookingScreen:
         return transition(
@@ -220,8 +226,10 @@ class AppRouter {
           screen: const OnBoardingScreen(),
         );
       case Routes.chatScreen:
+        final id = settings.arguments as int;
         return transition(
-          screen: const ChatScreen(),
+          screen: ChatScreen(id: id),
+          cubit: TechnicalSupportCubit(getIt())..getTicketDetails(ticketId: id.toString()),
         );
       default:
         return null;

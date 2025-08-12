@@ -13,6 +13,8 @@ import 'package:truee_balance_app/features/user/sessions/data/api%20servies/sess
 import 'package:truee_balance_app/features/user/sessions/data/repo/sessions_repo.dart';
 import 'package:truee_balance_app/features/user/setting/data/api_services/api_services.dart';
 import 'package:truee_balance_app/features/user/setting/data/repos/repos.dart';
+import 'package:truee_balance_app/features/user/technical_support/data/api_services/api_services.dart';
+import 'package:truee_balance_app/features/user/technical_support/data/repos/repos.dart';
 
 import '../../networks_helper/dio_helper/dio_helper.dart';
 
@@ -41,9 +43,12 @@ Future<void> setupDependencyInjection() async {
 
   getIt.registerLazySingleton<SessionsApiServices>(
       () => SessionsApiServices(getIt()));
+  getIt.registerLazySingleton<TechnicalSupportApiServices>(
+      () => TechnicalSupportApiServices(getIt()));
   getIt.registerLazySingleton<SessionsRepo>(() => SessionsRepo(getIt()));
 // <<<<<<< settings
   getIt.registerLazySingleton<SettingsRepos>(() => SettingsRepos(getIt()));
+  getIt.registerLazySingleton<TechnicalSupportRepo>(() => TechnicalSupportRepo(getIt()));
 // =======
 
   getIt.registerLazySingleton<SessionsDetailsApiServices>(

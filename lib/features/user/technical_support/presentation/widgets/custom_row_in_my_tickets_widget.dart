@@ -19,40 +19,35 @@ class CustomRowInMyTicketsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-       onTap: (){
-        context.pushNamed(Routes.chatScreen);
-       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: AppConstants.screenWidth(context) / 1.2,
-            child: Column(
-              spacing: 4.h,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  ticketNumber,
-                  style: Styles.contentEmphasis.copyWith(
-                    color: AppColors.neutralColor1000,
-                  ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: AppConstants.screenWidth(context) / 1.2,
+          child: Column(
+            spacing: 4.h,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                ticketNumber,
+                style: Styles.contentEmphasis.copyWith(
+                  color: AppColors.neutralColor1000,
                 ),
-                Text(
-                  message,
-                  style: Styles.footnoteRegular.copyWith(
-                    color: AppColors.neutralColor600,
-                  ),
-                  overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                message,
+                style: Styles.footnoteRegular.copyWith(
+                  color: AppColors.neutralColor600,
                 ),
-              ],
-            ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
-          const CustomCircleAvatarNumberOfMessagesWidget(
-            numberOfMessages: '3',
-          ),
-        ],
-      ),
+        ),
+        // const CustomCircleAvatarNumberOfMessagesWidget(
+        //   numberOfMessages: '3',
+        // ),
+      ],
     );
   }
 }
