@@ -22,18 +22,16 @@ class BestTherapistsScreen extends StatelessWidget {
           current is DoctorsFailure,
       builder: (context, state) {
         if (state is DoctorsLoading) {
-          return Skeletonizer(
-            enabled: true,
-            // containersColor: Colors.white,
-
-            child: Scaffold(
+          return Scaffold(
+            backgroundColor: AppColors.primaryColor900,
+            appBar: CustomBasicAppBar(
+              title: 'doctors'.tr(),
               backgroundColor: AppColors.primaryColor900,
-              appBar: CustomBasicAppBar(
-                title: 'doctors'.tr(),
-                backgroundColor: AppColors.primaryColor900,
-                svgAsset: 'assets/images/svg/bg_image.svg',
-              ),
-              body: Container(
+              svgAsset: 'assets/images/svg/bg_image.svg',
+            ),
+            body: Skeletonizer(
+              enabled: true,
+              child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(18.sp),
                 decoration: BoxDecoration(
@@ -92,7 +90,7 @@ class BestTherapistsScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.separated(
-                  controller: cubit.doctorsScrollController,
+                    controller: cubit.doctorsScrollController,
                     itemBuilder: (context, index) {
                       return TherapistCardWidget(
                           doctorModel: cubit.doctorsModel!.data.data[index]);
