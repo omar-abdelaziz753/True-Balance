@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 import 'package:truee_balance_app/features/user/my_booking/widgets/custom_row_make_title_and_desc_widget.dart';
 
-class BookingDetailsScreen extends StatelessWidget {
-  const BookingDetailsScreen({super.key});
 
+class BookingDetailsScreen extends StatelessWidget {
+  const BookingDetailsScreen({super.key, required this.consultation});
+  final Consultation consultation;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,16 +70,12 @@ class BookingDetailsScreen extends StatelessWidget {
                           children: [
                             CustomRowMakeTitleAndDescWidget(
                               title: 'date'.tr(),
-                              description: 'January 5',
+                              description: consultation.date,
                             ),
                             CustomRowMakeTitleAndDescWidget(
                               title: 'time'.tr(),
-                              description: '7:00 AM',
+                              description: consultation.time,
                             ),
-                            // CustomRowMakeTitleAndDescWidget(
-                            //   title: 'checkIn'.tr(),
-                            //   description: 'December 23, 2022',
-                            // ),
                           ],
                         ),
                       ),
@@ -103,17 +101,17 @@ class BookingDetailsScreen extends StatelessWidget {
                           spacing: 12.h,
                           children: [
                             CustomRowMakeTitleAndDescWidget(
-                              title: 'name'.tr(),
-                              description: 'Omar AbdelAziz',
+                              title: 'doctor Name'.tr(),
+                              description: consultation.doctor.name,
                             ),
                             CustomRowMakeTitleAndDescWidget(
                               title: 'phoneNumberOnly'.tr(),
-                              description: '+201 027 324 902',
+                              description: consultation.doctor.phone,
                             ),
-                            CustomRowMakeTitleAndDescWidget(
-                              title: 'therapistsName'.tr(),
-                              description: 'Ahmed Hossam',
-                            ),
+                            // CustomRowMakeTitleAndDescWidget(
+                            //   title: 'therapistsName'.tr(),
+                            //   description: 'Ahmed Hossam',
+                            // ),
                           ],
                         ),
                       ),

@@ -31,3 +31,5 @@ class UpdateProfileDataErrorState extends SettingsState {
 final class ProfileImageSelectedState extends SettingsState {}
 
 final class ProfileImageErrorState extends SettingsState {}
+
+

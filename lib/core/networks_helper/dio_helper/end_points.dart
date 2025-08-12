@@ -20,6 +20,8 @@ class EndPoints {
   static const String getProfileData = 'api/user/profile/details';
   static const String updateProfileData = 'api/user/profile/updateData';
 
+  static const String getconsultations = 'api/frontend/user/consultations';
+
 // =======
 // >>>>>>> main
 

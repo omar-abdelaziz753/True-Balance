@@ -39,7 +39,7 @@ class SettingsRepos {
       FailureException(errMessage: 'Unexpected error occurred'),
     );
   }
-
+  
   /// Update Profile Data
   Future<ApiResult<String>> updateProfileData({
     String? name,
