@@ -35,6 +35,8 @@ import 'package:truee_balance_app/features/user/home/presentation/screens/our_se
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 import 'package:truee_balance_app/features/user/main_layout/presentation/main_layout.dart';
 import 'package:truee_balance_app/features/user/medical_reports/presentation/screens/medical_reports_screen.dart';
+import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
+import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
 import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
@@ -46,6 +48,7 @@ import 'package:truee_balance_app/features/user/session%20details/presentation/s
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/all_therapist_screen.dart';
 import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
+
 import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
@@ -163,6 +166,9 @@ class AppRouter {
       case Routes.myBookingScreen:
         return transition(
           screen: const MyBookingScreen(),
+          cubit: MybookCubit(getIt())
+            ..getAllconsultations()
+            ..setupConsultationsScrollController(),
         );
       case Routes.profileScreen:
         return transition(
@@ -170,8 +176,11 @@ class AppRouter {
           cubit: SettingsCubit(getIt())..getProfileData(),
         );
       case Routes.bookingDetailsScreen:
+        final consultation = settings.arguments as Consultation;
         return transition(
-          screen: const BookingDetailsScreen(),
+          screen: BookingDetailsScreen(
+            consultation: consultation,
+          ),
         );
       case Routes.notificationsScreen:
         return transition(

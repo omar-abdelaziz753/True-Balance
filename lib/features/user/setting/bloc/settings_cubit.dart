@@ -12,7 +12,7 @@ part 'settings_state.dart';
 class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit(this.settingsRepos) : super(SettingsInitial());
 
-  final SettingsRepos? settingsRepos;
+  final SettingsRepos settingsRepos;
   GetProfileDataModel? getProfileDataModel;
 
   TextEditingController fullNameController = TextEditingController();
@@ -26,7 +26,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   /// Get Profile Data
   Future<void> getProfileData() async {
     emit(GetProfileDataLoadingState());
-    final result = await settingsRepos!.getProfileData();
+    final result = await settingsRepos.getProfileData();
     result.when(
       success: (data) {
         getProfileDataModel = data;
@@ -42,7 +42,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> updateProfileData() async {
     showLoading();
     emit(GetProfileDataLoadingState());
-    final result = await settingsRepos!.updateProfileData(
+    final result = await settingsRepos.updateProfileData(
       name: fullNameController.text,
       email: emailController.text,
       phone: phoneController.text,

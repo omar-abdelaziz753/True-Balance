@@ -63,7 +63,7 @@ class SettingScreen extends StatelessWidget {
                         children: [
                           CustomRowInSettingWidget(
                             imagePath:
-                            'assets/images/svg/account_information_icon.svg',
+                                'assets/images/svg/account_information_icon.svg',
                             title: 'accountInformation'.tr(),
                             subtitle: 'changeYourAccount'.tr(),
                             onTap: () =>
@@ -96,7 +96,6 @@ class SettingScreen extends StatelessWidget {
                             onTap: () => context
                                 .pushNamed(Routes.technicalSupportScreen),
                           ),
-
                         ],
                       ),
                     ),
