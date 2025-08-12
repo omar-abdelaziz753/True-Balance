@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/helper_functions/navigate_based_onRole.dart';
+import 'package:truee_balance_app/core/helper_functions/navigate_based_on_role.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/auth/data/repos/auth_repo.dart';
 

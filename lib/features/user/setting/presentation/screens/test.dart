@@ -42,19 +42,17 @@ class _TestScreenState extends State<TestScreen> {
     // Time picker
     String? selectedTime = await showDialog<String>(
       context: context,
-      builder:
-          (_) => SimpleDialog(
-            title: const Text("Select Time"),
-            children:
-                availableTimes
-                    .map(
-                      (time) => SimpleDialogOption(
-                        onPressed: () => Navigator.pop(context, time),
-                        child: Text(time),
-                      ),
-                    )
-                    .toList(),
-          ),
+      builder: (_) => SimpleDialog(
+        title: const Text("Select Time"),
+        children: availableTimes
+            .map(
+              (time) => SimpleDialogOption(
+                onPressed: () => Navigator.pop(context, time),
+                child: Text(time),
+              ),
+            )
+            .toList(),
+      ),
     );
 
     if (selectedTime == null) return;
@@ -102,70 +100,69 @@ class _TestScreenState extends State<TestScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child:
-            selectedSessions.isEmpty
-                ? const Center(child: Text("No sessions selected."))
-                : GridView.builder(
-                  itemCount: selectedSessions.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.3,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                  ),
-                  itemBuilder: (context, index) {
-                    final session = selectedSessions[index];
-                    return Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      color: Colors.green.shade50,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Stack(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  session['date']!,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  "Time: ${session['time']}",
-                                  style: const TextStyle(fontSize: 14),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  session['status']!,
-                                  style: TextStyle(
-                                    color: Colors.green.shade700,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Positioned(
-                              right: 0,
-                              top: 0,
-                              child: IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => removeSession(index),
-                                splashRadius: 18,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+        child: selectedSessions.isEmpty
+            ? const Center(child: Text("No sessions selected."))
+            : GridView.builder(
+                itemCount: selectedSessions.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.3,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
                 ),
+                itemBuilder: (context, index) {
+                  final session = selectedSessions[index];
+                  return Card(
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    color: Colors.green.shade50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Stack(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                session['date']!,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Time: ${session['time']}",
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                session['status']!,
+                                style: TextStyle(
+                                  color: Colors.green.shade700,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: IconButton(
+                              icon: const Icon(Icons.close),
+                              onPressed: () => removeSession(index),
+                              splashRadius: 18,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
       ),
     );
   }

@@ -147,7 +147,9 @@ class ProfileScreen extends StatelessWidget {
                   textStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 18.verticalSpace,
 
@@ -176,7 +178,9 @@ class ProfileScreen extends StatelessWidget {
                   textStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 18.verticalSpace,
 
@@ -205,7 +209,9 @@ class ProfileScreen extends StatelessWidget {
                   textStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 18.verticalSpace,
 
@@ -234,7 +240,9 @@ class ProfileScreen extends StatelessWidget {
                   textStyle: Styles.captionRegular.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 18.verticalSpace,
               ],
