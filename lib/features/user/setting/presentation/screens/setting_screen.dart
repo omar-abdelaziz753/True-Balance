@@ -62,13 +62,12 @@ class SettingScreen extends StatelessWidget {
                         spacing: 18.h,
                         children: [
                           CustomRowInSettingWidget(
-                            imagePath: Icons.wallet,
-                            iconcolor: AppColors.primaryColor900,
-                            title: 'profile'.tr(),
-                            subtitle: 'updateYourProfile'.tr(),
+                            imagePath:
+                            'assets/images/svg/account_information_icon.svg',
+                            title: 'accountInformation'.tr(),
+                            subtitle: 'changeYourAccount'.tr(),
                             onTap: () =>
                                 context.pushNamed(Routes.profileScreen),
-                                // context.pushNamed(Routes.profileScreen),
                           ),
                           const CustomDividerWidget(),
                           CustomRowInSettingWidget(
@@ -97,14 +96,7 @@ class SettingScreen extends StatelessWidget {
                             onTap: () => context
                                 .pushNamed(Routes.technicalSupportScreen),
                           ),
-                          const CustomDividerWidget(),
-                          CustomRowInSettingWidget(
-                            imagePath:
-                                'assets/images/svg/account_information_icon.svg',
-                            title: 'accountInformation'.tr(),
-                            subtitle: 'changeYourAccount'.tr(),
-                            onTap: () {},
-                          ),
+
                         ],
                       ),
                     ),

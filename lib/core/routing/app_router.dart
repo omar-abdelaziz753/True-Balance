@@ -44,6 +44,13 @@ import 'package:truee_balance_app/features/user/session%20details/presentation/s
 import 'package:truee_balance_app/features/user/session%20details/presentation/screens/treatment_plans_screen.dart';
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/all_therapist_screen.dart';
+// <<<<<<< settings
+import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_details_screen.dart';
+import 'package:truee_balance_app/features/user/sessions/presentation/screen/treatment_plans_screen.dart';
+import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
+// =======
+// =======
+// >>>>>>> main
 import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
@@ -159,6 +166,7 @@ class AppRouter {
       case Routes.profileScreen:
         return transition(
           screen: const ProfileScreen(),
+          cubit: SettingsCubit(getIt())..getProfileData(),
         );
       case Routes.bookingDetailsScreen:
         return transition(

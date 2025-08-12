@@ -1,22 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_data_model.dart';
+part of 'get_profile_data_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) =>
-    UserDataModel(
+GetProfileDataModel _$GetProfileDataModelFromJson(Map<String, dynamic> json) =>
+    GetProfileDataModel(
       data: json['data'] == null
           ? null
-          : UserData.fromJson(json['data'] as Map<String, dynamic>),
+          : ProfileData.fromJson(json['data'] as Map<String, dynamic>),
       status: json['status'] as String?,
       error: json['error'] as String?,
       code: (json['code'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$UserDataModelToJson(UserDataModel instance) =>
+Map<String, dynamic> _$GetProfileDataModelToJson(
+        GetProfileDataModel instance) =>
     <String, dynamic>{
       'data': instance.data,
       'status': instance.status,
@@ -24,22 +25,21 @@ Map<String, dynamic> _$UserDataModelToJson(UserDataModel instance) =>
       'code': instance.code,
     };
 
-UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
+ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) => ProfileData(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
       image: json['image'] as String?,
-      token: json['token'] as String?,
       type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
+Map<String, dynamic> _$ProfileDataToJson(ProfileData instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'email': instance.email,
       'phone': instance.phone,
       'image': instance.image,
-      'token': instance.token,
       'type': instance.type,
     };
