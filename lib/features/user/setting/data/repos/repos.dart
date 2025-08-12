@@ -61,7 +61,7 @@ class SettingsRepos {
           backgroundColor: AppColors.primaryColor900,
           icon: Icons.check_circle_outline,
         );
-        return ApiResult.success(response!.data['status']);
+        return ApiResult.success(response.data['status']);
       } else {
         return ApiResult.failure(
           ServerException.fromResponse(response?.statusCode, response),

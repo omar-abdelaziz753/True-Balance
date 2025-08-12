@@ -1,7 +1,8 @@
 import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
-import 'package:dio/dio.dart';
 import 'package:truee_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
 import 'package:truee_balance_app/core/networks_helper/dio_helper/end_points.dart';
 
