@@ -34,8 +34,8 @@ class MybookCubit extends Cubit<MybookState> {
     result.when(
       success: (data) {
         consultationsResponse = data;
-        currentPage = data.data.meta.currentPage;
-        lastPage = data.data.meta.lastPage;
+        currentPage = data.data.meta.currentPage!;
+        lastPage = data.data.meta.lastPage!;
         emit(ConsultationsSuccess());
       },
       failure: (error) {
@@ -56,7 +56,7 @@ class MybookCubit extends Cubit<MybookState> {
     result.when(
       success: (data) {
         consultationsResponse?.data.data.addAll(data.data.data);
-        currentPage = data.data.meta.currentPage;
+        currentPage = data.data.meta.currentPage!;
         emit(ConsultationsSuccess());
       },
       failure: (error) {

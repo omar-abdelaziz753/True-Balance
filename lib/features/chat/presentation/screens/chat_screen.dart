@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
@@ -35,33 +34,41 @@ class ChatScreen extends StatelessWidget {
       body: BlocBuilder<TechnicalSupportCubit, TechnicalSupportState>(
         builder: (context, state) {
           final cubit = context.read<TechnicalSupportCubit>();
-
-          return Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(18.sp),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12.r),
-                    topRight: Radius.circular(12.r),
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(child: BlocBuilder<TechnicalSupportCubit,
-                        TechnicalSupportState>(
-                      builder: (context, state) {
-                        final cubit = context.read<TechnicalSupportCubit>();
-
-                        return ChatListWidget();
-                      },
-                    )),
-                  ],
-                ),
-              )
-            ],
+          return Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(18.sp),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12.r),
+                topRight: Radius.circular(12.r),
+              ),
+            ),
+            child: Column(
+              children: [
+                if (state is GetTicketDetailsLoadingState)
+                  const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                else if (state is GetTicketDetailsErrorState)
+                  const Expanded(
+                    child: Center(
+                      child: Text(
+                        'حدث خطأ أثناء تحميل المحادثة',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  )
+                else ...[
+                  const Expanded(child: ChatListWidget()),
+                ],
+              ],
+            ),
           );
         },
       ),
@@ -69,8 +76,9 @@ class ChatScreen extends StatelessWidget {
           BlocConsumer<TechnicalSupportCubit, TechnicalSupportState>(
         listener: (context, state) {
           if (state is SendMessageSuccessState) {
-            context.read<TechnicalSupportCubit>()
-              ..getTicketDetails(ticketId: id.toString());
+            context
+                .read<TechnicalSupportCubit>()
+                .getTicketDetails(ticketId: id);
             context.read<TechnicalSupportCubit>().messageController.clear();
           }
         },
@@ -110,9 +118,6 @@ class ChatScreen extends StatelessWidget {
                           return "please_enter_valid_message".tr();
                         }
                         return null;
-                      },
-                      onChanged: (value) {
-                        // singleChatCubit.showSendBUtton(letters: value);
                       },
                     ),
                   ),

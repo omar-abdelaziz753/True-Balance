@@ -36,13 +36,13 @@ class TechnicalSupportApiServices {
   }
 
   /// Get All Tickets
-  Future<Response?> getAllTickets() async {
-    return _dioHelper.get(endPoint: EndPoints.getTickets);
+  Future<Response?> getAllTickets({required int page}) async {
+    return _dioHelper.get(endPoint: EndPoints.getTickets, data: {'page': page});
   }
 
   /// Get Ticket Details
   Future<Response?> getTicketDetails({
-    required String ticketId,
+    required int ticketId,
   }) async {
     return _dioHelper.get(endPoint: '${EndPoints.ticketDetails}/$ticketId');
   }

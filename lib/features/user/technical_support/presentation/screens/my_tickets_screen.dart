@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
@@ -31,101 +30,103 @@ class MyTicketsScreen extends StatelessWidget {
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
-      // CustomBasicAppBar(
-      //   leading: BackButton(
-      //     color: AppColors.neutralColor100,
-      //     onPressed: () {},
-      //   ),
-      //   // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
-      //   title: 'myTickets'.tr(),
-      //   backgroundColor: AppColors.primaryColor900,
-      //   svgAsset: 'assets/images/svg/bg_image.svg',
-      // ),
       body: BlocBuilder<TechnicalSupportCubit, TechnicalSupportState>(
         builder: (context, state) {
           final cubit = context.read<TechnicalSupportCubit>();
 
-          return Stack(
+          return Column(
             children: [
-              cubit.allTicketsDataModel == null ||
-                      cubit.allTicketsDataModel!.data == null ||
-                      cubit.allTicketsDataModel!.data!.tickets?.isEmpty == true
-                  ? Center(
-                      child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ))
-                  : Container(
-                      padding: EdgeInsets.all(18.sp),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12.r),
-                          topRight: Radius.circular(12.r),
-                        ),
-                      ),
-                      child: LayoutBuilder(builder: (context, constraints) {
-                        return SingleChildScrollView(
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight: constraints.maxHeight,
-                            ),
-                            child: ListView.separated(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: cubit
-                                  .allTicketsDataModel!.data!.tickets!.length,
-                              padding: EdgeInsets.only(
-                                top: 0,
-                                bottom: 100.h,
-                              ),
-                              separatorBuilder: (context, index) =>
-                                  const CustomDividerWidget(),
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 16.h,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      context.pushNamed(
-                                        Routes.chatScreen,
-                                        arguments: cubit.allTicketsDataModel!
-                                            .data!.tickets![index].id,
-                                      );
-                                    },
-                                    child: CustomRowInMyTicketsWidget(
-                                      ticketNumber:
-                                          '${'ticketNo'.tr()} #${cubit.allTicketsDataModel!.data!.tickets![index].id!}',
-                                      message: cubit.allTicketsDataModel!.data!
-                                          .tickets![index].title!,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        );
-                      }),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(18.sp),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12.r),
+                      topRight: Radius.circular(12.r),
                     ),
-              Positioned(
-                left: 18.w,
-                right: 18.w,
-                bottom: 32.h,
-                child: CustomButtonWidget(
-                  onPressed: () => context
-                      .pushNamed(Routes.openANewTicketScreen)
-                      .then((context) {
-                    cubit.getAllTickets();
-                  }),
-                  padding: EdgeInsets.symmetric(
-                    vertical: 12.h,
                   ),
-                  text: 'openANewTicket'.tr(),
-                  textStyle: Styles.contentEmphasis.copyWith(
-                    color: AppColors.neutralColor100,
+                  child: Column(
+                    children: [
+                      // cubit.allTicketsDataModel == null ||
+                      //         cubit.allTicketsDataModel!.data == null ||
+                      //         cubit.allTicketsDataModel!.data!.tickets
+                      //                 ?.isEmpty == 
+
+                      // true
+
+                      if (state is GetAllTicketsLoadingState)
+                        const Expanded(
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        )
+                      else ...[
+                        Expanded(
+                          child: ListView.separated(
+                            controller: cubit.allTicketsScrollController,
+                            itemCount: cubit
+                                .allTicketsDataModel!.data!.tickets!.length,
+                            padding: EdgeInsets.only(
+                              top: 0,
+                              bottom: 16.h,
+                            ),
+                            separatorBuilder: (context, index) =>
+                                const CustomDividerWidget(),
+                            itemBuilder: (context, index) {
+                              final ticket = cubit
+                                  .allTicketsDataModel!.data!.tickets![index];
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16.h),
+                                child: InkWell(
+                                  onTap: () {
+                                    context.pushNamed(
+                                      Routes.chatScreen,
+                                      arguments: ticket.id,
+                                    );
+                                  },
+                                  child: CustomRowInMyTicketsWidget(
+                                    ticketNumber:
+                                        '${'ticketNo'.tr()} #${ticket.id!}',
+                                    message: ticket.title!,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        BlocBuilder<TechnicalSupportCubit,
+                            TechnicalSupportState>(
+                          buildWhen: (previous, current) =>
+                              current is TicketsLoadingMore ||
+                              current is GetAllTicketsSuccessState,
+                          builder: (context, state) {
+                            if (state is TicketsLoadingMore) {
+                              return const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          },
+                        ),
+                        CustomButtonWidget(
+                          onPressed: () => context
+                              .pushNamed(Routes.openANewTicketScreen)
+                              .then((context) {
+                            cubit.getAllTickets();
+                          }),
+                          padding: EdgeInsets.symmetric(vertical: 12.h),
+                          text: 'openANewTicket'.tr(),
+                          textStyle: Styles.contentEmphasis.copyWith(
+                            color: AppColors.neutralColor100,
+                          ),
+                        ),
+                      ]
+                    ],
                   ),
                 ),
-              )
+              ),
             ],
           );
         },

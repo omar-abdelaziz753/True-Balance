@@ -34,6 +34,7 @@ import 'package:truee_balance_app/features/user/home/presentation/screens/home_s
 import 'package:truee_balance_app/features/user/home/presentation/screens/our_services.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 import 'package:truee_balance_app/features/user/main_layout/presentation/main_layout.dart';
+import 'package:truee_balance_app/features/user/medical_reports/bloc/cubit/reports_cubit.dart';
 import 'package:truee_balance_app/features/user/medical_reports/presentation/screens/medical_reports_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
@@ -48,7 +49,6 @@ import 'package:truee_balance_app/features/user/session%20details/presentation/s
 import 'package:truee_balance_app/features/user/sessions/bloc/cubit/sessions_cubit.dart';
 import 'package:truee_balance_app/features/user/sessions/presentation/screen/all_therapist_screen.dart';
 import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
-
 import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
@@ -156,7 +156,9 @@ class AppRouter {
       case Routes.myTicketsScreen:
         return transition(
           screen: const MyTicketsScreen(),
-          cubit: TechnicalSupportCubit(getIt())..getAllTickets(),
+          cubit: TechnicalSupportCubit(getIt())
+            ..getAllTickets()
+            ..setupTicketsScrollController(),
         );
       case Routes.openANewTicketScreen:
         return transition(
@@ -192,6 +194,7 @@ class AppRouter {
         );
       case Routes.medicalReportsScreen:
         return transition(
+          cubit: ReportsCubit(getIt())..getReports(),
           screen: const MedicalReportsScreen(),
         );
       case Routes.treatmentplansScreen:
@@ -244,7 +247,7 @@ class AppRouter {
         final id = settings.arguments as int;
         return transition(
           screen: ChatScreen(id: id),
-          cubit: TechnicalSupportCubit(getIt())..getTicketDetails(ticketId: id.toString()),
+          cubit: TechnicalSupportCubit(getIt())..getTicketDetails(ticketId: id),
         );
       default:
         return null;

@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/api_services/api_services.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/repos/repos.dart';
@@ -20,6 +18,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   TextEditingController messageController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   String? selectedPriority;
+
   /// Set selected priority
   void setPriority(String? priority) {
     selectedPriority = priority;
@@ -70,13 +69,31 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     );
   }
 
+  final ScrollController allTicketsScrollController = ScrollController();
+  int currentPage = 1;
+  int lastPage = 1;
+  bool isLoadingMore = false;
+
+  void setupTicketsScrollController() {
+    allTicketsScrollController.addListener(() {
+      if (allTicketsScrollController.position.pixels >=
+              allTicketsScrollController.position.maxScrollExtent - 100 &&
+          !isLoadingMore) {
+        loadMoreTickets();
+      }
+    });
+  }
+
   /// Get All Tickets
   Future<void> getAllTickets() async {
+    currentPage = 1;
     emit(GetAllTicketsLoadingState());
-    final result = await technicalSupportRepo!.getAllTickets();
+    final result = await technicalSupportRepo!.getAllTickets(page: currentPage);
     result.when(
       success: (data) {
         allTicketsDataModel = data;
+        currentPage = data.data?.meta?.currentPage ?? currentPage;
+        lastPage = data.data?.meta?.lastPage ?? lastPage;
         emit(GetAllTicketsSuccessState());
       },
       failure: (error) {
@@ -85,9 +102,31 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     );
   }
 
+  /// load more tickets
+  Future<void> loadMoreTickets() async {
+    if (isLoadingMore || currentPage >= lastPage) return;
+
+    isLoadingMore = true;
+    emit(TicketsLoadingMore());
+
+    final result =
+        await technicalSupportRepo!.getAllTickets(page: currentPage + 1);
+    result.when(
+      success: (data) {
+        allTicketsDataModel?.data?.tickets?.addAll(data.data?.tickets ?? []);
+        currentPage = data.data?.meta?.currentPage ?? currentPage;
+        emit(GetAllTicketsSuccessState());
+      },
+      failure: (error) {
+        emit(GetAllTicketsErrorState());
+      },
+    );
+    isLoadingMore = false;
+  }
+
   /// Get Ticket Details
   Future<void> getTicketDetails({
-    required String ticketId,
+    required int ticketId,
   }) async {
     emit(GetTicketDetailsLoadingState());
     final result = await technicalSupportRepo!.getTicketDetails(
