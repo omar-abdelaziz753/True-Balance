@@ -64,7 +64,7 @@ class SessionDetailsCubit extends Cubit<SessionDetailsState> {
     }).toList();
   }
 
-  Future<void> rateSession(
+  Future<void> rateSession( 
       {required int id, required double number, required String text}) async {
     showLoading();
     emit(RateSessionLoadingState());

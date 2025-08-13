@@ -77,8 +77,8 @@ class TechnicalSupportRepo {
   }
 
   /// Get All Tickets
-  Future<ApiResult<AllTicketsDataModel>> getAllTickets() async {
-    final response = await technicalSupportApiServices.getAllTickets();
+  Future<ApiResult<AllTicketsDataModel>> getAllTickets({required int page}) async {
+    final response = await technicalSupportApiServices.getAllTickets(page: page);
     try {
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         AllTicketsDataModel allTicketsDataModel =
@@ -103,7 +103,7 @@ class TechnicalSupportRepo {
 
   /// Get Ticket Details
   Future<ApiResult<TicketDetailsDataModel>> getTicketDetails({
-    required String ticketId,
+    required int ticketId,
   }) async {
     final response = await technicalSupportApiServices.getTicketDetails(
       ticketId: ticketId,

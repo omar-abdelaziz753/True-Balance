@@ -23,15 +23,11 @@ class EndPoints {
   static const String getTickets = 'api/frontend/clientTicket/list';
   static const String ticketDetails = 'api/frontend/clientTicket/show';
 
-// <<<<<<< Services
   static const String getconsultations = 'api/frontend/user/consultations';
 
-// =======
-// >>>>>>> main
+  static const String getReports = 'api/frontend/treatment-plans/medical-reports/all';
 
   /// Treatment Plans for Therapist
-// =======
-// >>>>>>> main
   static String treatmentPlans(int therapistId) =>
       'api/frontend/therapists/$therapistId/treatment-plans';
 

@@ -103,8 +103,7 @@ class Doctor {
     required this.rateCount,
   });
 
-  factory Doctor.fromJson(Map<String, dynamic> json) =>
-      _$DoctorFromJson(json);
+  factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 
   Map<String, dynamic> toJson() => _$DoctorToJson(this);
 }
@@ -123,8 +122,7 @@ class Links {
     this.next,
   });
 
-  factory Links.fromJson(Map<String, dynamic> json) =>
-      _$LinksFromJson(json);
+  factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinksToJson(this);
 }
@@ -132,21 +130,21 @@ class Links {
 @JsonSerializable()
 class Meta {
   @JsonKey(name: 'current_page')
-  final int currentPage;
+  final int? currentPage;
 
-  final int from;
+  final int? from;
 
   @JsonKey(name: 'last_page')
-  final int lastPage;
+  final int? lastPage;
 
   final List<PageLink> links;
-  final String path;
+  final String? path;
 
   @JsonKey(name: 'per_page')
-  final int perPage;
+  final int? perPage;
 
-  final int to;
-  final int total;
+  final int? to;
+  final int? total;
 
   Meta({
     required this.currentPage,
@@ -159,8 +157,7 @@ class Meta {
     required this.total,
   });
 
-  factory Meta.fromJson(Map<String, dynamic> json) =>
-      _$MetaFromJson(json);
+  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
 
   Map<String, dynamic> toJson() => _$MetaToJson(this);
 }

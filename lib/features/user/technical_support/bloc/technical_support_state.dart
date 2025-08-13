@@ -26,6 +26,8 @@ final class GetAllTicketsSuccessState extends TechnicalSupportState {}
 
 final class GetAllTicketsErrorState extends TechnicalSupportState {}
 
+final class TicketsLoadingMore extends TechnicalSupportState {}
+
 /// Get Ticket Details
 final class GetTicketDetailsLoadingState extends TechnicalSupportState {}
 

@@ -14,15 +14,8 @@ class ChatListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<TechnicalSupportCubit>();
 
-    return cubit.ticketDetailsDataModel == null ||
-            cubit.ticketDetailsDataModel?.data == null ||
-            cubit.ticketDetailsDataModel?.data?.messages?.isEmpty == true
-        ? Center(
-            child: CircularProgressIndicator(
-              color: AppColors.primaryColor900,
-            ),
-          )
-        : ListView.separated(
+    return 
+      ListView.separated(
             shrinkWrap: true,
             padding: EdgeInsets.only(
               top: 20.h,
