@@ -5,6 +5,7 @@ import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/api_services/api_services.dart';
+import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
 
@@ -113,6 +114,30 @@ class TechnicalSupportRepo {
         TicketDetailsDataModel ticketDetailsDataModel =
             TicketDetailsDataModel.fromJson(response!.data);
         return ApiResult.success(ticketDetailsDataModel);
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response?.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.message);
+      }
+    }
+    return ApiResult.failure(
+      FailureException(errMessage: 'Unexpected error occurred'),
+    );
+  }
+  /// Get About Us
+  Future<ApiResult<AboutUsModel>> getAboutUs() async {
+    try {
+      final response = await technicalSupportApiServices.getAboutUs();
+
+      if (response?.statusCode == 200 || response?.statusCode == 201) {
+        final model = AboutUsModel.fromJson(response!.data);
+        return ApiResult.success(model);
       } else {
         return ApiResult.failure(
           ServerException.fromResponse(response?.statusCode, response),

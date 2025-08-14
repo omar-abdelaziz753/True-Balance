@@ -6,6 +6,7 @@ import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
+import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/custom_count_of_no_of_notification_widget.dart';
 
 class CustomMainAppBarInHomeWidget extends StatelessWidget
@@ -60,14 +61,19 @@ class CustomMainAppBarInHomeWidget extends StatelessWidget
                       children: [
                         /// Profile Image
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(25.r),
-                          child: Image.asset(
-                            profileImageAsset,
-                            width: 50.w,
-                            height: 50.h,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(25.r),
+                            child: CacheNetworkImagesWidget(
+                              image: profileImageAsset,
+                              width: 50.w,
+                              height: 50.h,
+                            )
+                            // Image.asset(
+                            //   profileImageAsset,
+                            //   width: 50.w,
+                            //   height: 50.h,
+                            //   fit: BoxFit.cover,
+                            // ),
+                            ),
 
                         /// Welcome text and name
                         Expanded(

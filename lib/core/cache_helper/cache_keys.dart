@@ -5,6 +5,7 @@ class CacheKeys {
   static const String userToken = 'token';
   static const String currentLanguage = 'currentLanguage';
   static const String userName = 'userName';
+  static const String userEmail = 'userEmail';
   static const String isFirstOpen = 'isFirstOpen';
 
   static const String userImage = 'userImage';

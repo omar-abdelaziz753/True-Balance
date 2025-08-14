@@ -40,4 +40,7 @@ class EndPoints {
       "api/frontend/treatment-plans/$therapistId/sessions";
   static String rateSession(int therapistId) =>
       "api/frontend/treatment-plans/sessions/$therapistId/rate";
+
+ /// get about us
+  static String getAboutUs = 'api/frontend/staticPages/about_us';
 }
