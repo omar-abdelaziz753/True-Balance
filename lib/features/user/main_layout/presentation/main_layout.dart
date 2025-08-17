@@ -79,7 +79,7 @@ class MainLayoutScreen extends StatelessWidget {
                   const SizedBox(width: 40),
                   _buildNavItem(
                     icon: 'assets/images/svg/mysessions_icon.svg',
-                    label: 'My Sessions'.tr(),
+                    label: 'mySessions'.tr(),
                     index: 3,
                     currentIndex: currentIndex,
                     onTap: () => cubit.changeBottomNavBar(3),
