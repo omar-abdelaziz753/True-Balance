@@ -37,3 +37,10 @@ final class GetTicketDetailsErrorState extends TechnicalSupportState {}
 
 /// Priority
 final class PrioritySelectedState extends TechnicalSupportState {}
+
+/// Get About Us
+final class GetAboutUsLoadingState extends TechnicalSupportState {}
+
+final class GetAboutUsSuccessState extends TechnicalSupportState {}
+
+final class GetAboutUsErrorState extends TechnicalSupportState {}

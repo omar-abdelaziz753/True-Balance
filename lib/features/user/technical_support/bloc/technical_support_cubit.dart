@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
+import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/repos/repos.dart';
@@ -14,6 +15,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   final TechnicalSupportRepo? technicalSupportRepo;
   AllTicketsDataModel? allTicketsDataModel;
   TicketDetailsDataModel? ticketDetailsDataModel;
+  AboutUsModel? aboutUsModel;
 
   TextEditingController messageController = TextEditingController();
   TextEditingController titleController = TextEditingController();
@@ -139,6 +141,21 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
       },
       failure: (error) {
         emit(GetTicketDetailsErrorState());
+      },
+    );
+  }
+
+  /// Get About Us
+  Future<void> getAboutUs() async {
+    emit(GetAboutUsLoadingState());
+    final result = await technicalSupportRepo!.getAboutUs();
+    result.when(
+      success: (data) {
+        aboutUsModel = data;
+        emit(GetAboutUsSuccessState());
+      },
+      failure: (error) {
+        emit(GetAboutUsErrorState());
       },
     );
   }

@@ -190,8 +190,8 @@ class AppRouter {
         );
       case Routes.aboutUsScreen:
         return transition(
-          screen: const AboutUsScreen(),
-        );
+            screen: const AboutUsScreen(),
+            cubit: TechnicalSupportCubit(getIt())..getAboutUs());
       case Routes.medicalReportsScreen:
         return transition(
           cubit: ReportsCubit(getIt())..getReports(),

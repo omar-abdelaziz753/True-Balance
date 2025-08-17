@@ -57,37 +57,37 @@ class PrivacyPolicyScreen extends StatelessWidget {
                       contentWidget: const Column(
                         children: [
                           CustomSectionInAboutUsWidget(
-                            number: '1',
+                        
                             title: 'About Us',
                             description:
                                 "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
                           ),
                           CustomSectionInAboutUsWidget(
-                            number: '2',
+                           
                             title: 'Our Mission',
                             description:
                                 "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
                           ),
                           CustomSectionInAboutUsWidget(
-                            number: '3',
+                         
                             title: 'Contact Information',
                             description:
                                 "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",
                           ),
                           CustomSectionInAboutUsWidget(
-                            number: '4',
+                     
                             title: 'About Us',
                             description:
                                 "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
                           ),
                           CustomSectionInAboutUsWidget(
-                            number: '5',
+                            
                             title: 'Our Mission',
                             description:
                                 "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
                           ),
                           CustomSectionInAboutUsWidget(
-                            number: '6',
+                     
                             title: 'Contact Information',
                             description:
                                 "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",

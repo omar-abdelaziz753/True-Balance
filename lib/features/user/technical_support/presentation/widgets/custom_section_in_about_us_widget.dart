@@ -6,12 +6,12 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 class CustomSectionInAboutUsWidget extends StatelessWidget {
   const CustomSectionInAboutUsWidget({
     super.key,
-    required this.number,
+    // required this.number,
     required this.title,
     required this.description,
   });
 
-  final String number, title, description;
+  final String title, description;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CustomSectionInAboutUsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '$number. $title',
+            title,
             style: Styles.contentEmphasis.copyWith(
               color: AppColors.neutralColor1000,
             ),

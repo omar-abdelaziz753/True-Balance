@@ -46,4 +46,9 @@ class TechnicalSupportApiServices {
   }) async {
     return _dioHelper.get(endPoint: '${EndPoints.ticketDetails}/$ticketId');
   }
+
+  /// Get About Us
+  Future<Response?> getAboutUs() async {
+    return _dioHelper.get(endPoint: EndPoints.getAboutUs);
+  }
 }
