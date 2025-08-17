@@ -122,7 +122,7 @@ class TreatmentDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  CustomButtonWidget(
+                  CustomButtonWidget( 
                     onPressed: () {
                       context
                           .pushNamed(Routes.addSessionScreen,
@@ -136,7 +136,7 @@ class TreatmentDetailsScreen extends StatelessWidget {
                         },
                       );
                     },
-                    text: 'Book New Session'.tr(),
+                    text: 'bookNewSession'.tr(),
                   ),
                 ],
               ),

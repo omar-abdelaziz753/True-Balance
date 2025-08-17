@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,7 @@ class TotalOfSessionsAndTypeOfTreatment extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Total Of Session",
+                'totalOfSession'.tr(),
                 style: Styles.captionEmphasis.copyWith(
                   color: AppColors.neutralColor600,
                 ),
@@ -56,7 +57,7 @@ class TotalOfSessionsAndTypeOfTreatment extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Type of treatment",
+                'typeoftreatment'.tr(),
                 style: Styles.captionEmphasis.copyWith(
                   color: AppColors.neutralColor600,
                 ),
@@ -71,7 +72,7 @@ class TotalOfSessionsAndTypeOfTreatment extends StatelessWidget {
             ],
           ),
           Text(
-            "Notes",
+            'notes'.tr(),
             style: Styles.captionEmphasis.copyWith(
               color: AppColors.neutralColor600,
             ),
