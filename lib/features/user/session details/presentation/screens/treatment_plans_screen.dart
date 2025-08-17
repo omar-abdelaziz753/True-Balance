@@ -296,7 +296,7 @@ class TreatmentPlansScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "Total Of treatment",
+                        'totalOftreatment'.tr(),
                         style: Styles.captionEmphasis.copyWith(
                           color: AppColors.neutralColor600,
                         ),
@@ -359,7 +359,7 @@ class TreatmentPlansScreen extends StatelessWidget {
                             ),
                             // const Spacer(),
                             Text(
-                              "See Details",
+                              'seeDetails'.tr(),
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
