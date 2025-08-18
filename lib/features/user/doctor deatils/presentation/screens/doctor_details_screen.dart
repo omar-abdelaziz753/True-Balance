@@ -45,7 +45,7 @@ class DoctorDetailsScreen extends StatelessWidget {
               svgAsset: 'assets/images/svg/bg_image.svg',
             ),
             body: Skeletonizer(
-            enabled: true,
+              enabled: true,
               child: SingleChildScrollView(
                 child: Container(
                   width: double.infinity,
@@ -298,7 +298,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                             color: AppColors.neutralColor600),
                       ),
                       Text(
-                        " | (${cubit.doctorDetails!.data.rate} Rate)",
+                        " | (${cubit.doctorDetails!.data.rate} ${'rate'.tr()})",
                         style: Styles.contentEmphasis.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 12.sp,

@@ -186,69 +186,6 @@ class SessionDetails extends StatelessWidget {
   }
 }
 
-// void _showRatingBottomSheet(BuildContext context, int id) {
-//   final TextEditingController commentController = TextEditingController();
-//   double rating = 0;
-
-//   showModalBottomSheet(
-//     context: context,
-//     isScrollControlled: true,
-//     backgroundColor: Colors.transparent,
-//     builder: (_) {
-//       return BlocProvider(
-//         create: (_) => SessionDetailsCubit(getIt()),
-//         child: StatefulBuilder(
-//           builder: (statefulContext, setState) {
-//             return BlocListener<SessionDetailsCubit, SessionDetailsState>(
-//               listener: (listenerContext, state) {
-//                 if (state is RateSessionSuccessState) {
-//                   Navigator.pop(listenerContext);
-//                   ScaffoldMessenger.of(listenerContext).showSnackBar(
-//                     SnackBar(
-//                       content: const Text("Rating submitted successfully!"),
-//                       backgroundColor: AppColors.primaryColor800,
-//                     ),
-//                   );
-//                 } else if (state is RateSessionFailureState) {
-//                   ScaffoldMessenger.of(listenerContext).showSnackBar(
-//                     const SnackBar(
-//                       content: Text("Failed to submit rating"),
-//                       backgroundColor: Colors.red,
-//                     ),
-//                   );
-//                 }
-//               },
-//               child: CustomSharedBottomSheetReview(
-//                 title: "Rate This Session",
-//                 nameOfFiled: "Your Comment",
-//                 hintText: "Write your feedback here...",
-//                 buttonText1: "Submit",
-//                 buttonText2: "Cancel",
-//                 initialRating: rating,
-//                 commentController: commentController,
-//                 onRatingChanged: (value) {
-//                   setState(() {
-//                     rating = value;
-//                   });
-//                 },
-//                 onEditPressed: () {
-//                   statefulContext.read<SessionDetailsCubit>().rateSession(
-//                         id: id,
-//                         number: rating,
-//                         text: commentController.text,
-//                       );
-//                 },
-//                 onCancelPressed: () {
-//                   Navigator.pop(statefulContext);
-//                 },
-//               ),
-//             );
-//           },
-//         ),
-//       );
-//     },
-//   );
-// }
 void _showRatingBottomSheet(BuildContext context, int id) {
   final TextEditingController commentController = TextEditingController();
   double rating = 0;
@@ -295,7 +232,6 @@ void _showRatingBottomSheet(BuildContext context, int id) {
                   });
                 },
                 onEditPressed: () {
-                  // ✅ Validation
                   if (rating == 0) {
                     customToast(
                       msg: 'pleaseselectarating'.tr(),
@@ -312,7 +248,6 @@ void _showRatingBottomSheet(BuildContext context, int id) {
                     return;
                   }
 
-                  // ✅ If passed, submit
                   statefulContext.read<SessionDetailsCubit>().rateSession(
                         id: id,
                         number: rating,
