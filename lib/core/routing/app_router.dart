@@ -279,8 +279,11 @@ class AppRouter {
   ];
 
   List<Widget> screensTherapists = [
-    const AppointmentsScreen(),
+    BlocProvider(  //  نفس cubit  && screen >>> in user flow موقتا
+      create: (context) => SessionsCubit(getIt())..getAllTherapist(),
+      child: const AllTherapistScreen(),
+    ),
     const NotificationScreen(),
-    Container()
+    const SettingScreen(),
   ];
 }
