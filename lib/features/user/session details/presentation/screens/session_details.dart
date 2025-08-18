@@ -62,8 +62,10 @@ class SessionDetails extends StatelessWidget {
               child: Column(
                 spacing: 10.sp,
                 children: [
-                  DetailsRowWidget(label: "Session data", value: session.date),
-                  DetailsRowWidget(label: "Session time", value: session.time),
+                  DetailsRowWidget(
+                      label: 'sessionData'.tr(), value: session.date),
+                  DetailsRowWidget(
+                      label: 'sessionTime'.tr(), value: session.time),
                 ],
               ),
             ),
@@ -90,9 +92,9 @@ class SessionDetails extends StatelessWidget {
                   spacing: 12.sp,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Notes",
-                      style: TextStyle(
+                    Text(
+                      'notes'.tr(),
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Colors.black54,
                       ),
@@ -171,7 +173,7 @@ class SessionDetails extends StatelessWidget {
               ),
               const Spacer(),
               CustomButtonWidget(
-                text: 'Add Rating',
+                text: 'addRating'.tr(),
                 onPressed: () {
                   _showRatingBottomSheet(context, session.id);
                 },
@@ -266,25 +268,25 @@ void _showRatingBottomSheet(BuildContext context, int id) {
                   Navigator.pop(listenerContext);
                   ScaffoldMessenger.of(listenerContext).showSnackBar(
                     SnackBar(
-                      content: const Text("Rating submitted successfully!"),
+                      content: Text('ratingSubmittedSuccessfully'.tr()),
                       backgroundColor: AppColors.primaryColor800,
                     ),
                   );
                 } else if (state is RateSessionFailureState) {
                   ScaffoldMessenger.of(listenerContext).showSnackBar(
-                    const SnackBar(
-                      content: Text("Failed to submit rating"),
+                    SnackBar(
+                      content: Text('failedToSubmitRating'.tr()),
                       backgroundColor: Colors.red,
                     ),
                   );
                 }
               },
               child: CustomSharedBottomSheetReview(
-                title: "Rate This Session",
-                nameOfFiled: "Your Comment",
-                hintText: "Write your feedback here...",
-                buttonText1: "Submit",
-                buttonText2: "Cancel",
+                title: 'rateThisSession'.tr(),
+                nameOfFiled: 'yourComment'.tr(),
+                hintText: 'writeYourFeedBackHere'.tr(),
+                buttonText1: 'Submit'.tr(),
+                buttonText2: 'Cancel'.tr(),
                 initialRating: rating,
                 commentController: commentController,
                 onRatingChanged: (value) {
@@ -296,7 +298,7 @@ void _showRatingBottomSheet(BuildContext context, int id) {
                   // ✅ Validation
                   if (rating == 0) {
                     customToast(
-                      msg: "Please select a rating",
+                      msg: 'pleaseselectarating'.tr(),
                       color: Colors.red,
                     );
                     return;
@@ -304,7 +306,7 @@ void _showRatingBottomSheet(BuildContext context, int id) {
 
                   if (commentController.text.trim().isEmpty) {
                     customToast(
-                      msg: "Please enter a comment",
+                      msg: 'pleaseenteracomment'.tr(),
                       color: Colors.red,
                     );
                     return;

@@ -122,7 +122,8 @@ class BookingScreen extends StatelessWidget {
               buildWhen: (previous, current) => current is ChangeStepState,
               builder: (context, state) {
                 return CustomButtonWidget(
-                  text: cubit.currentStep == 1 ? 'Booking Now' : 'Next',
+                  text:
+                      cubit.currentStep == 1 ? 'bookingNow'.tr() : 'next'.tr(),
                   onPressed: () {
                     if (cubit.currentStep == 0) {
                       if (cubit.selectedTimeIndex != -1) {
