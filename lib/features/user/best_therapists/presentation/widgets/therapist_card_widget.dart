@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -49,18 +50,30 @@ class TherapistCardWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 90.w,
-              alignment: Alignment.center,
-              child: ClipOval(
-                child: CachedNetworkImage(
-                  imageUrl: doctorModel.image,
-                  width: 95.w,
-                  height: 91.h,
-                  fit: BoxFit.cover,
-                ),
+            CachedNetworkImage(
+              imageUrl: (doctorModel.image),
+              width: 95.w,
+              height: 91.h,
+              fit: BoxFit.cover,
+              errorWidget: (context, url, error) => Icon(
+                Icons.error,
+                size: 91.sp,
+                color: Colors.grey,
               ),
             ),
+
+            // Container(
+            //   width: 90.w,
+            //   alignment: Alignment.center,
+            //   child: ClipOval(
+            //     child: CachedNetworkImage(
+            //       imageUrl: doctorModel.image,
+            //       width: 95.w,
+            //       height: 91.h,
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ),
+            // ),
             12.horizontalSpace,
             Expanded(
               child: Padding(
@@ -91,7 +104,7 @@ class TherapistCardWidget extends StatelessWidget {
                         ),
                         4.horizontalSpace,
                         Text(
-                          '${doctorModel.rate} | (${doctorModel.ratesCount} Rate)',
+                          '${doctorModel.rate} | (${doctorModel.ratesCount} ${'rate'.tr()})',
                           style: Styles.footnoteEmphasis.copyWith(
                             color: AppColors.neutralColor600,
                           ),

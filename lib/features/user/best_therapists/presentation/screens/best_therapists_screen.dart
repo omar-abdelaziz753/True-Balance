@@ -109,7 +109,6 @@ class BestTherapistsScreen extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       );
                     }
-
                     return const SizedBox.shrink();
                   },
                 ),

@@ -122,22 +122,26 @@ class TreatmentDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  CustomButtonWidget( 
-                    onPressed: () {
-                      context
-                          .pushNamed(Routes.addSessionScreen,
-                              arguments: cubit.treatmentPlanDetail)
-                          .then(
-                        (v) {
-                          if (v != null) {
-                            cubit.treatmentPlansdetails(
-                                therapistId: cubit.treatmentPlanDetail!.id);
-                          }
+                  if (cubit.treatmentPlanDetail!.numberOfSessions !=
+                      cubit.treatmentPlanDetail!.sessions.length)
+                    if (cubit
+                        .treatmentPlanDetail!.availableAppointments.isNotEmpty)
+                      CustomButtonWidget(
+                        onPressed: () {
+                          context
+                              .pushNamed(Routes.addSessionScreen,
+                                  arguments: cubit.treatmentPlanDetail)
+                              .then(
+                            (v) {
+                              if (v != null) {
+                                cubit.treatmentPlansdetails(
+                                    therapistId: cubit.treatmentPlanDetail!.id);
+                              }
+                            },
+                          );
                         },
-                      );
-                    },
-                    text: 'bookNewSession'.tr(),
-                  ),
+                        text: 'bookNewSession'.tr(),
+                      ),
                 ],
               ),
             ),

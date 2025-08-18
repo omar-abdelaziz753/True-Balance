@@ -265,7 +265,7 @@ class ProfileScreen extends StatelessWidget {
                             cubit.updateProfileData();
                           },
                           color: AppColors.primaryColor900,
-                          text: 'Edit Profile',
+                          text: 'editProfile'.tr(),
                           textStyle: Styles.captionEmphasis.copyWith(
                             color: AppColors.neutralColor100,
                           ),
