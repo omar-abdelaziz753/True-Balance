@@ -20,8 +20,6 @@ import 'package:truee_balance_app/firebase_options.dart';
 import 'package:truee_balance_app/true_balance.dart';
 import 'core/utils/bloc_observer.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -48,7 +46,8 @@ void main() async {
   };
   await ScreenUtil.ensureScreenSize();
   Bloc.observer = MyBlocObserver();
-
+//  await CacheHelper.clearAllData();
+// await  CacheHelper.clearAllSecuredData();
   AppConstants.userToken =
       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   logSuccess("User Token: ${AppConstants.userToken}");

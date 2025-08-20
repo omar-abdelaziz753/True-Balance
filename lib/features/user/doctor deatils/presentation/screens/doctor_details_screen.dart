@@ -189,7 +189,6 @@ class DoctorDetailsScreen extends StatelessWidget {
         return Scaffold(
           // backgroundColor: AppColors.primaryColor900,
           backgroundColor: Colors.white,
-
           appBar: CustomBasicAppBar(
             leading: BackButton(
               color: AppColors.neutralColor100,

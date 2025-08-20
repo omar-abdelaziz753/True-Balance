@@ -27,6 +27,9 @@ class TreatmentPlansScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: AppColors.primaryColor900,
             appBar: CustomBasicAppBar(
+              leading: BackButton(
+                color: AppColors.neutralColor100,
+              ),
               title: 'treatmentPlans'.tr(),
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
@@ -196,6 +199,12 @@ class TreatmentPlansScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.primaryColor900,
           appBar: CustomBasicAppBar(
+            leading: BackButton(
+              color: AppColors.neutralColor100,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             title: cubit.treatmentPlansResponse?.data!.therapist?.name ?? '',
             backgroundColor: AppColors.primaryColor900,
             svgAsset: 'assets/images/svg/bg_image.svg',

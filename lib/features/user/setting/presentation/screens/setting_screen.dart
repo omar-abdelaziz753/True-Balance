@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
@@ -19,6 +21,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final isDoctor = CacheHelper.getData(key: CacheKeys.type) == "doctor";
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
       appBar: CustomBasicAppBar(

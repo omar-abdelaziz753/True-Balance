@@ -7,35 +7,33 @@ import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
-import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
-import 'package:truee_balance_app/features/user/my_booking/widgets/custom_booking_container_widget.dart';
+import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
+import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
+import 'package:truee_balance_app/features/doctors/appointments/presentation/widgets/custom_appointment_counter_widget.dart';
 
-class MyBookingScreen extends StatelessWidget {
-  const MyBookingScreen({super.key});
+class AppointmentsScreen extends StatelessWidget {
+  const AppointmentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<MybookCubit>();
-    return BlocBuilder<MybookCubit, MybookState>(
+    final cubit = context.read<AppointmentsCubit>();
+    return BlocBuilder<AppointmentsCubit, AppointmentsState>(
       buildWhen: (previous, current) =>
-          current is ConsultationsSuccess ||
-          current is ConsultationsLoading ||
-          current is ConsultationsError,
+          current is AppointmentsSuccess ||
+          current is AppointmentsError ||
+          current is AppointmentsLoading,
       builder: (context, state) {
-        if (state is ConsultationsLoading) {
+        if (state is AppointmentsLoading) {
           return Scaffold(
             backgroundColor: AppColors.primaryColor900,
             appBar: CustomBasicAppBar(
-              leading: Navigator.canPop(context)
-                  ? BackButton(
-                      color: AppColors.neutralColor100,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    )
-                  : null,
-              title: 'myBooking'.tr(),
+              leading: BackButton(
+                color: AppColors.neutralColor100,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              title: 'appointments.'.tr(),
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
             ),
@@ -62,22 +60,21 @@ class MyBookingScreen extends StatelessWidget {
                           Expanded(
                             child: ListView.separated(
                               shrinkWrap: true,
-                              itemCount: 10,
+                              itemCount: 7,
                               separatorBuilder: (context, index) =>
                                   18.verticalSpace,
                               itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () => context
-                                      .pushNamed(Routes.bookingDetailsScreen),
-                                  child: CustomBookingContainerWidget(
-                                    specialization: 'specialization'.tr(),
-                                    doctorName: 'Ahmed Adel',
-                                    rating: 4.8,
-                                    ratingText: '4,479 ${'rate'.tr()}',
-                                    image: Image.asset(
-                                        width: 95.w,
-                                        height: 95.h,
-                                        "assets/images/png/profile_image_booking.png"),
+                                return InkWell(
+                                  onTap: () {
+                                    context.pushNamed(
+                                        Routes.appointmentsDetailsScreen);
+                                  },
+                                  child: const CustomAppointmentContainerWidget(
+                                    isLoading: true,
+                                    title: "Ahmed Adel",
+                                    phone: "+1 111 467 378 399",
+                                    imagePath:
+                                        "assets/images/svg/appointments_rounded.svg",
                                   ),
                                 );
                               },
@@ -95,15 +92,13 @@ class MyBookingScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.primaryColor900,
           appBar: CustomBasicAppBar(
-            leading: Navigator.canPop(context)
-                ? BackButton(
-                    color: AppColors.neutralColor100,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  )
-                : null,
-            title: 'myBooking'.tr(),
+            leading: BackButton(
+              color: AppColors.neutralColor100,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title: 'appointments.'.tr(),
             backgroundColor: AppColors.primaryColor900,
             svgAsset: 'assets/images/svg/bg_image.svg',
           ),
@@ -127,55 +122,42 @@ class MyBookingScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ListView.separated(
-                          controller: cubit.consultationsScrollController,
                           shrinkWrap: true,
-                          itemCount:
-                              cubit.consultationsResponse!.data.data.length,
+                          itemCount: cubit.consultationUsersResponse?.data?.data
+                                  ?.length ??
+                              0,
                           separatorBuilder: (context, index) =>
                               18.verticalSpace,
                           itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () => context.pushNamed(
-                                  Routes.bookingDetailsScreen,
-                                  arguments: cubit
-                                      .consultationsResponse!.data.data[index]),
-                              child: CustomBookingContainerWidget(
-                                specialization: cubit.consultationsResponse!
-                                    .data.data[index].doctor.specialization,
-                                doctorName: cubit.consultationsResponse!.data
-                                    .data[index].doctor.name,
-                                rating: cubit.consultationsResponse!.data
-                                        .data[index].doctor.rate
-                                        .toDouble() ??
-                                    0.0,
-                                ratingText:
-                                    '${cubit.consultationsResponse!.data.data[index].doctor.rateCount} ${'rate'.tr()}',
-                                image: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  child: 
-                                  CacheNetworkImagesWidget(
-                                    image: cubit.consultationsResponse!.data
-                                        .data[index].doctor.image,
-                                    width: 95.w,
-                                    height: 95.h,
-                                  ),
-                                ),
-                              ),
+                            return InkWell(
+                              onTap: () {
+                                context.pushNamed(
+                                    Routes.appointmentsDetailsScreen);
+                              },
+                              child: CustomAppointmentContainerWidget(
+                                  title: cubit.consultationUsersResponse?.data
+                                          ?.data?[index].name ??
+                                      '',
+                                  phone: cubit.consultationUsersResponse?.data
+                                          ?.data?[index].phone ??
+                                      '',
+                                  imagePath: cubit.consultationUsersResponse
+                                          ?.data?.data?[index].image ??
+                                      ''),
                             );
                           },
                         ),
                       ),
-                      BlocBuilder<MybookCubit, MybookState>(
+                      BlocBuilder<AppointmentsCubit, AppointmentsState>(
                         buildWhen: (previous, current) =>
-                            current is ConsultationsLoadingMore ||
-                            current is ConsultationsSuccess,
+                            current is AppointmentsLoadingMore ||
+                            current is AppointmentsSuccess,
                         builder: (context, state) {
-                          if (state is ConsultationsLoadingMore) {
+                          if (state is AppointmentsLoadingMore) {
                             return const Center(
                               child: CircularProgressIndicator(),
                             );
                           }
-
                           return const SizedBox.shrink();
                         },
                       ),

@@ -31,12 +31,11 @@ class TrueBalanceApp extends StatelessWidget {
           builder: (context) => MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'True Balance',
-
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             navigatorKey: AppConstants.navigatorKey,
-            initialRoute: Routes.mainLayoutScreen,
+            initialRoute: Routes.splashScreen,
             onGenerateRoute: appRouter.generateRoute,
             // home: const TestScreen(),
             builder: EasyLoading.init(),

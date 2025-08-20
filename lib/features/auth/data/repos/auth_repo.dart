@@ -65,10 +65,11 @@ class AuthRepository {
   Future<void> saveCaches(UserDataModel model) async {
     await CacheHelper.saveSecuredString(
         key: CacheKeys.userToken, value: model.data!.token);
-    await CacheHelper.saveData(key: CacheKeys.userName, value: model.data!.name);
+    await CacheHelper.saveData(
+        key: CacheKeys.userName, value: model.data!.name);
     await CacheHelper.saveData(
         key: CacheKeys.userPhone, value: model.data!.phone);
-
+    await CacheHelper.saveData(key: CacheKeys.type, value: model.data!.type);
     AppConstants.userToken =
         await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   }

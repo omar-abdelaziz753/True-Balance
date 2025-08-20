@@ -5,7 +5,7 @@ class Routes {
   static const String registerScreen = '/registerScreen';
   static const String verifyOtpScreen = '/verifyOtpScreen';
   static const String mainLayoutScreen = '/mainLayoutScreen';
-  static const String mainLayoutTherapistsScreen = '/mainLayoutTherapistsScreen';
+  static const String mainLayoutDoctorsScreen = '/mainLayoutTherapistsScreen';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String createNewPasswordScreen = '/createNewPasswordScreen';
   static const String technicalSupportScreen = '/technicalSupportScreen';
@@ -20,7 +20,7 @@ class Routes {
   static const String bookingScreen = '/bookingScreen';
   static const String allTherapistsScreen = '/allTherapistsScreen';
   static const String ourServicesScreen = '/ourServicesScreen';
-  
+
   static const String chooseYourAccountScreen = '/chooseYourAccountScreen';
   static const String appointmentsScreen = '/appointmentsScreen';
   static const String appointmentsDetailsScreen = '/appointmentsDetailsScreen';
@@ -33,5 +33,4 @@ class Routes {
   static const String treatmentdetailsScreen = '/treatmentdetailsScreen';
   static const String addSessionScreen = '/add_session_screen';
   static const String sessionDetails = '/session_details';
-
 }
