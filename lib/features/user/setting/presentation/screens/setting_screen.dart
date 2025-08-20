@@ -21,7 +21,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final isDoctor = CacheHelper.getData(key: CacheKeys.type) == "doctor";
+    final isDoctor = CacheHelper.getData(key: CacheKeys.type) == "doctor";
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
       appBar: CustomBasicAppBar(
@@ -48,122 +48,189 @@ class SettingScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    /// General Setting
-                    Text(
-                      'general'.tr(),
-                      style: Styles.highlightEmphasis.copyWith(
-                        color: AppColors.neutralColor1000,
+                    if (isDoctor) ...[
+                      Text(
+                        'general'.tr(),
+                        style: Styles.highlightEmphasis.copyWith(
+                          color: AppColors.neutralColor1000,
+                        ),
                       ),
-                    ),
-
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 12.w,
-                        bottom: 18.w,
-                      ),
-                      child: Column(
-                        spacing: 18.h,
-                        children: [
-                          CustomRowInSettingWidget(
-                            imagePath:
-                                'assets/images/svg/account_information_icon.svg',
-                            title: 'accountInformation'.tr(),
-                            subtitle: 'changeYourAccount'.tr(),
-                            onTap: () =>
-                                context.pushNamed(Routes.profileScreen),
-                          ),
-                          const CustomDividerWidget(),
-                          CustomRowInSettingWidget(
-                            imagePath: Icons.wallet,
-                            iconcolor: AppColors.primaryColor900,
-                            title: 'myBooking'.tr(),
-                            subtitle: 'appointmentsWiththeAbility'.tr(),
-                            onTap: () =>
-                                context.pushNamed(Routes.myBookingScreen),
-                          ),
-                          const CustomDividerWidget(),
-                          CustomRowInSettingWidget(
-                            imagePath: Assets.assetsImagesSvgMedicalReportsIcon,
-                            title: 'medicalReports'.tr(),
-                            subtitle: 'patientsmedical'.tr(),
-                            onTap: () {
-                              context.pushNamed(Routes.medicalReportsScreen);
-                            },
-                          ),
-                          const CustomDividerWidget(),
-                          CustomRowInSettingWidget(
-                            imagePath:
-                                'assets/images/svg/technical_support_icon.svg',
-                            title: 'technicalSupport'.tr(),
-                            subtitle: 'howCanWeHelp'.tr(),
-                            onTap: () => context
-                                .pushNamed(Routes.technicalSupportScreen),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    /// More Setting
-                    Text(
-                      'more'.tr(),
-                      style: Styles.highlightEmphasis.copyWith(
-                        color: AppColors.neutralColor1000,
-                      ),
-                    ),
-
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 12.w,
-                        bottom: 18.w,
-                      ),
-                      child: Column(
-                        spacing: 18.h,
-                        children: [
-                          CustomRowInSettingWidget(
-                            imagePath: 'assets/images/svg/language_icon.svg',
-                            title: 'language'.tr(),
-                            subtitle: 'descriptionOfLanguage'.tr(),
-                            onTap: () {
-                              showLocalizationBottomSheet(context);
-                            },
-                          ),
-                          const CustomDividerWidget(),
-                          BlocProvider(
-                            create: (context) => AuthCubit(getIt()),
-                            child: BlocConsumer<AuthCubit, AuthState>(
-                              listener: (context, state) {
-                                if (state is LogoutSuccess) {
-                                  context.pushNamed(Routes.loginScreen);
-                                }
-                              },
-                              builder: (context, state) {
-                                return CustomRowInSettingWidget(
-                                  imagePath: Icons.logout,
-                                  iconcolor: Colors.red,
-                                  title: 'logout'.tr(),
-                                  subtitle: 'descriptionOfLogout'.tr(),
-                                  onTap: () {
-                                    // context.read<AuthCubit>().logout();
-                                    context.pushNamedAndRemoveUntil(
-                                        Routes.loginScreen);
-                                  },
-                                );
-
-                                // CustomRowInSettingWidget(
-                                //   imagePath:
-                                //       "assets/images/svg/logout_icon.svg",
-                                //   title: 'logOut'.tr(),
-                                //   subtitle: 'descriptionOfLogout'.tr(),
-                                //   onTap: () {
-                                //     context.read<AuthCubit>().logout();
-                                //   },
-                                // );
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: 12.w,
+                          bottom: 18.w,
+                        ),
+                        child: Column(
+                          spacing: 18.h,
+                          children: [
+                            CustomRowInSettingWidget(
+                              imagePath:
+                                  'assets/images/svg/account_information_icon.svg',
+                              title: 'accountInformation'.tr(),
+                              subtitle: 'changeYourAccount'.tr(),
+                              onTap: () =>
+                                  context.pushNamed(Routes.profileScreen),
+                            ),
+                            const CustomDividerWidget(),
+                            CustomRowInSettingWidget(
+                              imagePath: 'assets/images/svg/language_icon.svg',
+                              title: 'language'.tr(),
+                              subtitle: 'descriptionOfLanguage'.tr(),
+                              onTap: () {
+                                showLocalizationBottomSheet(context);
                               },
                             ),
-                          ),
-                        ],
+                            const CustomDividerWidget(),
+                            BlocProvider(
+                              create: (context) => AuthCubit(getIt()),
+                              child: BlocConsumer<AuthCubit, AuthState>(
+                                listener: (context, state) {
+                                  if (state is LogoutSuccess) {
+                                    context.pushNamed(Routes.loginScreen);
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomRowInSettingWidget(
+                                    imagePath: Icons.logout,
+                                    iconcolor: Colors.red,
+                                    title: 'logout'.tr(),
+                                    subtitle: 'descriptionOfLogout'.tr(),
+                                    onTap: () {
+                                      context.read<AuthCubit>().logout();
+                                    },
+                                  );
+                                  // CustomRowInSettingWidget(
+                                  //   imagePath:
+                                  //       "assets/images/svg/logout_icon.svg",
+                                  //   title: 'logOut'.tr(),
+                                  //   subtitle: 'descriptionOfLogout'.tr(),
+                                  //   onTap: () {
+                                  //     context.read<AuthCubit>().logout();
+                                  //   },
+                                  // );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                    ] else ...[
+                      Text(
+                        'general'.tr(),
+                        style: Styles.highlightEmphasis.copyWith(
+                          color: AppColors.neutralColor1000,
+                        ),
+                      ),
+
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: 12.w,
+                          bottom: 18.w,
+                        ),
+                        child: Column(
+                          spacing: 18.h,
+                          children: [
+                            CustomRowInSettingWidget(
+                              imagePath:
+                                  'assets/images/svg/account_information_icon.svg',
+                              title: 'accountInformation'.tr(),
+                              subtitle: 'changeYourAccount'.tr(),
+                              onTap: () =>
+                                  context.pushNamed(Routes.profileScreen),
+                            ),
+                            const CustomDividerWidget(),
+                            CustomRowInSettingWidget(
+                              imagePath: Icons.wallet,
+                              iconcolor: AppColors.primaryColor900,
+                              title: 'myBooking'.tr(),
+                              subtitle: 'appointmentsWiththeAbility'.tr(),
+                              onTap: () =>
+                                  context.pushNamed(Routes.myBookingScreen),
+                            ),
+                            const CustomDividerWidget(),
+                            CustomRowInSettingWidget(
+                              imagePath:
+                                  Assets.assetsImagesSvgMedicalReportsIcon,
+                              title: 'medicalReports'.tr(),
+                              subtitle: 'patientsmedical'.tr(),
+                              onTap: () {
+                                context.pushNamed(Routes.medicalReportsScreen);
+                              },
+                            ),
+                            const CustomDividerWidget(),
+                            CustomRowInSettingWidget(
+                              imagePath:
+                                  'assets/images/svg/technical_support_icon.svg',
+                              title: 'technicalSupport'.tr(),
+                              subtitle: 'howCanWeHelp'.tr(),
+                              onTap: () => context
+                                  .pushNamed(Routes.technicalSupportScreen),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      /// More Setting
+                      Text(
+                        'more'.tr(),
+                        style: Styles.highlightEmphasis.copyWith(
+                          color: AppColors.neutralColor1000,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: 12.w,
+                          bottom: 18.w,
+                        ),
+                        child: Column(
+                          spacing: 18.h,
+                          children: [
+                            CustomRowInSettingWidget(
+                              imagePath: 'assets/images/svg/language_icon.svg',
+                              title: 'language'.tr(),
+                              subtitle: 'descriptionOfLanguage'.tr(),
+                              onTap: () {
+                                showLocalizationBottomSheet(context);
+                              },
+                            ),
+                            const CustomDividerWidget(),
+                            BlocProvider(
+                              create: (context) => AuthCubit(getIt()),
+                              child: BlocConsumer<AuthCubit, AuthState>(
+                                listener: (context, state) {
+                                  if (state is LogoutSuccess) {
+                                    context.pushNamed(Routes.loginScreen);
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomRowInSettingWidget(
+                                    imagePath: Icons.logout,
+                                    iconcolor: Colors.red,
+                                    title: 'logout'.tr(),
+                                    subtitle: 'descriptionOfLogout'.tr(),
+                                    onTap: () {
+                                      // context.read<AuthCubit>().logout();
+                                      context.pushNamedAndRemoveUntil(
+                                          Routes.loginScreen);
+                                    },
+                                  );
+
+                                  // CustomRowInSettingWidget(
+                                  //   imagePath:
+                                  //       "assets/images/svg/logout_icon.svg",
+                                  //   title: 'logOut'.tr(),
+                                  //   subtitle: 'descriptionOfLogout'.tr(),
+                                  //   onTap: () {
+                                  //     context.read<AuthCubit>().logout();
+                                  //   },
+                                  // );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),

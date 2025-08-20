@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/helper_functions/navigate_based_on_role.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/auth/data/repos/auth_repo.dart';
@@ -130,8 +132,16 @@ class AuthCubit extends Cubit<AuthState> {
     showLoading();
     emit(LogoutLoading());
     final result = await authRepository.logout();
-    result.when(success: (success) {
+    result.when(success: (success) async {
       hideLoading();
+      await CacheHelper.removeData(key: CacheKeys.doctorId);
+      await CacheHelper.removeData(key: CacheKeys.doctorName);
+      await CacheHelper.clearAllSecuredData();
+      await CacheHelper.removeData(key: CacheKeys.type);
+      await CacheHelper.removeData(key: CacheKeys.userName);
+      await CacheHelper.removeData(key: CacheKeys.userPhone);
+      await CacheHelper.removeData(key: CacheKeys.userEmail);
+
       emit(LogoutSuccess());
     }, failure: (error) {
       hideLoading();

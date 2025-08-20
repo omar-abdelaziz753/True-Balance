@@ -128,30 +128,18 @@ class LoginFormWidget extends StatelessWidget {
               ],
             ),
             23.verticalSpace,
-            BlocListener<AuthCubit, AuthState>(
-              listener: (context, state) {
-                if (state is LoginSuccessState) {
-                  context.pushNamedAndRemoveUntil(Routes.mainLayoutScreen,
-                      arguments: 0);
-                }
-              },
-              child: CustomButtonWidget(
-                text: 'login'.tr(),
-                padding: EdgeInsets.symmetric(
-                  vertical: 14.h,
-                ),
-                textStyle: Styles.captionEmphasis.copyWith(
-                  color: AppColors.neutralColor100,
-                ),
-                onPressed: () => {
-                  if (context
-                      .read<AuthCubit>()
-                      .formKey
-                      .currentState!
-                      .validate())
-                    {context.read<AuthCubit>().userLogin()}
-                },
+            CustomButtonWidget(
+              text: 'login'.tr(),
+              padding: EdgeInsets.symmetric(
+                vertical: 14.h,
               ),
+              textStyle: Styles.captionEmphasis.copyWith(
+                color: AppColors.neutralColor100,
+              ),
+              onPressed: () => {
+                if (context.read<AuthCubit>().formKey.currentState!.validate())
+                  {context.read<AuthCubit>().userLogin()}
+              },
             ),
             // 18.verticalSpace,
             Row(
