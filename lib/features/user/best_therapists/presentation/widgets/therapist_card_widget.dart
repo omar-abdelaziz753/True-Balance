@@ -100,7 +100,8 @@ class TherapistCardWidget extends StatelessWidget {
                     ),
                     8.verticalSpace,
                     Text(
-                      "age : ${doctorModel.age.toString()}",
+                      "${'age'.tr()}: ${doctorModel.age.toString()}",
+                      // "age : ${doctorModel.age.toString()}",
                       style: Styles.footnoteEmphasis.copyWith(
                         color: AppColors.neutralColor600,
                       ),
