@@ -263,6 +263,20 @@ class DoctorDetailsScreen extends StatelessWidget {
                             color: AppColors.neutralColor600,
                           ),
                         ),
+                        12.horizontalSpace,
+                        Text(
+                          "age : ${cubit.doctorDetails!.data.age.toString()}",
+                          style: Styles.footnoteEmphasis.copyWith(
+                            color: AppColors.neutralColor600,
+                          ),
+                        ),
+                        12.horizontalSpace,
+                        Text(
+                          cubit.doctorDetails!.data.gender,
+                          style: Styles.footnoteEmphasis.copyWith(
+                            color: AppColors.neutralColor600,
+                          ),
+                        ),
                       ],
                     ),
                   ),

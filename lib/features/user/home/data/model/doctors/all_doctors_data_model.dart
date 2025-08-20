@@ -47,10 +47,12 @@ class DoctorModel {
   final String email;
   final String image;
   final String phone;
-  final String type;  
-  final double rate;  
-  final double ratesCount;  
+  final String type;
+  final double rate;
+  final double ratesCount;
   final String specialization;
+  final num age;
+  final String gender;
 
   DoctorModel({
     required this.id,
@@ -62,6 +64,8 @@ class DoctorModel {
     required this.ratesCount,
     required this.type,
     required this.specialization,
+    required this.age,
+    required this.gender,
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) =>

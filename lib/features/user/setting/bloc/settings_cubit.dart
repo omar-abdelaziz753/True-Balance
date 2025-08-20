@@ -30,6 +30,9 @@ class SettingsCubit extends Cubit<SettingsState> {
     result.when(
       success: (data) {
         getProfileDataModel = data;
+        fullNameController.text = getProfileDataModel!.data!.name ?? '';
+        phoneController.text = getProfileDataModel!.data!.phone ?? '';
+        emailController.text = getProfileDataModel!.data!.email ?? '';
         emit(GetProfileDataSuccessState());
       },
       failure: (error) {

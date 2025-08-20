@@ -36,6 +36,8 @@ DoctorModelDetails _$DoctorModelDetailsFromJson(Map<String, dynamic> json) =>
       rate: (json['rate'] as num).toInt(),
       ratesCount: (json['ratesCount'] as num).toInt(),
       ratings: Ratings.fromJson(json['ratings'] as Map<String, dynamic>),
+      age: json['age'] as num,
+      gender: json['gender'] as String,
     );
 
 Map<String, dynamic> _$DoctorModelDetailsToJson(DoctorModelDetails instance) =>
@@ -50,6 +52,8 @@ Map<String, dynamic> _$DoctorModelDetailsToJson(DoctorModelDetails instance) =>
       'rate': instance.rate,
       'ratesCount': instance.ratesCount,
       'ratings': instance.ratings,
+      'age': instance.age,
+      'gender': instance.gender,
     };
 
 Ratings _$RatingsFromJson(Map<String, dynamic> json) => Ratings(

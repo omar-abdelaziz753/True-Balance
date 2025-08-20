@@ -50,6 +50,8 @@ DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => DoctorModel(
       ratesCount: (json['ratesCount'] as num).toDouble(),
       type: json['type'] as String,
       specialization: json['specialization'] as String,
+      age: json['age'] as num,
+      gender: json['gender'] as String,
     );
 
 Map<String, dynamic> _$DoctorModelToJson(DoctorModel instance) =>
@@ -63,6 +65,8 @@ Map<String, dynamic> _$DoctorModelToJson(DoctorModel instance) =>
       'rate': instance.rate,
       'ratesCount': instance.ratesCount,
       'specialization': instance.specialization,
+      'age': instance.age,
+      'gender': instance.gender,
     };
 
 PaginationLinks _$PaginationLinksFromJson(Map<String, dynamic> json) =>
