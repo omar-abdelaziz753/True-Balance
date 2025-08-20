@@ -27,7 +27,10 @@ class BookingScreen extends StatelessWidget {
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
           onPressed: () {
             if (cubit.currentStep == 1) {
               cubit.currentStep = 0;

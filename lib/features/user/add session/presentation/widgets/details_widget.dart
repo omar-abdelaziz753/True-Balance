@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -96,23 +97,23 @@ class DetailsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DetailsRowWidget(
-                label: "Treatment Name",
+                label: "treatmentname".tr(),
                 value: cubit.treatmentPlanDetail.name,
               ),
               DetailsRowWidget(
-                label: "Total Of Session",
+                label: "totalOfSession".tr(),
                 value: cubit.treatmentPlanDetail.totalSessions.toString(),
               ),
               DetailsRowWidget(
-                label: "Booking Is Complete",
+                label: "bookingIsComplete".tr(),
                 value: cubit.treatmentPlanDetail.completedSessions.toString(),
               ),
               DetailsRowWidget(
-                label: "Remaining Reservations Are Required",
+                label: "remainingReservationsAreRequired".tr(),
                 value: cubit.treatmentPlanDetail.uncompletedSessions.toString(),
               ),
               DetailsRowWidget(
-                label: "Type Of Treatment",
+                label: "typeoftreatment".tr(),
                 value: cubit.treatmentPlanDetail.type,
               ),
               // _buildRow("Treatment Name", cubit.treatmentPlanDetail.name),
@@ -123,9 +124,9 @@ class DetailsWidget extends StatelessWidget {
               // _buildRow("Remaining Reservations Are Required",
               //     cubit.treatmentPlanDetail.uncompletedSessions.toString()),
               // _buildRow("Type Of Treatment", cubit.treatmentPlanDetail.type),
-              const Text(
-                "Notes",
-                style: TextStyle(
+              Text(
+                "notes".tr(),
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.black54,
                 ),

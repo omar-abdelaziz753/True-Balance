@@ -6,7 +6,7 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/features/therapists/appointments_details/presentation/widgets/custom_row_title_and_status_widget.dart';
+import 'package:truee_balance_app/features/doctors/appointments_details/presentation/widgets/custom_row_title_and_status_widget.dart';
 import 'package:truee_balance_app/features/user/my_booking/widgets/custom_row_make_title_and_desc_widget.dart';
 
 class CustomAppointmentDetailsCardWidget extends StatelessWidget {

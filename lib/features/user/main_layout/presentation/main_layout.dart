@@ -39,10 +39,11 @@ class MainLayoutScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    size: 30.sp,
-                    Icons.wallet,
+                  SvgPicture.asset(
+                    'assets/images/svg/mysessions_icon.svg',
                     color: AppColors.neutralColor100,
+                    width: 27.w,
+                    height: 27.h,
                   ),
                 ],
               ),
@@ -51,48 +52,44 @@ class MainLayoutScreen extends StatelessWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomAppBar(
-            //
             height: 60.h,
             shape: const CircularNotchedRectangle(),
             elevation: 0.0,
             notchMargin: 8.0,
             color: AppColors.primaryColor900,
-            child: SizedBox(
-              // height: 70.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildNavItem(
-                    icon: 'assets/images/svg/home_icon.svg',
-                    label: 'home'.tr(),
-                    index: 0,
-                    currentIndex: currentIndex,
-                    onTap: () => cubit.changeBottomNavBar(0),
-                  ),
-                  _buildNavItem(
-                    icon: 'assets/images/svg/therapists_icon.svg',
-                    label: 'doctors'.tr(),
-                    index: 1,
-                    currentIndex: currentIndex,
-                    onTap: () => cubit.changeBottomNavBar(1),
-                  ),
-                  const SizedBox(width: 40),
-                  _buildNavItem(
-                    icon: 'assets/images/svg/mysessions_icon.svg',
-                    label: 'mySessions'.tr(),
-                    index: 3,
-                    currentIndex: currentIndex,
-                    onTap: () => cubit.changeBottomNavBar(3),
-                  ),
-                  _buildNavItem(
-                    icon: 'assets/images/svg/setting_icon.svg',
-                    label: 'setting'.tr(),
-                    index: 4,
-                    currentIndex: currentIndex,
-                    onTap: () => cubit.changeBottomNavBar(4),
-                  ),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildNavItem(
+                  icon: 'assets/images/svg/home_icon.svg',
+                  label: 'home'.tr(),
+                  index: 0,
+                  currentIndex: currentIndex,
+                  onTap: () => cubit.changeBottomNavBar(0),
+                ),
+                _buildNavItem(
+                  icon: 'assets/images/svg/therapists_icon.svg',
+                  label: 'doctors'.tr(),
+                  index: 1,
+                  currentIndex: currentIndex,
+                  onTap: () => cubit.changeBottomNavBar(1),
+                ),
+                const Expanded(child: SizedBox()),
+                _buildNavItem(
+                  icon: 'assets/images/svg/mysessions_icon.svg',
+                  label: 'myBooking'.tr(),
+                  index: 3,
+                  currentIndex: currentIndex,
+                  onTap: () => cubit.changeBottomNavBar(3),
+                ),
+                _buildNavItem(
+                  icon: 'assets/images/svg/setting_icon.svg',
+                  label: 'setting'.tr(),
+                  index: 4,
+                  currentIndex: currentIndex,
+                  onTap: () => cubit.changeBottomNavBar(4),
+                ),
+              ],
             ),
           ),
         );
@@ -117,8 +114,6 @@ class MainLayoutScreen extends StatelessWidget {
             Expanded(
               child: SvgPicture.asset(
                 icon,
-                // width: 24.sp,
-                // height: 20.sp,
                 colorFilter: ColorFilter.mode(
                   isSelected
                       ? AppColors.neutralColor100

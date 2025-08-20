@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/features/therapists/appointments_details/presentation/widgets/Custom_appointment_details_card_widget.dart';
+import 'package:truee_balance_app/features/doctors/appointments_details/presentation/widgets/Custom_appointment_details_card_widget.dart';
 
 class AppointmentsDetailsScreen extends StatelessWidget {
   const AppointmentsDetailsScreen({super.key});

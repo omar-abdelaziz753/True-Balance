@@ -1,4 +1,4 @@
-part of 'main_layout_therapists_cubit.dart';
+part of 'main_layout_doctors_cubit.dart';
 
 
 sealed class MainLayoutTherapistsState {}

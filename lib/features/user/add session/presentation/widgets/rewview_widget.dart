@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -96,12 +97,12 @@ class RewviewWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DetailsRowWidget(
-                label: "Total Of Session",
+                label: "totalOfSession".tr(),
                 value: cubit.treatmentPlanDetail.totalSessions.toString(),
               ),
 
               DetailsRowWidget(
-                label: "Treatment Name",
+                label: "treatmentname".tr(),
                 value: cubit.treatmentPlanDetail.name,
               ),
 
@@ -110,9 +111,9 @@ class RewviewWidget extends StatelessWidget {
 
               // _buildRow("Treatment Name", cubit.treatmentPlanDetail.name),
 
-              const Text(
-                "Notes",
-                style: TextStyle(
+              Text(
+                "notes".tr(),
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.black54,
                 ),
@@ -161,11 +162,11 @@ class RewviewWidget extends StatelessWidget {
                     value: "",
                   ),
                   DetailsRowWidget(
-                    label: "data",
+                    label: "date".tr(),
                     value: cubit.treatmentPlanDetail.sessions[index].date,
                   ),
                   DetailsRowWidget(
-                    label: "time",
+                    label: "time".tr(),
                     value: cubit.treatmentPlanDetail.sessions[index].time,
                   ),
                   // _buildRow("Session${index + 1}", ""),
@@ -242,10 +243,10 @@ class RewviewWidget extends StatelessWidget {
                         ],
                       ),
                       child: DetailsRowWidget(
-                        label: "session Date",
+                        label: "sessionDate".tr(),
                         value: "${selectedSession.date} ",
                       ),
-                      // _buildRow("session Date", "${selectedSession.date} "),
+                      // _buildRow("session Date", "${selectedSes sion.date} "),
                     ),
                     Container(
                       width: double.infinity,
@@ -266,7 +267,7 @@ class RewviewWidget extends StatelessWidget {
                         ],
                       ),
                       child: DetailsRowWidget(
-                        label: "session time",
+                        label: "sessionTime".tr(),
                         value: "${selectedSession.time} ",
                       ),
                       // _buildRow("session time", "${selectedSession.time} "),

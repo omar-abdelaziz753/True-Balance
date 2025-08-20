@@ -24,6 +24,7 @@ class EndPoints {
   static const String ticketDetails = 'api/frontend/clientTicket/show';
 
   static const String getconsultations = 'api/frontend/user/consultations';
+  static const String getAllDoctorsConsultations = 'api/frontend/doctor/consultations/users';
 
   static const String getReports = 'api/frontend/treatment-plans/medical-reports/all';
 

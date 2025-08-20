@@ -102,7 +102,8 @@ class AddSessionScreen extends StatelessWidget {
               buildWhen: (previous, current) => current is ChangeStepState,
               builder: (context, state) {
                 return CustomButtonWidget(
-                  text: cubit.currentStep == 2 ? 'Booking Now' : 'Next',
+                  text:
+                      cubit.currentStep == 2 ? 'bookingNow'.tr() : 'next'.tr(),
                   onPressed: () {
                     if (cubit.currentStep == 0) {
                       cubit.nextStep();
@@ -127,5 +128,3 @@ class AddSessionScreen extends StatelessWidget {
     );
   }
 }
-
-

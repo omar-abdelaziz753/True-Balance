@@ -32,6 +32,10 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
       image: json['image'] as String?,
       token: json['token'] as String?,
       type: json['type'] as String?,
+      specialization: json['specialization'] == null
+          ? null
+          : Specialization.fromJson(
+              json['specialization'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
@@ -42,4 +46,31 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
       'image': instance.image,
       'token': instance.token,
       'type': instance.type,
+      'specialization': instance.specialization,
+    };
+
+Specialization _$SpecializationFromJson(Map<String, dynamic> json) =>
+    Specialization(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] == null
+          ? null
+          : LocalizedName.fromJson(json['name'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$SpecializationToJson(Specialization instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+LocalizedName _$LocalizedNameFromJson(Map<String, dynamic> json) =>
+    LocalizedName(
+      ar: json['ar'] as String?,
+      en: json['en'] as String?,
+    );
+
+Map<String, dynamic> _$LocalizedNameToJson(LocalizedName instance) =>
+    <String, dynamic>{
+      'ar': instance.ar,
+      'en': instance.en,
     };
