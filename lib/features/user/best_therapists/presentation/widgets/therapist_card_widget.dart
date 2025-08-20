@@ -50,15 +50,18 @@ class TherapistCardWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedNetworkImage(
-              imageUrl: (doctorModel.image),
-              width: 95.w,
-              height: 91.h,
-              fit: BoxFit.cover,
-              errorWidget: (context, url, error) => Icon(
-                Icons.error,
-                size: 91.sp,
-                color: Colors.grey,
+            Expanded(
+              child: CachedNetworkImage(
+                imageUrl: (doctorModel.image),
+                // width: 95.w,
+                // height: 91.h,
+
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => Icon(
+                  Icons.error,
+                  size: 91.sp,
+                  color: Colors.grey,
+                ),
               ),
             ),
 
@@ -76,6 +79,7 @@ class TherapistCardWidget extends StatelessWidget {
             // ),
             12.horizontalSpace,
             Expanded(
+              flex: 2,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.h),
                 child: Column(
@@ -95,6 +99,19 @@ class TherapistCardWidget extends StatelessWidget {
                       ),
                     ),
                     8.verticalSpace,
+                    Text(
+                      "age : ${doctorModel.age.toString()}",
+                      style: Styles.footnoteEmphasis.copyWith(
+                        color: AppColors.neutralColor600,
+                      ),
+                    ),
+                    8.verticalSpace,
+                    Text(
+                      doctorModel.gender,
+                      style: Styles.footnoteEmphasis.copyWith(
+                        color: AppColors.neutralColor600,
+                      ),
+                    ),
                     Row(
                       children: [
                         Icon(

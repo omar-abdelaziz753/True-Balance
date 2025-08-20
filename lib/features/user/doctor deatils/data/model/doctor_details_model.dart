@@ -34,7 +34,8 @@ class DoctorModelDetails {
   final int rate;
   final int ratesCount;
   final Ratings ratings;
-
+ final num age;
+  final String gender;
   DoctorModelDetails({
     required this.id,
     required this.name,
@@ -46,6 +47,9 @@ class DoctorModelDetails {
     required this.rate,
     required this.ratesCount,
     required this.ratings,
+    required this .age , 
+    required this.gender
+
   });
 
   factory DoctorModelDetails.fromJson(Map<String, dynamic> json) =>

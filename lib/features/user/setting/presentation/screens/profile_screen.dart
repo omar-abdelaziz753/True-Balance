@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
@@ -60,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                               ? ClipOval(
                                   child: Image.file(
                                     cubit.profileImage!,
-                                    width: 90.r, // Diameter = 2 * radius
+                                    width: 90.r,
                                     height: 90.r,
                                     fit: BoxFit.cover,
                                     errorBuilder:
@@ -249,10 +250,10 @@ class ProfileScreen extends StatelessWidget {
                     listener: (context, state) {
                       if (state is UpdateProfileDataSuccessState) {
                         context.read<SettingsCubit>().getProfileData();
+                        context.pop();
                       }
                     },
                     builder: (context, state) {
-                      final cubit = context.read<SettingsCubit>();
                       return Container(
                         width: double.infinity,
                         color: AppColors.neutralColor100,
