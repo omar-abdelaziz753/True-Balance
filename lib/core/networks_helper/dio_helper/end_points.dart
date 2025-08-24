@@ -52,4 +52,5 @@ class EndPoints {
       'api/frontend/doctor/consultations/users?status=${isPending ? 'pending' : 'completed'}';
   static String getAllConsultation(bool isPending, int id) =>
       'api/frontend/doctor/consultations/user/get-all-consultations/$id?status=${isPending ? 'pending' : 'completed'}';
+  static String consultationAccess = 'api/frontend/doctor/consultations/assess';
 }

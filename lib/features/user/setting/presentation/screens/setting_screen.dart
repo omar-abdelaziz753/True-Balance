@@ -73,6 +73,15 @@ class SettingScreen extends StatelessWidget {
                             ),
                             const CustomDividerWidget(),
                             CustomRowInSettingWidget(
+                              imagePath: Icons.wallet,
+                              iconcolor: AppColors.primaryColor900,
+                              title: 'myBooking'.tr(),
+                              subtitle: 'appointmentsWiththeAbility'.tr(),
+                              onTap: () =>
+                                  context.pushNamed(Routes.completedCousultations),
+                            ),
+                            const CustomDividerWidget(),
+                            CustomRowInSettingWidget(
                               imagePath: 'assets/images/svg/language_icon.svg',
                               title: 'language'.tr(),
                               subtitle: 'descriptionOfLanguage'.tr(),

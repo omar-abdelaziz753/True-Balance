@@ -256,6 +256,16 @@ class AppRouter {
           cubit: OnBoardingCubit(),
           screen: const OnBoardingScreen(),
         );
+
+      case Routes.completedCousultations:
+        return transition(
+          screen: BlocProvider(
+            create: (context) => AppointmentsCubit(getIt())
+              ..getAllDoctorsConsultations(isPending: false)
+              ..setupAllDoctorsConsultationsScrollController(),
+            child: const AppointmentsScreen(),
+          ),
+        );
       case Routes.chatScreen:
         final id = settings.arguments as int;
         return transition(
