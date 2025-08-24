@@ -23,7 +23,7 @@ class CustomRowInSettingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Row(
         spacing: 8.w,

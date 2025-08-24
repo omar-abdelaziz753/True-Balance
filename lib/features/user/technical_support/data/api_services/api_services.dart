@@ -51,4 +51,9 @@ class TechnicalSupportApiServices {
   Future<Response?> getAboutUs() async {
     return _dioHelper.get(endPoint: EndPoints.getAboutUs);
   }
+
+  /// Get privacy policy
+  Future<Response?> getPrivacy() async {
+    return _dioHelper.get(endPoint: EndPoints.getPrivacy);
+  }
 }

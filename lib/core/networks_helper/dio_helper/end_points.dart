@@ -44,4 +44,7 @@ class EndPoints {
 
  /// get about us
   static String getAboutUs = 'api/frontend/staticPages/about_us';
+  
+  /// get privacy
+  static String getPrivacy = 'api/frontend/staticPages/privacy_policy';
 }
