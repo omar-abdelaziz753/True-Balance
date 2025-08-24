@@ -32,6 +32,7 @@ class AppoimntetItemDetailsScreen extends StatelessWidget {
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
         leading: IconButton(
+          color: AppColors.neutralColor100,
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);

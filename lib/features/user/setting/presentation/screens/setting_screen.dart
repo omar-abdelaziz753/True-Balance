@@ -75,10 +75,10 @@ class SettingScreen extends StatelessWidget {
                             CustomRowInSettingWidget(
                               imagePath: Icons.wallet,
                               iconcolor: AppColors.primaryColor900,
-                              title: 'myBooking'.tr(),
-                              subtitle: 'appointmentsWiththeAbility'.tr(),
-                              onTap: () =>
-                                  context.pushNamed(Routes.completedCousultations),
+                              title: 'completedCousultations'.tr(),
+                              subtitle: 'completedCousultationsdetails'.tr(),
+                              onTap: () => context
+                                  .pushNamed(Routes.completedCousultations),
                             ),
                             const CustomDividerWidget(),
                             CustomRowInSettingWidget(

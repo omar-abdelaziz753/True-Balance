@@ -93,6 +93,12 @@ class AppointmentsScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.primaryColor900,
           appBar: CustomBasicAppBar(
+            leading: BackButton(
+              color: AppColors.neutralColor100,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             title: 'appointments.'.tr(),
             backgroundColor: AppColors.primaryColor900,
             svgAsset: 'assets/images/svg/bg_image.svg',
