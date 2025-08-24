@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/data/model/appointment_details_model.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/data/repo/repos.dart';
 
@@ -81,5 +84,70 @@ class AppointmentsDetailsCubit extends Cubit<AppointmentsDetailsState> {
     );
 
     isLoadingMore = false;
+  }
+
+  // Future<void> completeConsultation({
+  //   required int consultationId,
+  //   required String doctorEvaluation,
+  //   required File file,
+  // }) async {
+  //   showLoading();
+  //   emit(AppointmentsDetailsSubmitting());
+
+  //   final result = await appointmentsDetailsRepo.consultationAccess(
+  //     consultationId: consultationId,
+  //     doctorEvaluation: doctorEvaluation,
+  //     file: file,
+  //   );
+
+  //   result.when(
+  //     success: (message) {
+  //       hideLoading();
+  //       emit(AppointmentsDetailsSubmittedSuccessfully());
+  //     },
+  //     failure: (error) {
+  //       hideLoading();
+
+  //       emit(AppointmentsDetailsSubmissionError());
+  //     },
+  //   );
+  // }
+
+  Future<bool> completeConsultation({
+    required int consultationId,
+    required String doctorEvaluation,
+    required File file,
+  }) async {
+    emit(AppointmentsDetailsSubmitting());
+    showLoading();
+    final result = await appointmentsDetailsRepo.consultationAccess(
+      consultationId: consultationId,
+      doctorEvaluation: doctorEvaluation,
+      file: file,
+    );
+
+    bool success = false;
+
+    result.when(
+      success: (message) {
+        hideLoading();
+        emit(AppointmentsDetailsSubmittedSuccessfully());
+        success = true;
+      },
+      failure: (error) {
+        hideLoading();
+
+        emit(AppointmentsDetailsSubmissionError());
+        success = false;
+      },
+    );
+
+    return success;
+  }
+
+  void removeAppointmentAt(int index) {
+    final list = appointmentDetailsModel!.data!.data!;
+    list.removeAt(index);
+    emit(AppointmentsDetailsUpdated()); // emit new state to refresh UI
   }
 }

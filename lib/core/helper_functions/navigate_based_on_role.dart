@@ -35,8 +35,7 @@ void navigateBasedOnRole() {
   final rawType = CacheHelper.getData(key: CacheKeys.type);
   final type = (rawType ?? '').toString().trim().toLowerCase();
 
-  print('raw type: $rawType');
-  print('normalized type: $type');
+ 
 
   if (AppConstants.userToken == null) {
     final isFirstOpen =
@@ -55,7 +54,6 @@ void navigateBasedOnRole() {
             ?.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
         break;
       case 'doctor':
-        print("This.doctor");
         AppConstants.navigatorKey.currentContext
             ?.pushNamedAndRemoveUntil(Routes.mainLayoutDoctorsScreen);
         break;
