@@ -27,11 +27,14 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
     });
   }
 
-  Future<void> getAllDoctorsConsultations() async {
+  bool? isPending;
+
+  Future<void> getAllDoctorsConsultations({required bool isPending}) async {
     currentPage = 1;
+    this.isPending = isPending;
     emit(AppointmentsLoading());
-    final result =
-        await appointmentsRepos.getAllDoctorsConsultations(page: currentPage);
+    final result = await appointmentsRepos.getAllDoctorsConsultations(
+        page: currentPage, isPending: isPending);
 
     result.when(
       success: (data) {
@@ -54,7 +57,7 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
     emit(AppointmentsLoadingMore());
 
     final result = await appointmentsRepos.getAllDoctorsConsultations(
-        page: currentPage + 1);
+        page: currentPage + 1, isPending: isPending!);
 
     result.when(
       success: (data) {

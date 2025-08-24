@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:truee_balance_app/core/routing/app_router.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
@@ -123,6 +124,8 @@ class AppointmentsScreen extends StatelessWidget {
                       Expanded(
                         child: ListView.separated(
                           shrinkWrap: true,
+                          controller:
+                              cubit.consultationsdoctorsScrollController,
                           itemCount: cubit.consultationUsersResponse?.data?.data
                                   ?.length ??
                               0,
@@ -132,7 +135,12 @@ class AppointmentsScreen extends StatelessWidget {
                             return InkWell(
                               onTap: () {
                                 context.pushNamed(
-                                    Routes.appointmentsDetailsScreen);
+                                  Routes.appointmentsDetailsScreen,
+                                  arguments: AppointmentsArguments(
+                                      isPending: cubit.isPending!,
+                                      userData: cubit.consultationUsersResponse!
+                                          .data!.data![index]),
+                                );
                               },
                               child: CustomAppointmentContainerWidget(
                                   title: cubit.consultationUsersResponse?.data

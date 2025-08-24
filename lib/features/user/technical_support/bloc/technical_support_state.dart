@@ -44,3 +44,9 @@ final class GetAboutUsLoadingState extends TechnicalSupportState {}
 final class GetAboutUsSuccessState extends TechnicalSupportState {}
 
 final class GetAboutUsErrorState extends TechnicalSupportState {}
+
+class GetPrivacyLoadingState extends TechnicalSupportState {}
+
+class GetPrivacySuccessState extends TechnicalSupportState {}
+
+class GetPrivacyErrorState extends TechnicalSupportState {}

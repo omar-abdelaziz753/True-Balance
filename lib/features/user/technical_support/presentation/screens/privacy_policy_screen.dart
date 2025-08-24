@@ -1,9 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/scroll_bar/custom_scroll_able_content_widget.dart';
+import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/widgets/custom_section_in_about_us_widget.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
@@ -12,89 +13,77 @@ class PrivacyPolicyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScrollController scrollController = ScrollController();
+    final cubit = context.read<TechnicalSupportCubit>();
 
-    return Scaffold(
-      backgroundColor: AppColors.primaryColor900,
-      appBar: CustomBasicAppBar(
-        leading: BackButton(
-          color: AppColors.neutralColor100,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: 'privacyPolicy'.tr(),
-        backgroundColor: AppColors.primaryColor900,
-        svgAsset: 'assets/images/svg/bg_image.svg',
-      ),
-      body: Container(
-        width: double.infinity,
-        padding: EdgeInsets.all(18.sp), // Keep this for container padding
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(12.r),
-            topRight: Radius.circular(12.r),
+    return BlocBuilder<TechnicalSupportCubit, TechnicalSupportState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: AppColors.primaryColor900,
+          appBar: CustomBasicAppBar(
+            leading: BackButton(
+              color: AppColors.neutralColor100,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title:"Privacy Policy",
+            backgroundColor: AppColors.primaryColor900,
+            svgAsset: 'assets/images/svg/bg_image.svg',
           ),
-        ),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
+          body: Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(18.sp),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12.r),
+                topRight: Radius.circular(12.r),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // SvgPicture.asset(
-                  //   'assets/images/svg/app_logo2_icon.svg',
-                  //   height: 50.h,
-                  // ),
-                  SizedBox(height: 20.h),
-                  Expanded(
-                    child: CustomScrollAbleContentWidget(
-                      scrollController: scrollController,
-                      contentWidget: const Column(
-                        children: [
-                          CustomSectionInAboutUsWidget(
-                            title: 'About Us',
-                            description:
-                                "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
-                          ),
-                          CustomSectionInAboutUsWidget(
-                            title: 'Our Mission',
-                            description:
-                                "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
-                          ),
-                          CustomSectionInAboutUsWidget(
-                            title: 'Contact Information',
-                            description:
-                                "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",
-                          ),
-                          CustomSectionInAboutUsWidget(
-                            title: 'About Us',
-                            description:
-                                "I'm having trouble logging in to my account. I'm getting an error message stating that the information is incorrect, even though I've verified it. Please help as soon as possible.",
-                          ),
-                          CustomSectionInAboutUsWidget(
-                            title: 'Our Mission',
-                            description:
-                                "Our mission is to provide a seamless financial experience, ensuring accessibility and transparency for all our users.",
-                          ),
-                          CustomSectionInAboutUsWidget(
-                            title: 'Contact Information',
-                            description:
-                                "For further support, contact us at support@truebalance.com or call +1 800 123 4567.",
-                          ),
-                        ],
-                      ),
-                    ),
+            ),
+            child: state is GetPrivacyLoadingState
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : LayoutBuilder(
+                    builder: (context, constraints) {
+                      return ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 20.h),
+                            Expanded(
+                              child: CustomScrollAbleContentWidget(
+                                scrollController: scrollController,
+                                contentWidget: ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      cubit.privacyPolicyModel?.data?.length ??
+                                          0,
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: 16.h),
+                                  itemBuilder: (context, index) {
+                                    final section =
+                                        cubit.privacyPolicyModel?.data?[index];
+                                    return CustomSectionInAboutUsWidget(
+                                      title: section?.title ?? '',
+                                      description: section?.text ?? '',
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

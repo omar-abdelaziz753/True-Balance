@@ -6,7 +6,7 @@ import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dar
 import 'package:truee_balance_app/core/widgets/scroll_bar/custom_scroll_able_content_widget.dart';
 import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/widgets/custom_section_in_about_us_widget.dart';
-   
+
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
 
@@ -40,35 +40,46 @@ class AboutUsScreen extends StatelessWidget {
                 topRight: Radius.circular(12.r),
               ),
             ),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                return ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: constraints.maxHeight,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20.h),
-                      Expanded(
-                        child: CustomScrollAbleContentWidget(
-                          scrollController: scrollController,
-                          contentWidget: Column(
-                            children: [
-                              CustomSectionInAboutUsWidget(
-                                title: cubit.aboutUsModel?.data?[0].title ?? '',
-                                description:
-                                    cubit.aboutUsModel?.data?[0].text ?? '',
-                              ),
-                            ],
-                          ),
+            child: state is GetAboutUsLoadingState
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : LayoutBuilder(
+                    builder: (context, constraints) {
+                      return ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight,
                         ),
-                      ),
-                    ],
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 20.h),
+                            Expanded(
+                              child: CustomScrollAbleContentWidget(
+                                scrollController: scrollController,
+                                contentWidget: ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      cubit.aboutUsModel?.data?.length ?? 0,
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: 16.h),
+                                  itemBuilder: (context, index) {
+                                    final section =
+                                        cubit.aboutUsModel?.data?[index];
+                                    return CustomSectionInAboutUsWidget(
+                                      title: section?.title ?? '',
+                                      description: section?.text ?? '',
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         );
       },

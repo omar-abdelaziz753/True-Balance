@@ -24,9 +24,9 @@ class EndPoints {
   static const String ticketDetails = 'api/frontend/clientTicket/show';
 
   static const String getconsultations = 'api/frontend/user/consultations';
-  static const String getAllDoctorsConsultations = 'api/frontend/doctor/consultations/users';
 
-  static const String getReports = 'api/frontend/treatment-plans/medical-reports/all';
+  static const String getReports =
+      'api/frontend/treatment-plans/medical-reports/all';
 
   /// Treatment Plans for Therapist
   static String treatmentPlans(int therapistId) =>
@@ -42,9 +42,14 @@ class EndPoints {
   static String rateSession(int therapistId) =>
       "api/frontend/treatment-plans/sessions/$therapistId/rate";
 
- /// get about us
+  /// get about us
   static String getAboutUs = 'api/frontend/staticPages/about_us';
-  
+
   /// get privacy
   static String getPrivacy = 'api/frontend/staticPages/privacy_policy';
+  static String getTerms = 'api/frontend/staticPages/terms_and_conditions';
+  static String getAllDoctorsConsultations(bool isPending) =>
+      'api/frontend/doctor/consultations/users?status=${isPending ? 'pending' : 'completed'}';
+  static String getAllConsultation(bool isPending, int id) =>
+      'api/frontend/doctor/consultations/user/get-all-consultations/$id?status=${isPending ? 'pending' : 'completed'}';
 }
