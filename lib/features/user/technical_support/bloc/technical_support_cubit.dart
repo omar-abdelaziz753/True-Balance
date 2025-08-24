@@ -1,7 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
+import 'package:truee_balance_app/features/user/technical_support/data/models/privacy_policy/privacy_policy_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/repos/repos.dart';
@@ -12,7 +13,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   TechnicalSupportCubit(this.technicalSupportRepo)
       : super(TechnicalSupportInitial());
 
-  final TechnicalSupportRepo? technicalSupportRepo;
+  final TechnicalSupportRepo technicalSupportRepo;
   AllTicketsDataModel? allTicketsDataModel;
   TicketDetailsDataModel? ticketDetailsDataModel;
   AboutUsModel? aboutUsModel;
@@ -33,7 +34,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   }) async {
     showLoading();
     emit(MakeTicketLoadingState());
-    final result = await technicalSupportRepo!.makeTicket(
+    final result = await technicalSupportRepo.makeTicket(
       title: titleController.text,
       priority: priority,
     );
@@ -55,7 +56,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   }) async {
     showLoading();
     emit(SendMessageLoadingState());
-    final result = await technicalSupportRepo!.sendMessage(
+    final result = await technicalSupportRepo.sendMessage(
       ticketId: ticketId,
       message: messageController.text,
     );
@@ -90,7 +91,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   Future<void> getAllTickets() async {
     currentPage = 1;
     emit(GetAllTicketsLoadingState());
-    final result = await technicalSupportRepo!.getAllTickets(page: currentPage);
+    final result = await technicalSupportRepo.getAllTickets(page: currentPage);
     result.when(
       success: (data) {
         allTicketsDataModel = data;
@@ -112,7 +113,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     emit(TicketsLoadingMore());
 
     final result =
-        await technicalSupportRepo!.getAllTickets(page: currentPage + 1);
+        await technicalSupportRepo.getAllTickets(page: currentPage + 1);
     result.when(
       success: (data) {
         allTicketsDataModel?.data?.tickets?.addAll(data.data?.tickets ?? []);
@@ -131,7 +132,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     required int ticketId,
   }) async {
     emit(GetTicketDetailsLoadingState());
-    final result = await technicalSupportRepo!.getTicketDetails(
+    final result = await technicalSupportRepo.getTicketDetails(
       ticketId: ticketId,
     );
     result.when(
@@ -148,7 +149,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   /// Get About Us
   Future<void> getAboutUs() async {
     emit(GetAboutUsLoadingState());
-    final result = await technicalSupportRepo!.getAboutUs();
+    final result = await technicalSupportRepo.getAboutUs();
     result.when(
       success: (data) {
         aboutUsModel = data;
@@ -156,6 +157,35 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
       },
       failure: (error) {
         emit(GetAboutUsErrorState());
+      },
+    );
+  }
+
+  PrivacyPolicyModel? privacyPolicyModel;
+  Future<void> getPrivacy() async {
+    emit(GetPrivacyLoadingState());
+    final result = await technicalSupportRepo.getPrivacy();
+    result.when(
+      success: (data) {
+        privacyPolicyModel = data; // Reusing the same model instance
+        emit(GetPrivacySuccessState());
+      },
+      failure: (error) {
+        emit(GetPrivacyErrorState());
+      },
+    );
+  }
+
+  Future<void> getTerms() async {
+    emit(GetPrivacyLoadingState());
+    final result = await technicalSupportRepo.getTerms();
+    result.when(
+      success: (data) {
+        privacyPolicyModel = data;
+        emit(GetPrivacySuccessState());
+      },
+      failure: (error) {
+        emit(GetPrivacyErrorState());
       },
     );
   }

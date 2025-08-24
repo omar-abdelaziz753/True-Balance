@@ -8,8 +8,8 @@ class AppointmentsApiServices {
   AppointmentsApiServices(this._dioHelper);
 
   /// get consultations doctors
-  Future<Response?> getAllDoctorsConsultations({required int page}) async {
+  Future<Response?> getAllDoctorsConsultations({required int page ,required bool isPending}) async {
     return _dioHelper
-        .get(endPoint: EndPoints.getAllDoctorsConsultations , data: {'page': page});
+        .get(endPoint: EndPoints.getAllDoctorsConsultations(isPending) , data: {'page': page});
   }
 }

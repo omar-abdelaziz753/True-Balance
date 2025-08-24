@@ -102,11 +102,11 @@ class TechnicalSupportScreen extends StatelessWidget {
                                 context.pushNamed(Routes.aboutUsScreen),
                           ),
                           const CustomDividerWidget(),
-                          CustomRowInTechnicalSupportWidget(
-                            title: 'faqs'.tr(),
-                            onTap: () {},
-                          ),
-                          const CustomDividerWidget(),
+                          // CustomRowInTechnicalSupportWidget(
+                          //   title: 'faqs'.tr(),
+                          //   onTap: () {},
+                          // ),
+                          // const CustomDividerWidget(),
                           CustomRowInTechnicalSupportWidget(
                             title: 'termsAndConditions'.tr(),
                             onTap: () => context

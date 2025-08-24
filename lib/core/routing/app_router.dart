@@ -12,7 +12,9 @@ import 'package:truee_balance_app/features/chat/presentation/screens/chat_screen
 import 'package:truee_balance_app/features/choose_your_account/business_logic/cubit/chosse_account_cubit.dart';
 import 'package:truee_balance_app/features/choose_your_account/presentation/screens/choose_your_account_screen.dart';
 import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
+import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
 import 'package:truee_balance_app/features/doctors/appointments/presentation/screens/appointments_screen.dart';
+import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/presentation/screens/appointments_details_screen.dart';
 import 'package:truee_balance_app/features/doctors/main_layout_doctors/business_logic/main_layout_doctors_cubit.dart';
 import 'package:truee_balance_app/features/doctors/main_layout_doctors/presentation/main_layout_doctors.dart';
@@ -90,8 +92,16 @@ class AppRouter {
           screen: const AppointmentsScreen(),
         );
       case Routes.appointmentsDetailsScreen:
+        final arguments = settings.arguments as AppointmentsArguments;
         return transition(
-          screen: const AppointmentsDetailsScreen(),
+          cubit: AppointmentsDetailsCubit(getIt())
+            ..fetchAppointments(
+              doctorId: arguments.userData.id!,
+              isPending: arguments.isPending,
+            ),
+          screen: AppointmentsDetailsScreen(
+            userData: arguments.userData,
+          ),
         );
       case Routes.bestTherapistsScreen:
         return transition(
@@ -207,6 +217,7 @@ class AppRouter {
         );
       case Routes.termsAndConditionsScreen:
         return transition(
+          cubit: TechnicalSupportCubit(getIt())..getTerms(),
           screen: const TermsAndConditionsScreen(),
         );
       case Routes.treatmentdetailsScreen:
@@ -224,6 +235,7 @@ class AppRouter {
         );
       case Routes.privacyPolicyScreen:
         return transition(
+          cubit: TechnicalSupportCubit(getIt())..getPrivacy(),
           screen: const PrivacyPolicyScreen(),
         );
       case Routes.bookingScreen:
@@ -285,11 +297,18 @@ class AppRouter {
   List<Widget> screensDoctorss = [
     BlocProvider(
       create: (context) => AppointmentsCubit(getIt())
-        ..getAllDoctorsConsultations()
+        ..getAllDoctorsConsultations(isPending: true)
         ..setupAllDoctorsConsultationsScrollController(),
       child: const AppointmentsScreen(),
     ),
     const NotificationScreen(),
     const SettingScreen(),
   ];
+}
+
+class AppointmentsArguments {
+  final bool isPending;
+  final UserData userData;
+
+  AppointmentsArguments({required this.isPending, required this.userData});
 }
