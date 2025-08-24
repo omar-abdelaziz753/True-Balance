@@ -1,12 +1,12 @@
 part of 'main_layout_doctors_cubit.dart';
 
 
-sealed class MainLayoutTherapistsState {}
+sealed class MainLayoutDoctorsState {}
 
-final class MainLayoutInitial extends MainLayoutTherapistsState {}
+final class MainLayoutInitial extends MainLayoutDoctorsState {}
 
-final class BottomNavTherapistsState extends MainLayoutTherapistsState {
+final class BottomNavDoctorsState extends MainLayoutDoctorsState {
   final int currentIndex;
 
-  BottomNavTherapistsState(this.currentIndex);
+  BottomNavDoctorsState(this.currentIndex);
 }

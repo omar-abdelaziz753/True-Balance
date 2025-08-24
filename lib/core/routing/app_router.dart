@@ -22,6 +22,8 @@ import 'package:truee_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dar
 import 'package:truee_balance_app/features/onBoarding/screens/on_boarding_screen.dart';
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
+import 'package:truee_balance_app/features/therapists/main_layout_therapists/business_logic/main_layout_therapists_cubit.dart';
+import 'package:truee_balance_app/features/therapists/main_layout_therapists/presentation/main_layout_therapists.dart';
 import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
 import 'package:truee_balance_app/features/user/add%20session/presentation/screens/add_session_screen.dart';
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
@@ -143,6 +145,11 @@ class AppRouter {
         return transition(
           screen: const MainLayoutDoctorsScreen(),
           cubit: MainLayoutDoctorsCubit(),
+        );
+      case Routes.mainLayoutTherapistsScreen:
+        return transition(
+          screen: const MainLayoutTherapistsScreen(),
+          cubit: MainLayoutTherapistsCubit(),
         );
       case Routes.doctorDetailsScreen:
         final DoctorModel doctorModel = settings.arguments as DoctorModel;
@@ -310,6 +317,13 @@ class AppRouter {
         ..getAllDoctorsConsultations(isPending: true)
         ..setupAllDoctorsConsultationsScrollController(),
       child: const AppointmentsScreen(),
+    ),
+    const NotificationScreen(),
+    const SettingScreen(),
+  ];
+  List<Widget> screensTherapist = [
+    Container(
+      color: Colors.white,
     ),
     const NotificationScreen(),
     const SettingScreen(),

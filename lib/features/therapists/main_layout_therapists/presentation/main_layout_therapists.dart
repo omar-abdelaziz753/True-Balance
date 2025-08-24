@@ -7,22 +7,22 @@ import 'package:truee_balance_app/core/routing/app_router.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/features/doctors/main_layout_doctors/business_logic/main_layout_doctors_cubit.dart';
+import 'package:truee_balance_app/features/therapists/main_layout_therapists/business_logic/main_layout_therapists_cubit.dart';
 
-class MainLayoutDoctorsScreen extends StatelessWidget {
-  const MainLayoutDoctorsScreen({super.key});
+class MainLayoutTherapistsScreen extends StatelessWidget {
+  const MainLayoutTherapistsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainLayoutDoctorsCubit, MainLayoutDoctorsState>(
+    return BlocBuilder<MainLayoutTherapistsCubit, MainLayoutTherapistsState>(
       builder: (BuildContext context, state) {
-        final cubit = MainLayoutDoctorsCubit.get(context);
-        final currentIndex = (state is BottomNavDoctorsState)
+        final cubit = MainLayoutTherapistsCubit.get(context);
+        final currentIndex = (state is BottomNavTherapistsState)
             ? state.currentIndex
-            : AppConstants.userMainLayoutInitialScreenIndex2;
+            : AppConstants.userMainLayoutInitialScreenIndex3;
         return Scaffold(
           backgroundColor: AppColors.neutralColor100,
-          body: AppRouter().screensDoctorss[currentIndex],
+          body: AppRouter().screensTherapist[currentIndex],
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: ClipRRect(
