@@ -203,83 +203,101 @@ class MedicalReportsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Expanded(
-                        child: ListView.separated(
-                          itemCount: cubit.reportsModel!.data.length,
-                          separatorBuilder: (BuildContext context, int index) {
-                            return 16.verticalSpace;
-                          },
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 8.sp,
-                                vertical: 8.sp,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.sp),
-                                border: Border.all(
-                                  width: 1.sp,
-                                  color: AppColors.neutralColor600,
-                                ),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.sp),
-                                    child: SvgPicture.asset(
-                                      Assets.assetsImagesSvgPdfIcon,
-                                      height: 36.sp,
-                                      width: 36.sp,
-                                      fit: BoxFit.cover,
-                                    ),
+                        child: cubit.reportsModel!.data.isEmpty
+                            ? Center(
+                                child: Text(
+                                  "noReportsAvailable".tr(),
+                                  style: Styles.contentEmphasis.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.sp,
+                                    color: AppColors.neutralColor600,
                                   ),
-                                  SizedBox(width: 10.sp),
-                                  Expanded(
-                                    child: Text(
-                                      Uri.parse(cubit.reportsModel!.data[index])
-                                          .pathSegments
-                                          .last,
-                                      style: Styles.contentEmphasis.copyWith(
-                                        fontWeight: FontWeight.w700,
+                                ),
+                              )
+                            : ListView.separated(
+                                itemCount: cubit.reportsModel!.data.length,
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return 16.verticalSpace;
+                                },
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 8.sp,
+                                      vertical: 8.sp,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.sp),
+                                      border: Border.all(
+                                        width: 1.sp,
+                                        color: AppColors.neutralColor600,
                                       ),
                                     ),
-                                  ),
-                                  if (cubit
-                                      .reportsModel!.data[index].isNotEmpty)
-                                    InkWell(
-                                      onTap: () async {
-                                        await downloadPdfFile(
-                                          cubit.reportsModel!.data[index],
-                                          Uri.parse(cubit
-                                                  .reportsModel!.data[index])
-                                              .pathSegments
-                                              .last,
-                                        );
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.download_outlined,
-                                            size: 20.sp,
-                                            color: AppColors.primaryColor900,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(12.sp),
+                                          child: SvgPicture.asset(
+                                            Assets.assetsImagesSvgPdfIcon,
+                                            height: 36.sp,
+                                            width: 36.sp,
+                                            fit: BoxFit.cover,
                                           ),
-                                          Text(
-                                            'download'.tr(),
+                                        ),
+                                        SizedBox(width: 10.sp),
+                                        Expanded(
+                                          child: Text(
+                                            Uri.parse(cubit
+                                                    .reportsModel!.data[index])
+                                                .pathSegments
+                                                .last,
                                             style:
                                                 Styles.contentEmphasis.copyWith(
-                                              fontWeight: FontWeight.w400,
-                                              color: AppColors.primaryColor900,
-                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w700,
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        if (cubit.reportsModel!.data[index]
+                                            .isNotEmpty)
+                                          InkWell(
+                                            onTap: () async {
+                                              await downloadPdfFile(
+                                                cubit.reportsModel!.data[index],
+                                                Uri.parse(cubit.reportsModel!
+                                                        .data[index])
+                                                    .pathSegments
+                                                    .last,
+                                              );
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.download_outlined,
+                                                  size: 20.sp,
+                                                  color:
+                                                      AppColors.primaryColor900,
+                                                ),
+                                                Text(
+                                                  'download'.tr(),
+                                                  style: Styles.contentEmphasis
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.w400,
+                                                    color: AppColors
+                                                        .primaryColor900,
+                                                    fontSize: 12.sp,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                      ],
                                     ),
-                                ],
+                                  );
+                                },
                               ),
-                            );
-                          },
-                        ),
                       )
                     ],
                   ),
