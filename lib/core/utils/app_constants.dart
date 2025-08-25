@@ -12,6 +12,7 @@ class AppConstants {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static int userMainLayoutInitialScreenIndex = 0;
   static int userMainLayoutInitialScreenIndex2 = 0;
+  static int userMainLayoutInitialScreenIndex3 = 0;
 
   static screenWidth(context) => MediaQuery.sizeOf(context).width;
 

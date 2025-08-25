@@ -12,7 +12,8 @@ class SkeltonMySessionsForTherapist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    Scaffold(
       backgroundColor: AppColors.primaryColor900,
       appBar: CustomBasicAppBar(
         title: 'mySessions'.tr(),

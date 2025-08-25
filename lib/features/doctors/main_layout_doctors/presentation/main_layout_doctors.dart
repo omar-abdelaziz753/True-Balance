@@ -14,10 +14,10 @@ class MainLayoutDoctorsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainLayoutDoctorsCubit, MainLayoutTherapistsState>(
+    return BlocBuilder<MainLayoutDoctorsCubit, MainLayoutDoctorsState>(
       builder: (BuildContext context, state) {
         final cubit = MainLayoutDoctorsCubit.get(context);
-        final currentIndex = (state is BottomNavTherapistsState)
+        final currentIndex = (state is BottomNavDoctorsState)
             ? state.currentIndex
             : AppConstants.userMainLayoutInitialScreenIndex2;
         return Scaffold(

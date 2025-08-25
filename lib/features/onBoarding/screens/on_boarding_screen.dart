@@ -15,12 +15,69 @@ import 'package:truee_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dar
 
 import '../Bloc/on_boarding_states.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 
   @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen>
+    with SingleTickerProviderStateMixin {
+  late OnBoardingCubit onBoardingCubit;
+  late AnimationController _animationController;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    onBoardingCubit = BlocProvider.of<OnBoardingCubit>(context);
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _slideAnimation =
+        Tween<Offset>(begin: const Offset(0, 0.1), end: Offset.zero).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _animateToPage(int index) async {
+    await onBoardingCubit.pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+
+    _animationController.reverse().then((_) {
+      onBoardingCubit.changeOnBoardingIndex(index);
+      _animationController.forward();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    OnBoardingCubit onBoardingCubit = BlocProvider.of<OnBoardingCubit>(context);
     return BlocBuilder<OnBoardingCubit, OnBoardingStates>(
       builder: (context, state) {
         return PopScope(
@@ -59,7 +116,10 @@ class OnBoardingScreen extends StatelessWidget {
               itemCount: onBoardingCubit.onBoardingImageUrls.length,
               controller: onBoardingCubit.pageController,
               onPageChanged: (index) {
-                onBoardingCubit.changeOnBoardingIndex(index);
+                _animationController.reverse().then((_) {
+                  onBoardingCubit.changeOnBoardingIndex(index);
+                  _animationController.forward();
+                });
               },
               itemBuilder: (context, index) {
                 return Stack(
@@ -69,10 +129,19 @@ class OnBoardingScreen extends StatelessWidget {
                       alignment: Alignment.topCenter,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.0.sp),
-                        child: Image.asset(
-                          onBoardingCubit.onBoardingImageUrls[
-                              onBoardingCubit.onBoardingIndex],
-                          fit: BoxFit.contain,
+                        child: AnimatedBuilder(
+                          animation: _fadeAnimation,
+                          builder: (context, child) {
+                            return Opacity(
+                              opacity: _fadeAnimation.value,
+                              child: child,
+                            );
+                          },
+                          child: Image.asset(
+                            onBoardingCubit.onBoardingImageUrls[
+                                onBoardingCubit.onBoardingIndex],
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ),
@@ -91,99 +160,116 @@ class OnBoardingScreen extends StatelessWidget {
                           color: Colors.white,
                           border: Border.all(color: Colors.transparent),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                style: Styles.captionBold.copyWith(
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: onBoardingCubit.onBoardingTitleStart[
-                                        onBoardingCubit.onBoardingIndex],
-                                  ),
-                                  const TextSpan(text: ' '),
-                                  WidgetSpan(
-                                    alignment: PlaceholderAlignment.middle,
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 6.w,
-                                        vertical: 4.h,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.secondaryColor500,
-                                        borderRadius: BorderRadius.circular(6),
-                                      ),
-                                      child: Text(
-                                        onBoardingCubit
-                                                .onBoardingTitleHighlighted[
+                        child: FadeTransition(
+                          opacity: _fadeAnimation,
+                          child: SlideTransition(
+                            position: _slideAnimation,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    style: Styles.captionBold.copyWith(
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: onBoardingCubit
+                                                .onBoardingTitleStart[
                                             onBoardingCubit.onBoardingIndex],
-                                        style: TextStyle(
-                                          color: AppColors.neutralColor100,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 24.sp,
-                                          height: 1.2,
+                                      ),
+                                      const TextSpan(text: ' '),
+                                      WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 6.w,
+                                            vertical: 4.h,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.secondaryColor500,
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                          ),
+                                          child: Text(
+                                            onBoardingCubit
+                                                    .onBoardingTitleHighlighted[
+                                                onBoardingCubit
+                                                    .onBoardingIndex],
+                                            style: TextStyle(
+                                              color: AppColors.neutralColor100,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 24.sp,
+                                              height: 1.2,
+                                            ),
+                                          ),
                                         ),
                                       ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                Text(
+                                  onBoardingCubit.onBoardingDescriptions[
+                                      onBoardingCubit.onBoardingIndex],
+                                  style: Styles.captionBold.copyWith(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.neutralColor600,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(height: 10.h),
+                                DotsIndicator(
+                                  dotsCount: onBoardingCubit
+                                      .onBoardingImageUrls.length,
+                                  position: onBoardingCubit.onBoardingIndex,
+                                  decorator: DotsDecorator(
+                                    activeColor: AppColors.primaryColor900,
+                                    color: const Color(0xFF005430)
+                                        .withOpacity(0.1),
+                                    size: Size(30.r, 5.r),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4.r),
+                                    ),
+                                    activeSize: Size(30.r, 5.r),
+                                    activeShape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4.r),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 10.h),
-                            Text(
-                              onBoardingCubit.onBoardingDescriptions[
-                                  onBoardingCubit.onBoardingIndex],
-                              style: Styles.captionBold.copyWith(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.neutralColor600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(height: 10.h),
-                            DotsIndicator(
-                              dotsCount: 3,
-                              position: onBoardingCubit.onBoardingIndex,
-                              decorator: DotsDecorator(
-                                activeColor: AppColors.primaryColor900,
-                                color: const Color(0xFF005430)
-                                    .withValues(alpha: 0.1),
-                                size: Size(30.r, 5.r),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4.r),
                                 ),
-                                activeSize: Size(30.r, 5.r),
-                                activeShape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4.r),
+                                SizedBox(height: 10.h),
+                                CustomButtonWidget(
+                                  text: onBoardingCubit.onBoardingIndex ==
+                                          onBoardingCubit
+                                                  .onBoardingImageUrls.length -
+                                              1
+                                      ? 'startNow'.tr()
+                                      : 'next'.tr(),
+                                  onPressed: () async {
+                                    if (onBoardingCubit.onBoardingIndex ==
+                                        onBoardingCubit
+                                                .onBoardingImageUrls.length -
+                                            1) {
+                                      await CacheHelper.saveData(
+                                          key: CacheKeys.isFirstOpen,
+                                          value: true);
+                                      context.pushNamedAndRemoveUntil(
+                                          Routes.loginScreen);
+                                    } else {
+                                      _animateToPage(
+                                          onBoardingCubit.onBoardingIndex + 1);
+                                    }
+                                  },
                                 ),
-                              ),
+                                SizedBox(height: 20.h),
+                              ],
                             ),
-                            SizedBox(height: 10.h),
-                            CustomButtonWidget(
-                              text: onBoardingCubit.onBoardingIndex == 2
-                                  ? 'startNow'.tr()
-                                  : 'next'.tr(),
-                              onPressed: () async {
-                                if (onBoardingCubit.onBoardingIndex == 2) {
-                                  await CacheHelper.saveData(
-                                      key: CacheKeys.isFirstOpen, value: true);
-                                  context.pushNamedAndRemoveUntil(
-                                      Routes.loginScreen);
-                                } else {
-                                  onBoardingCubit.changeOnBoardingIndex(
-                                      onBoardingCubit.onBoardingIndex + 1);
-                                }
-                              },
-                            ),
-                            SizedBox(height: 20.h),
-                          ],
+                          ),
                         ),
                       ),
                     ),

@@ -24,7 +24,8 @@ class TreatmentPlansScreen extends StatelessWidget {
           current is GetByTherapistFailureState,
       builder: (context, state) {
         if (state is GetByTherapistLoadingState) {
-          return Scaffold(
+          return 
+          Scaffold(
             backgroundColor: AppColors.primaryColor900,
             appBar: CustomBasicAppBar(
               leading: BackButton(
@@ -251,7 +252,8 @@ class TreatmentPlansScreen extends StatelessWidget {
                                 '',
                             width: 55.w,
                             height: 55.h,
-                          )),
+                          )
+                          ),
                       12.horizontalSpace,
                       Expanded(
                         child: Column(

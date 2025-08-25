@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:truee_balance_app/features/auth/data/api_services/api_services.dart';
 import 'package:truee_balance_app/features/auth/data/repos/auth_repo.dart';
+import 'package:truee_balance_app/features/details_for_therapists/data/api%20services/api_services.dart';
+import 'package:truee_balance_app/features/details_for_therapists/data/repo/repo.dart';
 import 'package:truee_balance_app/features/doctors/appointments/data/api%20services/api_services.dart';
 import 'package:truee_balance_app/features/doctors/appointments/data/repo/repos.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/data/api%20services/api_services.dart';
@@ -83,4 +85,9 @@ Future<void> setupDependencyInjection() async {
       () => AppointmentsDetailsApiServices(getIt()));
   getIt.registerLazySingleton<AppointmentsDetailsRepos>(
       () => AppointmentsDetailsRepos(getIt()));
+
+  getIt.registerLazySingleton<DetailsForTherapistsApiServices>(
+      () => DetailsForTherapistsApiServices(getIt()));
+  getIt.registerLazySingleton<DetailsForTherapistsRepo>(
+      () => DetailsForTherapistsRepo(getIt()));
 }

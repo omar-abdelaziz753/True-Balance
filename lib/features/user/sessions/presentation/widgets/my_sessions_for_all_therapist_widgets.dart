@@ -21,7 +21,8 @@ class MySessionsForAllTherapistWidgets extends StatelessWidget {
       onTap: () {
         context.pushNamed(Routes.treatmentplansScreen, arguments: data.id!);
       },
-      child: Container(
+      child:
+       Container(
         width: double.infinity,
         padding: EdgeInsets.all(12.sp),
         decoration: BoxDecoration(
