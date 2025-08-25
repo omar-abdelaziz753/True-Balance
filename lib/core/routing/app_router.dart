@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
@@ -11,6 +13,7 @@ import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_
 import 'package:truee_balance_app/features/chat/presentation/screens/chat_screen.dart';
 import 'package:truee_balance_app/features/choose_your_account/business_logic/cubit/chosse_account_cubit.dart';
 import 'package:truee_balance_app/features/choose_your_account/presentation/screens/choose_your_account_screen.dart';
+import 'package:truee_balance_app/features/details_for_therapists/presentation/screens/treatment_plan_for_therapists.dart';
 import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
 import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
 import 'package:truee_balance_app/features/doctors/appointments/presentation/screens/appointments_screen.dart';
@@ -22,8 +25,6 @@ import 'package:truee_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dar
 import 'package:truee_balance_app/features/onBoarding/screens/on_boarding_screen.dart';
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
-import 'package:truee_balance_app/features/therapists/main_layout_therapists/business_logic/main_layout_therapists_cubit.dart';
-import 'package:truee_balance_app/features/therapists/main_layout_therapists/presentation/main_layout_therapists.dart';
 import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
 import 'package:truee_balance_app/features/user/add%20session/presentation/screens/add_session_screen.dart';
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
@@ -132,6 +133,10 @@ class AppRouter {
           screen: const ForgetPasswordScreen(),
           cubit: AuthCubit(getIt()),
         );
+      case Routes.treatmentPlanForTherapists:
+        return transition(
+          screen: const TreatmentPlanForTherapists(),
+        );
       case Routes.createNewPasswordScreen:
         return transition(
           screen: const CreateNewPasswordScreen(),
@@ -146,11 +151,7 @@ class AppRouter {
           screen: const MainLayoutDoctorsScreen(),
           cubit: MainLayoutDoctorsCubit(),
         );
-      case Routes.mainLayoutTherapistsScreen:
-        return transition(
-          screen: const MainLayoutTherapistsScreen(),
-          cubit: MainLayoutTherapistsCubit(),
-        );
+
       case Routes.doctorDetailsScreen:
         final DoctorModel doctorModel = settings.arguments as DoctorModel;
 

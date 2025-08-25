@@ -5,7 +5,9 @@ class Routes {
   static const String registerScreen = '/registerScreen';
   static const String verifyOtpScreen = '/verifyOtpScreen';
   static const String mainLayoutScreen = '/mainLayoutScreen';
+
   static const String mainLayoutDoctorsScreen = '/mainLayoutDoctorsScreen';
+  static const String treatmentPlanForTherapists = '/treatmentPlanForTherapists';
   static const String mainLayoutTherapistsScreen = '/mainLayoutTherapistsScreen';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String createNewPasswordScreen = '/createNewPasswordScreen';

@@ -32,19 +32,22 @@ class EndPoints {
   static String treatmentPlans(int therapistId) =>
       'api/frontend/therapists/$therapistId/treatment-plans';
 
+  /// get user treatment plans
+  static String getusertreatmentPlansfortherapist(int usertId) =>
+      'api/frontend/therapist/treatment-plans/users/$usertId';
+
   static String getShowServices(int serviceId) =>
       'api/frontend/services/$serviceId';
   static String treatmentPlansdetails(int therapistId) =>
       "api/frontend/treatment-plans/$therapistId";
 
-  static String addSession(int therapistId) =>
+  static String addSession(int therapistId) =>  
       "api/frontend/treatment-plans/$therapistId/sessions";
   static String rateSession(int therapistId) =>
       "api/frontend/treatment-plans/sessions/$therapistId/rate";
 
   /// get about us
   static String getAboutUs = 'api/frontend/staticPages/about_us';
-
   /// get privacy
   static String getPrivacy = 'api/frontend/staticPages/privacy_policy';
   static String getTerms = 'api/frontend/staticPages/terms_and_conditions';
