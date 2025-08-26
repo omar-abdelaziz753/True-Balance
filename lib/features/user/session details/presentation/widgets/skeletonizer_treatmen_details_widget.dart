@@ -170,111 +170,107 @@ class SkeletonizerTreatmentDetailsWidget extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(12.sp),
-                    child: ListView.separated(
-                        itemBuilder: (context, index) => Container(
-                              width: double.infinity,
-                              padding: EdgeInsets.all(10.sp),
-                              decoration: BoxDecoration(
-                                color: AppColors.neutralColor100,
-                                borderRadius: BorderRadius.circular(4.r),
-                                border: Border.all(
-                                  color: AppColors.primaryColor900,
-                                  width: 1.w,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    offset: Offset(0, 2.h),
-                                    blurRadius: 8.r,
-                                    spreadRadius: 0,
-                                    color: Colors.black.withAlpha(20),
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                spacing: 10.sp,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                      'Session 3',
-                                      style: Styles.captionEmphasis.copyWith(
-                                        color: AppColors.neutralColor1000,
-                                      ),
-                                    ),
-                                  ),
-                                  // const Spacer(),
-                                  Text(
-                                    "See Details",
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.secondaryColor500,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor:
-                                          AppColors.secondaryColor500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                        separatorBuilder: (context, index) => 18.verticalSpace,
-                        itemCount: 10),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(12.sp),
-                    child: ListView.separated(
+                  ListView.separated(
+                      padding: EdgeInsets.all(12.sp),
                       itemBuilder: (context, index) => Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(10.sp),
-                        decoration: BoxDecoration(
-                          color: AppColors.neutralColor100,
-                          borderRadius: BorderRadius.circular(4.r),
-                          border: Border.all(
-                            color: AppColors.primaryColor900,
-                            width: 1.w,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(0, 2.h),
-                              blurRadius: 8.r,
-                              spreadRadius: 0,
-                              color: Colors.black.withAlpha(20),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          spacing: 10.sp,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                'Session 1',
-                                style: Styles.captionEmphasis.copyWith(
-                                  color: AppColors.neutralColor1000,
+                            width: double.infinity,
+                            padding: EdgeInsets.all(10.sp),
+                            decoration: BoxDecoration(
+                              color: AppColors.neutralColor100,
+                              borderRadius: BorderRadius.circular(4.r),
+                              border: Border.all(
+                                color: AppColors.primaryColor900,
+                                width: 1.w,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(0, 2.h),
+                                  blurRadius: 8.r,
+                                  spreadRadius: 0,
+                                  color: Colors.black.withAlpha(20),
                                 ),
-                              ),
+                              ],
                             ),
-                            // const Spacer(),
-                            Text(
-                              "See Details",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.secondaryColor500,
-                                decoration: TextDecoration.underline,
-                                decorationColor: AppColors.secondaryColor500,
-                              ),
+                            child: Row(
+                              spacing: 10.sp,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                    'Session 3',
+                                    style: Styles.captionEmphasis.copyWith(
+                                      color: AppColors.neutralColor1000,
+                                    ),
+                                  ),
+                                ),
+                                // const Spacer(),
+                                Text(
+                                  "See Details",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.secondaryColor500,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor:
+                                        AppColors.secondaryColor500,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
                       separatorBuilder: (context, index) => 18.verticalSpace,
-                      itemCount: 10,
+                      itemCount: 10),
+                  ListView.separated(
+                    padding: EdgeInsets.all(12.sp),
+                    itemBuilder: (context, index) => Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(10.sp),
+                      decoration: BoxDecoration(
+                        color: AppColors.neutralColor100,
+                        borderRadius: BorderRadius.circular(4.r),
+                        border: Border.all(
+                          color: AppColors.primaryColor900,
+                          width: 1.w,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 2.h),
+                            blurRadius: 8.r,
+                            spreadRadius: 0,
+                            color: Colors.black.withAlpha(20),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        spacing: 10.sp,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              'Session 1',
+                              style: Styles.captionEmphasis.copyWith(
+                                color: AppColors.neutralColor1000,
+                              ),
+                            ),
+                          ),
+                          // const Spacer(),
+                          Text(
+                            "See Details",
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.secondaryColor500,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.secondaryColor500,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+                    separatorBuilder: (context, index) => 18.verticalSpace,
+                    itemCount: 10,
                   ),
                 ],
               ),

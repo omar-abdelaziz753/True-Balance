@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/details_for_therapists/data/api%20services/api_services.dart';
-import 'package:truee_balance_app/features/details_for_therapists/data/model/treatment_plans_response_user_for_therapists.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/data/api%20services/api_services.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/data/model/treatment_plans_response_user_for_therapists.dart';
 
 class DetailsForTherapistsRepo {
   final DetailsForTherapistsApiServices _api;
@@ -11,9 +11,9 @@ class DetailsForTherapistsRepo {
   DetailsForTherapistsRepo(this._api);
 
   Future<ApiResult<TreatmentPlansResponseUserForTherapists>>
-      getusertreatmentPlansfortherapist({required int userId , required int page}) async {
+      getusertreatmentPlansfortherapist({required int userId , required int page , required bool isPending}) async {
     try {
-      final response = await _api.getusertreatmentPlansfortherapist(id: userId ,page: page);
+      final response = await _api.getusertreatmentPlansfortherapist(id: userId ,page: page,  isPending:  isPending);
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model =

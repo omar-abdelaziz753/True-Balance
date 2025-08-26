@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/features/details_for_therapists/data/model/treatment_plans_response_user_for_therapists.dart';
-import 'package:truee_balance_app/features/details_for_therapists/data/repo/repo.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/data/model/treatment_plans_response_user_for_therapists.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/data/repo/repo.dart';
 
 part 'details_for_therapists_state.dart';
+
 class DetailsForTherapistsCubit extends Cubit<DetailsForTherapistsState> {
   DetailsForTherapistsCubit(this.detailsForTherapistsRepo)
       : super(DetailsForTherapistsInitial());
@@ -29,13 +30,16 @@ class DetailsForTherapistsCubit extends Cubit<DetailsForTherapistsState> {
     });
   }
 
-  Future<void> getusertreatmentPlansfortherapist({required int id}) async {
+  bool? isPending;
+
+  Future<void> getusertreatmentPlansfortherapist({required int id , required bool isPending }) async {
     currentPage = 1;
-    userId = id; 
+    userId = id;
+    this.isPending = isPending;
     emit(GetSUserTreatmentplansLoadingState());
 
     final result = await detailsForTherapistsRepo
-        .getusertreatmentPlansfortherapist(page: currentPage, userId: id);
+        .getusertreatmentPlansfortherapist(page: currentPage, userId: id , isPending:isPending );
 
     result.when(
       success: (data) {
@@ -59,12 +63,12 @@ class DetailsForTherapistsCubit extends Cubit<DetailsForTherapistsState> {
 
     final result =
         await detailsForTherapistsRepo.getusertreatmentPlansfortherapist(
-            page: currentPage + 1, userId: userId!);
+            page: currentPage + 1, userId: userId! , isPending: isPending!);
 
     result.when(
       success: (data) {
         treatmentPlansResponseUserForTherapists?.data?.data
-            ?.addAll(data.data?.data ?? []); 
+            ?.addAll(data.data?.data ?? []);
         currentPage = data.data?.meta?.currentPage ?? currentPage;
         emit(GetSUserTreatmentplansSuccessState());
       },

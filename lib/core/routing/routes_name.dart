@@ -12,6 +12,7 @@ class Routes {
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String createNewPasswordScreen = '/createNewPasswordScreen';
   static const String technicalSupportScreen = '/technicalSupportScreen';
+  static const String treatmentDetailsForTherapists = '/treatmentDetailsForTherapists';
   static const String myTicketsScreen = '/myTicketsScreen';
   static const String profileScreen = '/profileScreen';
   static const String aboutUsScreen = '/aboutUsScreen';
