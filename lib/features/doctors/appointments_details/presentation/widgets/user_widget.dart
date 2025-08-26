@@ -60,8 +60,8 @@ class UserWidget extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: cubit.isPending!
-                      ? const Color(0xFFFFDB43).withOpacity(0.1)
-                      : const Color(0xFF4CAF50).withOpacity(0.1),
+                      ? const Color(0xFFFFDB43).withValues(alpha: 0.1)
+                      : const Color(0xFF4CAF50).withValues(alpha: 0.1),
                   borderRadius:
                       BorderRadius.circular(AppConstants.borderRadius - 4.r),
                 ),

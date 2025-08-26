@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/core/widgets/circle_avatar/custom_circle_avatar_number_of_messages_widget.dart';
 
 class CustomRowInMyTicketsWidget extends StatelessWidget {
   const CustomRowInMyTicketsWidget({

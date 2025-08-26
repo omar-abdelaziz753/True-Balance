@@ -33,7 +33,6 @@ class ChatScreen extends StatelessWidget {
       ),
       body: BlocBuilder<TechnicalSupportCubit, TechnicalSupportState>(
         builder: (context, state) {
-          final cubit = context.read<TechnicalSupportCubit>();
           return Container(
             width: double.infinity,
             padding: EdgeInsets.all(18.sp),

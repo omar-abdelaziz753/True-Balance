@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
@@ -89,13 +91,21 @@ class TreatmentDetailsForTherapistCubit
     isLoadingMore = false;
   }
 
-
-  Future<void> rateSession( 
-      {required int id, required double number, required String text}) async {
+  Future<void> rateSession({
+    required int id,
+    required File file,
+    required String notes,
+    required String recoveryRate,
+  }) async {
     showLoading();
     emit(RateSessionLoadingState());
     final result =
-        await _treatmentDetailsForTherapistRepos.rateSession(id: id, number: number, text: text);
+        await _treatmentDetailsForTherapistRepos.rateSessionTherapist(
+      id: id,
+      file: file,
+      notes: notes,
+      recoveryRate: recoveryRate,
+    );
     result.when(
       success: (data) {
         hideLoading();
@@ -108,6 +118,4 @@ class TreatmentDetailsForTherapistCubit
       },
     );
   }
-
-
 }
