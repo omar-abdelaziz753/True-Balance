@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
@@ -40,7 +42,43 @@ class TreatmentDetailsForTherapistRepos {
     );
   }
 
-  rateSession({required int id, required double number, required String text}) {
-    
+  //  Future<ApiResult<String>> rateSession({required int id, required double number, required String text}) {
+
+  // }
+
+  Future<ApiResult<String>> rateSessionTherapist({
+    required int id,
+    required File file,
+    required String notes,
+    required String recoveryRate,
+  }) async {
+    try {
+      final response =
+          await treatmentDetailsForTherapistsApiServices.rateSessionTherapist(
+        id: id,
+        file: file,
+        notes: notes,
+        recoveryRate: recoveryRate,
+      );
+
+      if (response?.statusCode == 200 || response?.statusCode == 201) {
+        // customToast(
+        //     msg: "session reated success", color: AppColors.greenColor100);
+        return const ApiResult.success("Success");
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response?.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.message);
+      }
+    }
+    return ApiResult.failure(
+      FailureException(errMessage: 'Unexpected error occurred'),
+    );
   }
 }

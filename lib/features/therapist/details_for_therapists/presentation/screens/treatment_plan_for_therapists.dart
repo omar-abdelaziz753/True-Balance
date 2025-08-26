@@ -2,16 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/app_router.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
 import 'package:truee_balance_app/features/therapist/details_for_therapists/bloc/details_for_therapists_cubit.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/presentation/widgets/skelotin_widget.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/presentation/widgets/treamtimt_plan_list_widget.dart';
+import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/presentation/widgets/user_widget.dart';
 
 class TreatmentPlanForTherapists extends StatelessWidget {
   const TreatmentPlanForTherapists({
@@ -30,177 +28,7 @@ class TreatmentPlanForTherapists extends StatelessWidget {
           current is GetSUserTreatmentplansLoadingState,
       builder: (context, state) {
         if (state is GetSUserTreatmentplansLoadingState) {
-          return Scaffold(
-            backgroundColor: AppColors.primaryColor900,
-            appBar: CustomBasicAppBar(
-              leading: BackButton(
-                color: AppColors.neutralColor100,
-              ),
-              title: 'treatmentPlans'.tr(),
-              backgroundColor: AppColors.primaryColor900,
-              svgAsset: 'assets/images/svg/bg_image.svg',
-            ),
-            body: Skeletonizer(
-              enabled: true,
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(18.sp),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12.r),
-                    topRight: Radius.circular(12.r),
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(12.sp),
-                        decoration: BoxDecoration(
-                          color: AppColors.neutralColor100,
-                          borderRadius: BorderRadius.circular(12.r),
-                          border: Border.all(
-                            color: AppColors.neutralColor1000.withAlpha(20),
-                            width: 1.w,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(0, 2.h),
-                              blurRadius: 8.r,
-                              spreadRadius: 0,
-                              color: Colors.black.withAlpha(20),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12.r),
-                              child: CacheNetworkImagesWidget(
-                                image: usersData.image!,
-                                width: 55.w,
-                                height: 55.h,
-                              ),
-                            ),
-                            12.horizontalSpace,
-                            Expanded(
-                              child: Column(
-                                spacing: 4.h,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    usersData.name!,
-                                    style: Styles.contentBold.copyWith(
-                                      color: AppColors.neutralColor1000,
-                                    ),
-                                  ),
-                                  Text(
-                                    usersData.phone!,
-                                    style: Styles.footnoteEmphasis.copyWith(
-                                      color: AppColors.neutralColor600,
-                                    ),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      18.verticalSpace,
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(12.sp),
-                        decoration: BoxDecoration(
-                          color: AppColors.neutralColor100,
-                          borderRadius: BorderRadius.circular(4.r),
-                          border: Border.all(
-                            color: AppColors.neutralColor1000.withAlpha(20),
-                            width: 1.w,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(0, 2.h),
-                              blurRadius: 8.r,
-                              spreadRadius: 0,
-                              color: Colors.black.withAlpha(20),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Total Of treatment",
-                              style: Styles.captionEmphasis.copyWith(
-                                color: AppColors.neutralColor600,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              "10",
-                              style: Styles.contentEmphasis.copyWith(
-                                color: AppColors.neutralColor1000,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      18.verticalSpace,
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) => Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.all(12.sp),
-                          decoration: BoxDecoration(
-                            color: AppColors.neutralColor100,
-                            borderRadius: BorderRadius.circular(4.r),
-                            border: Border.all(
-                              color: AppColors.neutralColor1000.withAlpha(20),
-                              width: 1.w,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                offset: Offset(0, 2.h),
-                                blurRadius: 8.r,
-                                spreadRadius: 0,
-                                color: Colors.black.withAlpha(20),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "treatment name",
-                                style: Styles.captionEmphasis.copyWith(
-                                  color: AppColors.neutralColor600,
-                                ),
-                              ),
-                              const Spacer(),
-                              Text("See Details",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.secondaryColor500,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor:
-                                        AppColors.secondaryColor500,
-                                  )),
-                            ],
-                          ),
-                        ),
-                        separatorBuilder: (context, index) => 18.verticalSpace,
-                        itemCount: 10,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
+          return TheripstTermentPlanSkeltonizerWidget(usersData: usersData);
         }
         return Scaffold(
           backgroundColor: AppColors.primaryColor900,
@@ -224,61 +52,7 @@ class TreatmentPlanForTherapists extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(12.sp),
-                  decoration: BoxDecoration(
-                    color: AppColors.neutralColor100,
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: AppColors.neutralColor1000.withAlpha(20),
-                      width: 1.w,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 2.h),
-                        blurRadius: 8.r,
-                        spreadRadius: 0,
-                        color: Colors.black.withAlpha(20),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.r),
-                        child: CacheNetworkImagesWidget(
-                          image: usersData.image!,
-                          width: 55.w,
-                          height: 55.h,
-                        ),
-                      ),
-                      12.horizontalSpace,
-                      Expanded(
-                        child: Column(
-                          spacing: 4.h,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              usersData.name!,
-                              style: Styles.contentBold.copyWith(
-                                color: AppColors.neutralColor1000,
-                              ),
-                            ),
-                            Text(
-                              usersData.phone!,
-                              style: Styles.footnoteEmphasis.copyWith(
-                                color: AppColors.neutralColor600,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                UserWidgetTheripst(userData: usersData),
                 18.verticalSpace,
                 Container(
                   width: double.infinity,
@@ -318,75 +92,8 @@ class TreatmentPlanForTherapists extends StatelessWidget {
                   ),
                 ),
                 18.verticalSpace,
-                Expanded(
-                  child: ListView.separated(
-                    controller: cubit.getSUserTreatmentplansController,
-                    itemBuilder: (context, index) => Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(12.sp),
-                      decoration: BoxDecoration(
-                        color: AppColors.neutralColor100,
-                        borderRadius: BorderRadius.circular(4.r),
-                        border: Border.all(
-                          color: AppColors.primaryColor900,
-                          width: 1.w,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(0, 2.h),
-                            blurRadius: 8.r,
-                            spreadRadius: 0,
-                            color: Colors.black.withAlpha(20),
-                          ),
-                        ],
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          context.pushNamed(
-                              Routes.treatmentDetailsForTherapists,
-                              arguments: TreatmentArguments(
-                                  isPending: cubit.isPending!,
-                                  userData: usersData,
-                                  treatmentId: cubit
-                                      .treatmentPlansResponseUserForTherapists!
-                                      .data!
-                                      .data![index]
-                                      .id!,
-                                  treatmentName: cubit
-                                      .treatmentPlansResponseUserForTherapists!
-                                      .data!
-                                      .data![index]
-                                      .name!));
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              cubit.treatmentPlansResponseUserForTherapists
-                                      ?.data?.data?[index].name ??
-                                  '',
-                              style: Styles.captionEmphasis.copyWith(
-                                color: AppColors.neutralColor600,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text("See Details",
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.secondaryColor500,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.secondaryColor500,
-                                )),
-                          ],
-                        ),
-                      ),
-                    ),
-                    separatorBuilder: (context, index) => 18.verticalSpace,
-                    itemCount: cubit.treatmentPlansResponseUserForTherapists
-                            ?.data?.data?.length ??
-                        0,
-                  ),
-                ),
+                TreamentPlanTherapistListWidget(
+                    cubit: cubit, usersData: usersData),
                 BlocBuilder<DetailsForTherapistsCubit,
                     DetailsForTherapistsState>(
                   buildWhen: (previous, current) =>

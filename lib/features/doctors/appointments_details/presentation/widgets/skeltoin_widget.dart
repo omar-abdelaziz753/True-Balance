@@ -99,9 +99,9 @@ class SkltoinWidget extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       color: cubit.isPending!
                                           ? const Color(0xFFFFDB43)
-                                              .withOpacity(0.1)
+                                              .withValues(alpha: 0.1)
                                           : const Color(0xFF4CAF50)
-                                              .withOpacity(0.1),
+                                              .withValues(alpha: 0.1),
                                       borderRadius: BorderRadius.circular(
                                           AppConstants.borderRadius - 4.r),
                                     ),
@@ -214,9 +214,9 @@ class SkltoinWidget extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               color: cubit.isPending!
                                                   ? const Color(0xFFFFDB43)
-                                                      .withOpacity(0.1)
+                                                      .withValues(alpha: 0.1)
                                                   : const Color(0xFF4CAF50)
-                                                      .withOpacity(0.1),
+                                                      .withValues(alpha: 0.1),
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       AppConstants

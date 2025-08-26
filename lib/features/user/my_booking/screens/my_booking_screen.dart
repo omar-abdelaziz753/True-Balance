@@ -146,8 +146,7 @@ class MyBookingScreen extends StatelessWidget {
                                     .data[index].doctor.name,
                                 rating: cubit.consultationsResponse!.data
                                         .data[index].doctor.rate
-                                        .toDouble() ??
-                                    0.0,
+                                        .toDouble() ,
                                 ratingText:
                                     '${cubit.consultationsResponse!.data.data[index].doctor.rateCount} ${'rate'.tr()}',
                                 image: ClipRRect(
