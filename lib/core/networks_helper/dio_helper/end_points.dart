@@ -33,8 +33,7 @@ class EndPoints {
       'api/frontend/therapists/$therapistId/treatment-plans';
 
   /// get user treatment plans
-  static String getusertreatmentPlansfortherapist(int usertId) =>
-      'api/frontend/therapist/treatment-plans/users/$usertId';
+ 
 
   static String getShowServices(int serviceId) =>
       'api/frontend/services/$serviceId';
@@ -53,7 +52,15 @@ class EndPoints {
   static String getTerms = 'api/frontend/staticPages/terms_and_conditions';
   static String getAllDoctorsConsultations(bool isPending) =>
       'api/frontend/doctor/consultations/users?status=${isPending ? 'pending' : 'completed'}';
+
   static String getAllConsultation(bool isPending, int id) =>
       'api/frontend/doctor/consultations/user/get-all-consultations/$id?status=${isPending ? 'pending' : 'completed'}';
+
+ /// get sessions of treatment plans for therapist
+  static String getSessionsOfTreatmentPlans(bool isPending, int id) =>
+      'api/frontend/therapist/treatment-plans/sessions/$id?status=${isPending ? 'pending' : 'completed'}';
+
+ static String getusertreatmentPlansfortherapist(int usertId , bool isPending,) =>
+      'api/frontend/therapist/treatment-plans/users/$usertId?status=${isPending ? 'pending' : 'completed'}';
   static String consultationAccess = 'api/frontend/doctor/consultations/assess';
 }

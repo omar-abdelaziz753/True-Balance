@@ -108,26 +108,21 @@ class TreatmentDetailsScreen extends StatelessWidget {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.all(12.sp),
-                          child: ListView.separated(
-                              itemBuilder: (context, index) => SeeDetailsWidget(
-                                    session: cubit.upcomingSessions[index],
-                                  ),
-                              separatorBuilder: (context, index) =>
-                                  18.verticalSpace,
-                              itemCount: cubit.upcomingSessions.length),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(12.sp),
-                          child: ListView.separated(
-                              itemBuilder: (context, index) => SeeDetailsWidget(
-                                    session: cubit.completedSessions[index],
-                                  ),
-                              separatorBuilder: (context, index) =>
-                                  18.verticalSpace,
-                              itemCount: cubit.completedSessions.length),
-                        ),
+                        ListView.separated(
+                            padding: EdgeInsets.all(12.sp),
+                            itemBuilder: (context, index) => SeeDetailsWidget(
+                                  session: cubit.upcomingSessions[index],
+                                ),
+                            separatorBuilder: (context, index) =>
+                                18.verticalSpace,
+                            itemCount: cubit.upcomingSessions.length),
+                        ListView.separated(
+                            itemBuilder: (context, index) => SeeDetailsWidget(
+                                  session: cubit.completedSessions[index],
+                                ),
+                            separatorBuilder: (context, index) =>
+                                18.verticalSpace,
+                            itemCount: cubit.completedSessions.length),
                       ],
                     ),
                   ),

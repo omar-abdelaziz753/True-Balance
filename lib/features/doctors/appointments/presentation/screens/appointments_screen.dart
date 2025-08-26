@@ -97,12 +97,13 @@ class AppointmentsScreen extends StatelessWidget {
             appBar: CustomBasicAppBar(
               leading: CacheHelper.getData(key: CacheKeys.type) == 'doctor'
                   ? const SizedBox.shrink()
-                  : BackButton(
-                      color: AppColors.neutralColor100,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
+                  : null,
+              // BackButton(
+              //     color: AppColors.neutralColor100,
+              //     onPressed: () {
+              //       Navigator.pop(context);
+              //     },
+              //   ),
               title: 'appointments.'.tr(),
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
@@ -153,10 +154,13 @@ class AppointmentsScreen extends StatelessWidget {
                                   } else {
                                     context.pushNamed(
                                       Routes.treatmentPlanForTherapists,
+                                      arguments: AppointmentsArguments(
+                                          isPending: cubit.isPending!,
+                                          userData: cubit
+                                              .consultationUsersResponse!
+                                              .data!
+                                              .data![index]),
                                     );
-                                    // todo : we will make details screen based on therapist role here
-                                    // todo : first take copy of feaure desgin only treament plan screen
-                                    // todo : then treatment plan detisls screen
                                   }
                                 },
                                 child: CustomAppointmentContainerWidget(

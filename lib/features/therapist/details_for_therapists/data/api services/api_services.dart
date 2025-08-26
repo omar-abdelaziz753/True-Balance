@@ -9,9 +9,9 @@ class DetailsForTherapistsApiServices {
 
   /// get user treatment plans
   Future<Response?> getusertreatmentPlansfortherapist(
-      {required int id, required int page}) async {
+      {required int id, required int page , required bool isPending}) async {
     return _dioHelper
-        .get(endPoint: EndPoints.getusertreatmentPlansfortherapist(id), data: {
+        .get(endPoint: EndPoints.getusertreatmentPlansfortherapist(id , isPending), data: {
       'page': page,
     });
   }

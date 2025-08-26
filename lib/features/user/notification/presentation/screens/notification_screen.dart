@@ -1,6 +1,9 @@
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/features/user/notification/presentation/widgets/notification_item_widget.dart';
@@ -54,10 +57,13 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
       appBar: CustomBasicAppBar(
-        leading: BackButton(
-          color: AppColors.neutralColor100,
-          onPressed: () => Navigator.pop(context),
-        ),
+        leading: CacheHelper.getData(key: CacheKeys.type) == 'doctor' ||
+                CacheHelper.getData(key: CacheKeys.type) == 'therapist'
+            ? const SizedBox.shrink()
+            : BackButton(
+                color: AppColors.neutralColor100,
+                onPressed: () => Navigator.pop(context),
+              ),
         title: 'notifications'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',

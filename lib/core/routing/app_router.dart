@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
@@ -13,9 +11,11 @@ import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_
 import 'package:truee_balance_app/features/chat/presentation/screens/chat_screen.dart';
 import 'package:truee_balance_app/features/choose_your_account/business_logic/cubit/chosse_account_cubit.dart';
 import 'package:truee_balance_app/features/choose_your_account/presentation/screens/choose_your_account_screen.dart';
-import 'package:truee_balance_app/features/details_for_therapists/presentation/screens/treatment_plan_for_therapists.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/bloc/details_for_therapists_cubit.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/presentation/screens/treatment_plan_for_therapists.dart';
+import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/bloc/cubit/treatment_details_for_therapist_cubit.dart';
+import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/presentation/screen/treatment_details_for_therapists_screen.dart';
 import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
 import 'package:truee_balance_app/features/doctors/appointments/presentation/screens/appointments_screen.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/presentation/screens/appointments_details_screen.dart';
@@ -65,6 +65,9 @@ import 'package:truee_balance_app/features/user/technical_support/presentation/s
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/technical_support_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/terms_and_conditions_screen.dart';
 
+import '../../features/doctors/appointments/data/model/consultation_users_model.dart'
+    show UserData;
+
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     MaterialPageRoute transition<T extends Cubit<Object>>({
@@ -106,6 +109,18 @@ class AppRouter {
             userData: arguments.userData,
           ),
         );
+      case Routes.treatmentDetailsForTherapists:
+        final arguments = settings.arguments as TreatmentArguments;
+
+        return transition(
+          screen: TreatmentDetailsForTherapists(
+            userData: arguments.userData, treatmentName: arguments.treatmentName,
+          ),
+          cubit: TreatmentDetailsForTherapistCubit(getIt())
+            ..fetchTreatment(
+                doctorId: arguments.treatmentId,
+                isPending: arguments.isPending),
+        );
       case Routes.bestTherapistsScreen:
         return transition(
           screen: const BestTherapistsScreen(),
@@ -134,8 +149,14 @@ class AppRouter {
           cubit: AuthCubit(getIt()),
         );
       case Routes.treatmentPlanForTherapists:
+        final user = settings.arguments as AppointmentsArguments;
+
         return transition(
-          screen: const TreatmentPlanForTherapists(),
+          screen: TreatmentPlanForTherapists(usersData: user.userData),
+          cubit: DetailsForTherapistsCubit(getIt())
+            ..getusertreatmentPlansfortherapist(
+                id: user.userData.id!, isPending: user.isPending)
+            ..setupgetusertreatmentPlansfortherapistScrollController(),
         );
       case Routes.createNewPasswordScreen:
         return transition(
@@ -336,4 +357,16 @@ class AppointmentsArguments {
   final UserData userData;
 
   AppointmentsArguments({required this.isPending, required this.userData});
+}
+
+class TreatmentArguments {
+  final bool isPending;
+  final UserData userData;
+  final int treatmentId;
+  final String treatmentName ;
+  TreatmentArguments(
+      {required this.treatmentId,
+      required this.isPending,
+      required this.treatmentName,
+      required this.userData});
 }

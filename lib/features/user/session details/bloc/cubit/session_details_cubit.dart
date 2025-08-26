@@ -82,4 +82,5 @@ class SessionDetailsCubit extends Cubit<SessionDetailsState> {
       },
     );
   }
+
 }
