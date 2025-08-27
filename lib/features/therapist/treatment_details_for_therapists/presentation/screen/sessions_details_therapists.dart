@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,7 @@ class SessionsDetailsTherapists extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: "Session ${index + 1}",
+        title: '${'Session'.tr()} ${index + 1}',
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
