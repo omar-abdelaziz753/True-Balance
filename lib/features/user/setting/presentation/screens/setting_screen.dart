@@ -147,15 +147,15 @@ class SettingScreen extends StatelessWidget {
                               onTap: () =>
                                   context.pushNamed(Routes.profileScreen),
                             ),
-                            // const CustomDividerWidget(),
-                            // CustomRowInSettingWidget(
-                            //   imagePath: Icons.wallet,
-                            //   iconcolor: AppColors.primaryColor900,
-                            //   title: 'completedCousultations'.tr(),
-                            //   subtitle: 'completedCousultationsdetails'.tr(),
-                            //   onTap: () => context
-                            //       .pushNamed(Routes.completedCousultations),
-                            // ),
+                            const CustomDividerWidget(),
+                            CustomRowInSettingWidget(
+                              imagePath: Icons.wallet,
+                              iconcolor: AppColors.primaryColor900,
+                              title: 'completedCousultations'.tr(),
+                              subtitle: 'completedCousultationsdetails'.tr(),
+                              onTap: () => context
+                                  .pushNamed(Routes.completedCousultations),
+                            ),
                             const CustomDividerWidget(),
                             CustomRowInSettingWidget(
                               imagePath: 'assets/images/svg/language_icon.svg',
