@@ -49,14 +49,14 @@ class MainLayoutDoctorsScreen extends StatelessWidget {
                     ),
                     _buildNavItem(
                       icon: 'assets/images/svg/notification-therep.svg',
-                      label: 'Notifications'.tr(),
+                      label: 'notifications'.tr(),
                       index: 1,
                       currentIndex: currentIndex,
                       onTap: () => cubit.changeBottomNavBar(1),
                     ),
                     _buildNavItem(
                       icon: 'assets/images/svg/setting_therep.svg',
-                      label: 'Setting'.tr(),
+                      label: 'setting'.tr(),
                       index: 2,
                       currentIndex: currentIndex,
                       onTap: () => cubit.changeBottomNavBar(2),

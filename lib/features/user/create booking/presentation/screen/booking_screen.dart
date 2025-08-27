@@ -133,7 +133,7 @@ class BookingScreen extends StatelessWidget {
                         cubit.nextStep();
                       } else {
                         customToast(
-                            msg: "please select time ",
+                            msg: "Pleaseselecttime".tr(),
                             color: AppColors.redColor200);
                       }
                     } else if (cubit.currentStep == 1) {

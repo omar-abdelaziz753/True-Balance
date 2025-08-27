@@ -36,7 +36,7 @@ class AppointmentsScreen extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
-              title: 'appointments.'.tr(),
+              title: 'appointments'.tr(),
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
             ),
@@ -104,7 +104,7 @@ class AppointmentsScreen extends StatelessWidget {
               //       Navigator.pop(context);
               //     },
               //   ),
-              title: 'appointments.'.tr(),
+              title: 'appointments'.tr(),
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
             ),

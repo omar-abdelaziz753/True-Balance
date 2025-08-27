@@ -45,7 +45,7 @@ class TotalApmointesWIdget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Total of Appmointemts'.tr(),
+                    'totalOfappointments'.tr(),
                     style: Styles.captionEmphasis.copyWith(
                       color: AppColors.neutralColor600,
                     ),
@@ -61,7 +61,7 @@ class TotalApmointesWIdget extends StatelessWidget {
               ),
               10.verticalSpace,
               CustomRowMakeTitleAndDescWidget(
-                  title: 'Phone Number ', description: userData.phone!),
+                  title: 'phoneNumberOnly'.tr(), description: userData.phone!),
             ],
           ),
         ),
