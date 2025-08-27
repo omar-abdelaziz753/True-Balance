@@ -11,10 +11,6 @@ import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_
 import 'package:truee_balance_app/features/chat/presentation/screens/chat_screen.dart';
 import 'package:truee_balance_app/features/choose_your_account/business_logic/cubit/chosse_account_cubit.dart';
 import 'package:truee_balance_app/features/choose_your_account/presentation/screens/choose_your_account_screen.dart';
-import 'package:truee_balance_app/features/therapist/details_for_therapists/bloc/details_for_therapists_cubit.dart';
-import 'package:truee_balance_app/features/therapist/details_for_therapists/presentation/screens/treatment_plan_for_therapists.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/bloc/cubit/treatment_details_for_therapist_cubit.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/presentation/screen/treatment_details_for_therapists_screen.dart';
 import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
 import 'package:truee_balance_app/features/doctors/appointments/presentation/screens/appointments_screen.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
@@ -25,6 +21,10 @@ import 'package:truee_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dar
 import 'package:truee_balance_app/features/onBoarding/screens/on_boarding_screen.dart';
 import 'package:truee_balance_app/features/splash/business_logic/splash_cubit.dart';
 import 'package:truee_balance_app/features/splash/screens/splash_screen.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/bloc/details_for_therapists_cubit.dart';
+import 'package:truee_balance_app/features/therapist/details_for_therapists/presentation/screens/treatment_plan_for_therapists.dart';
+import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/bloc/cubit/treatment_details_for_therapist_cubit.dart';
+import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/presentation/screen/treatment_details_for_therapists_screen.dart';
 import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
 import 'package:truee_balance_app/features/user/add%20session/presentation/screens/add_session_screen.dart';
 import 'package:truee_balance_app/features/user/best_therapists/cubit/all_doctors_cubit.dart';
@@ -114,7 +114,8 @@ class AppRouter {
 
         return transition(
           screen: TreatmentDetailsForTherapists(
-            userData: arguments.userData, treatmentName: arguments.treatmentName,
+            userData: arguments.userData,
+            treatmentName: arguments.treatmentName,
           ),
           cubit: TreatmentDetailsForTherapistCubit(getIt())
             ..fetchTreatment(
@@ -363,7 +364,7 @@ class TreatmentArguments {
   final bool isPending;
   final UserData userData;
   final int treatmentId;
-  final String treatmentName ;
+  final String treatmentName;
   TreatmentArguments(
       {required this.treatmentId,
       required this.isPending,
