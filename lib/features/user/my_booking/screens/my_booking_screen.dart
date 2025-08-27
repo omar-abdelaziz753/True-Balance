@@ -123,63 +123,69 @@ class MyBookingScreen extends StatelessWidget {
                   constraints: BoxConstraints(
                     minHeight: constraints.maxHeight,
                   ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.separated(
-                          controller: cubit.consultationsScrollController,
-                          shrinkWrap: true,
-                          itemCount:
-                              cubit.consultationsResponse!.data.data.length,
-                          separatorBuilder: (context, index) =>
-                              18.verticalSpace,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () => context.pushNamed(
-                                  Routes.bookingDetailsScreen,
-                                  arguments: cubit
-                                      .consultationsResponse!.data.data[index]),
-                              child: CustomBookingContainerWidget(
-                                specialization: cubit.consultationsResponse!
-                                    .data.data[index].doctor.specialization,
-                                doctorName: cubit.consultationsResponse!.data
-                                    .data[index].doctor.name,
-                                rating: cubit.consultationsResponse!.data
-                                        .data[index].doctor.rate
-                                        .toDouble() ,
-                                ratingText:
-                                    '${cubit.consultationsResponse!.data.data[index].doctor.rateCount} ${'rate'.tr()}',
-                                image: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  child: 
-                                  CacheNetworkImagesWidget(
-                                    image: cubit.consultationsResponse!.data
-                                        .data[index].doctor.image,
-                                    width: 95.w,
-                                    height: 95.h,
-                                  ),
-                                ),
+                  child: cubit.consultationsResponse?.data.data.isEmpty == true
+                      ? Center(child: Text('noBooking'.tr()))
+                      : Column(
+                          children: [
+                            Expanded(
+                              child: ListView.separated(
+                                controller: cubit.consultationsScrollController,
+                                shrinkWrap: true,
+                                itemCount: cubit
+                                    .consultationsResponse!.data.data.length,
+                                separatorBuilder: (context, index) =>
+                                    18.verticalSpace,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () => context.pushNamed(
+                                        Routes.bookingDetailsScreen,
+                                        arguments: cubit.consultationsResponse!
+                                            .data.data[index]),
+                                    child: CustomBookingContainerWidget(
+                                      specialization: cubit
+                                          .consultationsResponse!
+                                          .data
+                                          .data[index]
+                                          .doctor
+                                          .specialization,
+                                      doctorName: cubit.consultationsResponse!
+                                          .data.data[index].doctor.name,
+                                      rating: cubit.consultationsResponse!.data
+                                          .data[index].doctor.rate
+                                          .toDouble(),
+                                      ratingText:
+                                          '${cubit.consultationsResponse!.data.data[index].doctor.rateCount} ${'rate'.tr()}',
+                                      image: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(12.r),
+                                        child: CacheNetworkImagesWidget(
+                                          image: cubit.consultationsResponse!
+                                              .data.data[index].doctor.image,
+                                          width: 95.w,
+                                          height: 95.h,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
-                            );
-                          },
-                        ),
-                      ),
-                      BlocBuilder<MybookCubit, MybookState>(
-                        buildWhen: (previous, current) =>
-                            current is ConsultationsLoadingMore ||
-                            current is ConsultationsSuccess,
-                        builder: (context, state) {
-                          if (state is ConsultationsLoadingMore) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
+                            ),
+                            BlocBuilder<MybookCubit, MybookState>(
+                              buildWhen: (previous, current) =>
+                                  current is ConsultationsLoadingMore ||
+                                  current is ConsultationsSuccess,
+                              builder: (context, state) {
+                                if (state is ConsultationsLoadingMore) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
 
-                          return const SizedBox.shrink();
-                        },
-                      ),
-                    ],
-                  ),
+                                return const SizedBox.shrink();
+                              },
+                            ),
+                          ],
+                        ),
                 );
               },
             ),

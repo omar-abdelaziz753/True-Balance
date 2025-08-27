@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +28,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
               },
             ),
             // title:"Privacy Policy",
-            title: 'Terms and Conditions',
+            title: 'termsAndConditions'.tr(),
             backgroundColor: AppColors.primaryColor900,
             svgAsset: 'assets/images/svg/bg_image.svg',
           ),
@@ -42,7 +43,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
               ),
             ),
             child: state is GetPrivacyLoadingState
-                ? const Center(
+                ? const Center( 
                     child: CircularProgressIndicator(),
                   )
                 : LayoutBuilder(

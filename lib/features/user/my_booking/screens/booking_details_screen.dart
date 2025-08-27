@@ -6,7 +6,6 @@ import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dar
 import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 import 'package:truee_balance_app/features/user/my_booking/widgets/custom_row_make_title_and_desc_widget.dart';
 
-
 class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen({super.key, required this.consultation});
   final Consultation consultation;
@@ -101,7 +100,7 @@ class BookingDetailsScreen extends StatelessWidget {
                           spacing: 12.h,
                           children: [
                             CustomRowMakeTitleAndDescWidget(
-                              title: 'doctor Name'.tr(),
+                              title: 'doctorName'.tr(),
                               description: consultation.doctor.name,
                             ),
                             CustomRowMakeTitleAndDescWidget(

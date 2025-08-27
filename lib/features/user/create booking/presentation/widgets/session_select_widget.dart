@@ -14,21 +14,33 @@ class SessionSelector extends StatelessWidget {
     this.numberOfDays = 30,
   });
 
-  List<Map<String, dynamic>> generateSessionDates(int days) {
+  // List<Map<String, dynamic>> generateSessionDates(int days) {
+  //   final now = DateTime.now();
+  //   return List.generate(days, (i) {
+  //     final date = now.add(Duration(days: i));
+  //     return {
+  //       'day': DateFormat('EEEE').format(date),
+  //       'date': DateFormat('MMMM d').format(date),
+  //       'datetime': date, // include raw DateTime
+  //     };
+  //   });
+  // }
+  List<Map<String, dynamic>> generateSessionDates(
+      BuildContext context, int days) {
     final now = DateTime.now();
     return List.generate(days, (i) {
       final date = now.add(Duration(days: i));
       return {
-        'day': DateFormat('EEEE').format(date),
-        'date': DateFormat('MMMM d').format(date),
-        'datetime': date, // include raw DateTime
+        'day': DateFormat('EEEE', context.locale.toString()).format(date),
+        'date': DateFormat('d MMMM', context.locale.toString()).format(date),
+        'datetime': date,
       };
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final dates = generateSessionDates(numberOfDays);
+    final dates = generateSessionDates(context, numberOfDays);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

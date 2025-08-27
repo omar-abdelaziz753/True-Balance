@@ -76,7 +76,7 @@ class TreatmentPlanForTherapists extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "Total Of treatment",
+                        "totalOftreatment".tr(),
                         style: Styles.captionEmphasis.copyWith(
                           color: AppColors.neutralColor600,
                         ),

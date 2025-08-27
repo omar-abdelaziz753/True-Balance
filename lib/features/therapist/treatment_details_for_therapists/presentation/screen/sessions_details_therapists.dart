@@ -384,7 +384,7 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Recovery Rate',
+                      'recoveryRate'.tr(),
                       style: Styles.highlightEmphasis.copyWith(
                         color: AppColors.neutralColor1000,
                       ),
@@ -457,7 +457,7 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
                     8.horizontalSpace,
                     Expanded(
                       child: Text(
-                        fileName.isEmpty ? 'Attach a file' : fileName,
+                        fileName.isEmpty ? 'attachAFile'.tr() : fileName,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.contentRegular.copyWith(
                           color: fileName.isEmpty

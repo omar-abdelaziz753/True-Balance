@@ -94,7 +94,7 @@ class AddSessionScreen extends StatelessWidget {
               listener: (context, state) {
                 if (state is AddSessionSuccess) {
                   customToast(
-                      msg: "Session added successfully",
+                      msg: "sessionAddedSuccessfully".tr(),
                       color: AppColors.greenColor200);
                   Navigator.pop(context, true);
                 }
@@ -112,7 +112,7 @@ class AddSessionScreen extends StatelessWidget {
                         cubit.nextStep();
                       } else {
                         customToast(
-                            msg: "Please select at least one session.",
+                            msg: "sessionAddedSuccessfully".tr(),
                             color: AppColors.redColor200);
                       }
                     } else {

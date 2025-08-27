@@ -23,15 +23,15 @@ class OnBoardingCubit extends Cubit<OnBoardingStates> {
   ];
 
   List<String> onBoardingTitleStart = [
-    'Book Your',
-    'Upload & Store Your',
-    'Follow Your Treatment Plan Easily',
+    'bookYour'.tr(),
+    'uploadStoreYour'.tr(),
+    'followYourTreatmentPlanEasily'.tr(),
   ];
 
   List<String> onBoardingTitleHighlighted = [
-    'Session Instantly',
-    'Reports',
-    'Easily',
+    'sessionInstantly'.tr(),
+    'reports'.tr(),
+    'easily'.tr(),
   ];
 
   List<String> onBoardingDescriptions = [

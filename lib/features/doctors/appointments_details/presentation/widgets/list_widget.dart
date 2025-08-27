@@ -32,7 +32,7 @@ class ListWidget extends StatelessWidget {
                             return BlocProvider.value(
                               value: cubit,
                               child: AppoimntetItemDetailsScreen(
-                                title: 'Appointment ${index + 1}',
+                                title: '${'appointments'.tr()} ${index + 1}',
                                 appointmentData: cubit.appointmentDetailsModel!
                                     .data!.data![index],
                               ),
@@ -71,7 +71,7 @@ class ListWidget extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              'Appmointemts ${index + 1}',
+                              '${'appointments'.tr()} ${index + 1}',
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                               style: Styles.captionEmphasis.copyWith(

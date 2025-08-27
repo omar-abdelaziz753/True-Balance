@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
@@ -70,7 +71,7 @@ class TreamentPlanTherapistListWidget extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Text("See Details",
+                Text("seeDetails".tr(),
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,

@@ -82,7 +82,7 @@ class AppoimntetItemDetailsScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "status",
+                          "status".tr(),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: Styles.captionEmphasis.copyWith(
@@ -173,7 +173,7 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
   void _submit() async {
     if (_evaluationController.text.isEmpty || _selectedFile == null) {
       customToast(
-          msg: 'Please enter all required fields',
+          msg: 'pleaseenterallrequiredfields'.tr(),
           color: AppColors.redColor100);
       return;
     }
@@ -204,7 +204,7 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
         children: [
           CustomTextFormFieldWidget(
             controller: _evaluationController,
-            labelText: 'Doctor Evaluation',
+            labelText: 'doctorEvaluation'.tr(),
           ),
           SizedBox(height: 16.h),
           Row(
@@ -212,7 +212,7 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
               ElevatedButton.icon(
                 onPressed: _pickFile,
                 icon: const Icon(Icons.upload_file),
-                label: const Text('Upload File'),
+                label: Text('uploadFile'.tr()),
               ),
               SizedBox(width: 12.w),
               if (_selectedFile != null)
@@ -227,7 +227,7 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
           SizedBox(height: 24.h),
           CustomButtonWidget(
             onPressed: _submit,
-            text: 'Submit',
+            text: 'Submit'.tr(),
           ),
         ],
       ),

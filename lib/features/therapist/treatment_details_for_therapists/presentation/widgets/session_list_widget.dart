@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -59,7 +60,7 @@ class SessionListTherapistWidget extends StatelessWidget {
                   child: Text(
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    'Session ${index + 1}',
+                    '${'Session'.tr()} ${index + 1}',
                     style: Styles.captionEmphasis.copyWith(
                       color: AppColors.neutralColor1000,
                     ),
@@ -67,7 +68,7 @@ class SessionListTherapistWidget extends StatelessWidget {
                 ),
                 // const Spacer(),
                 Text(
-                  "See Details",
+                  "seeDetails".tr(),
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,

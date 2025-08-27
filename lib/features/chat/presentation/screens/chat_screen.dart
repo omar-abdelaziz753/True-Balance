@@ -98,7 +98,7 @@ class ChatScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: CustomTextFormFieldWidget(
-                      hintText: "Write your message...",
+                      hintText: "writeYourMessage".tr(),
                       controller: cubit.messageController,
                       borderWidth: 1.w,
                       borderColor: AppColors.neutralColor300,
@@ -106,9 +106,15 @@ class ChatScreen extends StatelessWidget {
                         onTap: () {
                           cubit.sendMessage(ticketId: id.toString());
                         },
-                        child: SvgPicture.asset(
-                          Assets.assetsImagesSvgSendIcon,
-                          fit: BoxFit.scaleDown,
+                        child: Transform(
+                          alignment: Alignment.center,
+                          transform: context.locale.languageCode == "ar"
+                              ? Matrix4.rotationY(3.1416) // 180 درجة
+                              : Matrix4.identity(),
+                          child: SvgPicture.asset(
+                            Assets.assetsImagesSvgSendIcon,
+                            fit: BoxFit.scaleDown,
+                          ),
                         ),
                       ),
                       isChat: true,

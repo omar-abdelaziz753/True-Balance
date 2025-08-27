@@ -39,7 +39,7 @@ class TreatmentDetailsForTherapists extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            title: 'treatment Details'.tr(),
+            title: 'treatmentDetails'.tr(),
             backgroundColor: AppColors.primaryColor900,
             svgAsset: 'assets/images/svg/bg_image.svg',
           ),
@@ -83,7 +83,7 @@ class TreatmentDetailsForTherapists extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Total Of Session",
+                            "totalOfSession".tr(),
                             style: Styles.captionEmphasis.copyWith(
                               color: AppColors.neutralColor600,
                             ),
@@ -102,7 +102,7 @@ class TreatmentDetailsForTherapists extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Type of treatment",
+                            "typeoftreatment".tr(),
                             style: Styles.captionEmphasis.copyWith(
                               color: AppColors.neutralColor600,
                             ),
@@ -117,7 +117,7 @@ class TreatmentDetailsForTherapists extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        "Notes",
+                        "notes".tr(),
                         style: Styles.captionEmphasis.copyWith(
                           color: AppColors.neutralColor600,
                         ),
