@@ -117,24 +117,50 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                 ),
                 18.verticalSpace,
 
-                CustomRichText(
-                  text1: "theCodeWillExpire".tr(),
-                  textStyle1: Styles.captionRegular.copyWith(
-                    color: AppColors.neutralColor1000,
-                  ),
-                  text2: "(02m 00s)",
-                  textStyle2: Styles.captionRegular.copyWith(
-                    color: AppColors.primaryColor900,
-                  ),
-                  text3: "resend".tr(),
-                  textStyle3: Styles.captionRegular.copyWith(
-                    color: AppColors.neutralColor600,
-                  ),
-                  onTap3: () {
-                    /// ======= Resend OTP ======= ///
+                // CustomRichText(
+                //   text1: "theCodeWillExpire".tr(),
+                //   textStyle1: Styles.captionRegular.copyWith(
+                //     color: AppColors.neutralColor1000,
+                //   ),
+                //   text2: "(02m 00s)",
+                //   textStyle2: Styles.captionRegular.copyWith(
+                //     color: AppColors.primaryColor900,
+                //   ),
+                //   text3: "resend".tr(),
+                //   textStyle3: Styles.captionRegular.copyWith(
+                //     color: AppColors.neutralColor600,
+                //   ),
+                //   onTap3: () {
+                //     /// ======= Resend OTP ======= ///
+                //   },
+                //   textAlign: TextAlign.center,
+                // ),
+
+                StreamBuilder<String>(
+                  stream: countdownStream(const Duration(minutes: 2)),
+                  builder: (context, snapshot) {
+                    final timerText = snapshot.data ?? "(02 m 00 s)";
+
+                    return CustomRichText(
+                      text1: "theCodeWillExpire".tr(),
+                      textStyle1: Styles.captionRegular.copyWith(
+                        color: AppColors.neutralColor1000,
+                      ),
+                      text2: timerText,
+                      textStyle2: Styles.captionRegular.copyWith(
+                        color: AppColors.primaryColor900,
+                      ),
+                      text3: "resend".tr(),
+                      textStyle3: Styles.captionRegular.copyWith(
+                        color: AppColors.neutralColor600,
+                      ),
+                      onTap3: () {
+                        /// ======= Resend OTP ======= ///
+                      },
+                      textAlign: TextAlign.center,
+                    );
                   },
-                  textAlign: TextAlign.center,
-                ),
+                )
               ],
             ),
           ),
@@ -226,5 +252,17 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+Stream<String> countdownStream(Duration duration) async* {
+  int totalSeconds = duration.inSeconds;
+
+  while (totalSeconds >= 0) {
+    final minutes = (totalSeconds ~/ 60).toString().padLeft(2, '0');
+    final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
+    yield "($minutes m $seconds s)";
+    await Future.delayed(const Duration(seconds: 1));
+    totalSeconds--;
   }
 }
