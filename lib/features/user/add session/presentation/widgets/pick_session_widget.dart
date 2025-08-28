@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -7,12 +6,12 @@ import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_ses
 Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   final availableAppointments = cubit.treatmentPlanDetail.availableAppointments;
 
+ 
   final sortedDates = availableAppointments
-      .map((a) => DateFormat('dd-MM-yyyy').parse(a.day))
+      .map((a) => DateFormat('dd-MM-yyyy', 'en_US').parse(a.day))
       .where((date) => !date.isBefore(DateTime.now()))
       .toList()
     ..sort();
-
   if (sortedDates.isEmpty) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -31,7 +30,7 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
     firstDate: DateTime.now(),
     lastDate: DateTime.now().add(const Duration(days: 30)),
     selectableDayPredicate: (date) {
-      final formatted = DateFormat('dd-MM-yyyy').format(date);
+      final formatted = DateFormat('dd-MM-yyyy', 'en_US').format(date);
       return availableAppointments.any((a) => a.day == formatted);
     },
     builder: (context, child) {
@@ -57,7 +56,7 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
 
   if (pickedDate == null) return;
 
-  final formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+  final formattedDate = DateFormat('dd-MM-yyyy', 'en_US').format(pickedDate);
   final times =
       availableAppointments.firstWhere((a) => a.day == formattedDate).slots;
 
@@ -94,4 +93,3 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
     SelecteItem(date: formattedDate, time: selectedTime),
   );
 }
-

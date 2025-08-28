@@ -91,7 +91,7 @@ class ResisterFormWidget extends StatelessWidget {
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return 'phoneRequired'.tr();
-                } else if (!RegExp(r'^\d{9,15}$').hasMatch(value.trim())) {
+                } else if (!RegExp(r'^\+?\d{9,15}$').hasMatch(value.trim())) {
                   return 'phoneInvalid'.tr();
                 }
                 return null;
