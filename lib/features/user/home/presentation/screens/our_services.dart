@@ -22,22 +22,22 @@ class OurServicesScreen extends StatelessWidget {
           current is ServicesLoading,
       builder: (context, state) {
         if (state is ServicesLoading) {
-          return Skeletonizer(
-            enabled: true,
-            child: Scaffold(
-              backgroundColor: AppColors.primaryColor900,
-              appBar: CustomBasicAppBar(
-                leading: BackButton(
-                  color: AppColors.neutralColor100,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                title: 'ourServices'.tr(),
-                backgroundColor: AppColors.primaryColor900,
-                svgAsset: 'assets/images/svg/bg_image.svg',
+          return Scaffold(
+            backgroundColor: AppColors.primaryColor900,
+            appBar: CustomBasicAppBar(
+              leading: BackButton(
+                color: AppColors.neutralColor100,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              body: Column(
+              title: 'ourServices'.tr(),
+              backgroundColor: AppColors.primaryColor900,
+              svgAsset: 'assets/images/svg/bg_image.svg',
+            ),
+            body: Skeletonizer(
+              enabled: true,
+              child: Column(
                 children: [
                   Expanded(
                     child: Container(

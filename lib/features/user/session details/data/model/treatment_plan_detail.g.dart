@@ -53,7 +53,7 @@ Therapist _$TherapistFromJson(Map<String, dynamic> json) => Therapist(
       type: json['type'] as String,
       specialization: json['specialization'] as String,
       rate: (json['rate'] as num).toInt(),
-      ratesCount: (json['ratesCount'] as num).toInt(),
+      rateCount: (json['rateCount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$TherapistToJson(Therapist instance) => <String, dynamic>{
@@ -65,7 +65,7 @@ Map<String, dynamic> _$TherapistToJson(Therapist instance) => <String, dynamic>{
       'type': instance.type,
       'specialization': instance.specialization,
       'rate': instance.rate,
-      'ratesCount': instance.ratesCount,
+      'rateCount': instance.rateCount,
     };
 
 Session _$SessionFromJson(Map<String, dynamic> json) => Session(

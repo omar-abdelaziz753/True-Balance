@@ -69,4 +69,6 @@ class EndPoints {
 
   static String rateSessionTherapist(int therapistId) =>
       "api/frontend/therapist/treatment-plans/sessions/complete/$therapistId";
+        static String getReviews(int therapistId) =>
+      "api/frontend/doctors/reviews/$therapistId";
 }

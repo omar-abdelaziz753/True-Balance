@@ -45,7 +45,7 @@ class ReviewItemWidget extends StatelessWidget {
           Divider(
             color: AppColors.neutralColor300,
           ),
-          12.verticalSpace,
+          5.verticalSpace,
           Text(
             userRating.userMessage ?? "",
             style: Styles.contentEmphasis.copyWith(
@@ -53,7 +53,7 @@ class ReviewItemWidget extends StatelessWidget {
               fontSize: 14.sp,
             ),
           ),
-          8.verticalSpace,
+          // 8.verticalSpace,
           Text(
             userRating.date ?? "",
             style: Styles.contentEmphasis.copyWith(

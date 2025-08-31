@@ -71,4 +71,5 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
     );
     isLoadingMore = false;
   }
+
 }

@@ -39,12 +39,17 @@ class MainLayoutScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SvgPicture.asset(
-                    'assets/images/svg/mysessions_icon.svg',
+                  Icon(
+                    Icons.wallet,
                     color: AppColors.neutralColor100,
-                    width: 27.w,
-                    height: 27.h,
-                  ),
+                    size: 29.sp,
+                  )
+                  // SvgPicture.asset(
+                  //   'assets/images/svg/booking_icon.svg',
+                  //   color: AppColors.neutralColor100,
+                  //   width: 27.w,
+                  //   height: 27.h,
+                  // ),
                 ],
               ),
             ),

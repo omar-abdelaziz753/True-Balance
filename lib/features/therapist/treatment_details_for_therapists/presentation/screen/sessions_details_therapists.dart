@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,7 @@ class SessionsDetailsTherapists extends StatelessWidget {
             if (session.status != "completed") ...[
               const Spacer(),
               CustomButtonWidget(
-                text: 'completed'.tr(),
+                text: 'Completed'.tr(),
                 onPressed: () {
                   _showRatingBottomSheet(context, session.id!, index);
                 },
@@ -318,7 +319,7 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
     return SingleChildScrollView(
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),  
+      ),
       child: Container(
         width: double.infinity,
         padding:

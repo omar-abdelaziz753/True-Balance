@@ -59,7 +59,7 @@ class Therapist {
   final String type;
   final String specialization;
   final int rate;
-  final int ratesCount;
+  final int rateCount;
 
   Therapist({
     required this.id,
@@ -70,7 +70,7 @@ class Therapist {
     required this.type,
     required this.specialization,
     required this.rate,
-    required this.ratesCount,
+    required this.rateCount,
   });
 
   factory Therapist.fromJson(Map<String, dynamic> json) =>

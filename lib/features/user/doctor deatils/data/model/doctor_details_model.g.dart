@@ -9,10 +9,12 @@ part of 'doctor_details_model.dart';
 DoctorDetailsResponse _$DoctorDetailsResponseFromJson(
         Map<String, dynamic> json) =>
     DoctorDetailsResponse(
-      data: DoctorModelDetails.fromJson(json['data'] as Map<String, dynamic>),
-      status: json['status'] as String,
-      error: json['error'] as String,
-      code: (json['code'] as num).toInt(),
+      data: json['data'] == null
+          ? null
+          : DoctorModelDetails.fromJson(json['data'] as Map<String, dynamic>),
+      status: json['status'] as String?,
+      error: json['error'] as String?,
+      code: (json['code'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$DoctorDetailsResponseToJson(
@@ -26,18 +28,21 @@ Map<String, dynamic> _$DoctorDetailsResponseToJson(
 
 DoctorModelDetails _$DoctorModelDetailsFromJson(Map<String, dynamic> json) =>
     DoctorModelDetails(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      email: json['email'] as String,
-      image: json['image'] as String,
-      phone: json['phone'] as String,
-      type: json['type'] as String,
-      specialization: json['specialization'] as String,
-      rate: (json['rate'] as num).toInt(),
-      ratesCount: (json['ratesCount'] as num).toInt(),
-      ratings: Ratings.fromJson(json['ratings'] as Map<String, dynamic>),
-      age: json['age'] as num,
-      gender: json['gender'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      age: (json['age'] as num?)?.toInt(),
+      gender: json['gender'] as String?,
+      image: json['image'] as String?,
+      phone: json['phone'] as String?,
+      about: json['about'] as String?,
+      type: json['type'] as String?,
+      specialization: json['specialization'] as String?,
+      rate: json['rate'] as num?,
+      rateCount: (json['rateCount'] as num?)?.toInt(),
+      ratings: json['ratings'] == null
+          ? null
+          : Ratings.fromJson(json['ratings'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DoctorModelDetailsToJson(DoctorModelDetails instance) =>
@@ -45,20 +50,21 @@ Map<String, dynamic> _$DoctorModelDetailsToJson(DoctorModelDetails instance) =>
       'id': instance.id,
       'name': instance.name,
       'email': instance.email,
+      'age': instance.age,
+      'gender': instance.gender,
       'image': instance.image,
       'phone': instance.phone,
+      'about': instance.about,
       'type': instance.type,
       'specialization': instance.specialization,
       'rate': instance.rate,
-      'ratesCount': instance.ratesCount,
+      'rateCount': instance.rateCount,
       'ratings': instance.ratings,
-      'age': instance.age,
-      'gender': instance.gender,
     };
 
 Ratings _$RatingsFromJson(Map<String, dynamic> json) => Ratings(
-      ratings: (json['ratings'] as List<dynamic>)
-          .map((e) => UserRating.fromJson(e as Map<String, dynamic>))
+      ratings: (json['ratings'] as List<dynamic>?)
+          ?.map((e) => UserRating.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -175,7 +175,7 @@ class LoginFormWidget extends StatelessWidget {
                         ),
                       ),
                       Transform(
-                         alignment: Alignment.center,
+                        alignment: Alignment.center,
                         transform: context.locale.languageCode == "ar"
                             ? Matrix4.rotationY(3.1416) // قلب 180 درجة
                             : Matrix4.identity(),

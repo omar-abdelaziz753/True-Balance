@@ -18,6 +18,7 @@ import 'package:truee_balance_app/core/services/firebase/fcm.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/firebase_options.dart';
 import 'package:truee_balance_app/true_balance.dart';
+
 import 'core/utils/bloc_observer.dart';
 
 void main() async {

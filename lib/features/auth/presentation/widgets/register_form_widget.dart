@@ -173,7 +173,7 @@ class ResisterFormWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'alreadyHaveAccount',
+                  'alreadyHaveAccount'.tr(),
                   style: Styles.captionEmphasis
                       .copyWith(color: AppColors.neutralColor300),
                 ),
@@ -197,7 +197,13 @@ class ResisterFormWidget extends StatelessWidget {
                           decorationColor: AppColors.primaryColor900,
                         ),
                       ),
-                      SvgPicture.asset('assets/images/svg/sign_up_icon.svg'),
+                      Transform(
+                          alignment: Alignment.center,
+                          transform: context.locale.languageCode == "ar"
+                              ? Matrix4.rotationY(3.1416) // قلب 180 درجة
+                              : Matrix4.identity(),
+                          child: SvgPicture.asset(
+                              'assets/images/svg/sign_up_icon.svg')),
                     ],
                   ),
                 ),
