@@ -9,4 +9,10 @@ class DoctorApiServices {
   Future<Response?> getAllDoctors({required int doctorId}) async {
     return _dioFactory.get(endPoint: "${EndPoints.getDoctors}/$doctorId");
   }
+
+  Future<Response?> getDoctorReviews(
+      {required int doctorId, required int page}) async {
+    return _dioFactory
+        .get(endPoint: EndPoints.getReviews(doctorId), data: {'page': page});
+  }
 }

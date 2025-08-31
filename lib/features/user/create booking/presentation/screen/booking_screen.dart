@@ -95,7 +95,7 @@ class BookingScreen extends StatelessWidget {
                               const SessionSelector()
                             else
                               BookingDetailsWidget(
-                                doctorName: doctorModel.name,
+                                doctorName: doctorModel.name ?? '',
                               ),
                           ],
                         );

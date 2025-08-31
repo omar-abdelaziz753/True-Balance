@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   CustomHeaderWidget(
                     title1: 'signIn'.tr(),
-                    title2: 'Account'.tr(),
+                    title2: 'account'.tr(),
                     description: 'descriptionOfHeaderInLogin'.tr(),
                   ),
                 ],
@@ -38,7 +38,8 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18.sp),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 18.sp, vertical: 10.sp),
                     child: const LoginFormWidget(),
                   ),
                 ],

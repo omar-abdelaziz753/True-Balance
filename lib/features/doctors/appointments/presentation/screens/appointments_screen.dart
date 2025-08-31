@@ -104,6 +104,7 @@ class AppointmentsScreen extends StatelessWidget {
               //       Navigator.pop(context);
               //     },
               //   ),
+
               title: 'appointments'.tr(),
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',

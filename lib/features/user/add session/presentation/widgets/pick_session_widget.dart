@@ -6,16 +6,19 @@ import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_ses
 Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   final availableAppointments = cubit.treatmentPlanDetail.availableAppointments;
 
- 
+  final now = DateTime.now();
+  final today = DateTime(now.year, now.month, now.day);
+
   final sortedDates = availableAppointments
       .map((a) => DateFormat('dd-MM-yyyy', 'en_US').parse(a.day))
-      .where((date) => !date.isBefore(DateTime.now()))
+      .where((date) => !date.isBefore(today))
       .toList()
     ..sort();
+
   if (sortedDates.isEmpty) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("No future available sessions."),
+       SnackBar(
+        content: Text("nofutureAvailable".tr()),
         backgroundColor: Colors.red,
       ),
     );

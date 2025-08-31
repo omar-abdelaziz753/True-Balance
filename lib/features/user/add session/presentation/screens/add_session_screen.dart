@@ -26,6 +26,7 @@ class AddSessionScreen extends StatelessWidget {
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
         leading: IconButton(
+          color: AppColors.neutralColor100,
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             if (cubit.currentStep == 1 || cubit.currentStep == 2) {
@@ -112,8 +113,8 @@ class AddSessionScreen extends StatelessWidget {
                         cubit.nextStep();
                       } else {
                         customToast(
-                            msg: "sessionAddedSuccessfully".tr(),
-                            color: AppColors.redColor200);
+                            msg: "pleaseselectatleastoneitem".tr(),
+                            color: Colors.red);
                       }
                     } else {
                       cubit.addSession();

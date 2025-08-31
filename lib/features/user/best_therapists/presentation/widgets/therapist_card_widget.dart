@@ -122,7 +122,7 @@ class TherapistCardWidget extends StatelessWidget {
                         ),
                         4.horizontalSpace,
                         Text(
-                          '${doctorModel.rate} | (${doctorModel.ratesCount} ${'rate'.tr()})',
+                          '${doctorModel.rate} | (${doctorModel.rateCount} ${'rate'.tr()})',
                           style: Styles.footnoteEmphasis.copyWith(
                             color: AppColors.neutralColor600,
                           ),
