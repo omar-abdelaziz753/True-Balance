@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
+import 'package:truee_balance_app/features/user/home/presentation/widgets/our_services_skelton.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/service_card_widget.dart';
 
 class OurServicesScreen extends StatelessWidget {
@@ -35,42 +35,7 @@ class OurServicesScreen extends StatelessWidget {
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
             ),
-            body: Skeletonizer(
-              enabled: true,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(18.sp),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12.r),
-                            topRight: Radius.circular(12.r),
-                          ),
-                        ),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          itemCount: cubit.servicesModel?.data.data.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 18.h,
-                            crossAxisSpacing: 12.w,
-                            childAspectRatio: 171.w / 114.h,
-                          ),
-                          itemBuilder: (context, index) {
-                            return const ServiceCardWidget(
-                              image: 'assets/images/png/therapists.png',
-                              title: 'dfdfdfdfdfdf',
-                            );
-                          },
-                        )),
-                  ),
-                ],
-              ),
-            ),
+            body: const OurServicesSkeltonizer(),
           );
         }
         return Scaffold(

@@ -6,8 +6,8 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
 
-class TotalOfSessionsAndTypeOfTreatment extends StatelessWidget {
-  const TotalOfSessionsAndTypeOfTreatment({
+class TotalofSessionsAndTypeOfTreatmentDetailsWidget extends StatelessWidget {
+  const TotalofSessionsAndTypeOfTreatmentDetailsWidget({
     super.key,
   });
 
