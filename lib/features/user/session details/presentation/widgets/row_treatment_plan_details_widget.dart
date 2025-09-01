@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
 
-class RowTreatmentPlanWidget extends StatelessWidget {
-  const RowTreatmentPlanWidget({
+class RowtreatmentPlanDetailsWidget extends StatelessWidget {
+  const RowtreatmentPlanDetailsWidget({
     super.key,
-    required this.cubit,
   });
-
-  final SessionDetailsCubit cubit;
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<SessionDetailsCubit>();
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(12.sp),
@@ -39,8 +38,7 @@ class RowTreatmentPlanWidget extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(12.r),
               child: CacheNetworkImagesWidget(
-                image:
-                    cubit.treatmentPlansResponse?.data?.therapist?.image ?? '',
+                image: cubit.treatmentPlanDetail?.therapist.image ?? '',
                 width: 55.w,
                 height: 55.h,
               )),
@@ -51,15 +49,13 @@ class RowTreatmentPlanWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  cubit.treatmentPlansResponse?.data?.therapist?.name ?? '',
+                  cubit.treatmentPlanDetail?.therapist.name ?? '',
                   style: Styles.contentBold.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
                 ),
                 Text(
-                  cubit.treatmentPlansResponse?.data?.therapist
-                          ?.specialization ??
-                      '',
+                  cubit.treatmentPlanDetail?.therapist.specialization ?? '',
                   style: Styles.footnoteEmphasis.copyWith(
                     color: AppColors.neutralColor600,
                   ),

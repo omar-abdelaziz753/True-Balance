@@ -63,9 +63,9 @@ class HomeRepo {
     );
   }
 
-  Future<ApiResult<ServiceResponse>> getAllServices({required int page }) async {
+  Future<ApiResult<ServiceResponse>> getAllServices({required int page}) async {
     try {
-      final response = await api.getAllServices( page: page);
+      final response = await api.getAllServices(page: page);
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model = ServiceResponse.fromJson(response!.data);

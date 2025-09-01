@@ -60,8 +60,10 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   /// Register
-  Future<void> userRegister() async {
-    showLoading();
+  Future<void> userRegister({bool isOtp = true}) async {
+    if (isOtp) {
+      showLoading();
+    }
     emit(RegisterLoadingState());
 
     final result = await authRepository.userRegister(
