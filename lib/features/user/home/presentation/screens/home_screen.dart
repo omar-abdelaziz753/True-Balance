@@ -23,8 +23,7 @@ class HomeScreen extends StatelessWidget {
       appBar: CustomMainAppBarInHomeWidget(
         userName: CacheHelper.getData(key: CacheKeys.userName) ?? "",
         location: 'myAddressHere'.tr(),
-        profileImageAsset: CacheHelper.getData(key: CacheKeys.userImage) ??
-            'assets/images/png/profile_image.png',
+        profileImageAsset: CacheHelper.getData(key: CacheKeys.userImage) ?? "",
         notificationCount: '3',
       ),
       body: Container(

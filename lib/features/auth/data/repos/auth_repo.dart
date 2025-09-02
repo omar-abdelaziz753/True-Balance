@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
@@ -33,17 +34,16 @@ class AuthRepository {
         await saveCaches(model);
 
         customToast(
-          msg: 'Login Success',
+          msg: 'loginSuccess'.tr(),
           color: Colors.green,
         );
 
         return const ApiResult.success('Login Success');
       } else {
         final rawError = response.data?['error'] ?? 'Login Failed';
-        final errorMessage = rawError.toString().split('.').last;
-
+        // final errorMessage = rawError.toString().split('.').last;
         customToast(
-          msg: errorMessage,
+          msg: rawError,
           color: Colors.red,
         );
         // return ApiResult.failure(
@@ -62,14 +62,30 @@ class AuthRepository {
         FailureException(errMessage: 'Unexpected error occurred'));
   }
 
-  Future<void> saveCaches(UserDataModel model) async {
+  // Future<void> saveCaches(UserDataModel model) async {
+  //   await CacheHelper.saveSecuredString(
+  //       key: CacheKeys.userToken, value: model.data!.token);
+  //   await CacheHelper.saveData(
+  //       key: CacheKeys.userName, value: model.data!.name);
+  //   await CacheHelper.saveData(
+  //       key: CacheKeys.userImage, value: model.data!.image);
+  //   await CacheHelper.saveData(
+  //       key: CacheKeys.userPhone, value: model.data!.phone);
+  //   await CacheHelper.saveData(key: CacheKeys.type, value: model.data!.type);
+  //   AppConstants.userToken =
+  //       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
+  // }
+  Future<void> saveCaches(UserDataModel model) async { 
     await CacheHelper.saveSecuredString(
-        key: CacheKeys.userToken, value: model.data!.token);
+        key: CacheKeys.userToken, value: model.data?.token ?? "");
     await CacheHelper.saveData(
-        key: CacheKeys.userName, value: model.data!.name);
+        key: CacheKeys.userName, value: model.data?.name ?? "");
     await CacheHelper.saveData(
-        key: CacheKeys.userPhone, value: model.data!.phone);
-    await CacheHelper.saveData(key: CacheKeys.type, value: model.data!.type);
+        key: CacheKeys.userImage, value: model.data?.image ?? "");
+    await CacheHelper.saveData(
+        key: CacheKeys.userPhone, value: model.data?.phone ?? "");
+    await CacheHelper.saveData(
+        key: CacheKeys.type, value: model.data?.type ?? "");
     AppConstants.userToken =
         await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   }
@@ -199,6 +215,10 @@ class AuthRepository {
       if (response!.statusCode == 200 || response.statusCode == 201) {
         AppConstants.userToken = null;
         await CacheHelper.clearAllSecuredData();
+
+        await CacheHelper.removeData(key: CacheKeys.userName);
+        await CacheHelper.removeData(key: CacheKeys.userPhone);
+        await CacheHelper.removeData(key: CacheKeys.userImage);
         return const ApiResult.success('Logout Success');
       } else {
         return ApiResult.failure(
