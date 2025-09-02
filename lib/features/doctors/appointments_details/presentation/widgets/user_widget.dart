@@ -42,10 +42,19 @@ class UserWidget extends StatelessWidget {
       child: Row(
         children: [
           CachedNetworkImage(
-            imageUrl: userData.image!,
-            width: 55.w,
-            height: 55.h,
-          ),
+              imageUrl: userData.image ?? "",
+              width: 55.w,
+              height: 55.h,
+              errorWidget: (context, url, error) => Icon(
+                    Icons.error,
+                    size: 55.sp,
+                    color: Colors.grey,
+                  )),
+          // CachedNetworkImage(
+          //   imageUrl: userData.image!,
+          //   width: 55.w,
+          //   height: 55.h,
+          // ),
           12.horizontalSpace,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -43,7 +43,7 @@ Map<String, dynamic> _$ConsultationsDataToJson(ConsultationsData instance) =>
 Consultation _$ConsultationFromJson(Map<String, dynamic> json) => Consultation(
       id: (json['id'] as num).toInt(),
       doctor: Doctor.fromJson(json['doctor'] as Map<String, dynamic>),
-      recoveryRate: (json['recovery_rate'] as num?)?.toInt(),
+      file: json['file'] as String?,
       doctorEvaluation: json['doctor_evaluation'] as String?,
       doctorEvaluationAt: json['doctor_evaluation_at'] as String?,
       userMessage: json['user_message'] as String?,
@@ -57,7 +57,7 @@ Map<String, dynamic> _$ConsultationToJson(Consultation instance) =>
     <String, dynamic>{
       'id': instance.id,
       'doctor': instance.doctor,
-      'recovery_rate': instance.recoveryRate,
+      'file': instance.file,
       'doctor_evaluation': instance.doctorEvaluation,
       'doctor_evaluation_at': instance.doctorEvaluationAt,
       'user_message': instance.userMessage,
@@ -76,6 +76,9 @@ Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(
       specialization: json['specialization'] as String,
       rate: (json['rate'] as num).toInt(),
       rateCount: (json['rateCount'] as num).toInt(),
+      age: (json['age'] as num?)?.toInt(),
+      gender: json['gender'] as String?,
+      about: json['about'] as String?,
     );
 
 Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
@@ -87,6 +90,9 @@ Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
       'specialization': instance.specialization,
       'rate': instance.rate,
       'rateCount': instance.rateCount,
+      'age': instance.age,
+      'gender': instance.gender,
+      'about': instance.about,
     };
 
 Links _$LinksFromJson(Map<String, dynamic> json) => Links(

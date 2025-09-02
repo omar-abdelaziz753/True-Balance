@@ -1,9 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 
 class CustomAppointmentContainerWidget extends StatelessWidget {
   final String title;
@@ -52,11 +52,15 @@ class CustomAppointmentContainerWidget extends StatelessWidget {
                       height: 95.h,
                       color: Colors.grey[300],
                     )
-                  : CacheNetworkImagesWidget(
-                      image: imagePath,
+                  : CachedNetworkImage(
+                      imageUrl: imagePath,
                       width: 95.w,
                       height: 95.h,
-                    ),
+                      errorWidget: (context, url, error) => Icon(
+                            Icons.error,
+                            size: 95.sp,
+                            color: Colors.grey,
+                          )),
             ),
             12.horizontalSpace,
             Expanded(
