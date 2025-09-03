@@ -297,8 +297,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
@@ -517,51 +515,48 @@ class ProfileScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        18.verticalSpace,
-                       
-
-                        if (CacheHelper.getData(key: CacheKeys.type) ==
-                                "doctor" ||
-                            CacheHelper.getData(key: CacheKeys.type) ==
-                                "therapist")
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'specialization'.tr(),
-                                    style: Styles.contentEmphasis.copyWith(
-                                      color: AppColors.neutralColor1000,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              CustomTextFormFieldWidget(
-                                readOnly: true,
-                                hintText: cubit.getProfileDataModel == null
-                                    ? 'Loading...'.tr()
-                                    : cubit.getProfileDataModel!.data!.type!,
-                                keyboardType: TextInputType.name,
-                                borderColor: AppColors.neutralColor1000,
-                                hintStyle: Styles.captionRegular.copyWith(
-                                  color: AppColors.neutralColor1000,
-                                ),
-                                textStyle: Styles.captionRegular.copyWith(
-                                  color: AppColors.neutralColor1000,
-                                ),
-                                validator: (value) {
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        18.verticalSpace,
+                        // 18.verticalSpace,
+                        // if (CacheHelper.getData(key: CacheKeys.type) ==
+                        //         "doctor" ||
+                        //     CacheHelper.getData(key: CacheKeys.type) ==
+                        //         "therapist")
+                        //   Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       Row(
+                        //         children: [
+                        //           Text(
+                        //             'specialization'.tr(),
+                        //             style: Styles.contentEmphasis.copyWith(
+                        //               color: AppColors.neutralColor1000,
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //       CustomTextFormFieldWidget(
+                        //         readOnly: true,
+                        //         hintText: cubit.getProfileDataModel == null
+                        //             ? 'Loading...'.tr()
+                        //             : cubit.getProfileDataModel!.data!.type!,
+                        //         keyboardType: TextInputType.name,
+                        //         borderColor: AppColors.neutralColor1000,
+                        //         hintStyle: Styles.captionRegular.copyWith(
+                        //           color: AppColors.neutralColor1000,
+                        //         ),
+                        //         textStyle: Styles.captionRegular.copyWith(
+                        //           color: AppColors.neutralColor1000,
+                        //         ),
+                        //         validator: (value) {
+                        //           return null;
+                        //         },
+                        //       ),
+                        //     ],
+                        //   ),
+                        // 18.verticalSpace,
                       ],
                     ),
                   ),
                 ),
-
                 BlocConsumer<SettingsCubit, SettingsState>(
                   listener: (context, state) {
                     if (state is UpdateProfileDataSuccessState) {
