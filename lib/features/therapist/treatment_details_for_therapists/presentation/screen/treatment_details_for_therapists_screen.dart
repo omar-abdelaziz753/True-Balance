@@ -116,18 +116,18 @@ class TreatmentDetailsForTherapists extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(
-                        "notes".tr(),
-                        style: Styles.captionEmphasis.copyWith(
-                          color: AppColors.neutralColor600,
-                        ),
-                      ),
-                      Text(
-                        "Notes..",
-                        style: Styles.contentEmphasis.copyWith(
-                          color: AppColors.neutralColor1000,
-                        ),
-                      ),
+                      // Text(
+                      //   "notes".tr(),
+                      //   style: Styles.captionEmphasis.copyWith(
+                      //     color: AppColors.neutralColor600,
+                      //   ),
+                      // ),
+                      // Text(
+                      //   "Notes..",
+                      //   style: Styles.contentEmphasis.copyWith(
+                      //     color: AppColors.neutralColor1000,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

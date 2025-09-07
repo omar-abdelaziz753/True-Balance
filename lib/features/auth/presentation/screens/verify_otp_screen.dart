@@ -33,7 +33,9 @@ class VerifyOtpScreen extends StatelessWidget {
                     description:
                         '${'descriptionOfHeaderInVerify'.tr()}${data['email']}',
                     isEdit: true,
-                    onEditTap: () {},
+                    onEditTap: () {
+                      Navigator.pop(context);
+                    },
                   ),
                 ],
               ),

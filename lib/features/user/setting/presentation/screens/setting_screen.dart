@@ -143,8 +143,8 @@ class SettingScreen extends StatelessWidget {
                             CustomRowInSettingWidget(
                               imagePath: Icons.wallet,
                               iconcolor: AppColors.primaryColor900,
-                              title: 'completedCousultations'.tr(),
-                              subtitle: 'completedCousultationsdetails'.tr(),
+                              title: 'completedTreatmentBlan'.tr(),
+                              subtitle: 'completedTreatmentBlandetails'.tr(),
                               onTap: () => context.pushNamed(
                                   Routes.completedCousultations,
                                   arguments: true),
