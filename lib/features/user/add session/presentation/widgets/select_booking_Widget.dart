@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -46,23 +47,17 @@ class SelectBookingWidget extends StatelessWidget {
                 spacing: 10.sp,
                 children: [
                   DetailsRowWidget(
-                    label: "Session ${index + 1}",
+                    label: "${"Session".tr()} ${index + 1}",
                     value: "",
                   ),
                   DetailsRowWidget(
-                    label: "data",
+                    label: "date".tr(),
                     value: cubit.treatmentPlanDetail.sessions[index].date,
                   ),
                   DetailsRowWidget(
-                    label: "time",
+                    label: "time".tr(),
                     value: cubit.treatmentPlanDetail.sessions[index].time,
                   ),
-
-                  // _buildRow("Session${index + 1}", ""),
-                  // _buildRow(
-                  //     "data", cubit.treatmentPlanDetail.sessions[index].date),
-                  // _buildRow(
-                  //     "time", cubit.treatmentPlanDetail.sessions[index].time),
                 ],
               ),
             );
@@ -112,12 +107,6 @@ class SelectBookingWidget extends StatelessWidget {
                               "Session ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
                           value: "",
                         ),
-
-                        // _buildRow(
-                        //   "Session ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
-                        //   "",
-                        // ),
-
                         const Spacer(),
                         if (selectedSession == null)
                           Icon(
@@ -159,9 +148,6 @@ class SelectBookingWidget extends StatelessWidget {
                           label: "session Date",
                           value: "${selectedSession.date} ",
                         ),
-
-                        //  _buildRow(
-                        //     "session Date", "${selectedSession.date} "),
                       ),
                       Container(
                         width: double.infinity,
@@ -185,9 +171,6 @@ class SelectBookingWidget extends StatelessWidget {
                           label: "session time",
                           value: "${selectedSession.time} ",
                         ),
-
-                        // _buildRow(
-                        //     "session time", "${selectedSession.time} "),
                       )
                     ]
                   ],

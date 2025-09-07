@@ -78,8 +78,9 @@ class SettingScreen extends StatelessWidget {
                               iconcolor: AppColors.primaryColor900,
                               title: 'completedCousultations'.tr(),
                               subtitle: 'completedCousultationsdetails'.tr(),
-                              onTap: () => context
-                                  .pushNamed(Routes.completedCousultations),
+                              onTap: () => context.pushNamed(
+                                  Routes.completedCousultations,
+                                  arguments: true),
                             ),
                             const CustomDividerWidget(),
                             CustomRowInSettingWidget(
@@ -109,15 +110,6 @@ class SettingScreen extends StatelessWidget {
                                       context.read<AuthCubit>().logout();
                                     },
                                   );
-                                  // CustomRowInSettingWidget(
-                                  //   imagePath:
-                                  //       "assets/images/svg/logout_icon.svg",
-                                  //   title: 'logOut'.tr(),
-                                  //   subtitle: 'descriptionOfLogout'.tr(),
-                                  //   onTap: () {
-                                  //     context.read<AuthCubit>().logout();
-                                  //   },
-                                  // );
                                 },
                               ),
                             ),
@@ -153,8 +145,9 @@ class SettingScreen extends StatelessWidget {
                               iconcolor: AppColors.primaryColor900,
                               title: 'completedCousultations'.tr(),
                               subtitle: 'completedCousultationsdetails'.tr(),
-                              onTap: () => context
-                                  .pushNamed(Routes.completedCousultations),
+                              onTap: () => context.pushNamed(
+                                  Routes.completedCousultations,
+                                  arguments: true),
                             ),
                             const CustomDividerWidget(),
                             CustomRowInSettingWidget(
@@ -184,15 +177,6 @@ class SettingScreen extends StatelessWidget {
                                       context.read<AuthCubit>().logout();
                                     },
                                   );
-                                  // CustomRowInSettingWidget(
-                                  //   imagePath:
-                                  //       "assets/images/svg/logout_icon.svg",
-                                  //   title: 'logOut'.tr(),
-                                  //   subtitle: 'descriptionOfLogout'.tr(),
-                                  //   onTap: () {
-                                  //     context.read<AuthCubit>().logout();
-                                  //   },
-                                  // );
                                 },
                               ),
                             ),
@@ -206,7 +190,6 @@ class SettingScreen extends StatelessWidget {
                           color: AppColors.neutralColor1000,
                         ),
                       ),
-
                       Container(
                         padding: EdgeInsets.only(
                           top: 12.w,
@@ -254,8 +237,6 @@ class SettingScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-
-                      /// More Setting
                       Text(
                         'more'.tr(),
                         style: Styles.highlightEmphasis.copyWith(
@@ -295,19 +276,8 @@ class SettingScreen extends StatelessWidget {
                                     subtitle: 'descriptionOfLogout'.tr(),
                                     onTap: () {
                                       context.read<AuthCubit>().logout();
-                                      // context.pushNamedAndRemoveUntil(
-                                      //     Routes.loginScreen);
                                     },
                                   );
-                                  // CustomRowInSettingWidget(
-                                  //   imagePath:
-                                  //       "assets/images/svg/logout_icon.svg",
-                                  //   title: 'logOut'.tr(),
-                                  //   subtitle: 'descriptionOfLogout'.tr(),
-                                  //   onTap: () {
-                                  //     context.read<AuthCubit>().logout();
-                                  //   },
-                                  // );
                                 },
                               ),
                             ),

@@ -171,6 +171,8 @@
   "normal": "عادي",
   "urgent": "عاجل",
   "age": "العمر",
+  "sessionAlreadySelected": "تم اختيار هذه الجلسة بالفعل",
+  "selectTime":" اختر الوقت",
   "messageDetails": "تفاصيل الرسالة",
   "enterYourMessageDetails": "أدخل تفاصيل الرسالة",
   "send": "إرسال",

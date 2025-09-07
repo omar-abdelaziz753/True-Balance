@@ -17,7 +17,7 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
 
   if (sortedDates.isEmpty) {
     ScaffoldMessenger.of(context).showSnackBar(
-       SnackBar(
+      SnackBar(
         content: Text("nofutureAvailable".tr()),
         backgroundColor: Colors.red,
       ),
@@ -67,7 +67,7 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
     context: context,
     builder: (_) => SimpleDialog(
       backgroundColor: Colors.white,
-      title: const Text("Select Time"),
+      title: Text("selectTime".tr()),
       children: times
           .map(
             (time) => SimpleDialogOption(
@@ -84,9 +84,9 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   if (cubit.selectedItems
       .any((item) => item.date == formattedDate && item.time == selectedTime)) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("This session is already selected."),
-        backgroundColor: Colors.orange,
+      SnackBar(
+        content: Text('sessionAlreadySelected'.tr()),
+        backgroundColor: Colors.red,
       ),
     );
     return;

@@ -1,3 +1,190 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,8 +202,8 @@ import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appoi
 import 'package:truee_balance_app/features/doctors/appointments/presentation/widgets/custom_appointment_counter_widget.dart';
 
 class AppointmentsScreen extends StatelessWidget {
-  const AppointmentsScreen({super.key});
-
+  const AppointmentsScreen({super.key, required this.showLeading});
+  final bool showLeading;
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<AppointmentsCubit>();
@@ -95,16 +282,14 @@ class AppointmentsScreen extends StatelessWidget {
         return Scaffold(
             backgroundColor: AppColors.primaryColor900,
             appBar: CustomBasicAppBar(
-              leading: CacheHelper.getData(key: CacheKeys.type) == 'doctor'
-                  ? const SizedBox.shrink()
-                  : null,
-              // BackButton(
-              //     color: AppColors.neutralColor100,
-              //     onPressed: () {
-              //       Navigator.pop(context);
-              //     },
-              //   ),
-
+              leading: showLeading
+                  ? BackButton(
+                      color: AppColors.neutralColor100,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    )
+                  : const SizedBox.shrink(),
               title: 'appointments'.tr(),
               backgroundColor: AppColors.primaryColor900,
               svgAsset: 'assets/images/svg/bg_image.svg',
