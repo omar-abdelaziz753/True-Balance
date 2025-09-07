@@ -41,6 +41,8 @@
   "pleaseenterallrequiredfields": "Please enter all required fields",
   "uploadFile": "Upload File",
   "signIn": "Sign in to your",
+  "selectTime":" Select Time",
+  "sessionAlreadySelected": "This session is already selected",
   "account": "Account",
   "welcomeTo": "Welcome to ",
   "trueBalance": "TrueBalance",

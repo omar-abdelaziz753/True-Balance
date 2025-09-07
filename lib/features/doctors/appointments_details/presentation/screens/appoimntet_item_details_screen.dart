@@ -80,89 +80,91 @@ class AppoimntetItemDetailsScreen extends StatelessWidget {
                       label: 'date'.tr(), value: appointmentData.date!),
                   DetailsRowWidget(
                       label: 'time'.tr(), value: appointmentData.time!),
-                  DetailsRowWidget(
-                      label: 'doctorEvaluation'.tr(),
-                      value: appointmentData.doctorEvaluation ?? ""),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8.sp,
-                      vertical: 8.sp,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.sp),
-                      border: Border.all(
-                        width: 1.sp,
-                        color: AppColors.neutralColor600,
+                  if (appointmentData.status != "pending") ...[
+                    DetailsRowWidget(
+                        label: 'doctorEvaluation'.tr(),
+                        value: appointmentData.doctorEvaluation ?? ""),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.sp,
+                        vertical: 8.sp,
                       ),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12.sp),
-                          child: SvgPicture.asset(
-                            Assets.assetsImagesSvgPdfIcon,
-                            height: 36.sp,
-                            width: 36.sp,
-                            fit: BoxFit.cover,
-                          ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.sp),
+                        border: Border.all(
+                          width: 1.sp,
+                          color: AppColors.neutralColor600,
                         ),
-                        SizedBox(width: 10.sp),
-                        Expanded(
-                          child: Text(
-                            appointmentData.file != null &&
-                                    appointmentData.file!.isNotEmpty
-                                ? Uri.parse(appointmentData.file!)
-                                    .pathSegments
-                                    .last
-                                : "noFileAttached".tr(),
-                            style: Styles.contentEmphasis.copyWith(
-                              fontWeight: FontWeight.w700,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12.sp),
+                            child: SvgPicture.asset(
+                              Assets.assetsImagesSvgPdfIcon,
+                              height: 36.sp,
+                              width: 36.sp,
+                              fit: BoxFit.cover,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
                           ),
-                        ),
-                        10.horizontalSpace,
-                        InkWell(
-                          onTap: appointmentData.file != null &&
-                                  appointmentData.file!.isNotEmpty
-                              ? () async {
-                                  await downloadPdfFile(
-                                    appointmentData.file!,
-                                    Uri.parse(appointmentData.file!)
-                                        .pathSegments
-                                        .last,
-                                  );
-                                }
-                              : null,
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.download_outlined,
-                                size: 20.sp,
-                                color: appointmentData.file != null &&
-                                        appointmentData.file!.isNotEmpty
-                                    ? AppColors.primaryColor900
-                                    : AppColors.neutralColor600,
+                          SizedBox(width: 10.sp),
+                          Expanded(
+                            child: Text(
+                              appointmentData.file != null &&
+                                      appointmentData.file!.isNotEmpty
+                                  ? Uri.parse(appointmentData.file!)
+                                      .pathSegments
+                                      .last
+                                  : "noFileAttached".tr(),
+                              style: Styles.contentEmphasis.copyWith(
+                                fontWeight: FontWeight.w700,
                               ),
-                              Text(
-                                'download'.tr(),
-                                style: Styles.contentEmphasis.copyWith(
-                                  fontWeight: FontWeight.w400,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ),
+                          10.horizontalSpace,
+                          InkWell(
+                            onTap: appointmentData.file != null &&
+                                    appointmentData.file!.isNotEmpty
+                                ? () async {
+                                    await downloadPdfFile(
+                                      appointmentData.file!,
+                                      Uri.parse(appointmentData.file!)
+                                          .pathSegments
+                                          .last,
+                                    );
+                                  }
+                                : null,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.download_outlined,
+                                  size: 20.sp,
                                   color: appointmentData.file != null &&
                                           appointmentData.file!.isNotEmpty
                                       ? AppColors.primaryColor900
                                       : AppColors.neutralColor600,
-                                  fontSize: 12.sp,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'download'.tr(),
+                                  style: Styles.contentEmphasis.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color: appointmentData.file != null &&
+                                            appointmentData.file!.isNotEmpty
+                                        ? AppColors.primaryColor900
+                                        : AppColors.neutralColor600,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                   Row(
                     spacing: 10.sp,
                     children: [

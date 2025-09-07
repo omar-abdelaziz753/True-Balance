@@ -43,7 +43,7 @@ class SeeDetailsWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Session ${(session.index ?? 0) + 1}',
+                '${"Session".tr()} ${(session.index ?? 0) + 1}',
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: Styles.captionEmphasis.copyWith(

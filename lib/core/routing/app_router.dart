@@ -95,8 +95,10 @@ class AppRouter {
           cubit: ChosseAccountCubit(),
         );
       case Routes.appointmentsScreen:
+        final argument = settings.arguments as bool;
+
         return transition(
-          screen: const AppointmentsScreen(),
+          screen: AppointmentsScreen(showLeading: argument),
         );
       case Routes.appointmentsDetailsScreen:
         final arguments = settings.arguments as AppointmentsArguments;
@@ -273,7 +275,8 @@ class AppRouter {
         final doctorId = settings.arguments as int;
         return transition(
           cubit: DoctorDetailsCubit(getIt())
-            ..getDoctorReviews(doctorId: doctorId)..setupAllDoctorsReviewsScrollController(),
+            ..getDoctorReviews(doctorId: doctorId)
+            ..setupAllDoctorsReviewsScrollController(),
           screen: const AllReviews(),
         );
       case Routes.bookingScreen:
@@ -296,12 +299,13 @@ class AppRouter {
         );
 
       case Routes.completedCousultations:
+        final argument = settings.arguments as bool;
         return transition(
           screen: BlocProvider(
             create: (context) => AppointmentsCubit(getIt())
               ..getAllDoctorsConsultations(isPending: false)
               ..setupAllDoctorsConsultationsScrollController(),
-            child: const AppointmentsScreen(),
+            child: AppointmentsScreen(showLeading: argument),
           ),
         );
       case Routes.chatScreen:
@@ -347,7 +351,9 @@ class AppRouter {
       create: (context) => AppointmentsCubit(getIt())
         ..getAllDoctorsConsultations(isPending: true)
         ..setupAllDoctorsConsultationsScrollController(),
-      child: const AppointmentsScreen(),
+      child: const AppointmentsScreen(
+        showLeading: false,
+      ),
     ),
     const NotificationScreen(),
     const SettingScreen(),

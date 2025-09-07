@@ -81,8 +81,8 @@ class TreatmentDetailsScreen extends StatelessWidget {
                     automaticIndicatorColorAdjustment: true,
                     indicatorSize: TabBarIndicatorSize.tab,
                     tabs: [
-                      Tab(text: 'Pending'.tr()),
-                      Tab(text: 'Completed'.tr()),
+                      Tab(text: 'pending'.tr()),
+                      Tab(text: 'completed'.tr()),
                     ],
                   ),
                   Expanded(
