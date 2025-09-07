@@ -1,190 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -310,74 +123,85 @@ class AppointmentsScreen extends StatelessWidget {
                     constraints: BoxConstraints(
                       minHeight: constraints.maxHeight,
                     ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            controller:
-                                cubit.consultationsdoctorsScrollController,
-                            itemCount: cubit.consultationUsersResponse?.data
-                                    ?.data?.length ??
-                                0,
-                            separatorBuilder: (context, index) =>
-                                18.verticalSpace,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  if (CacheHelper.getData(
-                                          key: CacheKeys.type) ==
-                                      'doctor') {
-                                    context.pushNamed(
-                                      Routes.appointmentsDetailsScreen,
-                                      arguments: AppointmentsArguments(
-                                          isPending: cubit.isPending!,
-                                          userData: cubit
-                                              .consultationUsersResponse!
-                                              .data!
-                                              .data![index]),
+                    child: cubit.consultationUsersResponse?.data?.data
+                                ?.isEmpty ??
+                            true
+                        ? Center(
+                            child: Text(
+                              'noAppointmentsYet'.tr(),
+                            ),
+                          )
+                        : Column(
+                            children: [
+                              Expanded(
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  controller: cubit
+                                      .consultationsdoctorsScrollController,
+                                  itemCount: cubit.consultationUsersResponse
+                                          ?.data?.data?.length ??
+                                      0,
+                                  separatorBuilder: (context, index) =>
+                                      18.verticalSpace,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        if (CacheHelper.getData(
+                                                key: CacheKeys.type) ==
+                                            'doctor') {
+                                          context.pushNamed(
+                                            Routes.appointmentsDetailsScreen,
+                                            arguments: AppointmentsArguments(
+                                                isPending: cubit.isPending!,
+                                                userData: cubit
+                                                    .consultationUsersResponse!
+                                                    .data!
+                                                    .data![index]),
+                                          );
+                                        } else {
+                                          context.pushNamed(
+                                            Routes.treatmentPlanForTherapists,
+                                            arguments: AppointmentsArguments(
+                                                isPending: cubit.isPending!,
+                                                userData: cubit
+                                                    .consultationUsersResponse!
+                                                    .data!
+                                                    .data![index]),
+                                          );
+                                        }
+                                      },
+                                      child: CustomAppointmentContainerWidget(
+                                          title: cubit.consultationUsersResponse
+                                                  ?.data?.data?[index].name ??
+                                              '',
+                                          phone: cubit.consultationUsersResponse
+                                                  ?.data?.data?[index].phone ??
+                                              '',
+                                          imagePath: cubit
+                                                  .consultationUsersResponse
+                                                  ?.data
+                                                  ?.data?[index]
+                                                  .image ??
+                                              ''),
                                     );
-                                  } else {
-                                    context.pushNamed(
-                                      Routes.treatmentPlanForTherapists,
-                                      arguments: AppointmentsArguments(
-                                          isPending: cubit.isPending!,
-                                          userData: cubit
-                                              .consultationUsersResponse!
-                                              .data!
-                                              .data![index]),
+                                  },
+                                ),
+                              ),
+                              BlocBuilder<AppointmentsCubit, AppointmentsState>(
+                                buildWhen: (previous, current) =>
+                                    current is AppointmentsLoadingMore ||
+                                    current is AppointmentsSuccess,
+                                builder: (context, state) {
+                                  if (state is AppointmentsLoadingMore) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
                                     );
                                   }
+                                  return const SizedBox.shrink();
                                 },
-                                child: CustomAppointmentContainerWidget(
-                                    title: cubit.consultationUsersResponse?.data
-                                            ?.data?[index].name ??
-                                        '',
-                                    phone: cubit.consultationUsersResponse?.data
-                                            ?.data?[index].phone ??
-                                        '',
-                                    imagePath: cubit.consultationUsersResponse
-                                            ?.data?.data?[index].image ??
-                                        ''),
-                              );
-                            },
+                              ),
+                            ],
                           ),
-                        ),
-                        BlocBuilder<AppointmentsCubit, AppointmentsState>(
-                          buildWhen: (previous, current) =>
-                              current is AppointmentsLoadingMore ||
-                              current is AppointmentsSuccess,
-                          builder: (context, state) {
-                            if (state is AppointmentsLoadingMore) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                            return const SizedBox.shrink();
-                          },
-                        ),
-                      ],
-                    ),
                   );
                 },
               ),

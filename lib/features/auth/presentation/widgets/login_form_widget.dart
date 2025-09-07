@@ -36,7 +36,7 @@ class LoginFormWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'phoneNumber'.tr(),
+              'email'.tr(),
               style: Styles.contentEmphasis.copyWith(
                 color: AppColors.neutralColor1000,
               ),
@@ -45,7 +45,7 @@ class LoginFormWidget extends StatelessWidget {
             CustomTextFormFieldWidget(
               controller: context.read<AuthCubit>().emailController,
               keyboardType: TextInputType.emailAddress,
-              hintText: 'enterYourPhoneNumber'.tr(),
+              hintText: 'enterYourEmail'.tr(),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'phoneNumberIsRequired'.tr();

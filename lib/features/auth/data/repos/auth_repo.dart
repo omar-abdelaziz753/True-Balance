@@ -76,7 +76,7 @@ class AuthRepository {
   //   AppConstants.userToken =
   //       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   // }
-  Future<void> saveCaches(UserDataModel model) async { 
+  Future<void> saveCaches(UserDataModel model) async {
     await CacheHelper.saveSecuredString(
         key: CacheKeys.userToken, value: model.data?.token ?? "");
     await CacheHelper.saveData(
@@ -146,6 +146,35 @@ class AuthRepository {
 
   /// forgetPassword
 
+  // Future<ApiResult<String>> forgetPassword({
+  //   required String email,
+  // }) async {
+  //   final response = await authApiServices.forgetPassword(
+  //     email: email,
+  //   );
+
+  //   try {
+  //     if (response!.statusCode == 200 || response.statusCode == 201) {
+  //       customToast(
+  //           msg: response.data["data"]["verification_code"].toString(),
+  //           color: AppColors.primaryColor400);
+  //       return const ApiResult.success('Email sent successfully');
+  //     } else {
+  //       return ApiResult.failure(
+  //         ServerException.fromResponse(response.statusCode, response),
+  //       );
+  //     }
+  //   } on DioException catch (e) {
+  //     try {
+  //       handleDioException(e);
+  //     } on ServerException catch (ex) {
+  //       return ApiResult.failure(ex.errorModel.error);
+  //     }
+  //     return ApiResult.failure(
+  //       ServerException.fromResponse(e.response!.statusCode, e.response!),
+  //     );
+  //   }
+  // }
   Future<ApiResult<String>> forgetPassword({
     required String email,
   }) async {
@@ -155,10 +184,24 @@ class AuthRepository {
 
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {
-        customToast(
-            msg: response.data["data"]["verification_code"].toString(),
-            color: AppColors.primaryColor400);
-        return const ApiResult.success('Email sent successfully');
+        final data = response.data["data"];
+
+        if (data is Map && data["verification_code"] != null) {
+          customToast(
+            msg: "sendCodeSuccessfully".tr(),
+            // msg: data["verification_code"].toString(),   // pending
+            color: AppColors.primaryColor400,
+          );
+          return ApiResult.success('emailSentSuccessfully'.tr());
+        } else {
+          customToast(
+            msg: "invalidpleaseCheckAgain".tr(),
+            color: Colors.red,
+          );
+          return ApiResult.failure(
+            FailureException(errMessage: "invalidEmailAddress".tr()),
+          );
+        }
       } else {
         return ApiResult.failure(
           ServerException.fromResponse(response.statusCode, response),
@@ -171,7 +214,7 @@ class AuthRepository {
         return ApiResult.failure(ex.errorModel.error);
       }
       return ApiResult.failure(
-        ServerException.fromResponse(e.response!.statusCode, e.response!),
+        FailureException(errMessage: e.message ?? "Unexpected error"),
       );
     }
   }
@@ -209,19 +252,22 @@ class AuthRepository {
   }
 
   /// Verify OTP
-  Future<ApiResult<VerifyOTPResponseDataModel>> verifyOTP({required String otp}) async {
+  Future<ApiResult<VerifyOTPResponseDataModel>> verifyOTP(
+      {required String otp}) async {
     final response = await authApiServices.verifyOTP(otp: otp);
 
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {
-        VerifyOTPResponseDataModel model = VerifyOTPResponseDataModel.fromJson(response.data);
+        VerifyOTPResponseDataModel model =
+            VerifyOTPResponseDataModel.fromJson(response.data);
 
         await CacheHelper.saveSecuredString(
             key: CacheKeys.userToken, value: model.data?.token ?? "");
         await CacheHelper.saveData(
             key: CacheKeys.typeInOTP, value: model.data?.user?.type ?? "");
 
-        AppConstants.userToken = await CacheHelper.getSecuredString(key: CacheKeys.userToken);
+        AppConstants.userToken =
+            await CacheHelper.getSecuredString(key: CacheKeys.userToken);
 
         return ApiResult.success(model);
       } else {
