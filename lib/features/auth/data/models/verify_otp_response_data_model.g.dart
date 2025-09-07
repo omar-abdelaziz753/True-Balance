@@ -1,0 +1,63 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'verify_otp_response_data_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+VerifyOTPResponseDataModel _$VerifyOTPResponseDataModelFromJson(
+        Map<String, dynamic> json) =>
+    VerifyOTPResponseDataModel(
+      data: json['data'] == null
+          ? null
+          : VerifyOTPData.fromJson(json['data'] as Map<String, dynamic>),
+      status: json['status'] as String?,
+      error: json['error'] as String?,
+      code: (json['code'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$VerifyOTPResponseDataModelToJson(
+        VerifyOTPResponseDataModel instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'status': instance.status,
+      'error': instance.error,
+      'code': instance.code,
+    };
+
+VerifyOTPData _$VerifyOTPDataFromJson(Map<String, dynamic> json) =>
+    VerifyOTPData(
+      token: json['token'] as String?,
+      user: json['user'] == null
+          ? null
+          : VerifyOTPUser.fromJson(json['user'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$VerifyOTPDataToJson(VerifyOTPData instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'user': instance.user,
+    };
+
+VerifyOTPUser _$VerifyOTPUserFromJson(Map<String, dynamic> json) =>
+    VerifyOTPUser(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      phone: json['phone'] as String?,
+      image: json['image'] as String?,
+      token: json['token'] as String?,
+      type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$VerifyOTPUserToJson(VerifyOTPUser instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'email': instance.email,
+      'phone': instance.phone,
+      'image': instance.image,
+      'token': instance.token,
+      'type': instance.type,
+    };

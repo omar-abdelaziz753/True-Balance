@@ -138,7 +138,7 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
             32.verticalSpace,
             BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
-                if (state is VerfiyCodeSuccessState) {
+                if (state is CreateNewPasswordSuccessState) {
                   showChangePasswordBottomSheet(context,
                       title1: "congratulation".tr(),
                       title2: "yourPasswordHasBeenChanged".tr(),
@@ -158,7 +158,8 @@ class CreateNewPasswordFormWidget extends StatelessWidget {
                 ),
                 onPressed: () {
                   if (cubit.formKey.currentState!.validate()) {
-                    cubit.verfiyCode();
+                    cubit.createNewPassword();
+                    // print('OOOOO');
                   }
                 },
               ),

@@ -32,6 +32,20 @@ class VerfiyCodeSuccessState extends AuthState {}
 
 class VerfiyCodeFailureState extends AuthState {}
 
+/// Create A New Password States
+final class CreateNewPasswordLoadingState extends AuthState {}
+
+final class CreateNewPasswordSuccessState extends AuthState {}
+
+final class CreateNewPasswordFailureState extends AuthState {}
+
+/// Verify OTP States
+final class VerifyOtpLoadingState extends AuthState {}
+
+final class VerifyOtpSuccessState extends AuthState {}
+
+final class VerifyOtpFailureState extends AuthState {}
+
 class CreateNewPasswordState extends AuthState {}
 
 class LogoutLoading extends AuthState {}
@@ -41,3 +55,4 @@ class LogoutSuccess extends AuthState {}
 class LogoutError extends AuthState {}
 
 class OtpSuccessState extends AuthState {}
+class ResendPasswordLoadingState extends AuthState {}

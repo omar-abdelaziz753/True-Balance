@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pinput/pinput.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/helper_functions/flutter_toast.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
@@ -17,15 +19,24 @@ import 'package:truee_balance_app/core/widgets/text/custom_text_rich_widget.dart
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/create_new_password_screen.dart';
 
-class VerifyOtpWidgetWidget extends StatelessWidget {
+class VerifyOtpWidgetWidget extends StatefulWidget {
   const VerifyOtpWidgetWidget({super.key, required this.data});
 
   final Map<String, dynamic> data;
 
   @override
+  State<VerifyOtpWidgetWidget> createState() => _VerifyOtpWidgetWidgetState();
+}
+
+class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
+  int _resendKey = 0;
+
+  @override
   Widget build(BuildContext context) {
     final cubit = context.read<AuthCubit>();
     final formKey = GlobalKey<FormState>();
+
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -92,7 +103,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                     ),
                     validator: (pin) {
                       if (pin?.length != 5) {
-                        return 'error'.tr();
+                        return 'enterYourCodeComplete'.tr();
                       }
                       return null;
                     },
@@ -101,31 +112,76 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                     ),
                   ),
                   18.verticalSpace,
-                  StreamBuilder<String>(
-                    stream: countdownStream(const Duration(minutes: 2)),
-                    builder: (context, snapshot) {
-                      final timerText = snapshot.data ?? "(02 m 00 s)";
-
-                      return CustomRichText(
-                        text1: "theCodeWillExpire".tr(),
-                        textStyle1: Styles.captionRegular.copyWith(
-                          color: AppColors.neutralColor1000,
-                        ),
-                        text2: timerText,
-                        textStyle2: Styles.captionRegular.copyWith(
-                          color: AppColors.primaryColor900,
-                        ),
-                        text3: "resend".tr(),
-                        textStyle3: Styles.captionRegular.copyWith(
-                          color: AppColors.neutralColor600,
-                        ),
-                        onTap3: () {
-                          // cubit.userRegister(isOtp: false);
-                        },
-                        textAlign: TextAlign.center,
-                      );
+                  // StreamBuilder<String>(
+                  //   stream: countdownStream(const Duration(minutes: 2)),
+                  //   builder: (context, snapshot) {
+                  //     final timerText = snapshot.data ?? "(02 m 00 s)";
+                  //
+                  //     return CustomRichText(
+                  //       text1: "theCodeWillExpire".tr(),
+                  //       textStyle1: Styles.captionRegular.copyWith(
+                  //         color: AppColors.neutralColor1000,
+                  //       ),
+                  //       text2: timerText,
+                  //       textStyle2: Styles.captionRegular.copyWith(
+                  //         color: AppColors.primaryColor900,
+                  //       ),
+                  //       text3: "resend".tr(),
+                  //       textStyle3: Styles.captionRegular.copyWith(
+                  //         color: AppColors.neutralColor600,
+                  //       ),
+                  //       onTap3: () {
+                  //         // cubit.userRegister(isOtp: false);
+                  //       },
+                  //       textAlign: TextAlign.center,
+                  //     );
+                  //   },
+                  // )
+                  BlocListener<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if(state is ResendPasswordLoadingState) {
+                        setState(() {
+                          _resendKey++; // هنغير المفتاح عشان الـ StreamBuilder يتبني من جديد
+                        });
+                      }
                     },
-                  )
+                    child: StreamBuilder<String>(
+                      key: ValueKey(_resendKey),
+                      stream: countdownStream(const Duration(minutes: 2)),
+                      builder: (context, snapshot) {
+                        final timerText = snapshot.data ?? "(02 m 00 s)";
+
+                        final isTimerFinished = timerText.contains(
+                            "00 m 00 s") ||
+                            snapshot.connectionState == ConnectionState.done;
+
+                        return CustomRichText(
+                          text1: "theCodeWillExpire".tr(),
+                          textStyle1: Styles.captionRegular.copyWith(
+                            color: AppColors.neutralColor1000,
+                          ),
+                          text2: timerText,
+                          textStyle2: Styles.captionRegular.copyWith(
+                            color: AppColors.primaryColor900,
+                          ),
+                          text3: "resend".tr(),
+                          textStyle3: Styles.captionRegular.copyWith(
+                            color: isTimerFinished
+                                ? AppColors.primaryColor700
+                                : AppColors.neutralColor600,
+                          ),
+                          onTap3: isTimerFinished
+                              ? () {
+                            // cubit.userRegister(isOtp: false);
+                            cubit.forgetPassword(
+                                email: widget.data['email'], isOtp: false);
+                          }
+                              : null,
+                          textAlign: TextAlign.center,
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -138,13 +194,30 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                       title1: "congratulation".tr(),
                       title2: "yourPasswordHasBeenChanged".tr(),
                       description: "loginToContinue".tr(),
-                      buttonText: "login".tr(), onPressed: () {
-                    context.pushNamed(Routes.loginScreen);
-                  });
+                      buttonText: "login".tr(),
+                      onPressed: () {
+                        context.pushNamed(Routes.loginScreen);
+                      });
+                }
+                if(state is VerfiyCodeSuccessState) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return BlocProvider.value(
+                        value: cubit,
+                        child: CreateNewPasswordScreen(
+                          data: {
+                            'type': CacheHelper.getData(key: CacheKeys.typeInOTP),
+                            'token': CacheHelper.getData(key: CacheKeys.tokenInOTP),
+                          },
+                        ),
+                      );
+                    }),
+                  );
                 }
               },
               child: CustomButtonWidget(
-                text: data['screenName'] == 'forgetPassword'
+                text: widget.data['screenName'] == 'forgetPassword'
                     ? 'verify'.tr()
                     : 'next'.tr(),
                 padding: EdgeInsets.symmetric(
@@ -154,20 +227,13 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                   color: AppColors.neutralColor100,
                 ),
                 onPressed: () {
-                  if (data['screenName'] == 'forgetPassword') {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return BlocProvider.value(
-                          value: cubit,
-                          child: const CreateNewPasswordScreen(),
-                        );
-                      }),
-                    );
+                  if (widget.data['screenName'] == 'forgetPassword') {
+                    cubit.verifyOTP();
+
                   } else {
                     // cubit.userRegister();
                     if (formKey.currentState!.validate()) {
-                      cubit.verfiyCode();
+                      cubit.verifyOTP();
                     } else {
                       customToast(
                           msg: "please enter the otp code",
@@ -177,7 +243,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                 },
               ),
             ),
-            if (data['screenName'] == 'forgetPassword')
+            if (widget.data['screenName'] == 'forgetPassword')
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

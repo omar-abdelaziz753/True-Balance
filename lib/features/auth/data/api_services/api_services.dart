@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
 import 'package:truee_balance_app/core/networks_helper/dio_helper/end_points.dart';
 
@@ -71,6 +73,30 @@ class AuthApiServices {
         'code': verificationCode,
         'password': password,
         'password_confirmation': passwordConfirm
+      },
+    );
+  }
+
+  Future<Response?> verifyOTP({required String otp}) {
+    return _dioFactory.post(
+      endPoint: EndPoints.verifyOTP,
+      data: {
+        'code': otp,
+      },
+    );
+  }
+
+  /// Create a New Password
+  Future<Response?> createNewPassword({
+    required String new_password,
+    required String new_password_confirmation,
+  }) {
+    return _dioFactory.post(
+      endPoint: EndPoints.createNewPassword,
+      data: {
+        'new_password': new_password,
+        'new_password_confirmation': new_password_confirmation,
+        'type': CacheHelper.getData(key: CacheKeys.typeInOTP),
       },
     );
   }

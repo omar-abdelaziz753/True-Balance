@@ -161,8 +161,11 @@ class AppRouter {
             ..setupgetusertreatmentPlansfortherapistScrollController(),
         );
       case Routes.createNewPasswordScreen:
+        final Map<String, dynamic> data =
+            settings.arguments as Map<String, dynamic>;
+
         return transition(
-          screen: const CreateNewPasswordScreen(),
+          screen: CreateNewPasswordScreen(data: data),
         );
       case Routes.mainLayoutScreen:
         return transition(

@@ -10,7 +10,10 @@ import 'package:truee_balance_app/features/auth/presentation/widgets/custom_head
 class CreateNewPasswordScreen extends StatelessWidget {
   const CreateNewPasswordScreen({
     super.key,
+    required this.data,
   });
+
+  final Map<String, dynamic> data;
 
   @override
   Widget build(BuildContext context) {

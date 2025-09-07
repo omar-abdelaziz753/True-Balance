@@ -73,6 +73,7 @@
   "code": "الرمز",
   "descriptionOfHeaderInVerify": "لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني ",
   "error": "خطأ",
+  "enterYourCodeComplete": "ادخل رمز التحقق للتاكيد",
   "theCodeWillExpire": "ستنتهي صلاحية الرمز خلال ",
   "resend": " إعادة إرسال",
   "noReportsAvailable": "لا يوجد تقارير متاحة",

@@ -95,15 +95,23 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   /// forgetpassword
-  Future<void> forgetPassword() async {
+  Future<void> forgetPassword({String? email , bool isOtp = true}) async {
     showLoading();
-    emit(ForgetPasswordLoadingState());
+      emit(ForgetPasswordLoadingState());
+
+
     final result = await authRepository.forgetPassword(
-      email: emailController.text,
+      email: email ?? emailController.text,
     );
     result.when(success: (data) {
       hideLoading();
-      emit(ForgetPasswordSuccessState());
+      if (isOtp) {
+        emit(ForgetPasswordSuccessState());
+
+      }else {
+        emit(ResendPasswordLoadingState());
+
+      }
     }, failure: (error) {
       hideLoading();
       emit(ForgetPasswordFailureState());
@@ -125,6 +133,40 @@ class AuthCubit extends Cubit<AuthState> {
     }, failure: (error) {
       hideLoading();
       emit(VerfiyCodeFailureState());
+    });
+  }
+
+  /// Verify OTP
+  Future<void> verifyOTP() async {
+    showLoading();
+
+    emit(VerfiyCodeLoadingState());
+    final result = await authRepository.verifyOTP(
+      otp: verificationCodeController.text,
+    );
+    result.when(success: (data) {
+      hideLoading();
+      emit(VerfiyCodeSuccessState());
+    }, failure: (error) {
+      hideLoading();
+      emit(VerfiyCodeFailureState());
+    });
+  }
+
+  /// Create A New Password
+  Future<void> createNewPassword() async {
+    showLoading();
+    emit(CreateNewPasswordLoadingState());
+    final result = await authRepository.createNewPassword(
+      password: passwordController.text,
+      passwordConfirm: rePasswordController.text,
+    );
+    result.when(success: (data) {
+      hideLoading();
+      emit(CreateNewPasswordSuccessState());
+    }, failure: (error) {
+      hideLoading();
+      emit(CreateNewPasswordFailureState());
     });
   }
 

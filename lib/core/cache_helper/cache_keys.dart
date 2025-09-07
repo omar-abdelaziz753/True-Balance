@@ -2,6 +2,8 @@ class CacheKeys {
   /// ================== Shared ================== ///
 
   /// User Cache Keys
+  static const String typeInOTP = 'typeInOTP';
+  static const String tokenInOTP = 'tokenInOTP';
   static const String userToken = 'token';
   static const String currentLanguage = 'currentLanguage';
   static const String userName = 'userName';

@@ -11,6 +11,7 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/features/auth/data/api_services/api_services.dart';
 import 'package:truee_balance_app/features/auth/data/models/user_data_model.dart';
+import 'package:truee_balance_app/features/auth/data/models/verify_otp_response_data_model.dart';
 
 class AuthRepository {
   final AuthApiServices authApiServices;
@@ -190,6 +191,69 @@ class AuthRepository {
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {
         return const ApiResult.success('Verification Success');
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.error);
+      }
+      return ApiResult.failure(
+        ServerException.fromResponse(e.response!.statusCode, e.response!),
+      );
+    }
+  }
+
+  /// Verify OTP
+  Future<ApiResult<VerifyOTPResponseDataModel>> verifyOTP({required String otp}) async {
+    final response = await authApiServices.verifyOTP(otp: otp);
+
+    try {
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        VerifyOTPResponseDataModel model = VerifyOTPResponseDataModel.fromJson(response.data);
+
+        await CacheHelper.saveSecuredString(
+            key: CacheKeys.userToken, value: model.data?.token ?? "");
+        await CacheHelper.saveData(
+            key: CacheKeys.typeInOTP, value: model.data?.user?.type ?? "");
+
+        AppConstants.userToken = await CacheHelper.getSecuredString(key: CacheKeys.userToken);
+
+        return ApiResult.success(model);
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.error);
+      }
+      return ApiResult.failure(
+        ServerException.fromResponse(e.response!.statusCode, e.response!),
+      );
+    }
+  }
+
+  /// Create A New Password
+  Future<ApiResult<String>> createNewPassword({
+    required String password,
+    required String passwordConfirm,
+  }) async {
+    final response = await authApiServices.createNewPassword(
+      new_password: password,
+      new_password_confirmation: passwordConfirm,
+    );
+
+    try {
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        return const ApiResult.success('Password changed successfully');
       } else {
         return ApiResult.failure(
           ServerException.fromResponse(response.statusCode, response),
