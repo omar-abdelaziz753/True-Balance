@@ -1,22 +1,19 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:truee_balance_app/core/helper_functions/download_function.dart';
-import 'package:truee_balance_app/core/helper_functions/flutter_toast.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/data/model/appointment_details_model.dart';
+import 'package:truee_balance_app/features/doctors/appointments_details/presentation/widgets/consultation_bottom_sheet.dart';
+import 'package:truee_balance_app/features/doctors/appointments_details/presentation/widgets/down_load_file_widget.dart';
 import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/details_row_widget.dart';
 
 class AppoimntetItemDetailsScreen extends StatelessWidget {
@@ -84,86 +81,7 @@ class AppoimntetItemDetailsScreen extends StatelessWidget {
                     DetailsRowWidget(
                         label: 'doctorEvaluation'.tr(),
                         value: appointmentData.doctorEvaluation ?? ""),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 8.sp,
-                        vertical: 8.sp,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.sp),
-                        border: Border.all(
-                          width: 1.sp,
-                          color: AppColors.neutralColor600,
-                        ),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12.sp),
-                            child: SvgPicture.asset(
-                              Assets.assetsImagesSvgPdfIcon,
-                              height: 36.sp,
-                              width: 36.sp,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(width: 10.sp),
-                          Expanded(
-                            child: Text(
-                              appointmentData.file != null &&
-                                      appointmentData.file!.isNotEmpty
-                                  ? Uri.parse(appointmentData.file!)
-                                      .pathSegments
-                                      .last
-                                  : "noFileAttached".tr(),
-                              style: Styles.contentEmphasis.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                          ),
-                          10.horizontalSpace,
-                          InkWell(
-                            onTap: appointmentData.file != null &&
-                                    appointmentData.file!.isNotEmpty
-                                ? () async {
-                                    await downloadPdfFile(
-                                      appointmentData.file!,
-                                      Uri.parse(appointmentData.file!)
-                                          .pathSegments
-                                          .last,
-                                    );
-                                  }
-                                : null,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.download_outlined,
-                                  size: 20.sp,
-                                  color: appointmentData.file != null &&
-                                          appointmentData.file!.isNotEmpty
-                                      ? AppColors.primaryColor900
-                                      : AppColors.neutralColor600,
-                                ),
-                                Text(
-                                  'download'.tr(),
-                                  style: Styles.contentEmphasis.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                    color: appointmentData.file != null &&
-                                            appointmentData.file!.isNotEmpty
-                                        ? AppColors.primaryColor900
-                                        : AppColors.neutralColor600,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    DownloadFileWidget(appointmentData: appointmentData),
                   ],
                   Row(
                     spacing: 10.sp,
@@ -233,92 +151,3 @@ class AppoimntetItemDetailsScreen extends StatelessWidget {
   }
 }
 
-class ConsultationBottomSheet extends StatefulWidget {
-  final int consultationId;
-
-  const ConsultationBottomSheet({super.key, required this.consultationId});
-
-  @override
-  State<ConsultationBottomSheet> createState() =>
-      _ConsultationBottomSheetState();
-}
-
-class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
-  final TextEditingController _evaluationController = TextEditingController();
-  File? _selectedFile;
-
-  Future<void> _pickFile() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-    );
-    if (result != null && result.files.isNotEmpty) {
-      setState(() {
-        _selectedFile = File(result.files.single.path!);
-      });
-    }
-  }
-
-  void _submit() async {
-    if (_evaluationController.text.isEmpty || _selectedFile == null) {
-      customToast(
-          msg: 'pleaseenterallrequiredfields'.tr(),
-          color: AppColors.redColor100);
-      return;
-    }
-
-    bool success =
-        await context.read<AppointmentsDetailsCubit>().completeConsultation(
-              consultationId: widget.consultationId,
-              doctorEvaluation: _evaluationController.text,
-              file: _selectedFile!,
-            );
-
-    if (success) {
-      Navigator.of(context).pop();
-      Navigator.of(context).pop(true);
-    } else {}
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20.sp),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomTextFormFieldWidget(
-            controller: _evaluationController,
-            labelText: 'doctorEvaluation'.tr(),
-          ),
-          SizedBox(height: 16.h),
-          Row(
-            children: [
-              ElevatedButton.icon(
-                onPressed: _pickFile,
-                icon: const Icon(Icons.upload_file),
-                label: Text('uploadFile'.tr()),
-              ),
-              SizedBox(width: 12.w),
-              if (_selectedFile != null)
-                Expanded(
-                  child: Text(
-                    _selectedFile!.path.split('/').last,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-            ],
-          ),
-          SizedBox(height: 24.h),
-          CustomButtonWidget(
-            onPressed: _submit,
-            text: 'Submit'.tr(),
-          ),
-        ],
-      ),
-    );
-  }
-}

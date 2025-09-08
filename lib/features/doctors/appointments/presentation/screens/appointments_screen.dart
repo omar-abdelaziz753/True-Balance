@@ -27,70 +27,7 @@ class AppointmentsScreen extends StatelessWidget {
           current is AppointmentsLoading,
       builder: (context, state) {
         if (state is AppointmentsLoading) {
-          return Scaffold(
-            backgroundColor: AppColors.primaryColor900,
-            appBar: CustomBasicAppBar(
-              leading: BackButton(
-                color: AppColors.neutralColor100,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              title: 'appointments'.tr(),
-              backgroundColor: AppColors.primaryColor900,
-              svgAsset: 'assets/images/svg/bg_image.svg',
-            ),
-            body: Skeletonizer(
-              enabled: true,
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(18.sp),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12.r),
-                    topRight: Radius.circular(12.r),
-                  ),
-                ),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: constraints.maxHeight,
-                      ),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: ListView.separated(
-                              shrinkWrap: true,
-                              itemCount: 7,
-                              separatorBuilder: (context, index) =>
-                                  18.verticalSpace,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {
-                                    context.pushNamed(
-                                        Routes.appointmentsDetailsScreen);
-                                  },
-                                  child: const CustomAppointmentContainerWidget(
-                                    isLoading: true,
-                                    title: "Ahmed Adel",
-                                    phone: "+1 111 467 378 399",
-                                    imagePath:
-                                        "assets/images/svg/appointments_rounded.svg",
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          );
+          return AppointmentsSkeletonWidget();
         }
         return Scaffold(
             backgroundColor: AppColors.primaryColor900,
@@ -207,6 +144,80 @@ class AppointmentsScreen extends StatelessWidget {
               ),
             ));
       },
+    );
+  }
+}
+
+class AppointmentsSkeletonWidget extends StatelessWidget {
+  const AppointmentsSkeletonWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.primaryColor900,
+      appBar: CustomBasicAppBar(
+        leading: BackButton(
+          color: AppColors.neutralColor100,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: 'appointments'.tr(),
+        backgroundColor: AppColors.primaryColor900,
+        svgAsset: 'assets/images/svg/bg_image.svg',
+      ),
+      body: Skeletonizer(
+        enabled: true,
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(18.sp),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12.r),
+              topRight: Radius.circular(12.r),
+            ),
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        itemCount: 7,
+                        separatorBuilder: (context, index) =>
+                            18.verticalSpace,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {
+                              context.pushNamed(
+                                  Routes.appointmentsDetailsScreen);
+                            },
+                            child: const CustomAppointmentContainerWidget(
+                              isLoading: true,
+                              title: "Ahmed Adel",
+                              phone: "+1 111 467 378 399",
+                              imagePath:
+                                  "assets/images/svg/appointments_rounded.svg",
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

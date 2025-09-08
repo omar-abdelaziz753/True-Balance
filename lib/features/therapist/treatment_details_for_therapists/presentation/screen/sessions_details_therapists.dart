@@ -77,87 +77,91 @@ class SessionsDetailsTherapists extends StatelessWidget {
                       label: 'sessionData'.tr(), value: session.date ?? ""),
                   DetailsRowWidget(
                       label: 'sessionTime'.tr(), value: session.time ?? ""),
-                  DetailsRowWidget(
-                      label: 'notes'.tr(), value: session.notes ?? ""),
-                  DetailsRowWidget(
-                      label: 'rating'.tr(), value: session.rating ?? ""),
-                  DetailsRowWidget(
-                      label: 'review'.tr(), value: session.review ?? ""),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8.sp,
-                      vertical: 8.sp,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.sp),
-                      border: Border.all(
-                        width: 1.sp,
-                        color: AppColors.neutralColor600,
+                  if (session.status == 'completed') ...[
+                    DetailsRowWidget(
+                        label: 'notes'.tr(), value: session.notes ?? ""),
+                    DetailsRowWidget(
+                        label: 'rating'.tr(), value: session.rating ?? ""),
+                    DetailsRowWidget(
+                        label: 'review'.tr(), value: session.review ?? ""),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.sp,
+                        vertical: 8.sp,
                       ),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12.sp),
-                          child: SvgPicture.asset(
-                            Assets.assetsImagesSvgPdfIcon,
-                            height: 36.sp,
-                            width: 36.sp,
-                            fit: BoxFit.cover,
-                          ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.sp),
+                        border: Border.all(
+                          width: 1.sp,
+                          color: AppColors.neutralColor600,
                         ),
-                        SizedBox(width: 10.sp),
-                        Expanded(
-                          child: Text(
-                            session.file != null && session.file!.isNotEmpty
-                                ? Uri.parse(session.file!).pathSegments.last
-                                : "noFileAttached".tr(),
-                            style: Styles.contentEmphasis.copyWith(
-                              fontWeight: FontWeight.w700,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12.sp),
+                            child: SvgPicture.asset(
+                              Assets.assetsImagesSvgPdfIcon,
+                              height: 36.sp,
+                              width: 36.sp,
+                              fit: BoxFit.cover,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
                           ),
-                        ),
-                        10.horizontalSpace,
-                        InkWell(
-                          onTap: session.file != null &&
-                                  session.file!.isNotEmpty
-                              ? () async {
-                                  await downloadPdfFile(
-                                    session.file!,
-                                    Uri.parse(session.file!).pathSegments.last,
-                                  );
-                                }
-                              : null,
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.download_outlined,
-                                size: 20.sp,
-                                color: session.file != null &&
-                                        session.file!.isNotEmpty
-                                    ? AppColors.primaryColor900
-                                    : AppColors.neutralColor600,
+                          SizedBox(width: 10.sp),
+                          Expanded(
+                            child: Text(
+                              session.file != null && session.file!.isNotEmpty
+                                  ? Uri.parse(session.file!).pathSegments.last
+                                  : "noFileAttached".tr(),
+                              style: Styles.contentEmphasis.copyWith(
+                                fontWeight: FontWeight.w700,
                               ),
-                              Text(
-                                'download'.tr(),
-                                style: Styles.contentEmphasis.copyWith(
-                                  fontWeight: FontWeight.w400,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ),
+                          10.horizontalSpace,
+                          InkWell(
+                            onTap:
+                                session.file != null && session.file!.isNotEmpty
+                                    ? () async {
+                                        await downloadPdfFile(
+                                          session.file!,
+                                          Uri.parse(session.file!)
+                                              .pathSegments
+                                              .last,
+                                        );
+                                      }
+                                    : null,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.download_outlined,
+                                  size: 20.sp,
                                   color: session.file != null &&
                                           session.file!.isNotEmpty
                                       ? AppColors.primaryColor900
                                       : AppColors.neutralColor600,
-                                  fontSize: 12.sp,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'download'.tr(),
+                                  style: Styles.contentEmphasis.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color: session.file != null &&
+                                            session.file!.isNotEmpty
+                                        ? AppColors.primaryColor900
+                                        : AppColors.neutralColor600,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
+                  ]
                 ],
               ),
             ),
@@ -176,90 +180,6 @@ class SessionsDetailsTherapists extends StatelessWidget {
     );
   }
 }
-
-// void _showRatingBottomSheet(BuildContext context, int id , int index)  {
-//   final TextEditingController commentController = TextEditingController();
-//   double rating = 0;
-
-//   showModalBottomSheet(
-//     context: context,
-//     isScrollControlled: true,
-//     backgroundColor: Colors.transparent,
-//     builder: (_) {
-//       return BlocProvider(
-//         create: (_) => TreatmentDetailsForTherapistCubit(getIt()),
-//         child: StatefulBuilder(
-//           builder: (statefulContext, setState) {
-//             return BlocListener<TreatmentDetailsForTherapistCubit,
-//                 TreatmentDetailsForTherapistState>(
-//               listener: (listenerContext, state) {
-//                 if (state is RateSessionSuccessState) {
-//                   Navigator.pop(listenerContext);
-//                   Navigator.pop(listenerContext , index);
-//                   ScaffoldMessenger.of(listenerContext).showSnackBar(
-//                     SnackBar(
-//                       content: Text('ratingSubmittedSuccessfully'.tr()),
-//                       backgroundColor: AppColors.primaryColor800,
-//                     ),
-//                   );
-//                 } else if (state is RateSessionFailureState) {
-//                   ScaffoldMessenger.of(listenerContext).showSnackBar(
-//                     SnackBar(
-//                       content: Text('failedToSubmitRating'.tr()),
-//                       backgroundColor: Colors.red,
-//                     ),
-//                   );
-//                 }
-//               },
-//               child: CustomSharedBottomSheetReview(
-//                 title: 'rateThisSession'.tr(),
-//                 nameOfFiled: 'yourComment'.tr(),
-//                 hintText: 'writeYourFeedBackHere'.tr(),
-//                 buttonText1: 'Submit'.tr(),
-//                 buttonText2: 'Cancel'.tr(),
-//                 initialRating: rating,
-//                 commentController: commentController,
-//                 onRatingChanged: (value) {
-//                   setState(() {
-//                     rating = value;
-//                   });
-//                 },
-//                 onEditPressed: () {
-//                   if (rating == 0) {
-//                     customToast(
-//                       msg: 'pleaseselectarating'.tr(),
-//                       color: Colors.red,
-//                     );
-//                     return;
-//                   }
-
-//                   if (commentController.text.trim().isEmpty) {
-//                     customToast(
-//                       msg: 'pleaseenteracomment'.tr(),
-//                       color: Colors.red,
-//                     );
-//                     return;
-//                   }
-
-//                   statefulContext
-//                       .read<TreatmentDetailsForTherapistCubit>()
-//                       .rateSession(
-//                         id: id,
-//                         number: rating,
-//                         text: commentController.text.trim(),
-//                       );
-//                 },
-//                 onCancelPressed: () {
-//                   Navigator.pop(statefulContext);
-//                 },
-//               ),
-//             );
-//           },
-//         ),
-//       );
-//     },
-//   );
-// }
 
 void _showRatingBottomSheet(BuildContext context, int id, int index) {
   final TextEditingController commentController = TextEditingController();
@@ -350,8 +270,7 @@ void _showRatingBottomSheet(BuildContext context, int id, int index) {
                         id: id,
                         file: pickedFile!,
                         notes: commentController.text.trim(),
-                        recoveryRate:
-                            rating.toString(), // convert rating to string
+                        recoveryRate: rating.toString(),
                       );
                 },
                 onCancelPressed: () {
@@ -419,7 +338,6 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Title
             Center(
               child: Text(
                 title,
@@ -428,42 +346,15 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
                 ),
               ),
             ),
-
             12.verticalSpace,
-
-            /// Divider
             Divider(
               color: AppColors.neutralColor300,
               thickness: 1.w,
             ),
-
             24.verticalSpace,
-
-            /// Rating Bar
-            // RatingBar.builder(
-            //   initialRating: initialRating,
-            //   minRating: 1,
-            //   direction: Axis.horizontal,
-            //   allowHalfRating: true,
-            //   itemCount: 5,
-            //   itemSize: 60.sp,
-            //   itemPadding: EdgeInsets.symmetric(horizontal: 5.w),
-            //   itemBuilder: (context, _) => Center(
-            //     child: Icon(
-            //       Icons.star,
-            //       color: AppColors.yellowColor100,
-            //       size: 60.sp,
-            //     ),
-            //   ),
-            //   unratedColor: AppColors.neutralColor300,
-            //   glowColor: AppColors.neutralColor300,
-            //   onRatingUpdate: onRatingChanged,
-            // ),
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// Label with current value
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -481,12 +372,10 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 Slider(
                   value: initialRating,
                   min: 1,
                   max: 100,
-                  // divisions: 99, // for stepping 1-by-1
                   label: initialRating.toInt().toString(),
                   onChanged: onRatingChanged,
                   activeColor: AppColors.primaryColor700,
@@ -494,20 +383,14 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
                 ),
               ],
             ),
-
             24.verticalSpace,
-
-            /// Comment Label
             Text(
               nameOfFiled,
               style: Styles.highlightEmphasis.copyWith(
                 color: AppColors.neutralColor1000,
               ),
             ),
-
             8.verticalSpace,
-
-            /// Comment TextField
             CustomTextFormFieldWidget(
               controller: commentController,
               borderColor: isEdit == false
@@ -522,10 +405,7 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
                       .copyWith(color: AppColors.neutralColor1000),
               maxLines: 6,
             ),
-
             16.verticalSpace,
-
-            /// Attach File Button
             GestureDetector(
               onTap: onAttachFilePressed,
               child: Container(
@@ -554,10 +434,7 @@ class CustomSharedBottomSheetReview extends StatelessWidget {
                 ),
               ),
             ),
-
             24.verticalSpace,
-
-            /// Buttons
             Row(
               spacing: 18.w,
               children: [

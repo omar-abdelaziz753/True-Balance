@@ -16,7 +16,6 @@ class SettingsApiServices {
     return _dioHelper.get(endPoint: EndPoints.getProfileData);
   }
 
-
   /// Update Profile Data
   Future<Response?> updateProfileData({
     String? name,
@@ -69,7 +68,6 @@ class SettingsApiServices {
         data: formData,
       );
     } catch (e) {
-      print('❌ Error updating profile data: $e');
       return null;
     }
   }

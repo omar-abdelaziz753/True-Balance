@@ -100,7 +100,6 @@ class AuthRepository {
     required String password,
     required String rePassword,
     String? verificationCode,
-    required String location,
   }) async {
     final response = await authApiServices.register(
       name: name,
@@ -109,15 +108,15 @@ class AuthRepository {
       password: password,
       rePassword: rePassword,
       verificationCode: verificationCode,
-      location: location,
     );
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {
         if (verificationCode == null) {
           customToast(
-              msg: response.data["data"]["verification_code"].toString(),
-              color: AppColors.primaryColor400,
-              time: 5);
+            msg: response.data["data"]["verification_code"].toString(),
+            color: AppColors.primaryColor400,
+            time: 5,
+          );
         } else {
           UserDataModel model = UserDataModel.fromJson(response.data);
 
@@ -293,8 +292,8 @@ class AuthRepository {
     required String passwordConfirm,
   }) async {
     final response = await authApiServices.createNewPassword(
-      new_password: password,
-      new_password_confirmation: passwordConfirm,
+      newPassword: password,
+      newPasswordConfirmation: passwordConfirm,
     );
 
     try {
