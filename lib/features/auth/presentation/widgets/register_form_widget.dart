@@ -164,7 +164,7 @@ class ResisterFormWidget extends StatelessWidget {
                 onPressed: () {
                   cubit.verificationCodeController.clear();
                   if (cubit.formKey.currentState!.validate()) {
-                    cubit.userRegister();
+                    cubit.userRegister(isOtp: true);
                   }
                 },
               ),

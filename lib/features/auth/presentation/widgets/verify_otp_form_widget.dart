@@ -36,7 +36,6 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
     final cubit = context.read<AuthCubit>();
     final formKey = GlobalKey<FormState>();
 
-
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -139,7 +138,7 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                   // )
                   BlocListener<AuthCubit, AuthState>(
                     listener: (context, state) {
-                      if(state is ResendPasswordLoadingState) {
+                      if (state is ResendPasswordLoadingState) {
                         setState(() {
                           _resendKey++; // هنغير المفتاح عشان الـ StreamBuilder يتبني من جديد
                         });
@@ -151,8 +150,8 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                       builder: (context, snapshot) {
                         final timerText = snapshot.data ?? "(02 m 00 s)";
 
-                        final isTimerFinished = timerText.contains(
-                            "00 m 00 s") ||
+                        final isTimerFinished = timerText
+                                .contains("00 m 00 s") ||
                             snapshot.connectionState == ConnectionState.done;
 
                         return CustomRichText(
@@ -172,10 +171,11 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                           ),
                           onTap3: isTimerFinished
                               ? () {
-                            // cubit.userRegister(isOtp: false);
-                            cubit.forgetPassword(
-                                email: widget.data['email'], isOtp: false);
-                          }
+                                  // cubit.userRegister(isOtp: false);
+                                  cubit.forgetPassword(
+                                      email: widget.data['email'],
+                                      isOtp: false);
+                                }
                               : null,
                           textAlign: TextAlign.center,
                         );
@@ -194,12 +194,20 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                       title1: "congratulation".tr(),
                       title2: "yourPasswordHasBeenChanged".tr(),
                       description: "loginToContinue".tr(),
-                      buttonText: "login".tr(),
-                      onPressed: () {
-                        context.pushNamed(Routes.loginScreen);
-                      });
+                      buttonText: "login".tr(), onPressed: () {
+                    context.pushNamed(Routes.loginScreen);
+                  });
                 }
-                if(state is VerfiyCodeSuccessState) {
+                if (state is Otp2SuccessState) {
+                  showChangePasswordBottomSheet(context,
+                      title1: "congratulation".tr(),
+                      title2: "yourPasswordHasBeenChanged".tr(),
+                      description: "loginToContinue".tr(),
+                      buttonText: "login".tr(), onPressed: () {
+                    context.pushNamedAndRemoveUntil(Routes.loginScreen);
+                  });
+                }
+                if (state is VerfiyCodeSuccessState) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (BuildContext context) {
@@ -207,8 +215,10 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                         value: cubit,
                         child: CreateNewPasswordScreen(
                           data: {
-                            'type': CacheHelper.getData(key: CacheKeys.typeInOTP),
-                            'token': CacheHelper.getData(key: CacheKeys.tokenInOTP),
+                            'type':
+                                CacheHelper.getData(key: CacheKeys.typeInOTP),
+                            'token':
+                                CacheHelper.getData(key: CacheKeys.tokenInOTP),
                           },
                         ),
                       );
@@ -229,11 +239,10 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                 onPressed: () {
                   if (widget.data['screenName'] == 'forgetPassword') {
                     cubit.verifyOTP();
-
                   } else {
                     // cubit.userRegister();
                     if (formKey.currentState!.validate()) {
-                      cubit.verifyOTP();
+                      cubit.userRegister();
                     } else {
                       customToast(
                           msg: "please enter the otp code",

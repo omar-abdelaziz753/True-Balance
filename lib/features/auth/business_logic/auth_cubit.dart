@@ -75,14 +75,13 @@ class AuthCubit extends Cubit<AuthState> {
       verificationCode: verificationCodeController.text.isEmpty
           ? null
           : verificationCodeController.text,
-      location: "aaaaa",
     );
 
     result.when(
       success: (data) {
         hideLoading();
         if (verificationCodeController.text.isNotEmpty) {
-          emit(OtpSuccessState());
+          emit(Otp2SuccessState());
         } else {
           emit(RegisterSuccessState());
         }

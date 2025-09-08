@@ -28,7 +28,6 @@ class AuthApiServices {
     required String password,
     required String rePassword,
     String? verificationCode,
-    required String location,
   }) async {
     Map<String, dynamic> formDataMap = {
       "name": name,
@@ -37,7 +36,6 @@ class AuthApiServices {
       "password": password,
       "repassword": rePassword,
       "verification_code": verificationCode,
-      "location": location,
     };
 
     formDataMap
@@ -88,14 +86,14 @@ class AuthApiServices {
 
   /// Create a New Password
   Future<Response?> createNewPassword({
-    required String new_password,
-    required String new_password_confirmation,
+    required String newPassword,
+    required String newPasswordConfirmation,
   }) {
     return _dioFactory.post(
       endPoint: EndPoints.createNewPassword,
       data: {
-        'new_password': new_password,
-        'new_password_confirmation': new_password_confirmation,
+        'new_password': newPassword,
+        'new_password_confirmation': newPasswordConfirmation,
         'type': CacheHelper.getData(key: CacheKeys.typeInOTP),
       },
     );
