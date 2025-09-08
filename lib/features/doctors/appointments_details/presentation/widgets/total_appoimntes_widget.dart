@@ -5,7 +5,7 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
-import 'package:truee_balance_app/features/user/my_booking/widgets/custom_row_make_title_and_desc_widget.dart';
+import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/custom_row_make_title_and_desc_widget.dart';
 
 class TotalApmointesWIdget extends StatelessWidget {
   const TotalApmointesWIdget({

@@ -2,17 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/app_router.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
 import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
 import 'package:truee_balance_app/features/doctors/appointments/presentation/widgets/custom_appointment_counter_widget.dart';
+import 'package:truee_balance_app/features/doctors/appointments/presentation/widgets/skeleton_widget.dart';
 
 class AppointmentsScreen extends StatelessWidget {
   const AppointmentsScreen({super.key, required this.showLeading});
@@ -20,157 +22,23 @@ class AppointmentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<AppointmentsCubit>();
-    return BlocBuilder<AppointmentsCubit, AppointmentsState>(
-      buildWhen: (previous, current) =>
-          current is AppointmentsSuccess ||
-          current is AppointmentsError ||
-          current is AppointmentsLoading,
-      builder: (context, state) {
-        if (state is AppointmentsLoading) {
-          return AppointmentsSkeletonWidget();
-        }
-        return Scaffold(
-            backgroundColor: AppColors.primaryColor900,
-            appBar: CustomBasicAppBar(
-              leading: showLeading
-                  ? BackButton(
-                      color: AppColors.neutralColor100,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    )
-                  : const SizedBox.shrink(),
-              title: 'appointments'.tr(),
-              backgroundColor: AppColors.primaryColor900,
-              svgAsset: 'assets/images/svg/bg_image.svg',
-            ),
-            body: Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(18.sp),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12.r),
-                  topRight: Radius.circular(12.r),
-                ),
-              ),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: cubit.consultationUsersResponse?.data?.data
-                                ?.isEmpty ??
-                            true
-                        ? Center(
-                            child: Text(
-                              'noAppointmentsYet'.tr(),
-                            ),
-                          )
-                        : Column(
-                            children: [
-                              Expanded(
-                                child: ListView.separated(
-                                  shrinkWrap: true,
-                                  controller: cubit
-                                      .consultationsdoctorsScrollController,
-                                  itemCount: cubit.consultationUsersResponse
-                                          ?.data?.data?.length ??
-                                      0,
-                                  separatorBuilder: (context, index) =>
-                                      18.verticalSpace,
-                                  itemBuilder: (context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        if (CacheHelper.getData(
-                                                key: CacheKeys.type) ==
-                                            'doctor') {
-                                          context.pushNamed(
-                                            Routes.appointmentsDetailsScreen,
-                                            arguments: AppointmentsArguments(
-                                                isPending: cubit.isPending!,
-                                                userData: cubit
-                                                    .consultationUsersResponse!
-                                                    .data!
-                                                    .data![index]),
-                                          );
-                                        } else {
-                                          context.pushNamed(
-                                            Routes.treatmentPlanForTherapists,
-                                            arguments: AppointmentsArguments(
-                                                isPending: cubit.isPending!,
-                                                userData: cubit
-                                                    .consultationUsersResponse!
-                                                    .data!
-                                                    .data![index]),
-                                          );
-                                        }
-                                      },
-                                      child: CustomAppointmentContainerWidget(
-                                          title: cubit.consultationUsersResponse
-                                                  ?.data?.data?[index].name ??
-                                              '',
-                                          phone: cubit.consultationUsersResponse
-                                                  ?.data?.data?[index].phone ??
-                                              '',
-                                          imagePath: cubit
-                                                  .consultationUsersResponse
-                                                  ?.data
-                                                  ?.data?[index]
-                                                  .image ??
-                                              ''),
-                                    );
-                                  },
-                                ),
-                              ),
-                              BlocBuilder<AppointmentsCubit, AppointmentsState>(
-                                buildWhen: (previous, current) =>
-                                    current is AppointmentsLoadingMore ||
-                                    current is AppointmentsSuccess,
-                                builder: (context, state) {
-                                  if (state is AppointmentsLoadingMore) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                  return const SizedBox.shrink();
-                                },
-                              ),
-                            ],
-                          ),
-                  );
-                },
-              ),
-            ));
-      },
-    );
-  }
-}
 
-class AppointmentsSkeletonWidget extends StatelessWidget {
-  const AppointmentsSkeletonWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor900,
-      appBar: CustomBasicAppBar(
-        leading: BackButton(
-          color: AppColors.neutralColor100,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: 'appointments'.tr(),
         backgroundColor: AppColors.primaryColor900,
-        svgAsset: 'assets/images/svg/bg_image.svg',
-      ),
-      body: Skeletonizer(
-        enabled: true,
-        child: Container(
+        appBar: CustomBasicAppBar(
+          leading: showLeading
+              ? BackButton(
+                  color: AppColors.neutralColor100,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              : const SizedBox.shrink(),
+          title: 'appointments'.tr(),
+          backgroundColor: AppColors.primaryColor900,
+          svgAsset: 'assets/images/svg/bg_image.svg',
+        ),
+        body: Container(
           width: double.infinity,
           padding: EdgeInsets.all(18.sp),
           decoration: BoxDecoration(
@@ -180,44 +48,94 @@ class AppointmentsSkeletonWidget extends StatelessWidget {
               topRight: Radius.circular(12.r),
             ),
           ),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: 7,
-                        separatorBuilder: (context, index) =>
-                            18.verticalSpace,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              context.pushNamed(
-                                  Routes.appointmentsDetailsScreen);
+          child: Column(
+            children: [
+              CustomTextFormFieldWidget(
+                controller: cubit.searchController,
+                hintText: 'search'.tr(),
+                onChanged: (value) {
+                  debouncer.debounce(
+                    duration: const Duration(milliseconds: 800),
+                    onDebounce: () {
+                      cubit.getAllDoctorsConsultations(
+                          isPending: cubit.isPending!);
+                    },
+                  );
+                },
+              ),
+              10.verticalSpace,
+              BlocBuilder<AppointmentsCubit, AppointmentsState>(
+                buildWhen: (previous, current) =>
+                    current is AppointmentsSuccess ||
+                    current is AppointmentsError ||
+                    current is AppointmentsLoading,
+                builder: (context, state) {
+                  if (state is AppointmentsLoading) {
+                    return const Expanded(child: AppointmentsSkeletonWidget());
+                  }
+                  return cubit.consultationUsersResponse?.data?.data?.isEmpty ??
+                          true
+                      ? Expanded(
+                          child: Center(child: Text('noAppointmentsYet'.tr())),
+                        )
+                      : Expanded(
+                          child: ListView.separated(
+                            controller:
+                                cubit.consultationsdoctorsScrollController,
+                            itemCount: cubit.consultationUsersResponse?.data
+                                    ?.data?.length ??
+                                0,
+                            separatorBuilder: (context, index) =>
+                                18.verticalSpace,
+                            itemBuilder: (context, index) {
+                              final item = cubit.consultationUsersResponse!
+                                  .data!.data![index];
+                              return InkWell(
+                                onTap: () {
+                                  if (CacheHelper.getData(
+                                          key: CacheKeys.type) ==
+                                      'doctor') {
+                                    context.pushNamed(
+                                      Routes.appointmentsDetailsScreen,
+                                      arguments: AppointmentsArguments(
+                                        isPending: cubit.isPending!,
+                                        userData: item,
+                                      ),
+                                    );
+                                  } else {
+                                    context.pushNamed(
+                                      Routes.treatmentPlanForTherapists,
+                                      arguments: AppointmentsArguments(
+                                        isPending: cubit.isPending!,
+                                        userData: item,
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: CustomAppointmentContainerWidget(
+                                  title: item.name ?? '',
+                                  phone: item.phone ?? '',
+                                  imagePath: item.image ?? '',
+                                ),
+                              );
                             },
-                            child: const CustomAppointmentContainerWidget(
-                              isLoading: true,
-                              title: "Ahmed Adel",
-                              phone: "+1 111 467 378 399",
-                              imagePath:
-                                  "assets/images/svg/appointments_rounded.svg",
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
+                          ),
+                        );
+                },
+              ),
+              BlocBuilder<AppointmentsCubit, AppointmentsState>(
+                buildWhen: (previous, current) =>
+                    current is AppointmentsLoadingMore ||
+                    current is AppointmentsSuccess,
+                builder: (context, state) {
+                  if (state is AppointmentsLoadingMore) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+            ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

@@ -260,5 +260,7 @@
       "required": "OTP is required.",
       "invalid": "Invalid OTP code."
     }
-  }
+  },
+
+  "search":" Search"
 }

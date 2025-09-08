@@ -12,11 +12,13 @@ class AppointmentsRepos {
 
   /// getAllDoctorsConsultations
   Future<ApiResult<ConsultationUsersResponse>> getAllDoctorsConsultations(
-      {required int page, required bool isPending}) async {
+      {required int page,
+      required bool isPending,
+      required String search}) async {
     try {
       final response = await appointmentsApiServices.getAllDoctorsConsultations(
-          page: page, isPending: isPending);
-
+          page: page, isPending: isPending, search: search);
+      print(search);
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model = ConsultationUsersResponse.fromJson(response!.data);
         return ApiResult.success(model);
@@ -37,6 +39,4 @@ class AppointmentsRepos {
       FailureException(errMessage: 'Unexpected error occurred'),
     );
   }
-
-
 }

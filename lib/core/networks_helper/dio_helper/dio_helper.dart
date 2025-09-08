@@ -34,7 +34,7 @@ class DioHelper {
       "language": CacheHelper.getCurrentLanguage(),
       "authorization": "Bearer $token",
     };
-    return await dio.get(endPoint, data: data);
+    return await dio.get(endPoint, queryParameters: data);
   }
 
   Future<Response?> post(

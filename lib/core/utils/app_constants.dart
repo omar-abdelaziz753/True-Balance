@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_debouncer/flutter_debouncer.dart';
 
 class AppConstants {
   static String? userToken;
@@ -89,3 +90,4 @@ class AppConstants {
     }
   }
 }
+      final Debouncer debouncer = Debouncer();

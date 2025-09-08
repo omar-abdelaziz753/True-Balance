@@ -7,7 +7,7 @@ import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/helper_functions/date_formate.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
-import 'package:truee_balance_app/features/user/my_booking/widgets/custom_row_make_title_and_desc_widget.dart';
+import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/custom_row_make_title_and_desc_widget.dart';
 
 class BookingDetailsWidget extends StatelessWidget {
   const BookingDetailsWidget({super.key, required this.doctorName});

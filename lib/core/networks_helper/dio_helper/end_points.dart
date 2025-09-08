@@ -52,8 +52,8 @@ class EndPoints {
   /// get privacy
   static String getPrivacy = 'api/frontend/staticPages/privacy_policy';
   static String getTerms = 'api/frontend/staticPages/terms_and_conditions';
-  static String getAllDoctorsConsultations(bool isPending) =>
-      'api/frontend/doctor/consultations/users?status=${isPending ? 'pending' : 'completed'}';
+  static String getAllDoctorsConsultations
+    =  'api/frontend/doctor/consultations/users';
 
   static String getAllConsultation(bool isPending, int id) =>
       'api/frontend/doctor/consultations/user/get-all-consultations/$id?status=${isPending ? 'pending' : 'completed'}';

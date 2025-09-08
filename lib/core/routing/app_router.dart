@@ -45,8 +45,8 @@ import 'package:truee_balance_app/features/user/medical_reports/bloc/cubit/repor
 import 'package:truee_balance_app/features/user/medical_reports/presentation/screens/medical_reports_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
-import 'package:truee_balance_app/features/user/my_booking/screens/booking_details_screen.dart';
-import 'package:truee_balance_app/features/user/my_booking/screens/my_booking_screen.dart';
+import 'package:truee_balance_app/features/user/my_booking/presentation/screens/booking_details_screen.dart';
+import 'package:truee_balance_app/features/user/my_booking/presentation/screens/my_booking_screen.dart';
 import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
 import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
 import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
