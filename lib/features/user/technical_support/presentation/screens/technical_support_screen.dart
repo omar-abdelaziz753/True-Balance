@@ -24,7 +24,6 @@ class TechnicalSupportScreen extends StatelessWidget {
             context.pop();
           },
         ),
-        // leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back, color: AppColors.neutralColor100,),),
         title: 'technicalSupport'.tr(),
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
@@ -102,11 +101,6 @@ class TechnicalSupportScreen extends StatelessWidget {
                                 context.pushNamed(Routes.aboutUsScreen),
                           ),
                           const CustomDividerWidget(),
-                          // CustomRowInTechnicalSupportWidget(
-                          //   title: 'faqs'.tr(),
-                          //   onTap: () {},
-                          // ),
-                          // const CustomDividerWidget(),
                           CustomRowInTechnicalSupportWidget(
                             title: 'termsAndConditions'.tr(),
                             onTap: () => context

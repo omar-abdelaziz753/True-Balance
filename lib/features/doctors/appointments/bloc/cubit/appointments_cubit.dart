@@ -16,6 +16,7 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
   int lastPage = 1;
   bool isLoadingMore = false;
 
+  final TextEditingController searchController = TextEditingController();
   void setupAllDoctorsConsultationsScrollController() {
     consultationsdoctorsScrollController.addListener(() {
       if (consultationsdoctorsScrollController.position.pixels >=
@@ -34,7 +35,7 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
     this.isPending = isPending;
     emit(AppointmentsLoading());
     final result = await appointmentsRepos.getAllDoctorsConsultations(
-        page: currentPage, isPending: isPending);
+        page: currentPage, isPending: isPending, search: searchController.text);
 
     result.when(
       success: (data) {
@@ -57,7 +58,9 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
     emit(AppointmentsLoadingMore());
 
     final result = await appointmentsRepos.getAllDoctorsConsultations(
-        page: currentPage + 1, isPending: isPending!);
+        page: currentPage + 1,
+        isPending: isPending!,
+        search: searchController.text);
 
     result.when(
       success: (data) {
@@ -71,5 +74,4 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
     );
     isLoadingMore = false;
   }
-
 }

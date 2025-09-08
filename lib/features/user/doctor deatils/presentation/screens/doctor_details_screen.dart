@@ -58,7 +58,6 @@ class DoctorDetailsScreen extends StatelessWidget {
           );
         }
         return Scaffold(
-          // backgroundColor: AppColors.primaryColor900,
           backgroundColor: Colors.white,
           appBar: CustomBasicAppBar(
             leading: BackButton(
@@ -87,7 +86,6 @@ class DoctorDetailsScreen extends StatelessWidget {
                       style: Styles.contentEmphasis.copyWith(
                           fontWeight: FontWeight.w600, fontSize: 14.sp)),
                   const SizedBox(height: 8),
-
                   Text(
                     (cubit.doctorDetails?.data?.about?.isNotEmpty ?? false)
                         ? cubit.doctorDetails!.data!.about!
@@ -98,18 +96,8 @@ class DoctorDetailsScreen extends StatelessWidget {
                       color: AppColors.neutralColor600,
                     ),
                   ),
-
-                  // Text(
-                  //   cubit.doctorDetails?.data?.about ?? ' No About  ',
-                  //  cubit.doctorDetails!.data.
-                  //   style: Styles.contentEmphasis.copyWith(
-                  //       fontWeight: FontWeight.w500,
-                  //       fontSize: 14.sp,
-                  //       color: AppColors.neutralColor600),
-                  // ),
                   16.verticalSpace,
                   BestTherapistsAndReviewWidget(cubit: cubit),
-
                   ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

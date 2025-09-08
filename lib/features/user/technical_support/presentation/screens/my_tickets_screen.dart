@@ -48,13 +48,6 @@ class MyTicketsScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      // cubit.allTicketsDataModel == null ||
-                      //         cubit.allTicketsDataModel!.data == null ||
-                      //         cubit.allTicketsDataModel!.data!.tickets
-                      //                 ?.isEmpty == 
-
-                      // true
-
                       if (state is GetAllTicketsLoadingState)
                         const Expanded(
                           child: Center(
