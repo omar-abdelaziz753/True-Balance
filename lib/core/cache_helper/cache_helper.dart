@@ -19,13 +19,13 @@ class CacheHelper {
   static bool isEnglish() => getCurrentLanguage() == "en";
 
   static Future<void> changeLanguageToEn() async {
-    await CacheHelper.saveData(key: CacheKeys.currentLanguage, value: "ar");
+    await CacheHelper.saveData(key: CacheKeys.currentLanguage, value: "en");
   }
 
   static String getCurrentLanguage() {
     return CacheHelper.getData(
-      key: CacheKeys.currentLanguage,
-    ) ??
+          key: CacheKeys.currentLanguage,
+        ) ??
         "ar";
   }
 
