@@ -42,6 +42,7 @@ void showLocalizationBottomSheet(BuildContext context) {
                           .changeLanguage(
                               context: context, lang: 'ar', country: 'EG')
                           .then((value) => Phoenix.rebirth(context));
+
                     },
                   ),
                   SizedBox(height: 10.h),
