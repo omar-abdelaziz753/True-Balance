@@ -161,7 +161,7 @@ class SessionsDetailsTherapists extends StatelessWidget {
             if (session.status != "completed") ...[
               const Spacer(),
               CustomButtonWidget(
-                text: 'Completed'.tr(),
+                text: 'completed'.tr(),
                 onPressed: () {
                   showRatingBottomSheetForSession(context, session.id!, index);
                 },

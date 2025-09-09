@@ -14,10 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthRepository authRepository;
 
-  // Form key
   final formKey = GlobalKey<FormState>();
 
-  // Controllers
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -27,7 +25,6 @@ class AuthCubit extends Cubit<AuthState> {
   final TextEditingController verificationCodeController =
       TextEditingController();
 
-  // Password visibility toggles
   bool isObscure = true;
   bool isObscure2 = true;
 
@@ -41,7 +38,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(TogglePasswordState2());
   }
 
-  /// Login
   Future<void> userLogin() async {
     showLoading();
     emit(LoginLoadingState());
@@ -59,11 +55,8 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  /// Register
-  Future<void> userRegister({bool isOtp = true}) async {
-    if (isOtp) {
-      showLoading();
-    }
+  Future<void> userRegister({bool isOtp = true, bool isResend = false}) async {
+    if (isOtp) showLoading();
     emit(RegisterLoadingState());
 
     final result = await authRepository.userRegister(
@@ -80,10 +73,14 @@ class AuthCubit extends Cubit<AuthState> {
     result.when(
       success: (data) {
         hideLoading();
-        if (verificationCodeController.text.isNotEmpty) {
-          emit(Otp2SuccessState());
+        if (verificationCodeController.text.isEmpty) {
+          if (isResend) {
+            emit(ResendOtpSuccessStateState());
+          } else {
+            emit(RegisterSuccessState());
+          }
         } else {
-          emit(RegisterSuccessState());
+          emit(Otp2SuccessState());
         }
       },
       failure: (error) {
@@ -93,11 +90,9 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  /// forgetpassword
-  Future<void> forgetPassword({String? email , bool isOtp = true}) async {
+  Future<void> forgetPassword({String? email, bool isOtp = true}) async {
     showLoading();
-      emit(ForgetPasswordLoadingState());
-
+    emit(ForgetPasswordLoadingState());
 
     final result = await authRepository.forgetPassword(
       email: email ?? emailController.text,
@@ -106,10 +101,8 @@ class AuthCubit extends Cubit<AuthState> {
       hideLoading();
       if (isOtp) {
         emit(ForgetPasswordSuccessState());
-
-      }else {
+      } else {
         emit(ResendPasswordLoadingState());
-
       }
     }, failure: (error) {
       hideLoading();
@@ -117,7 +110,6 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  /// verfiy code
   Future<void> verfiyCode() async {
     showLoading();
     emit(VerfiyCodeLoadingState());
@@ -135,7 +127,6 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  /// Verify OTP
   Future<void> verifyOTP() async {
     showLoading();
 
@@ -152,7 +143,6 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  /// Create A New Password
   Future<void> createNewPassword() async {
     showLoading();
     emit(CreateNewPasswordLoadingState());
@@ -169,7 +159,6 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  /// logout
   Future logout() async {
     showLoading();
     emit(LogoutLoading());

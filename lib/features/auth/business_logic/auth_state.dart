@@ -55,5 +55,9 @@ class LogoutSuccess extends AuthState {}
 class LogoutError extends AuthState {}
 
 class OtpSuccessState extends AuthState {}
+
 class Otp2SuccessState extends AuthState {}
+
 class ResendPasswordLoadingState extends AuthState {}
+
+class ResendOtpSuccessStateState extends AuthState {}
