@@ -71,6 +71,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,7 +81,7 @@ import 'package:truee_balance_app/core/utils/app_constants.dart';
 
 Future<void> downloadPdfFile(String url, String fileName) async {
   try {
-    debugPrint("Downloading from: $url");  
+    debugPrint("Downloading from: $url");
     Directory? dir;
     if (Platform.isAndroid) {
       dir = Directory('/storage/emulated/0/Download');
@@ -122,11 +123,11 @@ Future<void> downloadPdfFile(String url, String fileName) async {
     );
 
     EasyLoading.dismiss();
-    EasyLoading.showSuccess("Saved to Downloads");
-    debugPrint("File downloaded to: $savePath");
+    EasyLoading.showSuccess("savedToDownloads".tr());
+    debugPrint("${"fileDownLoadedTo".tr()} $savePath");
   } catch (e) {
     EasyLoading.dismiss();
-    EasyLoading.showError("Download failed");
-    debugPrint("Download failed: $e");
+    EasyLoading.showError("downloadFailed".tr());
+    debugPrint("${"downloadFailed".tr()} $e");
   }
 }

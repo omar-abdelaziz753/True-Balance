@@ -127,7 +127,7 @@ class TreatmentDetailsScreen extends StatelessWidget {
                         text: 'bookNewSession'.tr(),
                       ),
                 ],
-              ),
+              ), 
             ),
           ),
         );
