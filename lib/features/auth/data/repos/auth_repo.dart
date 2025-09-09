@@ -18,7 +18,6 @@ class AuthRepository {
 
   AuthRepository(this.authApiServices);
 
-  /// login
   Future<ApiResult<String>> userLogin({
     required String email,
     required String password,
@@ -42,14 +41,11 @@ class AuthRepository {
         return const ApiResult.success('Login Success');
       } else {
         final rawError = response.data?['error'] ?? 'Login Failed';
-        // final errorMessage = rawError.toString().split('.').last;
+
         customToast(
           msg: rawError,
           color: Colors.red,
         );
-        // return ApiResult.failure(
-        //   ServerException.fromResponse(response.statusCode, response),
-        // );
       }
     } on DioException catch (e) {
       try {
@@ -63,19 +59,6 @@ class AuthRepository {
         FailureException(errMessage: 'Unexpected error occurred'));
   }
 
-  // Future<void> saveCaches(UserDataModel model) async {
-  //   await CacheHelper.saveSecuredString(
-  //       key: CacheKeys.userToken, value: model.data!.token);
-  //   await CacheHelper.saveData(
-  //       key: CacheKeys.userName, value: model.data!.name);
-  //   await CacheHelper.saveData(
-  //       key: CacheKeys.userImage, value: model.data!.image);
-  //   await CacheHelper.saveData(
-  //       key: CacheKeys.userPhone, value: model.data!.phone);
-  //   await CacheHelper.saveData(key: CacheKeys.type, value: model.data!.type);
-  //   AppConstants.userToken =
-  //       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
-  // }
   Future<void> saveCaches(UserDataModel model) async {
     await CacheHelper.saveSecuredString(
         key: CacheKeys.userToken, value: model.data?.token ?? "");
@@ -90,8 +73,6 @@ class AuthRepository {
     AppConstants.userToken =
         await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   }
-
-  /// Register
 
   Future<ApiResult<String>> userRegister({
     required String name,
@@ -143,37 +124,6 @@ class AuthRepository {
         FailureException(errMessage: 'Unexpected error occurred'));
   }
 
-  /// forgetPassword
-
-  // Future<ApiResult<String>> forgetPassword({
-  //   required String email,
-  // }) async {
-  //   final response = await authApiServices.forgetPassword(
-  //     email: email,
-  //   );
-
-  //   try {
-  //     if (response!.statusCode == 200 || response.statusCode == 201) {
-  //       customToast(
-  //           msg: response.data["data"]["verification_code"].toString(),
-  //           color: AppColors.primaryColor400);
-  //       return const ApiResult.success('Email sent successfully');
-  //     } else {
-  //       return ApiResult.failure(
-  //         ServerException.fromResponse(response.statusCode, response),
-  //       );
-  //     }
-  //   } on DioException catch (e) {
-  //     try {
-  //       handleDioException(e);
-  //     } on ServerException catch (ex) {
-  //       return ApiResult.failure(ex.errorModel.error);
-  //     }
-  //     return ApiResult.failure(
-  //       ServerException.fromResponse(e.response!.statusCode, e.response!),
-  //     );
-  //   }
-  // }
   Future<ApiResult<String>> forgetPassword({
     required String email,
   }) async {
@@ -188,7 +138,6 @@ class AuthRepository {
         if (data is Map && data["verification_code"] != null) {
           customToast(
             msg: "sendCodeSuccessfully".tr(),
-            // msg: data["verification_code"].toString(),   // pending
             color: AppColors.primaryColor400,
           );
           return ApiResult.success('emailSentSuccessfully'.tr());
@@ -218,7 +167,6 @@ class AuthRepository {
     }
   }
 
-  /// verfiy code
   Future<ApiResult<String>> verfiyCode({
     required String password,
     required String verificationCode,
@@ -250,7 +198,6 @@ class AuthRepository {
     }
   }
 
-  /// Verify OTP
   Future<ApiResult<VerifyOTPResponseDataModel>> verifyOTP(
       {required String otp}) async {
     final response = await authApiServices.verifyOTP(otp: otp);
@@ -286,7 +233,6 @@ class AuthRepository {
     }
   }
 
-  /// Create A New Password
   Future<ApiResult<String>> createNewPassword({
     required String password,
     required String passwordConfirm,
@@ -316,7 +262,6 @@ class AuthRepository {
     }
   }
 
-  /// logout
   Future<ApiResult<String>> logout() async {
     final response = await authApiServices.logout();
 

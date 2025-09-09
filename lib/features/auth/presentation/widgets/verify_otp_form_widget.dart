@@ -111,36 +111,11 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                     ),
                   ),
                   18.verticalSpace,
-                  // StreamBuilder<String>(
-                  //   stream: countdownStream(const Duration(minutes: 2)),
-                  //   builder: (context, snapshot) {
-                  //     final timerText = snapshot.data ?? "(02 m 00 s)";
-                  //
-                  //     return CustomRichText(
-                  //       text1: "theCodeWillExpire".tr(),
-                  //       textStyle1: Styles.captionRegular.copyWith(
-                  //         color: AppColors.neutralColor1000,
-                  //       ),
-                  //       text2: timerText,
-                  //       textStyle2: Styles.captionRegular.copyWith(
-                  //         color: AppColors.primaryColor900,
-                  //       ),
-                  //       text3: "resend".tr(),
-                  //       textStyle3: Styles.captionRegular.copyWith(
-                  //         color: AppColors.neutralColor600,
-                  //       ),
-                  //       onTap3: () {
-                  //         // cubit.userRegister(isOtp: false);
-                  //       },
-                  //       textAlign: TextAlign.center,
-                  //     );
-                  //   },
-                  // )
                   BlocListener<AuthCubit, AuthState>(
                     listener: (context, state) {
                       if (state is ResendPasswordLoadingState) {
                         setState(() {
-                          _resendKey++; // هنغير المفتاح عشان الـ StreamBuilder يتبني من جديد
+                          _resendKey++;
                         });
                       }
                     },
@@ -169,12 +144,15 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                                 ? AppColors.primaryColor700
                                 : AppColors.neutralColor600,
                           ),
-                          onTap3: isTimerFinished
+                          onTap3: !isTimerFinished
                               ? () {
-                                  // cubit.userRegister(isOtp: false);
-                                  cubit.forgetPassword(
-                                      email: widget.data['email'],
-                                      isOtp: false);
+                                  if (widget.data['screenName'] == "Register") {
+                                    cubit.userRegister(isResend: true);
+                                  } else {
+                                    cubit.forgetPassword(
+                                        email: widget.data['email'],
+                                        isOtp: false);
+                                  }
                                 }
                               : null,
                           textAlign: TextAlign.center,
@@ -240,7 +218,6 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                   if (widget.data['screenName'] == 'forgetPassword') {
                     cubit.verifyOTP();
                   } else {
-                    // cubit.userRegister();
                     if (formKey.currentState!.validate()) {
                       cubit.userRegister();
                     } else {
