@@ -215,6 +215,9 @@
   "Pleaseselecttime": "يرجى اختيار وقت",
   "download": "تحميل",
   "bestDoctors": "أفضل الأطباء",
+  "savedToDownloads": " تم حفظها في التحميلات",
+  "downloadFailed":"فشل التحميل",
+  "fileDownLoadedTo":": تم تحميل الملف الى",
   "doctors": "الأطباء",
   "validation": {
     "required": "هذا الحقل مطلوب.",

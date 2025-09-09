@@ -57,6 +57,7 @@ class SessionCompletedWidget extends StatelessWidget {
             ],
           ),
         ),
+        15.verticalSpace,
         Container(
           padding: EdgeInsets.symmetric(horizontal: 8.sp, vertical: 8.sp),
           decoration: BoxDecoration(
