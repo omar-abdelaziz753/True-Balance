@@ -1,11 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/custom_row_make_title_and_desc_widget.dart';
 import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/doctor_details_widget.dart';
+import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/show_rating_bottom_sheet_for_user_consultaion.dart';
 
 class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen({super.key, required this.consultation});
@@ -81,6 +85,35 @@ class BookingDetailsScreen extends StatelessWidget {
                       ),
                       DoctorDetailsWidgetBookingDetails(
                           consultation: consultation),
+                      const Spacer(),
+         
+                      BlocBuilder<MybookCubit, MybookState>(
+                        builder: (context, state) {
+                          final cubit = context.watch<MybookCubit>();
+
+                          if (consultation.rating == null &&
+                              !cubit.hasRated &&
+                              cubit.isPending != true) {
+                            return CustomButtonWidget(
+                              text: "addRating".tr(),
+                              onPressed: () async {
+                                final result =
+                                    await showRatingBottomSheetForUserConsultaion(
+                                  context,
+                                  consultation.id,
+                                );
+
+                                if (result) {
+                               
+                                  cubit.updateHasRated(true);
+                                }
+                              },
+                            );
+                          }
+
+                          return const SizedBox.shrink();
+                        },
+                      ),
                     ],
                   ),
                 );

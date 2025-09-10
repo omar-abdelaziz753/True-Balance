@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/repos/repos.dart';
 
@@ -9,6 +10,7 @@ class MybookCubit extends Cubit<MybookState> {
   MybookCubit(this.myBookingRepos) : super(MybookInitial());
 
   final MyBookingRepos myBookingRepos;
+  bool hasRated = false;
 
   ConsultationsResponse? consultationsResponse;
   final ScrollController consultationsScrollController = ScrollController();
@@ -26,10 +28,13 @@ class MybookCubit extends Cubit<MybookState> {
     });
   }
 
-  Future<void> getAllconsultations() async {
+  bool? isPending;
+  Future<void> getAllconsultations({required bool isPending}) async {
     currentPage = 1;
+    this.isPending = isPending;
     emit(ConsultationsLoading());
-    final result = await myBookingRepos.getConsultations(page: currentPage);
+    final result = await myBookingRepos.getConsultations(
+        page: currentPage, isPending: isPending);
 
     result.when(
       success: (data) {
@@ -51,7 +56,8 @@ class MybookCubit extends Cubit<MybookState> {
     isLoadingMore = true;
     emit(ConsultationsLoadingMore());
 
-    final result = await myBookingRepos.getConsultations(page: currentPage + 1);
+    final result = await myBookingRepos.getConsultations(
+        page: currentPage + 1, isPending: isPending!);
 
     result.when(
       success: (data) {
@@ -64,5 +70,35 @@ class MybookCubit extends Cubit<MybookState> {
       },
     );
     isLoadingMore = false;
+  }
+
+  Future<void> addRateConsultation({
+    required int consultationId,
+    required int userRate,
+    required String userMessage,
+  }) async {
+    emit(AddRateLoading());
+    showLoading();
+    final result = await myBookingRepos.addRateConsultation(
+      consultationId: consultationId,
+      userRate: userRate,
+      userMessage: userMessage,
+    );
+
+    result.when(
+        success: (message) => {
+              hasRated = true,
+              hideLoading(),
+              emit(AddRateSuccess()),
+            },
+        failure: (error) => {
+              hideLoading(),
+              emit(AddRateFailure()),
+            });
+  }
+
+  void updateHasRated(bool value) {
+    hasRated = value;
+    emit(MybookInitial()); // or any state to refresh UI
   }
 }

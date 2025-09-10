@@ -9,6 +9,7 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
+import 'package:truee_balance_app/features/user/my_booking/presentation/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/custom_booking_container_widget.dart';
 
 class MyBookingScreen extends StatelessWidget {
@@ -137,10 +138,26 @@ class MyBookingScreen extends StatelessWidget {
                                     18.verticalSpace,
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
-                                    onTap: () => context.pushNamed(
-                                        Routes.bookingDetailsScreen,
-                                        arguments: cubit.consultationsResponse!
-                                            .data.data[index]),
+                                    // onTap: () => context.pushNamed(
+                                    //     Routes.bookingDetailsScreen,
+                                    //     arguments: cubit.consultationsResponse!
+                                    //         .data.data[index]),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              BlocProvider.value(
+                                            value: cubit,
+                                            child: BookingDetailsScreen(
+                                              consultation: cubit
+                                                  .consultationsResponse!
+                                                  .data
+                                                  .data[index],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                     child: CustomBookingContainerWidget(
                                       specialization: cubit
                                           .consultationsResponse!
