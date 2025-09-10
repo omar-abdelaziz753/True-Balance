@@ -216,7 +216,7 @@ class AppRouter {
         return transition(
           screen: const MyBookingScreen(),
           cubit: MybookCubit(getIt())
-            ..getAllconsultations()
+            ..getAllconsultations(isPending: false)
             ..setupConsultationsScrollController(),
         );
       case Routes.profileScreen:
@@ -342,7 +342,7 @@ class AppRouter {
     ),
     BlocProvider(
       create: (context) => MybookCubit(getIt())
-        ..getAllconsultations()
+        ..getAllconsultations(isPending: true)
         ..setupConsultationsScrollController(),
       child: const MyBookingScreen(),
     ),

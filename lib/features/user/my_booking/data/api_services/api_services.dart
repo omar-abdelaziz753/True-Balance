@@ -8,8 +8,24 @@ class MyBookingApiServices {
   MyBookingApiServices(this._dioHelper);
 
   /// get consultations
-  Future<Response?> getAllConsultations({required int page}) async {
+  Future<Response?> getAllConsultations({required int page , required bool isPending}) async {
     return _dioHelper
-        .get(endPoint: EndPoints.getconsultations, data: {'page': page});
+        .get(endPoint: EndPoints.getconsultations, data: {'page': page , "status" : isPending ? 'pending' : 'completed'});
   }
+
+Future<Response?> addRateCosultation({
+  required int consultationId,
+  required int userRate,
+  required String userMessage,
+}) async {
+  return _dioHelper.post(
+    endPoint: EndPoints.addRateCosultation,
+    data: {
+      "consultation_id": consultationId,
+      "user_rate": userRate,
+      "user_message": userMessage,
+    },
+  );
+}
+
 }

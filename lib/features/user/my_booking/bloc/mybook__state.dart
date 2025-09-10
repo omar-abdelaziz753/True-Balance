@@ -13,3 +13,12 @@ final class ConsultationsSuccess extends MybookState {}
 final class ConsultationsError extends MybookState {}
 
 final class ConsultationsLoadingMore extends MybookState {}
+
+/// Add Rate Loading
+class AddRateLoading extends MybookState {}
+
+/// Add Rate Success
+class AddRateSuccess extends MybookState {}
+
+/// Add Rate Failure
+class AddRateFailure extends MybookState {}
