@@ -55,37 +55,19 @@ class TechnicalSupportScreen extends StatelessWidget {
                       ),
                     ),
                     18.verticalSpace,
-                    Row(
-                      spacing: 16.w,
-                      children: [
-                        Expanded(
-                          child: CustomButtonWidget(
-                            padding: EdgeInsets.symmetric(vertical: 12.h),
-                            color: AppColors.primaryColor900,
-                            text: 'contactUs'.tr(),
-                            textStyle: Styles.captionEmphasis.copyWith(
-                              color: AppColors.neutralColor100,
-                            ),
-                            imagePath:
-                                'assets/images/svg/contact_us_icon_in_button.svg',
-                          ),
-                        ),
-                        Expanded(
-                          child: CustomButtonWidget(
-                            padding: EdgeInsets.symmetric(vertical: 12.h),
-                            color: AppColors.primaryColor900.withAlpha(20),
-                            text: 'myTickets'.tr(),
-                            textStyle: Styles.captionEmphasis.copyWith(
-                              color: AppColors.primaryColor900,
-                            ),
-                            imagePath:
-                                'assets/images/svg/my_tickets_icon_in_button.svg',
-                            imageColor: AppColors.primaryColor900,
-                            onPressed: () =>
-                                context.pushNamed(Routes.myTicketsScreen),
-                          ),
-                        ),
-                      ],
+                    CustomButtonWidget(
+                      width: 180.w,
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
+                      color: AppColors.primaryColor900.withAlpha(20),
+                      text: 'myTickets'.tr(),
+                      textStyle: Styles.captionEmphasis.copyWith(
+                        color: AppColors.primaryColor900,
+                      ),
+                      imagePath:
+                          'assets/images/svg/my_tickets_icon_in_button.svg',
+                      imageColor: AppColors.primaryColor900,
+                      onPressed: () =>
+                          context.pushNamed(Routes.myTicketsScreen),
                     ),
                     Container(
                       padding: EdgeInsets.only(

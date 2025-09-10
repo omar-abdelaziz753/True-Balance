@@ -96,36 +96,39 @@ class ChatScreen extends StatelessWidget {
             child: Form(
               child: Row(
                 children: [
-                  Expanded(
-                    child: CustomTextFormFieldWidget(
-                      hintText: "writeYourMessage".tr(),
-                      controller: cubit.messageController,
-                      borderWidth: 1.w,
-                      borderColor: AppColors.neutralColor300,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          cubit.sendMessage(ticketId: id.toString());
-                        },
-                        child: Transform(
-                          alignment: Alignment.center,
-                          transform: context.locale.languageCode == "ar"
-                              ? Matrix4.rotationY(3.1416) // 180 درجة
-                              : Matrix4.identity(),
-                          child: SvgPicture.asset(
-                            Assets.assetsImagesSvgSendIcon,
-                            fit: BoxFit.scaleDown,
+                  (cubit.ticketDetailsDataModel?.data?.status == "closed")
+                      ? const SizedBox.shrink()
+                      : Expanded(
+                          child: CustomTextFormFieldWidget(
+                            hintText: "writeYourMessage".tr(),
+                            controller: cubit.messageController,
+                            borderWidth: 1.w,
+                            borderColor: AppColors.neutralColor300,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                cubit.sendMessage(ticketId: id.toString());
+                              },
+                              child: Transform(
+                                alignment: Alignment.center,
+                                transform: context.locale.languageCode == "ar"
+                                    ? Matrix4.rotationY(3.1416) // 180 درجة
+                                    : Matrix4.identity(),
+                                child: SvgPicture.asset(
+                                  Assets.assetsImagesSvgSendIcon,
+                                  fit: BoxFit.scaleDown,
+                                ),
+                              ),
+                            ),
+                            isChat: true,
+                            validator: (value) {
+                              if (value!.trim().isEmpty) {
+                                return "please_enter_valid_message".tr();
+                              }
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                      isChat: true,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return "please_enter_valid_message".tr();
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
+     
                 ],
               ),
             ),
