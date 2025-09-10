@@ -71,16 +71,48 @@ class SessionDetails extends StatelessWidget {
             if (session.status == "completed") ...[
               SessionCompletedWidget(session: session),
               const Spacer(),
-              CustomButtonWidget(
-                text: 'addRating'.tr(),
-                onPressed: () {
-                  showRatingBottomSheetForUserSessions(context, session.id);
-                },
-              )
+              if (session.rating == null)
+                // CustomButtonWidget(
+                //   text: 'addRating'.tr(),
+                //   onPressed: () {
+                //     showRatingBottomSheetForUserSessions(context, session.id);
+                //   },
+                // )
+                ButtomWidget(session: session)
             ]
           ],
         ),
       ),
     );
+  }
+}
+
+class ButtomWidget extends StatefulWidget {
+  const ButtomWidget({super.key, required this.session});
+  final Session session;
+
+  @override
+  State<ButtomWidget> createState() => _ButtomWidgetState();
+}
+
+class _ButtomWidgetState extends State<ButtomWidget> {
+  bool isShow = false;
+  @override
+  Widget build(BuildContext context) {
+    return !isShow
+        ? CustomButtonWidget(
+            text: 'addRating'.tr(),
+            onPressed: () {
+              showRatingBottomSheetForUserSessions(context, widget.session.id)
+                  .then((value) {
+                if (value != null && value == true) {
+                  setState(() {
+                    isShow = true;
+                  });
+                }
+              });
+            },
+          )
+        : const SizedBox.shrink();
   }
 }
