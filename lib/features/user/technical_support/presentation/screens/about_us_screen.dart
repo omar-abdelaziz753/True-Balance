@@ -70,7 +70,9 @@ class AboutUsScreen extends StatelessWidget {
                                         cubit.aboutUsModel?.data?[index];
                                     return CustomSectionInAboutUsWidget(
                                       title: section?.title ?? '',
-                                      description: section?.text ?? '',
+                                      description: section?.text?.replaceAll(
+                                              RegExp(r'<[^>]*>'), '') ?? 
+                                          '',
                                     );
                                   },
                                 ),
