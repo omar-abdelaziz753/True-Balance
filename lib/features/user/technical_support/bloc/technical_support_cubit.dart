@@ -63,6 +63,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     result.when(
       success: (data) {
         hideLoading();
+        scrollToBottom();
         emit(SendMessageSuccessState());
       },
       failure: (error) {
@@ -138,6 +139,8 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     result.when(
       success: (data) {
         ticketDetailsDataModel = data;
+        scrollToBottom();
+
         emit(GetTicketDetailsSuccessState());
       },
       failure: (error) {
@@ -176,6 +179,7 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     );
   }
 
+  ScrollController scrollController = ScrollController();
   Future<void> getTerms() async {
     emit(GetPrivacyLoadingState());
     final result = await technicalSupportRepo.getTerms();
@@ -188,5 +192,17 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
         emit(GetPrivacyErrorState());
       },
     );
+  }
+
+  void scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (scrollController.hasClients) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent + 20,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+        );
+      }
+    });
   }
 }

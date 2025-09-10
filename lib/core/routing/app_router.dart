@@ -190,9 +190,8 @@ class AppRouter {
         );
       case Routes.technicalSupportScreen:
         return transition(
-          screen: const TechnicalSupportScreen(),
-          cubit: TechnicalSupportCubit(getIt())..getAllTickets(),
-        );
+            screen: const TechnicalSupportScreen(),
+            cubit: TechnicalSupportCubit(getIt())..getAllTickets());
       case Routes.ourServicesScreen:
         return transition(
           screen: const OurServicesScreen(),
@@ -315,7 +314,8 @@ class AppRouter {
         final id = settings.arguments as int;
         return transition(
           screen: ChatScreen(id: id),
-          cubit: TechnicalSupportCubit(getIt())..getTicketDetails(ticketId: id),
+          cubit: TechnicalSupportCubit(getIt())
+            ..getTicketDetails(ticketId: id)
         );
       default:
         return null;
