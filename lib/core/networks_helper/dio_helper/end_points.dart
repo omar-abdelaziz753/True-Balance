@@ -47,11 +47,9 @@ class EndPoints {
       "api/frontend/treatment-plans/sessions/$therapistId/rate";
 
   /// get about us
-  static String getAboutUs = 'api/frontend/staticPages/about_us';
 
   /// get privacy
-  static String getPrivacy = 'api/frontend/staticPages/privacy_policy';
-  static String getTerms = 'api/frontend/staticPages/terms_and_conditions';
+  static String getstaticPages = 'api/frontend/staticPages';
   static String getAllDoctorsConsultations
     =  'api/frontend/doctor/consultations/users';
 

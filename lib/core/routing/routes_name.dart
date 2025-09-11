@@ -16,8 +16,8 @@ class Routes {
   static const String myTicketsScreen = '/myTicketsScreen';
   static const String profileScreen = '/profileScreen';
   static const String aboutUsScreen = '/aboutUsScreen';
-  static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
-  static const String privacyPolicyScreen = '/privacyPolicyScreen';
+  // static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
+  // static const String privacyPolicyScreen = '/privacyPolicyScreen';
   static const String openANewTicketScreen = '/openANewTicketScreen';
   static const String myBookingScreen = '/myBookingScreen';
   static const String bookingDetailsScreen = '/bookingDetailsScreen';

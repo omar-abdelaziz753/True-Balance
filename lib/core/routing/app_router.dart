@@ -59,12 +59,11 @@ import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart
 import 'package:truee_balance_app/features/user/setting/presentation/screens/profile_screen.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/screens/setting_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
+import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/about_us_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/my_tickets_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/open_a_new_ticket_screen.dart';
-import 'package:truee_balance_app/features/user/technical_support/presentation/screens/privacy_policy_screen.dart';
 import 'package:truee_balance_app/features/user/technical_support/presentation/screens/technical_support_screen.dart';
-import 'package:truee_balance_app/features/user/technical_support/presentation/screens/terms_and_conditions_screen.dart';
 
 import '../../features/doctors/appointments/data/model/consultation_users_model.dart'
     show UserData;
@@ -191,7 +190,7 @@ class AppRouter {
       case Routes.technicalSupportScreen:
         return transition(
             screen: const TechnicalSupportScreen(),
-            cubit: TechnicalSupportCubit(getIt())..getAllTickets());
+            cubit: TechnicalSupportCubit(getIt())..getstaticPages());
       case Routes.ourServicesScreen:
         return transition(
           screen: const OurServicesScreen(),
@@ -235,9 +234,12 @@ class AppRouter {
           screen: const NotificationScreen(),
         );
       case Routes.aboutUsScreen:
+        final data = settings.arguments as AboutUsData;
         return transition(
-            screen: const AboutUsScreen(),
-            cubit: TechnicalSupportCubit(getIt())..getAboutUs());
+          screen: AboutUsScreen(
+            data: data,
+          ),
+        );
       case Routes.medicalReportsScreen:
         return transition(
           cubit: ReportsCubit(getIt())..getReports(),
@@ -250,11 +252,11 @@ class AppRouter {
             ..getByTherapist(therapistId: therapist),
           screen: const TreatmentPlansScreen(),
         );
-      case Routes.termsAndConditionsScreen:
-        return transition(
-          cubit: TechnicalSupportCubit(getIt())..getTerms(),
-          screen: const TermsAndConditionsScreen(),
-        );
+      // case Routes.termsAndConditionsScreen:
+      //   return transition(
+      //     cubit: TechnicalSupportCubit(getIt())..getTerms(),
+      //     screen: const TermsAndConditionsScreen(),
+      //   );
       case Routes.treatmentdetailsScreen:
         final argument = settings.arguments as int;
         return transition(
@@ -268,11 +270,11 @@ class AppRouter {
           cubit: AddSessionCubit(getIt(), argument),
           screen: const AddSessionScreen(),
         );
-      case Routes.privacyPolicyScreen:
-        return transition(
-          cubit: TechnicalSupportCubit(getIt())..getPrivacy(),
-          screen: const PrivacyPolicyScreen(),
-        );
+      // case Routes.privacyPolicyScreen:
+      //   return transition(
+      //     cubit: TechnicalSupportCubit(getIt())..getPrivacy(),
+      //     screen: const PrivacyPolicyScreen(),
+      //   );
       case Routes.allReviews:
         final doctorId = settings.arguments as int;
         return transition(
@@ -313,10 +315,9 @@ class AppRouter {
       case Routes.chatScreen:
         final id = settings.arguments as int;
         return transition(
-          screen: ChatScreen(id: id),
-          cubit: TechnicalSupportCubit(getIt())
-            ..getTicketDetails(ticketId: id)
-        );
+            screen: ChatScreen(id: id),
+            cubit: TechnicalSupportCubit(getIt())
+              ..getTicketDetails(ticketId: id));
       default:
         return null;
     }
