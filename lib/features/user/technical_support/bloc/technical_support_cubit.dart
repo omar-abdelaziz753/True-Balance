@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/privacy_policy/privacy_policy_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
 import 'package:truee_balance_app/features/user/technical_support/data/repos/repos.dart';
@@ -150,9 +149,9 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
   }
 
   /// Get About Us
-  Future<void> getAboutUs() async {
+  Future<void> getstaticPages() async {
     emit(GetAboutUsLoadingState());
-    final result = await technicalSupportRepo.getAboutUs();
+    final result = await technicalSupportRepo.getstaticPages();
     result.when(
       success: (data) {
         aboutUsModel = data;
@@ -164,36 +163,10 @@ class TechnicalSupportCubit extends Cubit<TechnicalSupportState> {
     );
   }
 
-  PrivacyPolicyModel? privacyPolicyModel;
-  Future<void> getPrivacy() async {
-    emit(GetPrivacyLoadingState());
-    final result = await technicalSupportRepo.getPrivacy();
-    result.when(
-      success: (data) {
-        privacyPolicyModel = data; // Reusing the same model instance
-        emit(GetPrivacySuccessState());
-      },
-      failure: (error) {
-        emit(GetPrivacyErrorState());
-      },
-    );
-  }
+
 
   ScrollController scrollController = ScrollController();
-  Future<void> getTerms() async {
-    emit(GetPrivacyLoadingState());
-    final result = await technicalSupportRepo.getTerms();
-    result.when(
-      success: (data) {
-        privacyPolicyModel = data;
-        emit(GetPrivacySuccessState());
-      },
-      failure: (error) {
-        emit(GetPrivacyErrorState());
-      },
-    );
-  }
-
+ 
   void scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (scrollController.hasClients) {

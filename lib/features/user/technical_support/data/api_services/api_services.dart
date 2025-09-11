@@ -47,16 +47,8 @@ class TechnicalSupportApiServices {
     return _dioHelper.get(endPoint: '${EndPoints.ticketDetails}/$ticketId');
   }
 
-  /// Get About Us
-  Future<Response?> getAboutUs() async {
-    return _dioHelper.get(endPoint: EndPoints.getAboutUs);
-  }
 
-  /// Get privacy policy
-  Future<Response?> getPrivacy() async {
-    return _dioHelper.get(endPoint: EndPoints.getPrivacy);
-  }
-    Future<Response?> getTerms() async {
-    return _dioHelper.get(endPoint: EndPoints.getTerms);
+    Future<Response?> getstaticPages() async {
+    return _dioHelper.get(endPoint: EndPoints.getstaticPages);
   }
 }
