@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,7 +89,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                   Text(
                     (cubit.doctorDetails?.data?.about?.isNotEmpty ?? false)
                         ? cubit.doctorDetails!.data!.about!
-                        : 'No About',
+                        : 'noDetails'.tr(),
                     style: Styles.contentEmphasis.copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: 14.sp,
@@ -99,29 +98,31 @@ class DoctorDetailsScreen extends StatelessWidget {
                   ),
                   16.verticalSpace,
                   BestTherapistsAndReviewWidget(cubit: cubit),
-                  ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount:
-                        (cubit.doctorDetails?.data?.ratings?.ratings?.length ??
-                                    0) <=
-                                3
-                            ? (cubit.doctorDetails?.data?.ratings?.ratings
-                                    ?.length ??
-                                0)
-                            : 3,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return 10.verticalSpace;
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      final userRating =
-                          cubit.doctorDetails?.data?.ratings?.ratings?[index];
-                      if (userRating == null) {
-                        return const SizedBox.shrink();
-                      }
-                      return ReviewItemWidget(userRating: userRating);
-                    },
-                  )
+                  cubit.doctorDetails?.data?.ratings?.ratings?.isEmpty ?? true
+                      ? Center(child: Text("noReviews".tr()))
+                      : ListView.separated(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: (cubit.doctorDetails?.data?.ratings
+                                          ?.ratings?.length ??
+                                      0) <=
+                                  3
+                              ? (cubit.doctorDetails?.data?.ratings?.ratings
+                                      ?.length ??
+                                  0)
+                              : 3,
+                          separatorBuilder: (BuildContext context, int index) {
+                            return 10.verticalSpace;
+                          },
+                          itemBuilder: (BuildContext context, int index) {
+                            final userRating = cubit
+                                .doctorDetails?.data?.ratings?.ratings?[index];
+                            if (userRating == null) {
+                              return const SizedBox.shrink();
+                            }
+                            return ReviewItemWidget(userRating: userRating);
+                          },
+                        )
                 ],
               ),
             ),
