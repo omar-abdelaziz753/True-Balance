@@ -7,7 +7,8 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/rating%20dailoug/rating_dailoug.dart';
 import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 
-Future<bool> showRatingBottomSheetForUserConsultaion(BuildContext context, int id) async {
+Future<bool> showRatingBottomSheetForUserConsultaion(
+    BuildContext context, int id) async {
   final TextEditingController commentController = TextEditingController();
   double rating = 0;
 
@@ -41,7 +42,7 @@ Future<bool> showRatingBottomSheetForUserConsultaion(BuildContext context, int i
                 }
               },
               child: CustomSharedBottomSheetReview(
-                title: 'rateThisSession'.tr(),
+                title: 'rateThisConsultation'.tr(),
                 nameOfFiled: 'yourComment'.tr(),
                 hintText: 'writeYourFeedBackHere'.tr(),
                 buttonText1: 'Submit'.tr(),
