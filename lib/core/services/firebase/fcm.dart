@@ -6,9 +6,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 
-
-
-
 Future<void> handleBackgroundMessage(RemoteMessage message) async {}
 
 class PushNotificationService {
