@@ -18,10 +18,22 @@ class ReviewItemWidget extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                  radius: 27.r,
-                  backgroundImage: CachedNetworkImageProvider(
-                    userRating.userImage ?? "https://via.placeholder.com/150",
-                  )),
+                radius: 27.r,
+                child: ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: userRating.userImage ?? '',
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                  ),
+                ),
+              ),
+              // CircleAvatar(
+              //   radius: 27.r,
+              //   backgroundImage:
+              //   CachedNetworkImageProvider(
+              //     userRating.userImage ?? "https://via.placeholder.com/150",
+              //   ),
+              //   ),
               SizedBox(width: 12.sp),
               Text(userRating.userName ?? '',
                   style: Styles.contentBold
