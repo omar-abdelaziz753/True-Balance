@@ -16,4 +16,9 @@ class ApiServicesNotification {
   Future<Response?> deleteAllNotifications() async {
     return _dioFactory.delete(endPoint: EndPoints.getOrDeleteNotifications);
   }
+
+  /// Make As Read
+  Future<Response?> makeAsRead() async {
+    return _dioFactory.post(endPoint: EndPoints.makeAsRead);
+  }
 }

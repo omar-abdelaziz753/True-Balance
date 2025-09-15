@@ -31,6 +31,7 @@ class EndPoints {
       'api/frontend/treatment-plans/medical-reports/all';
 
   static const String getOrDeleteNotifications = "api/frontend/notifications";
+  static const String makeAsRead = "api/frontend/notifications/mark-all-as-read";
 
   /// Treatment Plans for Therapist
   static String treatmentPlans(int therapistId) =>

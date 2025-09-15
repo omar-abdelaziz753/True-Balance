@@ -19,6 +19,8 @@ class NotificationCubit extends Cubit<NotificationState> {
   int lastPage = 1;
   bool isLoadingMore = false;
 
+  int notificationCount = 0;
+
   /// Call this in initState of your screen to setup scroll listener
   void setupNotificationScrollController() {
     notificationScrollController.addListener(() {
@@ -45,6 +47,8 @@ class NotificationCubit extends Cubit<NotificationState> {
           currentPage = pagination.currentPage ?? 1;
           lastPage = pagination.lastPage ?? 1;
         }
+
+        notificationCount = data.data?.totalUnread ?? 0;
 
         emit(NotificationSuccess());
       },
@@ -103,6 +107,20 @@ class NotificationCubit extends Cubit<NotificationState> {
         hideLoading();
         emit(NotificationDeletedError());
       },
+    );
+  }
+
+  /// Make As Read
+  Future<void> makeAsRead() async {
+    emit(NotificationMarkAllAsReadLoading());
+    final result = await notificationRepo.makeAsRead();
+    result.when(
+      success: (data) {
+        print(data);
+        emit(NotificationMarkAllAsReadSuccess());
+      },
+      failure: (error) {
+        emit(NotificationMarkAllAsReadError());},
     );
   }
 }

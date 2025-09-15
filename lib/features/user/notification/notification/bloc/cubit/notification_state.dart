@@ -18,3 +18,10 @@ final class NotificationDeletedLoading extends NotificationState {}
 final class NotificationDeletedSuccess extends NotificationState {}
 
 final class NotificationDeletedError extends NotificationState {}
+
+/// Mark All Notifications as Read
+final class NotificationMarkAllAsReadLoading extends NotificationState {}
+
+final class NotificationMarkAllAsReadSuccess extends NotificationState {}
+
+final class NotificationMarkAllAsReadError extends NotificationState {}

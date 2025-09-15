@@ -53,4 +53,26 @@ class NotificationRepo {
     return ApiResult.failure(
         FailureException(errMessage: 'Unexpected error occurred'));
   }
+
+  /// Make As Read
+  Future<ApiResult<String>> makeAsRead() async {
+    try {
+      final response = await apiServicesNotification.makeAsRead();
+      if (response?.statusCode == 200 || response?.statusCode == 201) {
+        return ApiResult.success(response!.data['status']);
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response?.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.message);
+      }
+    }
+    return ApiResult.failure(
+        FailureException(errMessage: 'Unexpected error occurred'));
+  }
 }
