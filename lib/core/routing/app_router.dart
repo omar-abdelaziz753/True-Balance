@@ -232,7 +232,10 @@ class AppRouter {
         );
       case Routes.notificationsScreen:
         return transition(
-          cubit: NotificationCubit(getIt())..makeAsRead()..setupNotificationScrollController()..getNotifications(),
+          cubit: NotificationCubit(getIt())
+            ..makeAsRead()
+            ..setupNotificationScrollController()
+            ..getNotifications(),
           screen: const NotificationScreen(),
         );
       case Routes.aboutUsScreen:
@@ -327,15 +330,15 @@ class AppRouter {
 
   List<Widget> screens = [
     BlocProvider(
-  create: (context) => NotificationCubit(getIt())..getNotifications(),
-  child: BlocProvider(
-      create: (context) => HomeCubit(getIt())
-        ..getAllDoctors()
-        ..getAllServices()
-        ..getSliders(),
-      child: const HomeScreen(),
+      create: (context) => NotificationCubit(getIt())..getNotifications(),
+      child: BlocProvider(
+        create: (context) => HomeCubit(getIt())
+          ..getAllDoctors()
+          ..getAllServices()
+          ..getSliders(),
+        child: const HomeScreen(),
+      ),
     ),
-),
     BlocProvider(
       create: (context) => AllDoctorsCubit(getIt())
         ..getAllDoctors()
@@ -364,7 +367,10 @@ class AppRouter {
         showLeading: false,
       ),
     ),
-    const NotificationScreen(),
+    BlocProvider(
+      create: (context) => NotificationCubit(getIt())..setupNotificationScrollController()..getNotifications(),
+      child: const NotificationScreen(),
+    ),
     const SettingScreen(),
   ];
   List<Widget> screensTherapist = [
