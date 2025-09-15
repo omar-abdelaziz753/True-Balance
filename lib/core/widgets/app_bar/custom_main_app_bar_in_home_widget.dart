@@ -27,6 +27,7 @@ class CustomMainAppBarInHomeWidget extends StatefulWidget
     required this.notificationCount,
   });
 
+  @override
   Size get preferredSize => Size.fromHeight(140.h);
 
   @override
@@ -34,7 +35,6 @@ class CustomMainAppBarInHomeWidget extends StatefulWidget
 }
 
 class _CustomMainAppBarInHomeWidgetState extends State<CustomMainAppBarInHomeWidget> {
-  @override
 
   @override
   Widget build(BuildContext context) {
