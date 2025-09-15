@@ -30,7 +30,7 @@ class EndPoints {
   static const String getReports =
       'api/frontend/treatment-plans/medical-reports/all';
 
-  static const String getNotifications = "api/frontend/notifications";
+  static const String getOrDeleteNotifications = "api/frontend/notifications";
 
   /// Treatment Plans for Therapist
   static String treatmentPlans(int therapistId) =>

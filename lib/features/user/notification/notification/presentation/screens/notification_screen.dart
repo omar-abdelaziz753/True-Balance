@@ -19,32 +19,61 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<NotificationCubit>();
 
-    return BlocBuilder<NotificationCubit, NotificationState>(
+    return BlocConsumer<NotificationCubit, NotificationState>(
       buildWhen: (previous, current) =>
-      current is NotificationSuccess ||
+          current is NotificationSuccess ||
           current is NotificationLoading ||
           current is NotificationError ||
-          current is NotificationLoadingMore,
+          current is NotificationLoadingMore ||
+          current is NotificationDeletedLoading ||
+          current is NotificationDeletedSuccess ||
+          current is NotificationDeletedError,
+      listener: (context, state) {
+        if(state is NotificationDeletedSuccess){
+          cubit.setupNotificationScrollController();
+          cubit.getNotifications();
+        }
+      },
       builder: (context, state) {
         final isLoading = state is NotificationLoading;
         final hasNotifications = cubit.notificationsResponse != null &&
-            (cubit.notificationsResponse?.data?.today?.notifications?.isNotEmpty == true ||
-                cubit.notificationsResponse?.data?.yesterday?.notifications?.isNotEmpty == true ||
-                cubit.notificationsResponse?.data?.last7Days?.notifications?.isNotEmpty == true ||
-                cubit.notificationsResponse?.data?.older?.notifications?.isNotEmpty == true);
+            (cubit.notificationsResponse?.data?.today?.notifications
+                        ?.isNotEmpty ==
+                    true ||
+                cubit.notificationsResponse?.data?.yesterday?.notifications
+                        ?.isNotEmpty ==
+                    true ||
+                cubit.notificationsResponse?.data?.last7Days?.notifications
+                        ?.isNotEmpty ==
+                    true ||
+                cubit.notificationsResponse?.data?.older?.notifications
+                        ?.isNotEmpty ==
+                    true);
 
         return Scaffold(
           backgroundColor: AppColors.primaryColor900,
           appBar: CustomBasicAppBar(
             leading: Navigator.canPop(context)
                 ? BackButton(
-              color: AppColors.neutralColor100,
-              onPressed: () => Navigator.pop(context),
-            )
+                    color: AppColors.neutralColor100,
+                    onPressed: () => Navigator.pop(context),
+                  )
                 : null,
             title: 'notifications'.tr(),
             backgroundColor: AppColors.primaryColor900,
             svgAsset: 'assets/images/svg/bg_image.svg',
+            actions: [
+              IconButton(
+                onPressed: () {
+                  // cubit.markAllAsRead();
+                  cubit.deleteAllNotifications();
+                },
+                icon: Icon(
+                  Icons.delete,
+                  color: AppColors.redColor100,
+                ),
+              ),
+            ],
           ),
           body: Container(
             width: double.infinity,
@@ -62,75 +91,88 @@ class NotificationScreen extends StatelessWidget {
                   constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: isLoading
                       ? Skeletonizer(
-                    enabled: true,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        final dummyItem = NotificationItem(
-                          type: 'general',
-                          title: 'Test Account',
-                          description: 'Test Account Test',
-                          createdAtString: 'Today',
-                        );
-                        return NotificationItemWidget(item: dummyItem);
-                      },
-                    ),
-                  )
+                          enabled: true,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              final dummyItem = NotificationItem(
+                                type: 'general',
+                                title: 'Test Account',
+                                description: 'Test Account Test',
+                                createdAtString: 'Today',
+                              );
+                              return NotificationItemWidget(item: dummyItem);
+                            },
+                          ),
+                        )
                       : !hasNotifications
-                      ? Center(child: Text('noNotifications'.tr()))
-                      : Column(
-                    children: [
-                      Expanded(
-                        child: ListView(
-                          controller:
-                          cubit.notificationScrollController,
-                          children: [
-                            NotificationSectionWidget(
-                              title: 'Today',
-                              notifications: cubit.notificationsResponse
-                                  ?.data?.today?.notifications ??
-                                  [],
+                          ? Center(child: Text('noNotifications'.tr()))
+                          : Column(
+                              children: [
+                                Expanded(
+                                  child: ListView(
+                                    controller:
+                                        cubit.notificationScrollController,
+                                    children: [
+                                      NotificationSectionWidget(
+                                        title: 'Today',
+                                        notifications: cubit
+                                                .notificationsResponse
+                                                ?.data
+                                                ?.today
+                                                ?.notifications ??
+                                            [],
+                                      ),
+                                      NotificationSectionWidget(
+                                        title: 'Yesterday',
+                                        notifications: cubit
+                                                .notificationsResponse
+                                                ?.data
+                                                ?.yesterday
+                                                ?.notifications ??
+                                            [],
+                                      ),
+                                      NotificationSectionWidget(
+                                        title: 'Last 7 days',
+                                        notifications: cubit
+                                                .notificationsResponse
+                                                ?.data
+                                                ?.last7Days
+                                                ?.notifications ??
+                                            [],
+                                      ),
+                                      NotificationSectionWidget(
+                                        title: 'Older',
+                                        notifications: cubit
+                                                .notificationsResponse
+                                                ?.data
+                                                ?.older
+                                                ?.notifications ??
+                                            [],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                BlocBuilder<NotificationCubit,
+                                    NotificationState>(
+                                  buildWhen: (previous, current) =>
+                                      current is NotificationLoadingMore ||
+                                      current is NotificationSuccess,
+                                  builder: (context, state) {
+                                    if (state is NotificationLoadingMore) {
+                                      return const Padding(
+                                        padding: EdgeInsets.all(12.0),
+                                        child: Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      );
+                                    }
+                                    return const SizedBox.shrink();
+                                  },
+                                ),
+                              ],
                             ),
-                            NotificationSectionWidget(
-                              title: 'Yesterday',
-                              notifications: cubit.notificationsResponse
-                                  ?.data?.yesterday?.notifications ??
-                                  [],
-                            ),
-                            NotificationSectionWidget(
-                              title: 'Last 7 days',
-                              notifications: cubit.notificationsResponse
-                                  ?.data?.last7Days?.notifications ??
-                                  [],
-                            ),
-                            NotificationSectionWidget(
-                              title: 'Older',
-                              notifications: cubit.notificationsResponse
-                                  ?.data?.older?.notifications ??
-                                  [],
-                            ),
-                          ],
-                        ),
-                      ),
-                      BlocBuilder<NotificationCubit, NotificationState>(
-                        buildWhen: (previous, current) =>
-                        current is NotificationLoadingMore ||
-                            current is NotificationSuccess,
-                        builder: (context, state) {
-                          if (state is NotificationLoadingMore) {
-                            return const Padding(
-                              padding: EdgeInsets.all(12.0),
-                              child: Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            );
-                          }
-                          return const SizedBox.shrink();
-                        },
-                      ),
-                    ],
-                  ),
                 );
               },
             ),

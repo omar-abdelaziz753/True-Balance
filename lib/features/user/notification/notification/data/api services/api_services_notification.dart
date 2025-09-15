@@ -7,8 +7,13 @@ class ApiServicesNotification {
 
   ApiServicesNotification(this._dioFactory);
 
-  // get notification
+  /// get notification
   Future<Response?> getNotification(int page) async {
-    return _dioFactory.get(endPoint: '${EndPoints.getNotifications}?page=$page');
+    return _dioFactory.get(endPoint: '${EndPoints.getOrDeleteNotifications}?page=$page');
+  }
+
+  /// Delete All Notifications
+  Future<Response?> deleteAllNotifications() async {
+    return _dioFactory.delete(endPoint: EndPoints.getOrDeleteNotifications);
   }
 }

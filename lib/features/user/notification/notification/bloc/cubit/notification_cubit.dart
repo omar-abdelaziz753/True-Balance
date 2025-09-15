@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/user/notification/notification/data/model/notifications_response.dart';
 import 'package:truee_balance_app/features/user/notification/notification/data/repo/notification_repo.dart';
 
@@ -86,5 +87,22 @@ class NotificationCubit extends Cubit<NotificationState> {
     );
 
     isLoadingMore = false;
+  }
+
+  /// Delete All Notifications
+  Future<void> deleteAllNotifications() async {
+    showLoading();
+    emit(NotificationDeletedLoading());
+    final result = await notificationRepo.deleteAllNotifications();
+    result.when(
+      success: (data) {
+        hideLoading();
+        emit(NotificationDeletedSuccess());
+      },
+      failure: (error) {
+        hideLoading();
+        emit(NotificationDeletedError());
+      },
+    );
   }
 }
