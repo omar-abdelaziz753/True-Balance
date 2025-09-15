@@ -17,6 +17,7 @@ class AuthApiServices {
     return _dioFactory.post(endPoint: EndPoints.login, data: {
       'email': email,
       'password': password,
+      'fcm_token': CacheHelper.getData(key: CacheKeys.deviceToken),
     });
   }
 
