@@ -116,7 +116,7 @@ class NotificationScreen extends StatelessWidget {
                                         cubit.notificationScrollController,
                                     children: [
                                       NotificationSectionWidget(
-                                        title: 'Today',
+                                        title: 'today'.tr(),
                                         notifications: cubit
                                                 .notificationsResponse
                                                 ?.data
@@ -125,7 +125,7 @@ class NotificationScreen extends StatelessWidget {
                                             [],
                                       ),
                                       NotificationSectionWidget(
-                                        title: 'Yesterday',
+                                        title: 'yesterday'.tr(),
                                         notifications: cubit
                                                 .notificationsResponse
                                                 ?.data
@@ -134,7 +134,7 @@ class NotificationScreen extends StatelessWidget {
                                             [],
                                       ),
                                       NotificationSectionWidget(
-                                        title: 'Last 7 days',
+                                        title: 'last7days'.tr(),
                                         notifications: cubit
                                                 .notificationsResponse
                                                 ?.data
@@ -143,7 +143,7 @@ class NotificationScreen extends StatelessWidget {
                                             [],
                                       ),
                                       NotificationSectionWidget(
-                                        title: 'Older',
+                                        title: 'older'.tr(),
                                         notifications: cubit
                                                 .notificationsResponse
                                                 ?.data

@@ -49,7 +49,7 @@ class NotificationItemWidget extends StatelessWidget {
                           ? Icons.message
                           : item.type == "general"
                               ? Icons.warning
-                              : Icons.notifications, 
+                              : Icons.notifications,
                   color: Colors.white,
                   size: 28.sp,
                 ),
@@ -79,8 +79,10 @@ class NotificationItemWidget extends StatelessWidget {
                     8.verticalSpace,
                     Text(
                       item.createdAt != null
-                          ? DateFormat('hh:mm a').format(item.createdAt!) // Format to time
-                          : (item.createdAtString ?? ''), // fallback to original string if null
+                          ? DateFormat('hh:mm a')
+                              .format(item.createdAt!) // Format to time
+                          : (item.createdAtString ??
+                              ''), // fallback to original string if null
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 14.sp,
