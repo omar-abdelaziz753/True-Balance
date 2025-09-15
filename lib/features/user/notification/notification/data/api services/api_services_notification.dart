@@ -8,7 +8,7 @@ class ApiServicesNotification {
   ApiServicesNotification(this._dioFactory);
 
   // get notification
-  Future<Response?> getNotification() async {
-    return _dioFactory.get(endPoint: EndPoints.getNotifications);
+  Future<Response?> getNotification(int page) async {
+    return _dioFactory.get(endPoint: '${EndPoints.getNotifications}?page=$page');
   }
 }

@@ -232,7 +232,7 @@ class AppRouter {
         );
       case Routes.notificationsScreen:
         return transition(
-          cubit: NotificationCubit(getIt())..getNotification(),
+          cubit: NotificationCubit(getIt())..setupNotificationScrollController()..getNotifications(),
           screen: const NotificationScreen(),
         );
       case Routes.aboutUsScreen:

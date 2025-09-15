@@ -10,9 +10,9 @@ class NotificationRepo {
 
   NotificationRepo(this.apiServicesNotification);
 
-  Future<ApiResult<NotificationsResponse>> getNotification() async {
+  Future<ApiResult<NotificationsResponse>> getNotification(int page) async {
     try {
-      final response = await apiServicesNotification.getNotification();
+      final response = await apiServicesNotification.getNotification(page);
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model = NotificationsResponse.fromJson(response!.data);
         return ApiResult.success(model);
