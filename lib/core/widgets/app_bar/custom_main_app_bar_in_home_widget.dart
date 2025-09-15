@@ -149,39 +149,32 @@ class _CustomMainAppBarInHomeWidgetState extends State<CustomMainAppBarInHomeWid
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  BlocProvider(
-                    create: (context) => NotificationCubit(getIt()),
-                    child: BlocBuilder<NotificationCubit, NotificationState>(
-                      builder: (context, state) {
-                        final cubit = context.watch<NotificationCubit>();
-
-                        return InkWell(
-                          onTap: () {
-                            context
-                                .pushNamed(Routes.notificationsScreen)
-                                .then((context) {
-                                  setState(() {
-                                    widget.notificationCount = 0.toString();
-                                  });
-                            });
-                          },
-                          child: Container(
-                            width: 48.w,
-                            height: 48.h,
-                            decoration: BoxDecoration(
-                              color: AppColors.secondaryColor500,
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                            child: SvgPicture.asset(
-                              'assets/images/svg/notification_icon.svg',
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                        );
-                      },
+                  InkWell(
+                    onTap: () {
+                      context
+                          .pushNamed(Routes.notificationsScreen)
+                          .then((context) {
+                        setState(() {
+                          widget.notificationCount = 0.toString();
+                        });
+                      });
+                    },
+                    child: Container(
+                      width: 48.w,
+                      height: 48.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.secondaryColor500,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: SvgPicture.asset(
+                        'assets/images/svg/notification_icon.svg',
+                        fit: BoxFit.scaleDown,
+                      ),
                     ),
                   ),
-                  CustomCountOfNoOfNotificationsWidget(
+                  widget.notificationCount == "0"
+                  ? const SizedBox.shrink()
+                  : CustomCountOfNoOfNotificationsWidget(
                     counter: widget.notificationCount,
                   ),
                 ],

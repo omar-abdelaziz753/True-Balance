@@ -37,7 +37,7 @@ class NotificationRepo {
     try {
       final response = await apiServicesNotification.deleteAllNotifications();
       if (response?.statusCode == 200 || response?.statusCode == 201) {
-        return ApiResult.success(response!.data['message']);
+        return ApiResult.success(response!.data['status']);
       } else {
         return ApiResult.failure(
           ServerException.fromResponse(response?.statusCode, response),

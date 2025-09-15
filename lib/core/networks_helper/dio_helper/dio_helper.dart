@@ -77,7 +77,7 @@ class DioHelper {
     dio.options.headers = {
       "Accept": "application/json",
       "lang": CacheHelper.getCurrentLanguage().toString(),
-      "authorization": token,
+      "authorization": "Bearer $token",
     };
     return await dio.delete(endPoint, data: data);
   }
