@@ -19,6 +19,8 @@ import 'package:truee_balance_app/features/user/medical_reports/data/api%20servi
 import 'package:truee_balance_app/features/user/medical_reports/data/repo/reports_repo.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/api_services/api_services.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/repos/repos.dart';
+import 'package:truee_balance_app/features/user/notification/notification/data/api%20services/api_services_notification.dart';
+import 'package:truee_balance_app/features/user/notification/notification/data/repo/notification_repo.dart';
 import 'package:truee_balance_app/features/user/session%20details/data/api%20servies/sessions_details_api_services.dart';
 import 'package:truee_balance_app/features/user/session%20details/data/repo/sessions_details_repo.dart';
 import 'package:truee_balance_app/features/user/sessions/data/api%20servies/sessions_api_services.dart';
@@ -97,4 +99,9 @@ Future<void> setupDependencyInjection() async {
       () => TreatmentDetailsForTherapistsApiServices(getIt()));
   getIt.registerLazySingleton<TreatmentDetailsForTherapistRepos>(
       () => TreatmentDetailsForTherapistRepos(getIt()));
+
+  getIt.registerLazySingleton<ApiServicesNotification>(
+      () => ApiServicesNotification(getIt()));
+  getIt.registerLazySingleton<NotificationRepo>(
+      () => NotificationRepo(getIt()));
 }

@@ -3,34 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/features/user/notification/presentation/screens/notification_screen.dart';
+import 'package:truee_balance_app/features/user/notification/notification/data/model/notifications_response.dart';
+
+    
 
 class NotificationItemWidget extends StatelessWidget {
   const NotificationItemWidget({
     super.key,
-    required this.showDateHeader,
     required this.item,
   });
 
-  final bool showDateHeader;
   final NotificationItem item;
-
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (showDateHeader) ...[
-          Text(
-            item.date,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 14.sp,
-              color: const Color(0xff212121),
-            ),
-          ),
-          18.verticalSpace,
-        ],
         Container(
           margin: EdgeInsets.only(bottom: 18.h),
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
@@ -56,7 +44,13 @@ class NotificationItemWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  item.icon,
+                  item.type == "treatment_plans"
+                      ? Icons.import_contacts
+                      : item.type == "consultations"
+                          ? Icons.message
+                          : item.type == "general"
+                              ? Icons.warning
+                              : Icons.notifications, 
                   color: Colors.white,
                   size: 28.sp,
                 ),
@@ -69,7 +63,7 @@ class NotificationItemWidget extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 10.h),
                       child: Text(
-                        item.title,
+                        item.title ?? '',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -78,9 +72,18 @@ class NotificationItemWidget extends StatelessWidget {
                     ),
                     8.verticalSpace,
                     Text(
-                      item.subtitle,
+                      item.description ?? '',
                       style: Styles.captionRegular.copyWith(
                         color: AppColors.neutralColor600,
+                      ),
+                    ),
+                    8.verticalSpace,
+                    Text(
+                      item.createdAt ?? '',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.sp,
+                        color: const Color(0xff212121),
                       ),
                     ),
                   ],
