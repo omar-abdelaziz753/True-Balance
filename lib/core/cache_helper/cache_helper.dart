@@ -24,9 +24,9 @@ class CacheHelper {
 
   static String getCurrentLanguage() {
     return CacheHelper.getData(
-          key: CacheKeys.currentLanguage,
+          key: CacheKeys.currentLanguage ?? "en",
         ) ??
-        "ar";
+        "en";
   }
 
   static Future<void> changeLanguageToAr() async {

@@ -11,9 +11,13 @@ class MedicalReportItemWidget extends StatelessWidget {
   const MedicalReportItemWidget({
     super.key,
     required this.item,
+    required this.date,
+    required this.time,
   });
 
   final String item;
+  final String time;
+  final String date;
 
   @override
   Widget build(BuildContext context) {
@@ -29,55 +33,73 @@ class MedicalReportItemWidget extends StatelessWidget {
           color: AppColors.neutralColor600,
         ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12.sp),
-            child: SvgPicture.asset(
-              Assets.assetsImagesSvgPdfIcon,
-              height: 36.sp,
-              width: 36.sp,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(width: 10.sp),
-          Expanded(
-            child: Text(
-              Uri.parse(item).pathSegments.last,
-              style: Styles.contentEmphasis.copyWith(
-                fontWeight: FontWeight.w700,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12.sp),
+                child: SvgPicture.asset(
+                  Assets.assetsImagesSvgPdfIcon,
+                  height: 36.sp,
+                  width: 36.sp,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-          ),
-          SizedBox(width: 10.sp),
-          if (item.isNotEmpty)
-            InkWell(
-              onTap: () async {
-                await downloadPdfFile(
-                  item,
+              SizedBox(width: 10.sp),
+              Expanded(
+                child: Text(
                   Uri.parse(item).pathSegments.last,
-                );
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.download_outlined,
-                    size: 20.sp,
-                    color: AppColors.primaryColor900,
+                  style: Styles.contentEmphasis.copyWith(
+                    fontWeight: FontWeight.w700,
                   ),
-                  Text(
-                    'download'.tr(),
-                    style: Styles.contentEmphasis.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.primaryColor900,
-                      fontSize: 12.sp,
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-        ],
+              SizedBox(width: 10.sp),
+              if (item.isNotEmpty)
+                InkWell(
+                  onTap: () async {
+                    await downloadPdfFile(
+                      item,
+                      Uri.parse(item).pathSegments.last,
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.download_outlined,
+                        size: 20.sp,
+                        color: AppColors.primaryColor900,
+                      ),
+                      Text(
+                        'download'.tr(),
+                        style: Styles.contentEmphasis.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.primaryColor900,
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+            ],
+          ),
+          SizedBox(height: 10.sp),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '$date / ${time}',
+                style: Styles.contentEmphasis.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.neutralColor600,
+                  fontSize: 12.sp,
+                ),
+              )
+            ],
+          ),   ],
       ),
     );
   }

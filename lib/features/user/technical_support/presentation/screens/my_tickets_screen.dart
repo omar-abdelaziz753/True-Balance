@@ -81,7 +81,9 @@ class MyTicketsScreen extends StatelessWidget {
                                   child: CustomRowInMyTicketsWidget(
                                     ticketNumber:
                                         '${'ticketNo'.tr()} #${ticket.id!}',
-                                    message: ticket.title!,
+                                    // message: ticket.title!,
+                                    message: (ticket.status ?? '')
+                                        .replaceFirstMapped(RegExp(r'^[a-zA-Z]'), (match) => match.group(0)!.toUpperCase()),
                                   ),
                                 ),
                               );

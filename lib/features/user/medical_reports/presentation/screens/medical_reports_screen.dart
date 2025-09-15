@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/helper_functions/date_formate.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
@@ -75,7 +76,10 @@ class MedicalReportsScreen extends StatelessWidget {
                                 },
                                 itemBuilder: (BuildContext context, int index) {
                                   return MedicalReportItemWidget(
-                                      item: cubit.reportsModel!.data[index]);
+                                      item: cubit.reportsModel!.data[index].file,
+                                    date: formatDate(cubit.reportsModel!.data[index].createdAt),
+                                    time: formatTime(cubit.reportsModel!.data[index].createdAt),
+                                  );
                                 },
                               ),
                       )
