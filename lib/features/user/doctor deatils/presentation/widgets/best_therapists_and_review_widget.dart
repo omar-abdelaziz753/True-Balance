@@ -21,19 +21,18 @@ class BestTherapistsAndReviewWidget extends StatelessWidget {
       spacing: 6.sp,
       children: [
         Text('bestTherapists'.tr(),
-            style: Styles.contentEmphasis.copyWith(
-                fontWeight: FontWeight.w600, fontSize: 14.sp)),
-        const Icon(Icons.star,
-            color: Color(0XFFFFDB43), size: 18),
+            style: Styles.contentEmphasis
+                .copyWith(fontWeight: FontWeight.w600, fontSize: 14.sp)),
+        const Icon(Icons.star, color: Color(0XFFFFDB43), size: 18),
         Text(
-          cubit.doctorDetails?.data?.rateCount?.toString() ?? '0',
+          cubit.doctorDetails?.data?.rate?.toString() ?? '0',
           style: Styles.contentEmphasis.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 12.sp,
               color: AppColors.neutralColor600),
         ),
         Text(
-          " | (${cubit.doctorDetails?.data?.rate?.toString() ?? '0'} ${'rate'.tr()})",
+          " | (${cubit.doctorDetails?.data?.rateCount?.toString() ?? '0'} ${'rate'.tr()})",
           style: Styles.contentEmphasis.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 12.sp,
