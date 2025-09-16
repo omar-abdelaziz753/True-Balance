@@ -19,7 +19,7 @@ class MainLayoutDoctorsScreen extends StatelessWidget {
         final cubit = MainLayoutDoctorsCubit.get(context);
         final currentIndex = (state is BottomNavDoctorsState)
             ? state.currentIndex
-            : AppConstants.userMainLayoutInitialScreenIndex2;
+            : AppConstants.userMainLayoutInitialScreenIndex;
         return Scaffold(
           backgroundColor: AppColors.neutralColor100,
           body: AppRouter().screensDoctorss[currentIndex],

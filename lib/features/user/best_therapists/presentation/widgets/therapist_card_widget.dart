@@ -50,16 +50,19 @@ class TherapistCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: CachedNetworkImage(
-                imageUrl: (doctorModel.image),
-                // width: 95.w,
-                // height: 91.h,
+              child: Hero(
+                tag: doctorModel.id.toString(),
+                child: CachedNetworkImage(
+                  imageUrl: (doctorModel.image),
+                  // width: 95.w,
+                  // height: 91.h,
 
-                fit: BoxFit.cover,
-                errorWidget: (context, url, error) => Icon(
-                  Icons.error,
-                  size: 91.sp,
-                  color: Colors.grey,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.error,
+                    size: 91.sp,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),

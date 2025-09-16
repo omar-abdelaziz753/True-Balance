@@ -35,10 +35,13 @@ class UserWidgetTheripst extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
-            child: CacheNetworkImagesWidget(
-              image: userData.image!,
-              width: 55.w,
-              height: 55.h,
+            child: Hero(
+              tag: userData.image!.toString(),
+              child: CacheNetworkImagesWidget(
+                image: userData.image!,
+                width: 55.w,
+                height: 55.h,
+              ),
             ),
           ),
           12.horizontalSpace,

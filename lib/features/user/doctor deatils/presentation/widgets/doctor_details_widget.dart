@@ -23,7 +23,7 @@ class DoctorDetailsWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.w,
-            color: const Color(0xFF030303).withValues(alpha: 0.1),
+          color: const Color(0xFF030303).withValues(alpha: 0.1),
         ),
         borderRadius: BorderRadius.circular(
           AppConstants.borderRadius + 4.r,
@@ -47,12 +47,15 @@ class DoctorDetailsWidget extends StatelessWidget {
             width: 90.w,
             alignment: Alignment.center,
             child: ClipOval(
-              child: CachedNetworkImage(
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-                imageUrl: cubit.doctorDetails?.data?.image ?? '',
-                width: 95.w,
-                height: 91.h,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: cubit.doctorDetails!.data!.id.toString(),
+                child: CachedNetworkImage(
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  imageUrl: cubit.doctorDetails?.data?.image ?? '',
+                  width: 95.w,
+                  height: 91.h,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

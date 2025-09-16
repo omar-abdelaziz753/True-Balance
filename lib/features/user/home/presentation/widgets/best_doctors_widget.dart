@@ -109,29 +109,32 @@ class BestDoctorsWidget extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Stack(
-                              alignment: Alignment.topCenter,
-                              children: [
-                                Image.asset(
-                                  'assets/images/png/back_ground_doctor.png',
-                                  fit: BoxFit.cover,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50.r),
-                                    child: CachedNetworkImage(
-                                      imageUrl: cubit
-                                          .doctorsModel!.data.data[index].image,
-                                      fit: BoxFit.cover,
-                                      width: 75.w,
-                                      height: 75.h,
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
-                                    ),
+                            Hero(
+                              tag: data.id.toString(),
+                              child: Stack(
+                                alignment: Alignment.topCenter,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/png/back_ground_doctor.png',
+                                    fit: BoxFit.cover,
                                   ),
-                                )
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50.r),
+                                      child: CachedNetworkImage(
+                                        imageUrl: cubit.doctorsModel!.data
+                                            .data[index].image,
+                                        fit: BoxFit.cover,
+                                        width: 75.w,
+                                        height: 75.h,
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                             5.verticalSpace,
                             Text(

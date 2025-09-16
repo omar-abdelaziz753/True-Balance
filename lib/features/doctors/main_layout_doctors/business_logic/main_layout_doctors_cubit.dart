@@ -9,8 +9,8 @@ class MainLayoutDoctorsCubit extends Cubit<MainLayoutDoctorsState> {
   static MainLayoutDoctorsCubit get(context) => BlocProvider.of(context);
 
   void changeBottomNavBar(int index) {
-    AppConstants.userMainLayoutInitialScreenIndex2 = index;
+    AppConstants.userMainLayoutInitialScreenIndex = index;
     emit(BottomNavDoctorsState(
-        AppConstants.userMainLayoutInitialScreenIndex2));
+        AppConstants.userMainLayoutInitialScreenIndex));
   }
 }

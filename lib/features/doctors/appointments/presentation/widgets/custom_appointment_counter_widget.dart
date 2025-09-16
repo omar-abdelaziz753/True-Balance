@@ -11,6 +11,7 @@ class CustomAppointmentContainerWidget extends StatelessWidget {
   final String imagePath;
   final bool isLoading;
 
+
   const CustomAppointmentContainerWidget({
     super.key,
     required this.title,
@@ -52,15 +53,18 @@ class CustomAppointmentContainerWidget extends StatelessWidget {
                       height: 95.h,
                       color: Colors.grey[300],
                     )
-                  : CachedNetworkImage(
-                      imageUrl: imagePath,
-                      width: 95.w,
-                      height: 95.h,
-                      errorWidget: (context, url, error) => Icon(
-                            Icons.error,
-                            size: 95.sp,
-                            color: Colors.grey,
-                          )),
+                  : Hero(
+                      tag: imagePath,
+                    child: CachedNetworkImage(
+                        imageUrl: imagePath,
+                        width: 95.w,
+                        height: 95.h,
+                        errorWidget: (context, url, error) => Icon(
+                              Icons.error,
+                              size: 95.sp,
+                              color: Colors.grey,
+                            )),
+                  ),
             ),
             12.horizontalSpace,
             Expanded(

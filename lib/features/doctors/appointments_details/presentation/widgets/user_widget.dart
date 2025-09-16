@@ -41,15 +41,18 @@ class UserWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CachedNetworkImage(
-              imageUrl: userData.image ?? "",
-              width: 55.w,
-              height: 55.h,
-              errorWidget: (context, url, error) => Icon(
-                    Icons.error,
-                    size: 55.sp,
-                    color: Colors.grey,
-                  )),
+          Hero(
+            tag: userData.image ?? "",
+            child: CachedNetworkImage(
+                imageUrl: userData.image ?? "",
+                width: 55.w,
+                height: 55.h,
+                errorWidget: (context, url, error) => Icon(
+                      Icons.error,
+                      size: 55.sp,
+                      color: Colors.grey,
+                    )),
+          ),
           // CachedNetworkImage(
           //   imageUrl: userData.image!,
           //   width: 55.w,
