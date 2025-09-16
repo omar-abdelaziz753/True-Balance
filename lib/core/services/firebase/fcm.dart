@@ -5,6 +5,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:truee_balance_app/core/widgets/notification/notifcation_snack_bar.dart';
 
 Future<void> handleBackgroundMessage(RemoteMessage message) async {}
 
@@ -72,11 +74,20 @@ class PushNotificationService {
       sound: true,
     );
 
-    FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
-
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       handleMessage(message);
+      final notification = message.notification;
+      if (notification != null) {
+        notificationSnackBar(
+          context: AppConstants.navigatorKey.currentContext!,
+          message: notification.title!,
+          event: message,
+        );
+      }
     });
+
+    FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
+
   }
 
   Future<void> initialize() async {
