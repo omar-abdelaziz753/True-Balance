@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class DoctorDetailsWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.w,
-          color: const Color(0xff0303031).withValues(alpha: 0.1),
+            color: const Color(0xFF030303).withValues(alpha: 0.1),
         ),
         borderRadius: BorderRadius.circular(
           AppConstants.borderRadius + 4.r,
@@ -49,8 +48,7 @@ class DoctorDetailsWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: ClipOval(
               child: CachedNetworkImage(
-                errorWidget: (context, url, error) =>
-                    const Icon(Icons.error),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
                 imageUrl: cubit.doctorDetails?.data?.image ?? '',
                 width: 95.w,
                 height: 91.h,

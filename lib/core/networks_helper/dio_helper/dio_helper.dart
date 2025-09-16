@@ -31,7 +31,7 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "lang": CacheHelper.getCurrentLanguage().toString() ?? 'en',
+      "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
     return await dio.get(endPoint, queryParameters: data);
@@ -43,7 +43,7 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "lang": CacheHelper.getCurrentLanguage().toString() ?? 'en',
+      "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
     return await dio.post(endPoint, data: data, options: options);
@@ -54,7 +54,7 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "lang": CacheHelper.getData(key: 'selectedLanguage') ?? 'en',
+      "lang": CacheHelper.getData(key: 'selectedLanguage'),
       "authorization": token,
     };
     return await dio.put(endPoint, data: data);
@@ -65,7 +65,7 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "lang": CacheHelper.getCurrentLanguage().toString() ?? 'en',
+      "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
     return await dio.patch(endPoint, data: data);
@@ -76,7 +76,7 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "lang": CacheHelper.getCurrentLanguage().toString() ?? 'en',
+      "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
     return await dio.delete(endPoint, data: data);

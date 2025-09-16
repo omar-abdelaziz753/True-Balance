@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -20,7 +19,7 @@ class AboutUsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: data.title ??"",
+        title: data.title ?? "",
         backgroundColor: AppColors.primaryColor900,
         svgAsset: 'assets/images/svg/bg_image.svg',
       ),
@@ -42,7 +41,7 @@ class AboutUsScreen extends StatelessWidget {
               ),
               child: CustomSectionInAboutUsWidget(
                 description:
-                    data.text!.replaceAll(RegExp(r'<[^>]*>'), '') ?? '',
+                    data.text?.replaceAll(RegExp(r'<[^>]*>'), '') ?? '',
               ),
             );
           },

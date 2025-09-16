@@ -83,7 +83,6 @@ class MedicalReportItemWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-
             ],
           ),
           SizedBox(height: 10.sp),
@@ -91,7 +90,7 @@ class MedicalReportItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                '$date / ${time}',
+                '$date / $time',
                 style: Styles.contentEmphasis.copyWith(
                   fontWeight: FontWeight.w400,
                   color: AppColors.neutralColor600,
@@ -99,7 +98,8 @@ class MedicalReportItemWidget extends StatelessWidget {
                 ),
               )
             ],
-          ),   ],
+          ),
+        ],
       ),
     );
   }

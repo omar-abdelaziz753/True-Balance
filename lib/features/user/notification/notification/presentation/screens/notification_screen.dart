@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/features/user/notification/notification/bloc/cubit/notification_cubit.dart';
@@ -29,7 +27,7 @@ class NotificationScreen extends StatelessWidget {
           current is NotificationDeletedSuccess ||
           current is NotificationDeletedError,
       listener: (context, state) {
-        if(state is NotificationDeletedSuccess){
+        if (state is NotificationDeletedSuccess) {
           cubit.setupNotificationScrollController();
           cubit.getNotifications();
         }

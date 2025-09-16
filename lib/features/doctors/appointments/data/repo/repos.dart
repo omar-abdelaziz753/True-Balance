@@ -18,7 +18,6 @@ class AppointmentsRepos {
     try {
       final response = await appointmentsApiServices.getAllDoctorsConsultations(
           page: page, isPending: isPending, search: search);
-      print(search);
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model = ConsultationUsersResponse.fromJson(response!.data);
         return ApiResult.success(model);

@@ -116,7 +116,6 @@ class NotificationCubit extends Cubit<NotificationState> {
     final result = await notificationRepo.makeAsRead();
     result.when(
       success: (data) {
-        print(data);
         emit(NotificationMarkAllAsReadSuccess());
       },
       failure: (error) {

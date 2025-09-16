@@ -24,7 +24,7 @@ class CacheHelper {
 
   static String getCurrentLanguage() {
     return CacheHelper.getData(
-          key: CacheKeys.currentLanguage ?? "en",
+          key: CacheKeys.currentLanguage,
         ) ??
         "en";
   }

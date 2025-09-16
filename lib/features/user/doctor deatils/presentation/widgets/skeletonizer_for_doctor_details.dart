@@ -34,7 +34,7 @@ class SkeletonizerForDoctorDetails extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1.w,
-                    color: const Color(0xff0303031).withValues(alpha: 0.1),
+                    color: const Color(0xFF030303).withValues(alpha: 0.1),
                   ),
                   borderRadius: BorderRadius.circular(
                     AppConstants.borderRadius + 4.r,
