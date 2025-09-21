@@ -56,7 +56,6 @@ class TherapistCardWidget extends StatelessWidget {
                   imageUrl: (doctorModel.image),
                   // width: 95.w,
                   // height: 91.h,
-
                   fit: BoxFit.cover,
                   errorWidget: (context, url, error) => Icon(
                     Icons.error,
