@@ -7,7 +7,6 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/banner_widget_skelton.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class BannerWidget extends StatelessWidget {
   const BannerWidget({super.key});
@@ -39,18 +38,22 @@ class BannerWidget extends StatelessWidget {
                   },
                 ),
                 itemBuilder: (context, index, realIndex) {
-                  return InkWell(
-                    onTap: () async {
-                      final Uri url =
-                          Uri.parse(cubit.sliderModel!.data[index].btnUrl);
-
-                      await launchUrl(url);
-                    },
-                    child: CacheNetworkImagesWidget(
-                      image: cubit.sliderModel?.data[index].background ?? '',
-                      boxFit: BoxFit.fill,
-                    ),
+                  return CacheNetworkImagesWidget(
+                    image: cubit.sliderModel?.data[index].background ?? '',
+                    boxFit: BoxFit.fill,
                   );
+                  // InkWell(
+                  //   onTap: () async {
+                  //     final Uri url =
+                  //         Uri.parse(cubit.sliderModel!.data[index].btnUrl);
+
+                  //     await launchUrl(url);
+                  //   },
+                  //   child: CacheNetworkImagesWidget(
+                  //     image: cubit.sliderModel?.data[index].background ?? '',
+                  //     boxFit: BoxFit.fill,
+                  //   ),
+                  // );
                 },
               ),
               SizedBox(height: 12.h),
