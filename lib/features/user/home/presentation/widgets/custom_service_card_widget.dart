@@ -7,20 +7,17 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 
 class CustomServiceCardWidget extends StatelessWidget {
   final String title;
-  // final Widget icon;
-  final String image;
+  final String? image;
+
   const CustomServiceCardWidget({
     super.key,
     required this.title,
-    required this.image,
-
-    // required this.icon,
+    this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: 120.w,
       padding: EdgeInsets.all(12.sp),
       decoration: BoxDecoration(
         color: AppColors.neutralColor100,
@@ -46,12 +43,15 @@ class CustomServiceCardWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4.r),
               child: CachedNetworkImage(
-                imageUrl: image,
+                imageUrl: image?.isNotEmpty == true
+                    ? image!
+                    : 'assets/images/png/placeholder.png',
                 fit: BoxFit.cover,
-                // width: 44.w,
-                // height: 44.h,
-                errorWidget: (context, url, error) => Icon(Icons.error,
-                    color: AppColors.neutralColor1000, size: 44.sp),
+                errorWidget: (context, url, error) => Icon(
+                  Icons.error,
+                  color: AppColors.neutralColor1000,
+                  size: 44.sp,
+                ),
               ),
             ),
           ),
