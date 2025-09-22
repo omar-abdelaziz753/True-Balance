@@ -14,6 +14,15 @@ final class ConsultationsError extends MybookState {}
 
 final class ConsultationsLoadingMore extends MybookState {}
 
+/// Delete Consultation Loading
+class DeleteConsultationLoading extends MybookState {}
+
+/// Delete Consultation Success
+class DeleteConsultationSuccess extends MybookState {}
+
+/// Delete Consultation Failure
+class DeleteConsultationFailure extends MybookState {}
+
 /// Add Rate Loading
 class AddRateLoading extends MybookState {}
 

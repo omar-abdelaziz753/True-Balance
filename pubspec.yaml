@@ -19,7 +19,7 @@ dependencies:
   dots_indicator: ^3.0.0
   downloads_path_provider_28: ^0.1.2
   easy_localization: ^3.0.7
-  file_picker: ^10.3.2
+  file_picker: any
   firebase_core: ^4.0.0
   firebase_crashlytics: ^5.0.0
   firebase_messaging: ^16.0.0
