@@ -42,14 +42,12 @@ class ServiceCardWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4.r),
               child: CachedNetworkImage(
-                // haveBorder: true,
-                // isFile: false,
+             
                 imageUrl: image?.isNotEmpty == true
                     ? image!
                     : 'assets/images/png/placeholder.png',
                 errorWidget: (context, url, error) => Icon(
                   Icons.error,
-                  color: AppColors.neutralColor1000,
                   size: 44.sp,
                 ),
               ),

@@ -41,7 +41,7 @@
   "login": "Login ",
   "PleaseSelectAtLeastOneSession": "Please select at least one session",
   "confirm": "Confirm",
-  "nofutureAvailable": "No future available sessions",
+"nofutureAvailable": "No sessions available at the moment",
   "sessionAddedSuccessfully": "Session added successfully!",
   "doctorEvaluation": "Doctor Evaluation",
   "pleaseenterallrequiredfields": "Please enter all required fields",
