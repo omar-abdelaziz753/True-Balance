@@ -30,12 +30,15 @@ class ServiceCardWidget extends StatelessWidget {
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            CacheNetworkImagesWidget(
-              image: image?.isNotEmpty == true
-                  ? image!
-                  : 'assets/images/png/placeholder.png',
-              width: 44.w,
-              height: 44.h,
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4.r),
+                child: CacheNetworkImagesWidget(
+                  image: image?.isNotEmpty == true
+                      ? image!
+                      : 'assets/images/png/placeholder.png',
+                ),
+              ),
             ),
             8.verticalSpace,
             Text(
