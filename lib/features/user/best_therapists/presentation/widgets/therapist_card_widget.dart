@@ -87,19 +87,19 @@ class TherapistCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+                      doctorModel.name,
+                      style: Styles.contentBold.copyWith(
+                        color: AppColors.neutralColor1000,
+                      ),
+                    ),
+                    4.verticalSpace,
+                    Text(
                       doctorModel.specialization,
                       style: Styles.footnoteEmphasis.copyWith(
                         color: AppColors.neutralColor600,
                       ),
                     ),
                     4.verticalSpace,
-                    Text(
-                      doctorModel.name,
-                      style: Styles.contentBold.copyWith(
-                        color: AppColors.neutralColor1000,
-                      ),
-                    ),
-                    8.verticalSpace,
                     Text(
                       "${'age'.tr()}: ${doctorModel.age.toString()}",
                       // "age : ${doctorModel.age.toString()}",

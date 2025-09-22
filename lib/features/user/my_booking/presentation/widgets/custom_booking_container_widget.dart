@@ -52,18 +52,18 @@ class CustomBookingContainerWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  specialization,
-                  style: Styles.footnoteEmphasis.copyWith(
-                    color: AppColors.neutralColor600,
-                  ),
-                ),
-                Text(
                   doctorName,
                   style: Styles.contentBold.copyWith(
                     color: AppColors.neutralColor1000,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  specialization,
+                  style: Styles.footnoteEmphasis.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
                 ),
                 Row(
                   children: [
