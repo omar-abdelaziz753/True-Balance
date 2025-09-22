@@ -20,7 +20,7 @@ class CustomServiceCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120.w,
+      // width: 120.w,
       padding: EdgeInsets.all(12.sp),
       decoration: BoxDecoration(
         color: AppColors.neutralColor100,
@@ -42,12 +42,18 @@ class CustomServiceCardWidget extends StatelessWidget {
         spacing: 8.h,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CachedNetworkImage(
-            imageUrl: image,
-            width: 44.w,
-            height: 44.h,
-            errorWidget: (context, url, error) => Icon(Icons.error,
-                color: AppColors.neutralColor1000, size: 44.sp),
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4.r),
+              child: CachedNetworkImage(
+                imageUrl: image,
+                fit: BoxFit.cover,
+                // width: 44.w,
+                // height: 44.h,
+                errorWidget: (context, url, error) => Icon(Icons.error,
+                    color: AppColors.neutralColor1000, size: 44.sp),
+              ),
+            ),
           ),
           Text(
             title,
