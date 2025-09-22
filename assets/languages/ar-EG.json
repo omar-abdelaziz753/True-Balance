@@ -55,7 +55,7 @@
   "dontHaveAccount": "ليس لديك حساب؟",
   "sessionAddedSuccessfully": "تمت اضافة الجلسة بنجاح!",
   "PleaseSelectAtLeastOneSession": "يرجى تحديد على الاقل واحدة جلسة",
-  "nofutureAvailable":"لا يوجد جلسات في المستقبل",
+  "nofutureAvailable":"لا يوجد جلسات حاليا ",
   "welcome": "مرحبًا بك في حسابك",
   "back": "رجوع ",
   "phoneNumberIsRequired": "رقم الهاتف مطلوب",
