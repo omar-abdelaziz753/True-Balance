@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
@@ -13,7 +15,9 @@ import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/
 
 class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen({super.key, required this.consultation});
+
   final Consultation consultation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +90,7 @@ class BookingDetailsScreen extends StatelessWidget {
                       DoctorDetailsWidgetBookingDetails(
                           consultation: consultation),
                       const Spacer(),
-         
+
                       BlocBuilder<MybookCubit, MybookState>(
                         builder: (context, state) {
                           final cubit = context.watch<MybookCubit>();
@@ -98,13 +102,12 @@ class BookingDetailsScreen extends StatelessWidget {
                               text: "addRating".tr(),
                               onPressed: () async {
                                 final result =
-                                    await showRatingBottomSheetForUserConsultaion(
+                                await showRatingBottomSheetForUserConsultaion(
                                   context,
                                   consultation.id,
                                 );
 
                                 if (result) {
-                               
                                   cubit.updateHasRated(true);
                                 }
                               },
@@ -122,6 +125,39 @@ class BookingDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
+      // bottomNavigationBar: BlocConsumer<MybookCubit, MybookState>(
+      //   listener: (context, state) {
+      //     if (state is DeleteConsultationSuccess) {
+      //       context.pushNamedAndRemoveUntil(Routes.mainLayoutScreen, arguments: 3);
+      //     }
+      //   },
+      //   builder: (context, state) {
+      //     return Container(
+      //       padding: EdgeInsets.all(18.sp),
+      //       decoration: BoxDecoration(
+      //           color: Colors.white,
+      //           boxShadow: [
+      //             BoxShadow(
+      //               offset: Offset(0, -2.h),
+      //               blurRadius: 8.r,
+      //               spreadRadius: 0,
+      //               color: Colors.black.withAlpha(20),
+      //             ),
+      //           ],
+      //           borderRadius: BorderRadius.only(
+      //
+      //           )),
+      //       child: CustomButtonWidget(
+      //         text: 'Cancel'.tr(),
+      //         onPressed: () {
+      //           context.read<MybookCubit>().deleteConsultation(
+      //               id: consultation.id);
+      //         },
+      //         color: AppColors.redColor200,
+      //       ),
+      //     );
+      //   },
+      // ),
     );
   }
 }

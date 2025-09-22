@@ -72,6 +72,22 @@ class MybookCubit extends Cubit<MybookState> {
     isLoadingMore = false;
   }
 
+  /// Delete Consultation
+  Future<void> deleteConsultation({required int id}) async {
+    emit(DeleteConsultationLoading());
+    showLoading();
+    final result = await myBookingRepos.deleteConsultation(consultationId: id);
+    result.when(
+        success: (message) => {
+              hideLoading(),
+              emit(DeleteConsultationSuccess()),
+            },
+        failure: (error) => {
+              hideLoading(),
+              emit(DeleteConsultationFailure()),
+            });
+  }
+
   Future<void> addRateConsultation({
     required int consultationId,
     required int userRate,

@@ -13,6 +13,13 @@ class MyBookingApiServices {
         .get(endPoint: EndPoints.getconsultations, data: {'page': page , "status" : isPending ? 'pending' : 'completed'});
   }
 
+  /// Delete Consultation
+  Future<Response?> deleteConsultation({required int id}) async {
+    return _dioHelper.post(endPoint: EndPoints.deleteConsultation, data: {
+      "consultation_id": id
+    });
+  }
+
 Future<Response?> addRateCosultation({
   required int consultationId,
   required int userRate,

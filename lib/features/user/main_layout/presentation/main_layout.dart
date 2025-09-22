@@ -10,7 +10,9 @@ import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/features/user/main_layout/business_logic/main_layout_cubit.dart';
 
 class MainLayoutScreen extends StatelessWidget {
-  const MainLayoutScreen({super.key});
+  const MainLayoutScreen({super.key, this.index = 0});
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {

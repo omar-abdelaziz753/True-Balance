@@ -7,6 +7,7 @@ import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
+import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/custom_count_of_no_of_notification_widget.dart';
 
 class CustomMainAppBarInHomeWidget extends StatefulWidget
@@ -69,15 +70,21 @@ class _CustomMainAppBarInHomeWidgetState
                         /// Profile Image
                         ClipRRect(
                           borderRadius: BorderRadius.circular(25.r),
-                          child: CachedNetworkImage(
-                              imageUrl: widget.profileImageAsset,
-                              width: 50.w,
-                              height: 50.h,
-                              errorWidget: (context, url, error) => Icon(
-                                    Icons.error,
-                                    size: 50.sp,
-                                    color: Colors.grey,
-                                  )),
+                          // child: CachedNetworkImage(
+                          //     imageUrl: widget.profileImageAsset,
+                          //     width: 50.w,
+                          //     height: 50.h,
+                          //     errorWidget: (context, url, error) => Icon(
+                          //           Icons.error,
+                          //           size: 50.sp,
+                          //           color: Colors.grey,
+                          //         )),
+                          child: CacheNetworkImagesWidget(
+                            image: widget.profileImageAsset,
+                            width: 50.w,
+                            height: 50.h,
+                            isFile: false,
+                          ),
                           // CacheNetworkImagesWidget(
                           //   image: profileImageAsset,
                           //   width: 50.w,
