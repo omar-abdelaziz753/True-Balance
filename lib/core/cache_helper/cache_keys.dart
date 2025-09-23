@@ -13,7 +13,6 @@ class CacheKeys {
   static const String userImage = 'userImage';
   static const String userPhone = 'userPhone';
 
-  static const String userRole = 'role';
   static const String type = 'type';
   static const String userAddressId = 'addressId';
   static const String userAddressCity = 'addressCity';

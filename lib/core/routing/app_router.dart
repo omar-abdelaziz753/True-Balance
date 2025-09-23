@@ -15,6 +15,8 @@ import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appoi
 import 'package:truee_balance_app/features/doctors/appointments/presentation/screens/appointments_screen.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
 import 'package:truee_balance_app/features/doctors/appointments_details/presentation/screens/appointments_details_screen.dart';
+import 'package:truee_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
+import 'package:truee_balance_app/features/doctors/calender/presnetation/screen/calender_screen.dart';
 import 'package:truee_balance_app/features/doctors/main_layout_doctors/business_logic/main_layout_doctors_cubit.dart';
 import 'package:truee_balance_app/features/doctors/main_layout_doctors/presentation/main_layout_doctors.dart';
 import 'package:truee_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dart';
@@ -360,6 +362,10 @@ class AppRouter {
 
   List<Widget> screensDoctorss = [
     BlocProvider(
+      create: (context) => CalenderCubit(getIt())..getApiBaseonRole(),
+      child: const CalenderScreen(),
+    ),
+    BlocProvider(
       create: (context) => AppointmentsCubit(getIt())
         ..getAllDoctorsConsultations(isPending: true)
         ..setupAllDoctorsConsultationsScrollController(),
@@ -368,16 +374,11 @@ class AppRouter {
       ),
     ),
     BlocProvider(
-      create: (context) => NotificationCubit(getIt())..setupNotificationScrollController()..getNotifications(),
+      create: (context) => NotificationCubit(getIt())
+        ..setupNotificationScrollController()
+        ..getNotifications(),
       child: const NotificationScreen(),
     ),
-    const SettingScreen(),
-  ];
-  List<Widget> screensTherapist = [
-    Container(
-      color: Colors.white,
-    ),
-    const NotificationScreen(),
     const SettingScreen(),
   ];
 }

@@ -48,18 +48,25 @@ class MainLayoutDoctorsScreen extends StatelessWidget {
                       onTap: () => cubit.changeBottomNavBar(0),
                     ),
                     _buildNavItem(
-                      icon: 'assets/images/svg/notification-therep.svg',
-                      label: 'notifications'.tr(),
+                      icon: Icons.person,
+                      label: 'patinets'.tr(),
                       index: 1,
                       currentIndex: currentIndex,
                       onTap: () => cubit.changeBottomNavBar(1),
                     ),
                     _buildNavItem(
-                      icon: 'assets/images/svg/setting_therep.svg',
-                      label: 'setting'.tr(),
+                      icon: 'assets/images/svg/notification-therep.svg',
+                      label: 'notifications'.tr(),
                       index: 2,
                       currentIndex: currentIndex,
                       onTap: () => cubit.changeBottomNavBar(2),
+                    ),
+                    _buildNavItem(
+                      icon: 'assets/images/svg/setting_therep.svg',
+                      label: 'setting'.tr(),
+                      index: 3,
+                      currentIndex: currentIndex,
+                      onTap: () => cubit.changeBottomNavBar(3),
                     ),
                   ],
                 ),
@@ -72,7 +79,7 @@ class MainLayoutDoctorsScreen extends StatelessWidget {
   }
 
   Widget _buildNavItem({
-    required String icon,
+    required dynamic icon,
     required String label,
     required int index,
     required int currentIndex,
@@ -84,17 +91,26 @@ class MainLayoutDoctorsScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset(
-            icon,
-            width: 24.sp,
-            height: 20.sp,
-            colorFilter: ColorFilter.mode(
-              isSelected
+          if (icon is IconData)
+            Icon(
+              icon,
+              size: 24.sp,
+              color: isSelected
                   ? AppColors.neutralColor100
                   : AppColors.neutralColor300,
-              BlendMode.srcIn,
+            )
+          else if (icon is String)
+            SvgPicture.asset(
+              icon,
+              width: 24.sp,
+              height: 20.sp,
+              colorFilter: ColorFilter.mode(
+                isSelected
+                    ? AppColors.neutralColor100
+                    : AppColors.neutralColor300,
+                BlendMode.srcIn,
+              ),
             ),
-          ),
           Text(
             label,
             style: isSelected

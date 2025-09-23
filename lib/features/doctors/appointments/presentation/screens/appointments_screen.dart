@@ -52,16 +52,16 @@ class AppointmentsScreen extends StatelessWidget {
             children: [
               CustomTextFormFieldWidget(
                 controller: cubit.searchController,
-                hintText: 'search'.tr(),
+                hintText: "search".tr(),
                 onChanged: (value) {
-                    debouncer.debounce(
-                      duration: const Duration(milliseconds: 800),
-                      onDebounce: () {
-                        cubit.getAllDoctorsConsultations(
-                            isPending: cubit.isPending!);
-                      }, 
-                    );
-                },  
+                  debouncer.debounce(
+                    duration: const Duration(milliseconds: 800),
+                    onDebounce: () {
+                      cubit.getAllDoctorsConsultations(
+                          isPending: cubit.isPending!);
+                    },
+                  );
+                },
               ),
               10.verticalSpace,
               BlocBuilder<AppointmentsCubit, AppointmentsState>(

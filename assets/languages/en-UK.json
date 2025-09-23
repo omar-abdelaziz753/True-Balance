@@ -181,6 +181,8 @@
   "selectYourMessageStatus": "Select Your Message status",
   "normal": "Normal",
   "urgent": "Urgent",
+  "search": " Search", 
+  "patinets": "patinets",
   "messageDetails": "Message details",
   "enterYourMessageDetails": "Enter Your Message details",
   "send": "Send",
@@ -190,6 +192,7 @@
   "contactUs": "Contact Us",
   "faqs": "FAQs",
   "bookYour": "Book",
+  "no_appointments": "No Appointments Available",
   "termsAndConditions": "Terms & Conditions",
   "visitOurWebsite": "Visit our website",
   "chooseYouraccounttype": "Choose Your account type",
@@ -270,6 +273,5 @@
       "required": "OTP is required.",
       "invalid": "Invalid OTP code."
     }
-  },
-  "search": " Search"
+  }
 }

@@ -20,4 +20,15 @@ class AppointmentsApiServices {
           "status": isPending ? 'pending' : 'completed'
         }..removeWhere((key, value) => value.toString().isEmpty));
   }
+
+  Future<Response?> getDoctorCalender() async {
+    return _dioHelper.get(
+      endPoint: EndPoints.getDoctorCalender,
+    );
+  }
+   Future<Response?> getTheipstCalender() async {
+    return _dioHelper.get(
+      endPoint: EndPoints.getTheipstCalender,
+    );
+  }
 }

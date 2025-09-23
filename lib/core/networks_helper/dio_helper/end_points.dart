@@ -26,13 +26,15 @@ class EndPoints {
   static const String ticketDetails = 'api/frontend/clientTicket/show';
 
   static const String getconsultations = 'api/frontend/user/consultations';
-  static const String deleteConsultation = 'api/frontend/user/consultations/cancel';
+  static const String deleteConsultation =
+      'api/frontend/user/consultations/cancel';
 
   static const String getReports =
       'api/frontend/treatment-plans/medical-reports/all';
 
   static const String getOrDeleteNotifications = "api/frontend/notifications";
-  static const String makeAsRead = "api/frontend/notifications/mark-all-as-read";
+  static const String makeAsRead =
+      "api/frontend/notifications/mark-all-as-read";
 
   /// Treatment Plans for Therapist
   static String treatmentPlans(int therapistId) =>
@@ -77,4 +79,8 @@ class EndPoints {
       "api/frontend/doctors/reviews/$therapistId";
 
   static String addRateCosultation = 'api/frontend/user/consultations/rate';
+  static String getDoctorCalender =
+      'api/frontend/doctor/consultations/weekly-consultations';
+  static String getTheipstCalender =
+      'api/frontend/therapist/treatment-plans/weekly-treatment-plans';
 }

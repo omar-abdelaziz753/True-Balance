@@ -27,6 +27,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await setupDependencyInjection();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   await DioHelper.init();
   await SystemChrome.setPreferredOrientations([
