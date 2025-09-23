@@ -52,15 +52,18 @@ class TherapistCardWidget extends StatelessWidget {
             Expanded(
               child: Hero(
                 tag: doctorModel.id.toString(),
-                child: CachedNetworkImage(
-                  imageUrl: (doctorModel.image),
-                  // width: 95.w,
-                  // height: 91.h,
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => Icon(
-                    Icons.error,
-                    size: 91.sp,
-                    color: Colors.grey,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: CachedNetworkImage(
+                    imageUrl: (doctorModel.image),
+                    // width: 95.w,
+                    // height: 91.h,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.error,
+                      size: 91.sp,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
               ),
