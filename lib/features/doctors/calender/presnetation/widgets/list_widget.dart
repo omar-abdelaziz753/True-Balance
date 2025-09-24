@@ -46,18 +46,19 @@ class ListWidget extends StatelessWidget {
                       final item = items[index] as DoctorScheduleData;
                       return AppointmentCard(
                         time: item.time ?? "",
-                        name: item.doctor?.name ?? "Unknown",
-                        specialization: item.doctor?.specialization ?? "",
+                        name: item.user?.name ?? "Unknown",
+                        specialization: item.user?.phone ?? "",
                         status: item.status ?? "pending",
+                        imageUrl: item.user?.image ?? '',
                       );
                     } else {
                       final item = items[index] as TherapistSchedule;
                       return AppointmentCard(
                         time: item.time ?? "",
-                        name: item.treatmentPlan?.name ?? "Treatment Plan",
-                        specialization:
-                            "${item.treatmentPlan?.type ?? ""} • ${item.treatmentPlan?.numberOfSessions ?? 0} sessions",
+                        name: item.user?.name ?? "Treatment Plan",
+                        specialization: item.user?.phone ?? "",
                         status: item.status ?? "pending",
+                        imageUrl: item.user?.image ?? '',
                       );
                     }
                   },

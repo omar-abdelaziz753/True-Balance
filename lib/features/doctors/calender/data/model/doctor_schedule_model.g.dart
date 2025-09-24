@@ -47,6 +47,9 @@ DoctorScheduleData _$DoctorScheduleDataFromJson(Map<String, dynamic> json) =>
       doctorEvaluationAt: json['doctor_evaluation_at'] as String?,
       userMessage: json['user_message'] as String?,
       rating: (json['rating'] as num?)?.toInt(),
+      user: json['user'] == null
+          ? null
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
       date: json['date'] as String?,
       time: json['time'] as String?,
       status: json['status'] as String?,
@@ -56,6 +59,7 @@ Map<String, dynamic> _$DoctorScheduleDataToJson(DoctorScheduleData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'doctor': instance.doctor?.toJson(),
+      'user': instance.user?.toJson(),
       'file': instance.file,
       'doctor_evaluation': instance.doctorEvaluation,
       'doctor_evaluation_at': instance.doctorEvaluationAt,
@@ -92,4 +96,22 @@ Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
       'specialization': instance.specialization,
       'rate': instance.rate,
       'rateCount': instance.rateCount,
+    };
+
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      email: json['email'] as String,
+      phone: json['phone'] as String,
+      image: json['image'] as String,
+      type: json['type'] as String,
+    );
+
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'email': instance.email,
+      'phone': instance.phone,
+      'image': instance.image,
+      'type': instance.type,
     };

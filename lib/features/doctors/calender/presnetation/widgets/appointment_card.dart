@@ -8,6 +8,7 @@ class AppointmentCard extends StatelessWidget {
   final String name;
   final String specialization;
   final String status;
+  final String imageUrl;
 
   const AppointmentCard({
     super.key,
@@ -15,6 +16,7 @@ class AppointmentCard extends StatelessWidget {
     required this.name,
     required this.specialization,
     required this.status,
+    required this.imageUrl,
   });
 
   Color _statusColor() {
@@ -33,17 +35,15 @@ class AppointmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(14.sp),
+      padding: EdgeInsets.all(16.sp),
+      margin: EdgeInsets.symmetric(vertical: 6.h),
       decoration: BoxDecoration(
         color: AppColors.neutralColor100,
-        border: Border.all(
-          color: AppColors.neutralColor300,
-          width: 1.sp,
-        ),
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: AppColors.neutralColor300, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.04),
             blurRadius: 6,
             offset: const Offset(0, 3),
           ),
@@ -51,20 +51,15 @@ class AppointmentCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 8.sp),
-            decoration: BoxDecoration(
-              color: AppColors.primaryColor900.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Text(
-              time,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primaryColor900,
-              ),
-            ),
+          CircleAvatar(
+            radius: 28.r,
+            backgroundColor: AppColors.neutralColor200,
+            backgroundImage:
+                imageUrl.isNotEmpty ? NetworkImage(imageUrl) : null,
+            child: imageUrl.isEmpty
+                ? Icon(Icons.person,
+                    size: 32.sp, color: AppColors.neutralColor600)
+                : null,
           ),
           SizedBox(width: 12.w),
           Expanded(
@@ -82,8 +77,6 @@ class AppointmentCard extends StatelessWidget {
                 SizedBox(height: 4.h),
                 Text(
                   specialization,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: AppColors.neutralColor600,
@@ -92,20 +85,35 @@ class AppointmentCard extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 6.sp),
-            decoration: BoxDecoration(
-              color: _statusColor().withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Text(
-              status.tr(),
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: _statusColor(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                time,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor900,
+                ),
               ),
-            ),
+              SizedBox(height: 6.h),
+              Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 12.sp, vertical: 6.sp),
+                decoration: BoxDecoration(
+                  color: _statusColor().withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                child: Text(
+                  status.tr(),
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    color: _statusColor(),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

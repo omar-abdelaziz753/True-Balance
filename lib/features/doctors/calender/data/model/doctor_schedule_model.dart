@@ -50,6 +50,8 @@ class DoctorScheduleData {
   @JsonKey(name: "doctor")
   final Doctor? doctor;
 
+  final UserModel? user;
+
   @JsonKey(name: "file")
   final String? file;
 
@@ -82,6 +84,7 @@ class DoctorScheduleData {
     this.doctorEvaluationAt,
     this.userMessage,
     this.rating,
+    this.user,
     this.date,
     this.time,
     this.status,
@@ -142,8 +145,33 @@ class Doctor {
     this.rateCount,
   });
 
-  factory Doctor.fromJson(Map<String, dynamic> json) =>
-      _$DoctorFromJson(json);
+  factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 
   Map<String, dynamic> toJson() => _$DoctorToJson(this);
+}
+
+@JsonSerializable()
+class UserModel {
+  final int id;
+  final String name;
+  final String email;
+  final String phone;
+  final String image;
+  final String type;
+
+  UserModel({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.image,
+    required this.type,
+  });
+
+  /// From JSON
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+
+  /// To JSON
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

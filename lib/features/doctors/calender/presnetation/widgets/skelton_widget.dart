@@ -24,7 +24,7 @@ class SkeltonWidget extends StatelessWidget {
                 time: "10:00 AM",
                 name: "Loading...",
                 specialization: "Specialization",
-                status: "pending",
+                status: "pending", imageUrl: '',
               ),
             ),
           ),

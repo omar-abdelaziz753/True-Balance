@@ -39,8 +39,7 @@ class TherapistScheduleDataWrapper {
   factory TherapistScheduleDataWrapper.fromJson(Map<String, dynamic> json) =>
       _$TherapistScheduleDataWrapperFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$TherapistScheduleDataWrapperToJson(this);
+  Map<String, dynamic> toJson() => _$TherapistScheduleDataWrapperToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -53,6 +52,8 @@ class TherapistSchedule {
 
   @JsonKey(name: "date")
   final String? date;
+
+  final UserModel? user;
 
   @JsonKey(name: "time")
   final String? time;
@@ -79,6 +80,7 @@ class TherapistSchedule {
     this.id,
     this.treatmentPlanId,
     this.date,
+    this.user,
     this.time,
     this.notes,
     this.file,
@@ -127,4 +129,30 @@ class TreatmentPlan {
       _$TreatmentPlanFromJson(json);
 
   Map<String, dynamic> toJson() => _$TreatmentPlanToJson(this);
+}
+
+@JsonSerializable()
+class UserModel {
+  final int id;
+  final String name;
+  final String email;
+  final String phone;
+  final String image;
+  final String type;
+
+  UserModel({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.image,
+    required this.type,
+  });
+
+  /// From JSON
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+
+  /// To JSON
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }
