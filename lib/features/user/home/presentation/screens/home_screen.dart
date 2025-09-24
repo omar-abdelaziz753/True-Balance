@@ -28,35 +28,43 @@ class HomeScreen extends StatelessWidget {
         notificationCount:
             context.watch<NotificationCubit>().notificationCount.toString(),
       ),
-      body: Container(
-        padding: EdgeInsets.all(20.sp),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(12.r),
-            topRight: Radius.circular(12.r),
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const BannerWidget(),
-              18.verticalSpace,
-              const RowOurservicesSeeallWidget(),
-              12.verticalSpace,
-              const OurServicesWidget(),
-              30.verticalSpace,
-              GestureDetector(
-                onTap: () => MainLayoutCubit.get(context).changeBottomNavBar(1),
-                child: const RowBestdoctorsSeeallWidget(),
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20.sp),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12.r),
+                  topRight: Radius.circular(12.r),
+                ),
               ),
-              12.verticalSpace,
-              const BestDoctorsWidget(),
-              30.verticalSpace,
-            ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const BannerWidget(),
+                    18.verticalSpace,
+                    const RowOurservicesSeeallWidget(),
+                    12.verticalSpace,
+                    const OurServicesWidget(),
+                    30.verticalSpace,
+                    GestureDetector(
+                      onTap: () =>
+                          MainLayoutCubit.get(context).changeBottomNavBar(1),
+                      child: const RowBestdoctorsSeeallWidget(),
+                    ),
+                    12.verticalSpace,
+                    const BestDoctorsWidget(),
+                    30.verticalSpace,
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
