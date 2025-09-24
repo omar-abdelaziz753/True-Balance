@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
 import 'package:truee_balance_app/features/doctors/calender/data/model/doctor_schedule_model.dart';
@@ -12,10 +14,7 @@ import 'appointment_card.dart';
 class ListWidget extends StatelessWidget {
   const ListWidget({
     super.key,
-    required this.isDoctor,
   });
-
-  final bool isDoctor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +22,9 @@ class ListWidget extends StatelessWidget {
     return BlocBuilder<CalenderCubit, CalenderState>(
       buildWhen: (previous, current) => current is BookChangeDateState,
       builder: (context, state) {
-        final items =
-            isDoctor ? cubit.doctorFiletrList : cubit.therapistFiletrList;
+        final items = CacheHelper.getData(key: CacheKeys.type) == 'doctor'
+            ? cubit.doctorFiletrList
+            : cubit.therapistFiletrList;
 
         return Expanded(
           child: items.isEmpty
@@ -42,7 +42,7 @@ class ListWidget extends StatelessWidget {
                   itemCount: items.length,
                   separatorBuilder: (_, __) => 12.verticalSpace,
                   itemBuilder: (context, index) {
-                    if (isDoctor) {
+                    if (CacheHelper.getData(key: CacheKeys.type) == 'doctor') {
                       final item = items[index] as DoctorScheduleData;
                       return AppointmentCard(
                         time: item.time ?? "",

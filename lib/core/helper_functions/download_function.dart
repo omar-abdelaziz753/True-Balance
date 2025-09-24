@@ -44,7 +44,7 @@
 //           ..backgroundColor = AppColors.neutralColor100
 //           ..indicatorColor = AppColors.primaryColor900
 //           ..textColor = Colors.black
-//           ..maskColor = Colors.black.withOpacity(0.5)
+//           ..maskColor = Colors.black.withValues(alpha:0.5)
 //           ..progressColor = AppColors.primaryColor900
 //           ..userInteractions = false;
 

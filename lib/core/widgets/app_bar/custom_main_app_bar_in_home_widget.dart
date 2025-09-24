@@ -9,6 +9,7 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/custom_count_of_no_of_notification_widget.dart';
 
+// ignore: must_be_immutable
 class CustomMainAppBarInHomeWidget extends StatefulWidget
     implements PreferredSizeWidget {
   final String userName;
