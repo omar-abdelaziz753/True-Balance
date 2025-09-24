@@ -19,8 +19,12 @@ class BannerWidget extends StatelessWidget {
           current is SliderLoading ||
           current is SliderSuccess ||
           current is SliderFailure,
-      builder: (context, state) {
+      builder: (context, state) { 
         if (state is SliderSuccess) {
+          final sliderData = cubit.sliderModel?.data ?? [];
+          if (sliderData.isEmpty) {
+            return const SizedBox.shrink();
+          }
           return Column(
             children: [
               CarouselSlider.builder(

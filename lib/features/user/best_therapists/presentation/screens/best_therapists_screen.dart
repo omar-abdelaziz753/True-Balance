@@ -90,7 +90,7 @@ class BestTherapistsScreen extends StatelessWidget {
                   if (doctors.isEmpty) {
                     return Center(
                       child: Text(
-                        'noDoctorsFound'.tr(), // أو أي نص ثابت
+                        'noDoctorsFound'.tr(),
                         style: Styles.contentBold.copyWith(
                           color: AppColors.neutralColor600,
                         ),
