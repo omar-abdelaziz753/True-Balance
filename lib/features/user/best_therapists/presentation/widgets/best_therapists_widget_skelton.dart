@@ -15,7 +15,6 @@ class BestTherapistsWidgetSkelton extends StatelessWidget {
       enabled: true,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(18.sp),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(

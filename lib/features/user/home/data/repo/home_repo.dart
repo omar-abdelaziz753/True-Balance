@@ -38,9 +38,9 @@ class HomeRepo {
   }
 
   Future<ApiResult<AllDoctorsDataModel>> getAllDoctors(
-      {required int page}) async {
+      {required int page , String ? search}) async {
     try {
-      final response = await api.getAllDoctors(page: page);
+      final response = await api.getAllDoctors(page: page , search: search);
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model = AllDoctorsDataModel.fromJson(response!.data);

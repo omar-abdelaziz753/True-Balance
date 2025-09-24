@@ -89,16 +89,16 @@ Map<String, dynamic> _$PaginationLinksToJson(PaginationLinks instance) =>
 
 PaginationMeta _$PaginationMetaFromJson(Map<String, dynamic> json) =>
     PaginationMeta(
-      currentPage: (json['current_page'] as num).toInt(),
-      from: (json['from'] as num).toInt(),
-      lastPage: (json['last_page'] as num).toInt(),
-      links: (json['links'] as List<dynamic>)
-          .map((e) => PaginationLink.fromJson(e as Map<String, dynamic>))
+      currentPage: (json['current_page'] as num?)?.toInt(),
+      from: (json['from'] as num?)?.toInt(),
+      lastPage: (json['last_page'] as num?)?.toInt(),
+      links: (json['links'] as List<dynamic>?)
+          ?.map((e) => PaginationLink.fromJson(e as Map<String, dynamic>))
           .toList(),
-      path: json['path'] as String,
-      perPage: (json['per_page'] as num).toInt(),
-      to: (json['to'] as num).toInt(),
-      total: (json['total'] as num).toInt(),
+      path: json['path'] as String?,
+      perPage: (json['per_page'] as num?)?.toInt(),
+      to: (json['to'] as num?)?.toInt(),
+      total: (json['total'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PaginationMetaToJson(PaginationMeta instance) =>

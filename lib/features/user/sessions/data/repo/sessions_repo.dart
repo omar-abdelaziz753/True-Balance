@@ -11,9 +11,12 @@ class SessionsRepo {
   SessionsRepo(this._api);
 
   /// Get All Therapist
-  Future<ApiResult<AllTherapistDataModel>> getAllTherapist() async {
+  Future<ApiResult<AllTherapistDataModel>> getAllTherapist({
+    required int page,
+    String? name,
+  }) async {
     try {
-      final response = await _api.getAllTherapist();
+      final response = await _api.getAllTherapist(page: 1 , name: name);
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model = AllTherapistDataModel.fromJson(response!.data);

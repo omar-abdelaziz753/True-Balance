@@ -88,7 +88,6 @@ class BookingDetailsScreen extends StatelessWidget {
                       DoctorDetailsWidgetBookingDetails(
                           consultation: consultation),
                       const Spacer(),
-
                       BlocBuilder<MybookCubit, MybookState>(
                         builder: (context, state) {
                           final cubit = context.watch<MybookCubit>();
@@ -100,7 +99,7 @@ class BookingDetailsScreen extends StatelessWidget {
                               text: "addRating".tr(),
                               onPressed: () async {
                                 final result =
-                                await showRatingBottomSheetForUserConsultaion(
+                                    await showRatingBottomSheetForUserConsultaion(
                                   context,
                                   consultation.id,
                                 );
@@ -123,39 +122,6 @@ class BookingDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      // bottomNavigationBar: BlocConsumer<MybookCubit, MybookState>(
-      //   listener: (context, state) {
-      //     if (state is DeleteConsultationSuccess) {
-      //       context.pushNamedAndRemoveUntil(Routes.mainLayoutScreen, arguments: 3);
-      //     }
-      //   },
-      //   builder: (context, state) {
-      //     return Container(
-      //       padding: EdgeInsets.all(18.sp),
-      //       decoration: BoxDecoration(
-      //           color: Colors.white,
-      //           boxShadow: [
-      //             BoxShadow(
-      //               offset: Offset(0, -2.h),
-      //               blurRadius: 8.r,
-      //               spreadRadius: 0,
-      //               color: Colors.black.withAlpha(20),
-      //             ),
-      //           ],
-      //           borderRadius: BorderRadius.only(
-      //
-      //           )),
-      //       child: CustomButtonWidget(
-      //         text: 'Cancel'.tr(),
-      //         onPressed: () {
-      //           context.read<MybookCubit>().deleteConsultation(
-      //               id: consultation.id);
-      //         },
-      //         color: AppColors.redColor200,
-      //       ),
-      //     );
-      //   },
-      // ),
     );
   }
 }

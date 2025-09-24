@@ -16,6 +16,8 @@ class MainLayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
+
     return BlocBuilder<MainLayoutCubit, MainLayoutState>(
       builder: (BuildContext context, state) {
         final cubit = MainLayoutCubit.get(context);
@@ -26,36 +28,32 @@ class MainLayoutScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.neutralColor100,
           body: AppRouter().screens[currentIndex],
-          floatingActionButton: GestureDetector(
-            onTap: () {
-              cubit.changeBottomNavBar(2);
-            },
-            child: Container(
-              padding: EdgeInsets.all(11.sp),
-              decoration: BoxDecoration(
-                color: AppColors.secondaryColor500,
-                shape: BoxShape.circle,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.wallet,
-                    color: AppColors.neutralColor100,
-                    size: 29.sp,
-                  )
-                  // SvgPicture.asset(
-                  //   'assets/images/svg/booking_icon.svg',
-                  //   color: AppColors.neutralColor100,
-                  //   width: 27.w,
-                  //   height: 27.h,
-                  // ),
-                ],
-              ),
-            ),
-          ),
+          floatingActionButton: isKeyboardOpen
+              ? null // يخفي الـ FAB لما الكيبورد يفتح
+              : GestureDetector(
+                  onTap: () {
+                    cubit.changeBottomNavBar(2);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(11.sp),
+                    decoration: BoxDecoration(
+                      color: AppColors.secondaryColor500,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.wallet,
+                          color: AppColors.neutralColor100,
+                          size: 29.sp,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomAppBar(

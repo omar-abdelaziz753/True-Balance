@@ -26,17 +26,20 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
     });
   }
 
-  Future<void> getAllDoctors() async {
+  String? search;
+  Future<void> getAllDoctors({String? search}) async {
     currentPage = 1;
     emit(DoctorsLoading());
 
-    final result = await _homeRepo.getAllDoctors(page: currentPage);
+    final result =
+        await _homeRepo.getAllDoctors(page: currentPage, search: search);
+    this.search = search;
 
     result.when(
       success: (data) {
         doctorsModel = data;
-        currentPage = data.data.meta.currentPage;
-        lastPage = data.data.meta.lastPage;
+        currentPage = data.data.meta.currentPage ?? 1;
+        lastPage = data.data.meta.lastPage ?? 1;
         emit(DoctorsSuccess());
       },
       failure: (error) {
@@ -51,12 +54,13 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
     isLoadingMore = true;
     emit(DoctorsLoadingMore());
 
-    final result = await _homeRepo.getAllDoctors(page: currentPage + 1);
+    final result =
+        await _homeRepo.getAllDoctors(page: currentPage + 1, search: search);
 
     result.when(
       success: (data) {
         doctorsModel?.data.data.addAll(data.data.data);
-        currentPage = data.data.meta.currentPage;
+        currentPage = data.data.meta.currentPage ?? 1;
         emit(DoctorsSuccess());
       },
       failure: (error) {

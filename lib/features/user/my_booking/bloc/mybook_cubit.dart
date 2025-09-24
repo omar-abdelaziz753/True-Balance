@@ -4,7 +4,7 @@ import 'package:truee_balance_app/core/utils/easy_loading.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 import 'package:truee_balance_app/features/user/my_booking/data/repos/repos.dart';
 
-part 'mybook__state.dart';
+part 'mybook_state.dart';
 
 class MybookCubit extends Cubit<MybookState> {
   MybookCubit(this.myBookingRepos) : super(MybookInitial());
@@ -29,12 +29,20 @@ class MybookCubit extends Cubit<MybookState> {
   }
 
   bool? isPending;
+  String? fromDate;
+  String? toDate;
+  String? doctorName;
   Future<void> getAllconsultations({required bool isPending}) async {
     currentPage = 1;
     this.isPending = isPending;
     emit(ConsultationsLoading());
     final result = await myBookingRepos.getConsultations(
-        page: currentPage, isPending: isPending);
+      page: currentPage,
+      isPending: isPending,
+      doctorName: doctorName,
+      fromDate: fromDate,
+      toDate: toDate,
+    );
 
     result.when(
       success: (data) {
@@ -57,7 +65,12 @@ class MybookCubit extends Cubit<MybookState> {
     emit(ConsultationsLoadingMore());
 
     final result = await myBookingRepos.getConsultations(
-        page: currentPage + 1, isPending: isPending!);
+      page: currentPage + 1,
+      isPending: isPending!,
+      doctorName: doctorName,
+      fromDate: fromDate,
+      toDate: toDate,
+    );
 
     result.when(
       success: (data) {

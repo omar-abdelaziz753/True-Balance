@@ -249,20 +249,20 @@ class PaginationLinks {
 @JsonSerializable()
 class PaginationMeta {
   @JsonKey(name: 'current_page')
-  final int currentPage;
-  final int from;
+  final int ? currentPage;
+  final int ? from;
 
   @JsonKey(name: 'last_page')
-  final int lastPage;
+  final int ? lastPage;
 
-  final List<PaginationLink> links;
-  final String path;
+  final List<PaginationLink> ? links;
+  final String ? path;
 
   @JsonKey(name: 'per_page')
-  final int perPage;
+  final int  ?perPage;
 
-  final int to;
-  final int total;
+  final int ?  to;
+  final int ? total;
 
   PaginationMeta({
     required this.currentPage,
