@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 
 class CustomBookingContainerWidget extends StatelessWidget {
-  final String specialization;
-  final String doctorName;
-  final double rating;
-  final String ratingText;
-  final Widget image;
+  final String date;
+  final String time;
+  final String status;
 
   const CustomBookingContainerWidget({
     super.key,
-    required this.specialization,
-    required this.doctorName,
-    required this.rating,
-    required this.ratingText,
-    required this.image,
+    required this.date,
+    required this.time,
+    required this.status,
   });
 
   @override
   Widget build(BuildContext context) {
-    return
-     Container(
+    return Container(
       width: double.infinity,
       padding: EdgeInsets.all(12.sp),
       decoration: BoxDecoration(
@@ -42,44 +36,26 @@ class CustomBookingContainerWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
+      child: Column(
+        spacing: 6.h,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          image,
-          12.horizontalSpace,
-          Expanded(
-            child: Column(
-              spacing: 4.h,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  doctorName,
-                  style: Styles.contentBold.copyWith(
-                    color: AppColors.neutralColor1000,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  specialization,
-                  style: Styles.footnoteEmphasis.copyWith(
-                    color: AppColors.neutralColor600,
-                  ),
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/svg/star_icon.svg',
-                    ),
-                    Text(
-                      ' $rating | ($ratingText)',
-                      style: Styles.footnoteEmphasis.copyWith(
-                        color: AppColors.neutralColor600,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+          Text(
+            "Date: $date",
+            style: Styles.contentBold.copyWith(
+              color: AppColors.neutralColor1000,
             ),
+          ),
+          Text(
+            "Time: $time",
+            style: Styles.footnoteEmphasis.copyWith(
+              color: AppColors.neutralColor600,
+            ),
+          ),
+          Text(
+            "Status: $status",
+            style: Styles.footnoteEmphasis.copyWith(
+                color: status == "pending" ? Colors.orange : Colors.green),
           ),
         ],
       ),
