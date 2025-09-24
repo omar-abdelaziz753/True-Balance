@@ -58,6 +58,7 @@ class SessionsDetailsRepo {
       }
     }
 
+    
     return ApiResult.failure(
       FailureException(errMessage: 'Unexpected error occurred'),
     );

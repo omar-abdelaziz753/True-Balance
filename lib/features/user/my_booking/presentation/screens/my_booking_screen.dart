@@ -7,7 +7,6 @@ import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 import 'package:truee_balance_app/features/user/my_booking/presentation/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/custom_booking_container_widget.dart';
@@ -70,16 +69,10 @@ class MyBookingScreen extends StatelessWidget {
                                 return GestureDetector(
                                   onTap: () => context
                                       .pushNamed(Routes.bookingDetailsScreen),
-                                  child: CustomBookingContainerWidget(
-                                    specialization: 'specialization'.tr(),
-                                    doctorName: 'Ahmed Adel',
-                                    rating: 4.8,
-                                    ratingText: '4,479 ${'rate'.tr()}',
-                                    image: Image.asset(
-                                        width: 95.w,
-                                        height: 95.h,
-                                        "assets/images/png/profile_image_booking.png"),
-                                  ),
+                                  child: const CustomBookingContainerWidget(
+                                      date: "2024-10-10",
+                                      time: "4:00 pm",
+                                      status: "pending"),
                                 );
                               },
                             ),
@@ -138,10 +131,6 @@ class MyBookingScreen extends StatelessWidget {
                                     18.verticalSpace,
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
-                                    // onTap: () => context.pushNamed(
-                                    //     Routes.bookingDetailsScreen,
-                                    //     arguments: cubit.consultationsResponse!
-                                    //         .data.data[index]),
                                     onTap: () {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -159,29 +148,12 @@ class MyBookingScreen extends StatelessWidget {
                                       );
                                     },
                                     child: CustomBookingContainerWidget(
-                                      specialization: cubit
-                                          .consultationsResponse!
-                                          .data
-                                          .data[index]
-                                          .doctor
-                                          .specialization,
-                                      doctorName: cubit.consultationsResponse!
-                                          .data.data[index].doctor.name,
-                                      rating: cubit.consultationsResponse!.data
-                                          .data[index].doctor.rate
-                                          .toDouble(),
-                                      ratingText:
-                                          '${cubit.consultationsResponse!.data.data[index].doctor.rateCount} ${'rate'.tr()}',
-                                      image: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(12.r),
-                                        child: CacheNetworkImagesWidget(
-                                          image: cubit.consultationsResponse!
-                                              .data.data[index].doctor.image,
-                                          width: 95.w,
-                                          height: 95.h,
-                                        ),
-                                      ),
+                                      date: cubit.consultationsResponse!.data
+                                          .data[index].date,
+                                      time: cubit.consultationsResponse!.data
+                                          .data[index].time,
+                                      status: cubit.consultationsResponse!.data
+                                          .data[index].status,
                                     ),
                                   );
                                 },
