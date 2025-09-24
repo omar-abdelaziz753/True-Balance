@@ -9,9 +9,9 @@ class HomeApiServices {
     return _dioFactory.get(endPoint: EndPoints.getSliders);
   }
 
-  Future<Response?> getAllDoctors({required int page}) async {
+  Future<Response?> getAllDoctors({required int page , String? search}) async {
     return _dioFactory
-        .get(endPoint: EndPoints.getDoctors, data: {'page': page});
+        .get(endPoint: EndPoints.getDoctors, data: {'page': page , "search" : search});
   }
 
   Future<Response?> getAllServices({required int page}) async {

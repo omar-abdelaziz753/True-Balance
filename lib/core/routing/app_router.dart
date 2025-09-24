@@ -348,7 +348,9 @@ class AppRouter {
       child: const BestTherapistsScreen(),
     ),
     BlocProvider(
-      create: (context) => SessionsCubit(getIt())..getAllTherapist(),
+      create: (context) => SessionsCubit(getIt())
+        ..getAllTherapist()
+        ..setupTherapistScrollController(),
       child: const AllTherapistScreen(),
     ),
     BlocProvider(

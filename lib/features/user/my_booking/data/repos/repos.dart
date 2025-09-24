@@ -11,11 +11,21 @@ class MyBookingRepos {
   MyBookingRepos(this.myBookingApiServices);
 
   /// Get Consultations
-  Future<ApiResult<ConsultationsResponse>> getConsultations(
-      {required int page, required bool isPending}) async {
+  Future<ApiResult<ConsultationsResponse>> getConsultations({
+    required int page,
+    required bool isPending,
+    String? fromDate,
+    String? toDate,
+    String? doctorName,
+  }) async {
     try {
       final response = await myBookingApiServices.getAllConsultations(
-          page: page, isPending: isPending);
+        page: page,
+        isPending: isPending,
+        doctorName: doctorName,
+        fromDate: fromDate,
+        toDate: toDate,
+      );
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final model = ConsultationsResponse.fromJson(response!.data);
