@@ -34,7 +34,7 @@ class AppointmentsScreen extends StatelessWidget {
                   },
                 )
               : const SizedBox.shrink(),
-          title: 'appointments'.tr(),
+          title: 'patinets'.tr(),
           backgroundColor: AppColors.primaryColor900,
           svgAsset: 'assets/images/svg/bg_image.svg',
         ),
