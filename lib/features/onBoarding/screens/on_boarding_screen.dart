@@ -96,7 +96,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                     onPressed: () {
                       CacheHelper.saveData(
                           key: CacheKeys.isFirstOpen, value: true);
-                      context.pushNamedAndRemoveUntil(Routes.loginScreen);
+                      context.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
                     },
                     child: Text(
                       'skip'.tr(),
@@ -259,7 +259,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                                           key: CacheKeys.isFirstOpen,
                                           value: true);
                                       context.pushNamedAndRemoveUntil(
-                                          Routes.loginScreen);
+                                          Routes.mainLayoutScreen);
                                     } else {
                                       _animateToPage(
                                           onBoardingCubit.onBoardingIndex + 1);

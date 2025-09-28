@@ -8,32 +8,31 @@ void navigateBasedOnRole() {
   final rawType = CacheHelper.getData(key: CacheKeys.type);
   final type = (rawType ?? '').toString().trim().toLowerCase();
   AppConstants.userMainLayoutInitialScreenIndex = 0;
-  if (AppConstants.userToken == null) {
-    final isFirstOpen =
-        CacheHelper.getData(key: CacheKeys.isFirstOpen) ?? false;
-    if (isFirstOpen) {
+  final isFirstOpen = CacheHelper.getData(key: CacheKeys.isFirstOpen) ?? false;
+  if (isFirstOpen) {
+    if (AppConstants.userToken == null) {
       AppConstants.navigatorKey.currentContext
-          ?.pushNamedAndRemoveUntil(Routes.loginScreen);
+          ?.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
     } else {
-      AppConstants.navigatorKey.currentContext
-          ?.pushNamedAndRemoveUntil(Routes.onBoardingScreen);
+      switch (type) {
+        case 'user':
+          AppConstants.navigatorKey.currentContext
+              ?.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
+          break;
+        case 'doctor':
+          AppConstants.navigatorKey.currentContext
+              ?.pushNamedAndRemoveUntil(Routes.mainLayoutDoctorsScreen);
+        case 'therapist':
+          AppConstants.navigatorKey.currentContext
+              ?.pushNamedAndRemoveUntil(Routes.mainLayoutDoctorsScreen);
+          break;
+        default:
+          AppConstants.navigatorKey.currentContext
+              ?.pushNamedAndRemoveUntil(Routes.loginScreen);
+      }
     }
   } else {
-    switch (type) {
-      case 'user':
-        AppConstants.navigatorKey.currentContext
-            ?.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
-        break;
-      case 'doctor':
-        AppConstants.navigatorKey.currentContext
-            ?.pushNamedAndRemoveUntil(Routes.mainLayoutDoctorsScreen);
-      case 'therapist':
-        AppConstants.navigatorKey.currentContext
-            ?.pushNamedAndRemoveUntil(Routes.mainLayoutDoctorsScreen);
-        break;
-      default:
-        AppConstants.navigatorKey.currentContext
-            ?.pushNamedAndRemoveUntil(Routes.loginScreen);
-    }
+    AppConstants.navigatorKey.currentContext
+        ?.pushNamedAndRemoveUntil(Routes.onBoardingScreen);
   }
 }

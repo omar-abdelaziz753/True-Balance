@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:truee_balance_app/core/widgets/please%20login%20Buttom/please_login_buttom.dart';
 import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 import 'package:truee_balance_app/features/user/my_booking/presentation/screens/booking_details_screen.dart';
 import 'package:truee_balance_app/features/user/my_booking/presentation/widgets/custom_booking_container_widget.dart';
@@ -29,22 +31,24 @@ class MyBookingScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.primaryColor900,
           appBar: CustomBasicAppBar(
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.filter_list, color: Colors.white),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context, isScrollControlled: true, // ✨ مهم
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(16.r)),
+            actions: AppConstants.userToken == null
+                ? []
+                : [
+                    IconButton(
+                      icon: const Icon(Icons.filter_list, color: Colors.white),
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context, isScrollControlled: true, // ✨ مهم
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16.r)),
+                          ),
+                          builder: (context) => FilterBottomSheet(cubit: cubit),
+                        );
+                      },
                     ),
-                    builder: (context) => FilterBottomSheet(cubit: cubit),
-                  );
-                },
-              ),
-            ],
+                  ],
             leading: Navigator.canPop(context)
                 ? BackButton(
                     color: AppColors.neutralColor100,
@@ -73,64 +77,67 @@ class MyBookingScreen extends StatelessWidget {
                   constraints: BoxConstraints(
                     minHeight: constraints.maxHeight,
                   ),
-                  child: cubit.consultationsResponse?.data.data.isEmpty == true
-                      ? Center(child: Text('noBooking'.tr()))
-                      : Column(
-                          children: [
-                            Expanded(
-                              child: ListView.separated(
-                                controller: cubit.consultationsScrollController,
-                                shrinkWrap: true,
-                                itemCount: cubit
-                                    .consultationsResponse!.data.data.length,
-                                separatorBuilder: (context, index) =>
-                                    18.verticalSpace,
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              BlocProvider.value(
-                                            value: cubit,
-                                            child: BookingDetailsScreen(
-                                              consultation: cubit
-                                                  .consultationsResponse!
-                                                  .data
-                                                  .data[index],
+                  child: AppConstants.userToken != null
+                      ? cubit.consultationsResponse?.data.data.isEmpty == true
+                          ? Center(child: Text('noBooking'.tr()))
+                          : Column(
+                              children: [
+                                Expanded(
+                                  child: ListView.separated(
+                                    controller:
+                                        cubit.consultationsScrollController,
+                                    shrinkWrap: true,
+                                    itemCount: cubit.consultationsResponse!.data
+                                        .data.length,
+                                    separatorBuilder: (context, index) =>
+                                        18.verticalSpace,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BlocProvider.value(
+                                                value: cubit,
+                                                child: BookingDetailsScreen(
+                                                  consultation: cubit
+                                                      .consultationsResponse!
+                                                      .data
+                                                      .data[index],
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                          );
+                                        },
+                                        child: CustomBookingContainerWidget(
+                                          date: cubit.consultationsResponse!
+                                              .data.data[index].date,
+                                          time: cubit.consultationsResponse!
+                                              .data.data[index].time,
+                                          status: cubit.consultationsResponse!
+                                              .data.data[index].status,
                                         ),
                                       );
                                     },
-                                    child: CustomBookingContainerWidget(
-                                      date: cubit.consultationsResponse!.data
-                                          .data[index].date,
-                                      time: cubit.consultationsResponse!.data
-                                          .data[index].time,
-                                      status: cubit.consultationsResponse!.data
-                                          .data[index].status,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            BlocBuilder<MybookCubit, MybookState>(
-                              buildWhen: (previous, current) =>
-                                  current is ConsultationsLoadingMore ||
-                                  current is ConsultationsSuccess,
-                              builder: (context, state) {
-                                if (state is ConsultationsLoadingMore) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
+                                  ),
+                                ),
+                                BlocBuilder<MybookCubit, MybookState>(
+                                  buildWhen: (previous, current) =>
+                                      current is ConsultationsLoadingMore ||
+                                      current is ConsultationsSuccess,
+                                  builder: (context, state) {
+                                    if (state is ConsultationsLoadingMore) {
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
 
-                                return const SizedBox.shrink();
-                              },
-                            ),
-                          ],
-                        ),
+                                    return const SizedBox.shrink();
+                                  },
+                                ),
+                              ],
+                            )
+                      : const PleaseLoginButtom(),
                 );
               },
             ),

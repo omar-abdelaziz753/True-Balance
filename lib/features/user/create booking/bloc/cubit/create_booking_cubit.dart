@@ -47,7 +47,7 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
     );
     result.when(
       success: (data) {
-        freeSlotsModel = data;
+        freeSlotsModel = data;  
         emit(SlotsLoadedState());
       },
       failure: (error) {
