@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/create_new_password_screen.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/forget_password_screen.dart';
@@ -332,7 +333,15 @@ class AppRouter {
 
   List<Widget> screens = [
     BlocProvider(
-      create: (context) => NotificationCubit(getIt())..getNotifications(),
+      create: (context) {
+        final cubit = NotificationCubit(getIt());
+
+        if (AppConstants.userToken != null) {
+          cubit.getNotifications();
+        }
+
+        return cubit;
+      },
       child: BlocProvider(
         create: (context) => HomeCubit(getIt())
           ..getAllDoctors()
@@ -347,18 +356,44 @@ class AppRouter {
         ..setupDoctorsScrollController(),
       child: const BestTherapistsScreen(),
     ),
+    // BlocProvider(
+    //   create: (context) => SessionsCubit(getIt())
+    //     ..getAllTherapist()
+    //     ..setupTherapistScrollController(),
+    //   child: const AllTherapistScreen(),
+    // ),
+    // BlocProvider(
+    //   create: (context) => MybookCubit(getIt())
+    //     ..getAllconsultations(isPending: true)
+    //     ..setupConsultationsScrollController(),
+    //   child: const MyBookingScreen(),
+    // ),
     BlocProvider(
-      create: (context) => SessionsCubit(getIt())
-        ..getAllTherapist()
-        ..setupTherapistScrollController(),
+      create: (context) {
+        final cubit = SessionsCubit(getIt())..setupTherapistScrollController();
+
+        if (AppConstants.userToken != null) {
+          cubit.getAllTherapist();
+        }
+
+        return cubit;
+      },
       child: const AllTherapistScreen(),
     ),
     BlocProvider(
-      create: (context) => MybookCubit(getIt())
-        ..getAllconsultations(isPending: true)
-        ..setupConsultationsScrollController(),
+      create: (context) {
+        final cubit = MybookCubit(getIt())
+          ..setupConsultationsScrollController();
+
+        if (AppConstants.userToken != null) {
+          cubit.getAllconsultations(isPending: true);
+        }
+
+        return cubit;
+      },
       child: const MyBookingScreen(),
     ),
+
     const SettingScreen(),
   ];
 

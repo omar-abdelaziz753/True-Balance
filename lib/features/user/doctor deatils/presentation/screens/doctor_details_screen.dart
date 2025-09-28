@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
@@ -43,16 +45,19 @@ class DoctorDetailsScreen extends StatelessWidget {
               svgAsset: 'assets/images/svg/bg_image.svg',
             ),
             body: const SkeletonizerForDoctorDetails(),
-            bottomNavigationBar: Container(
-              color: Colors.white,
-              child: CustomButtonWidget(
-                margin:
-                    EdgeInsets.only(bottom: 20.sp, left: 20.sp, right: 20.sp),
-                text: 'booking'.tr(),
-                textStyle: Styles.captionEmphasis.copyWith(
-                  color: AppColors.neutralColor100,
+            bottomNavigationBar: Skeletonizer(
+              enabled: true,
+              child: Container(
+                color: Colors.white,
+                child: CustomButtonWidget(
+                  margin:
+                      EdgeInsets.only(bottom: 20.sp, left: 20.sp, right: 20.sp),
+                  text: 'booking'.tr(),
+                  textStyle: Styles.captionEmphasis.copyWith(
+                    color: AppColors.neutralColor100,
+                  ),
+                  onPressed: () {},
                 ),
-                onPressed: () {},
               ),
             ),
           );
@@ -127,20 +132,23 @@ class DoctorDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: Container(
-            color: Colors.white,
-            child: CustomButtonWidget(
-              margin: EdgeInsets.only(bottom: 20.sp, left: 20.sp, right: 20.sp),
-              text: 'booking'.tr(),
-              textStyle: Styles.captionEmphasis.copyWith(
-                color: AppColors.neutralColor100,
-              ),
-              onPressed: () {
-                context.pushNamed(Routes.bookingScreen,
-                    arguments: cubit.doctorDetails!.data);
-              },
-            ),
-          ),
+          bottomNavigationBar: AppConstants.userToken == null
+              ? const SizedBox.shrink()
+              : Container(
+                  color: Colors.white,
+                  child: CustomButtonWidget(
+                    margin: EdgeInsets.only(
+                        bottom: 20.sp, left: 20.sp, right: 20.sp),
+                    text: 'booking'.tr(),
+                    textStyle: Styles.captionEmphasis.copyWith(
+                      color: AppColors.neutralColor100,
+                    ),
+                    onPressed: () {
+                      context.pushNamed(Routes.bookingScreen,
+                          arguments: cubit.doctorDetails!.data);
+                    },
+                  ),
+                ),
         );
       },
     );

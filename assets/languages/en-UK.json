@@ -24,7 +24,9 @@
   "canceled": "Canceled",
   "noDetails": " No Details Available",
   "filter": "Filter"
+  
   ,
+  "Pleaselogin": "Please login ",
   "noDoctorsFound": "No Doctors Found",
   "submit": "Submit",
   "accountInformation": "Account Information",

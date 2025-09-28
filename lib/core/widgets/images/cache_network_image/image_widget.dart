@@ -69,6 +69,7 @@
 // }
 
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -132,7 +133,7 @@ class CacheNetworkImagesWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius:
-                  BorderRadius.circular(AppConstants.borderRadius),
+                      BorderRadius.circular(AppConstants.borderRadius),
                 ),
               ),
             );

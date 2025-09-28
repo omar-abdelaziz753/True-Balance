@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,10 +7,9 @@ import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/features/user/home/presentation/widgets/custom_count_of_no_of_notification_widget.dart';
 
-// ignore: must_be_immutable
 class CustomMainAppBarInHomeWidget extends StatefulWidget
     implements PreferredSizeWidget {
   final String userName;
@@ -39,7 +39,6 @@ class _CustomMainAppBarInHomeWidgetState
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        /// Background color and image
         Container(
           height: 180.h,
           color: AppColors.primaryColor900,
@@ -52,8 +51,6 @@ class _CustomMainAppBarInHomeWidgetState
             ),
           ),
         ),
-
-        /// Content
         Padding(
           padding: EdgeInsets.only(top: 60.h, left: 18.w, right: 18.w),
           child: Row(
@@ -67,38 +64,36 @@ class _CustomMainAppBarInHomeWidgetState
                     Row(
                       spacing: 8.w,
                       children: [
-                        /// Profile Image
                         ClipRRect(
                           borderRadius: BorderRadius.circular(25.r),
-                          // child: CachedNetworkImage(
-                          //     imageUrl: widget.profileImageAsset,
-                          //     width: 50.w,
-                          //     height: 50.h,
-                          //     errorWidget: (context, url, error) => Icon(
-                          //           Icons.error,
-                          //           size: 50.sp,
-                          //           color: Colors.grey,
-                          //         )),
-                          child: CacheNetworkImagesWidget(
-                            image: widget.profileImageAsset,
-                            width: 50.w,
-                            height: 50.h,
-                            isFile: false,
-                          ),
-                          // CacheNetworkImagesWidget(
-                          //   image: profileImageAsset,
-                          //   width: 50.w,
-                          //   height: 50.h,
-                          // )
-                          // Image.asset(
-                          //   profileImageAsset,
-                          //   width: 50.w,
-                          //   height: 50.h,
-                          //   fit: BoxFit.cover,
-                          // ),
+                          child: AppConstants.userToken == null
+                              ? Image.asset(
+                                  "assets/images/png/profile2.png",
+                                  width: 50.w,
+                                  height: 50.h,
+                                  fit: BoxFit.cover,
+                                )
+                              : CachedNetworkImage(
+                                  imageUrl: widget.profileImageAsset,
+                                  width: 50.w,
+                                  height: 50.h,
+                                  fit: BoxFit.cover,
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error), //
+                                ),
                         ),
 
-                        /// Welcome text and name
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(25.r),
+                        //   child: CachedNetworkImage(
+                        //     imageUrl: widget.profileImageAsset,
+                        //     width: 50.w,
+                        //     height: 50.h,
+                        //     fit: BoxFit.cover,
+                        //     errorWidget: (context, url, error) =>
+                        //         const Icon(Icons.error),
+                        //   ),
+                        // ),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +106,9 @@ class _CustomMainAppBarInHomeWidgetState
                               ),
                               4.verticalSpace,
                               Text(
-                                widget.userName,
+                                AppConstants.userToken == null
+                                    ? 'guest'.tr()
+                                    : widget.userName,
                                 style: Styles.contentEmphasis.copyWith(
                                   color: AppColors.neutralColor100,
                                 ),
@@ -122,44 +119,23 @@ class _CustomMainAppBarInHomeWidgetState
                         )
                       ],
                     ),
-                    // Row(
-                    //   children: [
-                    //     Text(
-                    //       'yourLocation'.tr(),
-                    //       style: Styles.footnoteRegular.copyWith(
-                    //         color: AppColors.neutralColor100,
-                    //       ),
-                    //     ),
-                    //     Text(
-                    //       location,
-                    //       style: Styles.captionRegular.copyWith(
-                    //         color: AppColors.neutralColor100,
-                    //       ),
-                    //     ),
-                    //     Icon(
-                    //       Icons.keyboard_arrow_down_rounded,
-                    //       color: Colors.white,
-                    //       size: 16.sp,
-                    //     )
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
-
-              /// Notification Bell with Badge
               Stack(
                 clipBehavior: Clip.none,
                 children: [
                   InkWell(
                     onTap: () {
-                      context
-                          .pushNamed(Routes.notificationsScreen)
-                          .then((context) {
-                        setState(() {
-                          widget.notificationCount = 0.toString();
+                      if (AppConstants.userToken != null) {
+                        context
+                            .pushNamed(Routes.notificationsScreen)
+                            .then((context) {
+                          setState(() {
+                            widget.notificationCount = 0.toString();
+                          });
                         });
-                      });
+                      }
                     },
                     child: Container(
                       width: 48.w,
