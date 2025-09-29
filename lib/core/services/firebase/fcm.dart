@@ -41,7 +41,7 @@ class PushNotificationService {
 
   Future<void> initLocalNotifications() async {
     const AndroidInitializationSettings androidSettings =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/launcher_icon');
 
     const InitializationSettings initSettings =
         InitializationSettings(android: androidSettings);
@@ -75,7 +75,7 @@ class PushNotificationService {
     );
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      handleMessage(message);
+      // handleMessage(message);
       final notification = message.notification;
       if (notification != null) {
         notificationSnackBar(
@@ -87,7 +87,6 @@ class PushNotificationService {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
-
   }
 
   Future<void> initialize() async {

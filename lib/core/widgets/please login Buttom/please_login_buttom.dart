@@ -11,6 +11,7 @@ class PleaseLoginButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CustomButtonWidget(
+        margin: const EdgeInsets.symmetric(horizontal: 20),
         text: "Pleaselogin".tr(),
         onPressed: () {
           context.pushNamed(Routes.loginScreen);

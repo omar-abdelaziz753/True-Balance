@@ -133,26 +133,24 @@ class TreatmentPlan {
 
 @JsonSerializable()
 class UserModel {
-  final int id;
-  final String name;
-  final String email;
-  final String phone;
-  final String image;
-  final String type;
+  final int? id;
+  final String? name;
+  final String? email;
+  final String? phone;
+  final String? image;
+  final String? type;
 
   UserModel({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.phone,
-    required this.image,
-    required this.type,
+    this.id,
+    this.name,
+    this.email,
+    this.phone,
+    this.image,
+    this.type,
   });
 
-  /// From JSON
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 
-  /// To JSON
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }
