@@ -37,7 +37,7 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
   }
 
   void _submit() async {
-    if (_evaluationController.text.isEmpty || _selectedFile == null) {
+    if (_evaluationController.text.isEmpty) {
       customToast(
           msg: 'pleaseenterallrequiredfields'.tr(),
           color: AppColors.redColor100);
@@ -48,7 +48,7 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
         await context.read<AppointmentsDetailsCubit>().completeConsultation(
               consultationId: widget.consultationId,
               doctorEvaluation: _evaluationController.text,
-              file: _selectedFile!,
+              file: _selectedFile,
             );
 
     if (success) {
@@ -60,42 +60,48 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20.sp),
+      padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+          top: 20.sp,
+          left: 20.sp,
+          right: 20.sp),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomTextFormFieldWidget(
-            controller: _evaluationController,
-            labelText: 'doctorEvaluation'.tr(),
-          ),
-          SizedBox(height: 16.h),
-          Row(
-            children: [
-              ElevatedButton.icon(
-                onPressed: _pickFile,
-                icon: const Icon(Icons.upload_file),
-                label: Text('uploadFile'.tr()),
-              ),
-              SizedBox(width: 12.w),
-              if (_selectedFile != null)
-                Expanded(
-                  child: Text(
-                    _selectedFile!.path.split('/').last,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomTextFormFieldWidget(
+              controller: _evaluationController,
+              labelText: 'doctorEvaluation'.tr(),
+            ),
+            SizedBox(height: 16.h),
+            Row(
+              children: [
+                ElevatedButton.icon(
+                  onPressed: _pickFile,
+                  icon: const Icon(Icons.upload_file),
+                  label: Text('uploadFile'.tr()),
                 ),
-            ],
-          ),
-          SizedBox(height: 24.h),
-          CustomButtonWidget(
-            onPressed: _submit,
-            text: 'Submit'.tr(),
-          ),
-        ],
+                SizedBox(width: 12.w),
+                if (_selectedFile != null)
+                  Expanded(
+                    child: Text(
+                      _selectedFile!.path.split('/').last,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+              ],
+            ),
+            SizedBox(height: 24.h),
+            CustomButtonWidget(
+              onPressed: _submit,
+              text: 'Submit'.tr(),
+            ),
+          ],
+        ),
       ),
     );
   }

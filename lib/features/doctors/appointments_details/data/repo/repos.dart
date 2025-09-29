@@ -43,7 +43,7 @@ class AppointmentsDetailsRepos {
   Future<ApiResult<String>> consultationAccess({
     required int consultationId,
     required String doctorEvaluation,
-    required File file,
+    required File? file,
   }) async {
     try {
       final response = await appointmentsApiServices.consultationAccess(

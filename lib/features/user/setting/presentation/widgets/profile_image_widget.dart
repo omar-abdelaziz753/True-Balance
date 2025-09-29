@@ -40,7 +40,7 @@ class ProfileImageWidget extends StatelessWidget {
                     // ),
                     child: CacheNetworkImagesWidget(
                       image: cubit.profileImage?.path == ''
-                          ? '"assets/images/png/profile2.png",'
+                          ? "assets/images/png/profile2.png"
                           : cubit.profileImage!.path,
                       width: 90.r,
                       height: 90.r,
