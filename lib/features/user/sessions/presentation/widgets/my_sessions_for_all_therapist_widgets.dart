@@ -19,7 +19,11 @@ class MySessionsForAllTherapistWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(Routes.treatmentplansScreen, arguments: data.id!);
+        context
+            .pushNamed(Routes.treatmentplansScreen, arguments: data.id!)
+            .then((value) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        });
       },
       child: Container(
         width: double.infinity,
@@ -44,8 +48,7 @@ class MySessionsForAllTherapistWidgets extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12.r),
-              child: 
-              CachedNetworkImage(
+              child: CachedNetworkImage(
                 imageUrl: data.image!,
                 width: 55.w,
                 height: 55.h,

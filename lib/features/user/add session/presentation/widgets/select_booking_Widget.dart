@@ -104,7 +104,7 @@ class SelectBookingWidget extends StatelessWidget {
                       children: [
                         DetailsRowWidget(
                           label:
-                              "Session ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
+                              "${"Session".tr()} ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
                           value: "",
                         ),
                         const Spacer(),
@@ -145,7 +145,7 @@ class SelectBookingWidget extends StatelessWidget {
                           ],
                         ),
                         child: DetailsRowWidget(
-                          label: "session Date",
+                          label: "date".tr(),
                           value: "${selectedSession.date} ",
                         ),
                       ),
@@ -168,7 +168,7 @@ class SelectBookingWidget extends StatelessWidget {
                           ],
                         ),
                         child: DetailsRowWidget(
-                          label: "session time",
+                          label: "time".tr(),
                           value: "${selectedSession.time} ",
                         ),
                       )

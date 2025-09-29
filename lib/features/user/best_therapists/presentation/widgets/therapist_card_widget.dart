@@ -21,7 +21,11 @@ class TherapistCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(Routes.doctorDetailsScreen, arguments: doctorModel);
+        context
+            .pushNamed(Routes.doctorDetailsScreen, arguments: doctorModel)
+            .then((value) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        });
       },
       child: Container(
         width: double.infinity,

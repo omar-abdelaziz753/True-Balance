@@ -88,21 +88,27 @@ class TreatmentDetailsScreen extends StatelessWidget {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        ListView.separated(
-                            padding: EdgeInsets.all(12.sp),
-                            itemBuilder: (context, index) => SeeDetailsWidget(
-                                  session: cubit.upcomingSessions[index],
-                                ),
-                            separatorBuilder: (context, index) =>
-                                18.verticalSpace,
-                            itemCount: cubit.upcomingSessions.length),
-                        ListView.separated(
-                            itemBuilder: (context, index) => SeeDetailsWidget(
-                                  session: cubit.completedSessions[index],
-                                ),
-                            separatorBuilder: (context, index) =>
-                                18.verticalSpace,
-                            itemCount: cubit.completedSessions.length),
+                        cubit.upcomingSessions.isEmpty
+                            ? Center(child: Text('noUpcomingSessions'.tr()))
+                            : ListView.separated(
+                                padding: EdgeInsets.all(12.sp),
+                                itemBuilder: (context, index) =>
+                                    SeeDetailsWidget(
+                                      session: cubit.upcomingSessions[index],
+                                    ),
+                                separatorBuilder: (context, index) =>
+                                    18.verticalSpace,
+                                itemCount: cubit.upcomingSessions.length),
+                        cubit.completedSessions.isEmpty
+                            ? Center(child: Text('noCompletedSessions'.tr()))
+                            : ListView.separated(
+                                itemBuilder: (context, index) =>
+                                    SeeDetailsWidget(
+                                      session: cubit.completedSessions[index],
+                                    ),
+                                separatorBuilder: (context, index) =>
+                                    18.verticalSpace,
+                                itemCount: cubit.completedSessions.length),
                       ],
                     ),
                   ),
@@ -127,7 +133,7 @@ class TreatmentDetailsScreen extends StatelessWidget {
                         text: 'bookNewSession'.tr(),
                       ),
                 ],
-              ), 
+              ),
             ),
           ),
         );
