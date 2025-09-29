@@ -56,17 +56,67 @@ class SessionListTherapistWidget extends StatelessWidget {
             child: Row(
               spacing: 10.sp,
               children: [
-                Expanded(
-                  child: Text(
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    '${'Session'.tr()} ${index + 1}',
-                    style: Styles.captionEmphasis.copyWith(
-                      color: AppColors.neutralColor1000,
+                // Expanded(
+                //   child: Text(
+                //     overflow: TextOverflow.ellipsis,
+                //     maxLines: 2,
+                //     '${'Session'.tr()} ${index + 1}',
+                //     style: Styles.captionEmphasis.copyWith(
+                //       color: AppColors.neutralColor1000,
+                //     ),
+                //   ),
+                // ),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "${"date".tr()} : ", // النص الأساسي (label)
+                            style: Styles.captionEmphasis.copyWith(
+                              color: AppColors.neutralColor700,
+                            ),
+                          ),
+                          TextSpan(
+                            text: cubit.treatmentSessionsResponseForTherapists!
+                                    .data!.data![index].date ??
+                                "",
+                            style: Styles.captionEmphasis.copyWith(
+                              color: AppColors
+                                  .neutralColor1000, // لون مختلف للـ data
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 4),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "${"time".tr()} : ",
+                            style: Styles.captionEmphasis.copyWith(
+                              color: AppColors.neutralColor700,
+                            ),
+                          ),
+                          TextSpan(
+                            text: cubit.treatmentSessionsResponseForTherapists!
+                                    .data!.data![index].time ??
+                                "",
+                            style: Styles.captionEmphasis.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                // const Spacer(),
+
+                const Spacer(),
                 Text(
                   "seeDetails".tr(),
                   style: TextStyle(

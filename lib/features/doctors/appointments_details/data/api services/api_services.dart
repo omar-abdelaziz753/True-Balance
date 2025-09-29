@@ -17,28 +17,51 @@ class AppointmentsDetailsApiServices {
         data: {'page': page});
   }
 
+// Future<Response?> consultationAccess({
+//   required int consultationId,
+//   required String doctorEvaluation,
+//   required File ?  file,
+// }) async {
+//   String fileName = file.path.split('/').last;
 
+//   FormData formData = FormData.fromMap({
+//     "consultation_id": consultationId,
+//     "doctor_evaluation": doctorEvaluation,
+//     "file": await MultipartFile.fromFile(
+//       file.path,
+//       filename: fileName,
+//     ),
+//   });
 
-Future<Response?> consultationAccess({
-  required int consultationId,
-  required String doctorEvaluation,
-  required File file,
-}) async {
-  String fileName = file.path.split('/').last;
+//   return _dioHelper.post(
+//     endPoint: EndPoints.consultationAccess,
+//     data: formData,
+//   );
+  Future<Response?> consultationAccess({
+    required int consultationId,
+    required String doctorEvaluation,
+    File? file, // nullable
+  }) async {
+    final formDataMap = {
+      "consultation_id": consultationId,
+      "doctor_evaluation": doctorEvaluation,
+    };
 
-  FormData formData = FormData.fromMap({
-    "consultation_id": consultationId,
-    "doctor_evaluation": doctorEvaluation,
-    "file": await MultipartFile.fromFile(
-      file.path,
-      filename: fileName,
-    ),
-  });
+    if (file != null) {
+      String fileName = file.path.split('/').last;
+      formDataMap["file"] = await MultipartFile.fromFile(
+        file.path,
+        filename: fileName,
+      );
+    }
 
-  return _dioHelper.post(
-    endPoint: EndPoints.consultationAccess,
-    data: formData,
-  );
-}
+    FormData formData = FormData.fromMap(formDataMap);
 
+    return _dioHelper.post(
+      endPoint: EndPoints.consultationAccess,
+      data: formData,
+    );
+  }
+
+// }
 }

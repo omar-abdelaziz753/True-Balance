@@ -1,8 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
 import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
 
 class UserWidgetTheripst extends StatelessWidget {
@@ -36,11 +36,13 @@ class UserWidgetTheripst extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
             child: Hero(
-              tag: userData.image!.toString(),
-              child: CacheNetworkImagesWidget(
-                image: userData.image!,
+              tag: userData.image ?? "",
+              child: CachedNetworkImage(
+                imageUrl: userData.image ?? "",
                 width: 55.w,
                 height: 55.h,
+                errorWidget: (context, url, error) =>
+                    Image.asset("assets/images/png/profile2.png"),
               ),
             ),
           ),

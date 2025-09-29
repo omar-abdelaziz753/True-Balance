@@ -42,8 +42,6 @@ class ListWidget extends StatelessWidget {
                       );
 
                       if (removed == true) {
-                        // Remove this item from your list and update UI
-
                         cubit.removeAppointmentAt(index);
                       }
                     },
@@ -70,13 +68,72 @@ class ListWidget extends StatelessWidget {
                         spacing: 10.sp,
                         children: [
                           Expanded(
-                            child: Text(
-                              '${'appointments'.tr()} ${index + 1}',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              style: Styles.captionEmphasis.copyWith(
-                                color: AppColors.neutralColor1000,
-                              ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Text(
+                                //   // '${'appointments'.tr()} ${index + 1}',
+                                //   "${"date".tr()} :  ${cubit.appointmentDetailsModel!.data!.data![index].date}",
+                                //   overflow: TextOverflow.ellipsis,
+                                //   maxLines: 1,
+                                //   style: Styles.captionEmphasis.copyWith(
+                                //     color: AppColors.neutralColor1000,
+                                //   ),
+                                // ),
+                                // Text(
+                                //   // '${'appointments'.tr()} ${index + 1}',
+                                //   "${"time".tr()} :  ${cubit.appointmentDetailsModel!.data!.data![index].time}",
+                                //   overflow: TextOverflow.ellipsis,
+                                //   maxLines: 1,
+                                //   style: Styles.captionEmphasis.copyWith(
+                                //     color: AppColors.neutralColor1000,
+                                //   ),
+                                // ),
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            "${"date".tr()} : ", // النص الأساسي (label)
+                                        style: Styles.captionEmphasis.copyWith(
+                                          color: AppColors.neutralColor700,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: cubit.appointmentDetailsModel!
+                                                .data!.data![index].date ??
+                                            "",
+                                        style: Styles.captionEmphasis.copyWith(
+                                          color: AppColors
+                                              .neutralColor1000, // لون مختلف للـ data
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "${"time".tr()} : ",
+                                        style: Styles.captionEmphasis.copyWith(
+                                          color: AppColors.neutralColor700,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: cubit.appointmentDetailsModel!
+                                                .data!.data![index].time ??
+                                            "",
+                                        style: Styles.captionEmphasis.copyWith(
+                                          color: AppColors.neutralColor1000,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           Container(

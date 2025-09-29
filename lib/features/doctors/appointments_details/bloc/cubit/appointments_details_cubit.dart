@@ -116,7 +116,7 @@ class AppointmentsDetailsCubit extends Cubit<AppointmentsDetailsState> {
   Future<bool> completeConsultation({
     required int consultationId,
     required String doctorEvaluation,
-    required File file,
+    required File? file,
   }) async {
     emit(AppointmentsDetailsSubmitting());
     showLoading();
