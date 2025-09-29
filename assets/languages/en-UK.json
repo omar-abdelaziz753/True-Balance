@@ -197,6 +197,8 @@
   "patinets": "patinets",
   "messageDetails": "Message details",
   "enterYourMessageDetails": "Enter Your Message details",
+    "noUpcomingSessions": "No upcoming sessions available",
+  "noCompletedSessions": "No completed sessions available",
   "send": "Send",
   "ourTicket": "Your Ticket ",
   "technicalSupport": "Technical Support",

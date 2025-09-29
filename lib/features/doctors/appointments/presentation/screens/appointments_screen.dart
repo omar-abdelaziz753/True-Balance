@@ -95,21 +95,32 @@ class AppointmentsScreen extends StatelessWidget {
                                   if (CacheHelper.getData(
                                           key: CacheKeys.type) ==
                                       'doctor') {
-                                    context.pushNamed(
+                                    context
+                                        .pushNamed(
                                       Routes.appointmentsDetailsScreen,
                                       arguments: AppointmentsArguments(
                                         isPending: cubit.isPending!,
                                         userData: item,
                                       ),
-                                    );
+                                    )
+                                        .then((value) {
+                                      print("a7a");
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                    });
                                   } else {
-                                    context.pushNamed(
+                                    context
+                                        .pushNamed(
                                       Routes.treatmentPlanForTherapists,
                                       arguments: AppointmentsArguments(
                                         isPending: cubit.isPending!,
                                         userData: item,
                                       ),
-                                    );
+                                    )
+                                        .then((value) {
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                    });
                                   }
                                 },
                                 child: CustomAppointmentContainerWidget(
