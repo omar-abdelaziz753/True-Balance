@@ -142,96 +142,99 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
       color: _isFocused ? AppColors.primaryColor900 : AppColors.neutralColor600,
     );
 
-    return TextFormField(
-      cursorColor: AppColors.primaryColor900,
-      focusNode: _focusNode,
-      controller: widget.controller,
-      obscureText: widget.obscureText ?? false,
-      autofocus: widget.autofocus ?? false,
-      autocorrect: widget.autocorrect ?? true,
-      enableSuggestions: widget.enableSuggestions ?? true,
-      readOnly: widget.readOnly ?? false,
-      showCursor: widget.showCursor,
-      maxLength: widget.maxLength,
-      keyboardType: widget.keyboardType,
-      textInputAction: widget.textInputAction,
-      onChanged: widget.onChanged,
-      validator: widget.validator,
-      onSaved: widget.onSaved,
-      inputFormatters: widget.inputFormatters,
-      textAlignVertical: widget.textAlignVertical,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      scrollPhysics: widget.scrollPhysics,
-      onTap: widget.onTap,
-      autofillHints: widget.autofillHints,
-      maxLines: widget.isChat ? null : widget.maxLines ?? 1,
-      minLines: widget.isChat ? null : widget.minLines,
-      style: widget.textStyle ??
-          Styles.contentEmphasis.copyWith(
-            color: AppColors.neutralColor1000,
-          ),
-      onTapOutside:
-          widget.isChat ? null : (event) => FocusScope.of(context).unfocus(),
-      decoration: InputDecoration(
-        alignLabelWithHint: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              widget.borderRadius ?? AppConstants.borderRadius),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              widget.borderRadius ?? AppConstants.borderRadius),
-          borderSide: BorderSide(
-            color: currentBorderColor,
-            width: widget.borderWidth ?? 1.sp,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              widget.borderRadius ?? AppConstants.borderRadius),
-          borderSide: BorderSide(
-            color: currentBorderColor,
-            width: widget.borderWidth ?? 1.sp,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              widget.borderRadius ?? AppConstants.borderRadius),
-          borderSide: BorderSide(
-            color: AppColors.redColor100,
-            width: widget.borderWidth ?? 1.sp,
-          ),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              widget.borderRadius ?? AppConstants.borderRadius),
-          borderSide: BorderSide(
-            color: AppColors.redColor100,
-            width: widget.borderWidth ?? 1.sp,
-          ),
-        ),
-        labelText: widget.labelText,
-        labelStyle: widget.labelStyle ??
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: TextFormField(
+        cursorColor: AppColors.primaryColor900,
+        focusNode: _focusNode,
+        controller: widget.controller,
+        obscureText: widget.obscureText ?? false,
+        autofocus: widget.autofocus ?? false,
+        autocorrect: widget.autocorrect ?? true,
+        enableSuggestions: widget.enableSuggestions ?? true,
+        readOnly: widget.readOnly ?? false,
+        showCursor: widget.showCursor,
+        maxLength: widget.maxLength,
+        keyboardType: widget.keyboardType,
+        textInputAction: widget.textInputAction,
+        onChanged: widget.onChanged,
+        validator: widget.validator,
+        onSaved: widget.onSaved,
+        inputFormatters: widget.inputFormatters,
+        textAlignVertical: widget.textAlignVertical,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        scrollPhysics: widget.scrollPhysics,
+        onTap: widget.onTap,
+        autofillHints: widget.autofillHints,
+        maxLines: widget.isChat ? null : widget.maxLines ?? 1,
+        minLines: widget.isChat ? null : widget.minLines,
+        style: widget.textStyle ??
             Styles.contentEmphasis.copyWith(
-              color: AppColors.neutralColor300,
+              color: AppColors.neutralColor1000,
             ),
-        hintText: widget.hintText,
-        hintStyle: currentHintStyle,
-        helperText: widget.helperText,
-        errorText: widget.errorText,
-        prefixIcon: widget.prefixIcon,
-        suffixIcon: widget.suffixIcon,
-        filled: true,
-        fillColor: widget.backgroundColor ?? AppColors.neutralColor100,
-        prefixIconColor: AppColors.neutralColor1000,
-        suffixIconColor: AppColors.neutralColor1000,
-        enabled: widget.enabled ?? true,
-        contentPadding: widget.contentPadding ??
-            EdgeInsets.symmetric(
-              horizontal: widget.width ?? 15.w,
-              vertical: widget.height ?? 15.h,
+        onTapOutside:
+            widget.isChat ? null : (event) => FocusScope.of(context).unfocus(),
+        decoration: InputDecoration(
+          alignLabelWithHint: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(
+                widget.borderRadius ?? AppConstants.borderRadius),
+            borderSide: BorderSide.none,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(
+                widget.borderRadius ?? AppConstants.borderRadius),
+            borderSide: BorderSide(
+              color: currentBorderColor,
+              width: widget.borderWidth ?? 1.sp,
             ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(
+                widget.borderRadius ?? AppConstants.borderRadius),
+            borderSide: BorderSide(
+              color: currentBorderColor,
+              width: widget.borderWidth ?? 1.sp,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(
+                widget.borderRadius ?? AppConstants.borderRadius),
+            borderSide: BorderSide(
+              color: AppColors.redColor100,
+              width: widget.borderWidth ?? 1.sp,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(
+                widget.borderRadius ?? AppConstants.borderRadius),
+            borderSide: BorderSide(
+              color: AppColors.redColor100,
+              width: widget.borderWidth ?? 1.sp,
+            ),
+          ),
+          labelText: widget.labelText,
+          labelStyle: widget.labelStyle ??
+              Styles.contentEmphasis.copyWith(
+                color: AppColors.neutralColor300,
+              ),
+          hintText: widget.hintText,
+          hintStyle: currentHintStyle,
+          helperText: widget.helperText,
+          errorText: widget.errorText,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.suffixIcon,
+          filled: true,
+          fillColor: widget.backgroundColor ?? AppColors.neutralColor100,
+          prefixIconColor: AppColors.neutralColor1000,
+          suffixIconColor: AppColors.neutralColor1000,
+          enabled: widget.enabled ?? true,
+          contentPadding: widget.contentPadding ??
+              EdgeInsets.symmetric(
+                horizontal: widget.width ?? 15.w,
+                vertical: widget.height ?? 15.h,
+              ),
+        ),
       ),
     );
   }

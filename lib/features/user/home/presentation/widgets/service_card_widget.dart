@@ -42,7 +42,6 @@ class ServiceCardWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4.r),
               child: CachedNetworkImage(
-             
                 imageUrl: image?.isNotEmpty == true
                     ? image!
                     : 'assets/images/png/placeholder.png',
@@ -59,7 +58,7 @@ class ServiceCardWidget extends StatelessWidget {
             style: Styles.captionRegular.copyWith(
               color: AppColors.neutralColor1000,
             ),
-            overflow: TextOverflow.ellipsis,
+            // overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
           ),
         ],

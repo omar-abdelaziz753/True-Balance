@@ -65,6 +65,7 @@ class OurServicesScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: GridView.builder(
+                      shrinkWrap: true,
                       controller: cubit.servicesScrollController,
                       itemCount: cubit.servicesModel?.data.data.length ?? 0,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
