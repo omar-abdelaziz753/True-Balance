@@ -99,12 +99,12 @@ Map<String, dynamic> _$DoctorToJson(Doctor instance) => <String, dynamic>{
     };
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      email: json['email'] as String,
-      phone: json['phone'] as String,
-      image: json['image'] as String,
-      type: json['type'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      phone: json['phone'] as String?,
+      image: json['image'] as String?,
+      type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
