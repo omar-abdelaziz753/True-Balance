@@ -21,7 +21,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
-      appBar: CustomMainAppBarInHomeWidget(
+      appBar:
+       CustomMainAppBarInHomeWidget(
         userName: CacheHelper.getData(key: CacheKeys.userName) ?? "",
         location: 'myAddressHere'.tr(),
         profileImageAsset: CacheHelper.getData(key: CacheKeys.userImage) ?? "",
