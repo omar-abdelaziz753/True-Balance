@@ -1,9 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_in_calender_screen_widget.dart';
 import 'package:truee_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
 import 'package:truee_balance_app/features/doctors/calender/presnetation/widgets/calender_widget.dart';
 
@@ -15,12 +16,24 @@ class CalenderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String type = CacheHelper.getData(key: CacheKeys.type) ?? "";
+    final String userName;
+    final String profileImageUrl;
+    if (type == 'doctor') {
+      userName = CacheHelper.getData(key: CacheKeys.userName) ?? "";
+      profileImageUrl = CacheHelper.getData(key: CacheKeys.userImage) ?? "";
+    } else if (type == 'therapist') {
+      userName = CacheHelper.getData(key: CacheKeys.userName) ?? "";
+      profileImageUrl = CacheHelper.getData(key: CacheKeys.userImage) ?? "";
+    } else {
+      userName = "Guest";
+      profileImageUrl = 'assets/images/png/profile2.png';
+    }
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
-      appBar: CustomBasicAppBar(
-        title: 'appointments'.tr(),
-        backgroundColor: AppColors.primaryColor900,
-        svgAsset: 'assets/images/svg/bg_image.svg',
+      appBar: AppBarInCalenderScreenWidget(
+        userName: userName,
+        profileImageUrl: profileImageUrl,
       ),
       body: Container(
         width: double.infinity,
@@ -41,7 +54,6 @@ class CalenderScreen extends StatelessWidget {
             if (state is GetDoctorCalenderLoadingState) {
               return const SkeltonWidget();
             }
-
             return Column(
               children: [
                 const CalendarWidget(),

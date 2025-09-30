@@ -79,7 +79,8 @@ class CustomBasicAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return
+     AppBar(
       backgroundColor: backgroundColor,
       elevation: 0,
       centerTitle: true,

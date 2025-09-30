@@ -50,7 +50,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
 //  await CacheHelper.clearAllData();
 // await  CacheHelper.clearAllSecuredData();
-  AppConstants.userToken =
+  AppConstants.userToken =  
       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   logSuccess("User Token: ${AppConstants.userToken}");
   logSuccess("fcmToken: ${CacheHelper.getData(key: CacheKeys.deviceToken)}");
