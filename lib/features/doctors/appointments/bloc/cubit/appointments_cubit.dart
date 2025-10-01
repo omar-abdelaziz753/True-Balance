@@ -29,7 +29,8 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
   }
 
   bool? isPending;
-
+  bool isFirstTime = false;
+  bool isNotEmpty = true;
   Future<void> getAllDoctorsConsultations({required bool isPending}) async {
     currentPage = 1;
     this.isPending = isPending;
@@ -42,6 +43,12 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
         consultationUsersResponse = data;
         currentPage = data.data?.meta?.currentPage ?? currentPage;
         lastPage = data.data?.meta?.lastPage ?? lastPage;
+        isNotEmpty = !(data.data?.data?.isEmpty ?? true);
+
+        // ✅ نخلي isFirstTime = true بس بعد ما يرجع أول API call
+        if (!isFirstTime) {
+          isFirstTime = true;
+        }
         emit(AppointmentsSuccess());
       },
       failure: (error) {

@@ -18,7 +18,7 @@ class AppBarInCalenderScreenWidget extends StatelessWidget
   });
 
   @override
-  Size get preferredSize => Size.fromHeight(140.h);
+  Size get preferredSize => Size.fromHeight(84.h);
 
   @override
   Widget build(BuildContext context) {

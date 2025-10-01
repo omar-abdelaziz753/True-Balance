@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 
-class CustomTextFormFieldWidget extends StatefulWidget {
+class CustomTextFormFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final String? labelText;
   final TextStyle? labelStyle;
@@ -98,143 +99,123 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   });
 
   @override
-  State<CustomTextFormFieldWidget> createState() =>
-      _CustomTextFormFieldWidgetState();
-}
-
-class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
-  late FocusNode _internalFocusNode;
-  bool _isFocused = false;
-
-  FocusNode get _focusNode => widget.focusNode ?? _internalFocusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    _internalFocusNode = widget.focusNode ?? FocusNode();
-    _focusNode.addListener(_handleFocusChange);
-  }
-
-  void _handleFocusChange() {
-    if (mounted) {
-      setState(() {
-        _isFocused = _focusNode.hasFocus;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    if (widget.focusNode == null) {
-      _internalFocusNode.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final Color currentBorderColor = _isFocused
-        ? AppColors.primaryColor900
-        : widget.borderColor ?? AppColors.neutralColor600;
+    return Focus(
+      focusNode: focusNode,
+      child: Builder(
+        builder: (context) {
+          final bool isFocused = Focus.of(context).hasFocus;
 
-    final TextStyle currentHintStyle =
-        (widget.hintStyle ?? Styles.captionRegular).copyWith(
-      color: _isFocused ? AppColors.primaryColor900 : AppColors.neutralColor600,
-    );
+          final Color currentBorderColor = isFocused
+              ? AppColors.primaryColor900
+              : borderColor ?? AppColors.neutralColor600;
 
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: TextFormField(
-        cursorColor: AppColors.primaryColor900,
-        focusNode: _focusNode,
-        controller: widget.controller,
-        obscureText: widget.obscureText ?? false,
-        autofocus: widget.autofocus ?? false,
-        autocorrect: widget.autocorrect ?? true,
-        enableSuggestions: widget.enableSuggestions ?? true,
-        readOnly: widget.readOnly ?? false,
-        showCursor: widget.showCursor,
-        maxLength: widget.maxLength,
-        keyboardType: widget.keyboardType,
-        textInputAction: widget.textInputAction,
-        onChanged: widget.onChanged,
-        validator: widget.validator,
-        onSaved: widget.onSaved,
-        inputFormatters: widget.inputFormatters,
-        textAlignVertical: widget.textAlignVertical,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        scrollPhysics: widget.scrollPhysics,
-        onTap: widget.onTap,
-        autofillHints: widget.autofillHints,
-        maxLines: widget.isChat ? null : widget.maxLines ?? 1,
-        minLines: widget.isChat ? null : widget.minLines,
-        style: widget.textStyle ??
-            Styles.contentEmphasis.copyWith(
-              color: AppColors.neutralColor1000,
-            ),
-        onTapOutside:
-            widget.isChat ? null : (event) => FocusScope.of(context).unfocus(),
-        decoration: InputDecoration(
-          alignLabelWithHint: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-                widget.borderRadius ?? AppConstants.borderRadius),
-            borderSide: BorderSide.none,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-                widget.borderRadius ?? AppConstants.borderRadius),
-            borderSide: BorderSide(
-              color: currentBorderColor,
-              width: widget.borderWidth ?? 1.sp,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-                widget.borderRadius ?? AppConstants.borderRadius),
-            borderSide: BorderSide(
-              color: currentBorderColor,
-              width: widget.borderWidth ?? 1.sp,
-            ),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-                widget.borderRadius ?? AppConstants.borderRadius),
-            borderSide: BorderSide(
-              color: AppColors.redColor100,
-              width: widget.borderWidth ?? 1.sp,
-            ),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-                widget.borderRadius ?? AppConstants.borderRadius),
-            borderSide: BorderSide(
-              color: AppColors.redColor100,
-              width: widget.borderWidth ?? 1.sp,
-            ),
-          ),
-          labelText: widget.labelText,
-          labelStyle: widget.labelStyle ??
-              Styles.contentEmphasis.copyWith(
-                color: AppColors.neutralColor300,
+          final TextStyle currentHintStyle =
+              (hintStyle ?? Styles.captionRegular).copyWith(
+            color: isFocused
+                ? AppColors.primaryColor900
+                : AppColors.neutralColor600,
+          );
+
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: TextFormField(
+              cursorColor: AppColors.primaryColor900,
+              focusNode: focusNode,
+              controller: controller,
+              obscureText: obscureText ?? false,
+              textAlign: CacheHelper.getCurrentLanguage() == "ar"
+                  ? TextAlign.end
+                  : TextAlign.start,
+              autofocus: autofocus ?? false,
+              autocorrect: autocorrect ?? true,
+              enableSuggestions: enableSuggestions ?? true,
+              readOnly: readOnly ?? false,
+              showCursor: showCursor,
+              maxLength: maxLength,
+              keyboardType: keyboardType,
+              textInputAction: textInputAction,
+              onChanged: onChanged,
+              validator: validator,
+              onSaved: onSaved,
+              inputFormatters: inputFormatters,
+              textAlignVertical: textAlignVertical,
+              onFieldSubmitted: onFieldSubmitted,
+              scrollPhysics: scrollPhysics,
+              onTap: onTap,
+              autofillHints: autofillHints,
+              maxLines: isChat ? null : maxLines ?? 1,
+              minLines: isChat ? null : minLines,
+              style: textStyle ??
+                  Styles.contentEmphasis.copyWith(
+                    color: AppColors.neutralColor1000,
+                  ),
+              onTapOutside:
+                  isChat ? null : (event) => FocusScope.of(context).unfocus(),
+              decoration: InputDecoration(
+                alignLabelWithHint: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                      borderRadius ?? AppConstants.borderRadius),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                      borderRadius ?? AppConstants.borderRadius),
+                  borderSide: BorderSide(
+                    color: currentBorderColor,
+                    width: borderWidth ?? 1.sp,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                      borderRadius ?? AppConstants.borderRadius),
+                  borderSide: BorderSide(
+                    color: currentBorderColor,
+                    width: borderWidth ?? 1.sp,
+                  ),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                      borderRadius ?? AppConstants.borderRadius),
+                  borderSide: BorderSide(
+                    color: AppColors.redColor100,
+                    width: borderWidth ?? 1.sp,
+                  ),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                      borderRadius ?? AppConstants.borderRadius),
+                  borderSide: BorderSide(
+                    color: AppColors.redColor100,
+                    width: borderWidth ?? 1.sp,
+                  ),
+                ),
+                labelText: labelText,
+                labelStyle: labelStyle ??
+                    Styles.contentEmphasis.copyWith(
+                      color: AppColors.neutralColor300,
+                    ),
+                hintText: hintText,
+                hintStyle: currentHintStyle,
+                helperText: helperText,
+                errorText: errorText,
+                prefixIcon: prefixIcon,
+                suffixIcon: suffixIcon,
+                filled: true,
+                fillColor: backgroundColor ?? AppColors.neutralColor100,
+                prefixIconColor: AppColors.neutralColor1000,
+                suffixIconColor: AppColors.neutralColor1000,
+                enabled: enabled ?? true,
+                contentPadding: contentPadding ??
+                    EdgeInsets.symmetric(
+                      horizontal: width ?? 15.w,
+                      vertical: height ?? 15.h,
+                    ),
               ),
-          hintText: widget.hintText,
-          hintStyle: currentHintStyle,
-          helperText: widget.helperText,
-          errorText: widget.errorText,
-          prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.suffixIcon,
-          filled: true,
-          fillColor: widget.backgroundColor ?? AppColors.neutralColor100,
-          prefixIconColor: AppColors.neutralColor1000,
-          suffixIconColor: AppColors.neutralColor1000,
-          enabled: widget.enabled ?? true,
-          contentPadding: widget.contentPadding ??
-              EdgeInsets.symmetric(
-                horizontal: widget.width ?? 15.w,
-                vertical: widget.height ?? 15.h,
-              ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

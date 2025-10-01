@@ -46,9 +46,9 @@ class TreatmentPlanForTherapists extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12.r),
+                topLeft: Radius.circular(12.r), 
                 topRight: Radius.circular(12.r),
-              ),
+              ), 
             ),
             child: Column(
               children: [
