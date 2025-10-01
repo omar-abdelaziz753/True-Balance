@@ -16,24 +16,11 @@ class CalenderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String type = CacheHelper.getData(key: CacheKeys.type) ?? "";
-    final String userName;
-    final String profileImageUrl;
-    if (type == 'doctor') {
-      userName = CacheHelper.getData(key: CacheKeys.userName) ?? "";
-      profileImageUrl = CacheHelper.getData(key: CacheKeys.userImage) ?? "";
-    } else if (type == 'therapist') {
-      userName = CacheHelper.getData(key: CacheKeys.userName) ?? "";
-      profileImageUrl = CacheHelper.getData(key: CacheKeys.userImage) ?? "";
-    } else {
-      userName = "Guest";
-      profileImageUrl = 'assets/images/png/profile2.png';
-    }
     return Scaffold(
       backgroundColor: AppColors.primaryColor900,
       appBar: AppBarInCalenderScreenWidget(
-        userName: userName,
-        profileImageUrl: profileImageUrl,
+        userName: CacheHelper.getData(key: CacheKeys.userName) ?? "",
+        profileImageUrl: CacheHelper.getData(key: CacheKeys.userImage) ?? "",
       ),
       body: Container(
         width: double.infinity,

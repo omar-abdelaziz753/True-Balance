@@ -15,21 +15,17 @@ import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/bottom_sheet/show_change_password_bottom_sheet.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/core/widgets/text/custom_text_rich_widget.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/create_new_password_screen.dart';
 
-class VerifyOtpWidgetWidget extends StatefulWidget {
+import 'count_down_widget.dart';
+
+class VerifyOtpWidgetWidget extends StatelessWidget {
   const VerifyOtpWidgetWidget({super.key, required this.data});
 
   final Map<String, dynamic> data;
 
-  @override
-  State<VerifyOtpWidgetWidget> createState() => _VerifyOtpWidgetWidgetState();
-}
-
-class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
-  int _resendKey = 0;
+  final int _resendKey = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -111,55 +107,8 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                     ),
                   ),
                   18.verticalSpace,
-                  BlocListener<AuthCubit, AuthState>(
-                    listener: (context, state) {
-                      if (state is ResendPasswordLoadingState) {
-                        setState(() {
-                          _resendKey++;
-                        });
-                      }
-                    },
-                    child: StreamBuilder<String>(
-                      key: ValueKey(_resendKey),
-                      stream: countdownStream(const Duration(minutes: 2)),
-                      builder: (context, snapshot) {
-                        final timerText = snapshot.data ?? "(02 m 00 s)";
-
-                        final isTimerFinished = timerText
-                                .contains("00 m 00 s") ||
-                            snapshot.connectionState == ConnectionState.done;
-
-                        return CustomRichText(
-                          text1: "theCodeWillExpire".tr(),
-                          textStyle1: Styles.captionRegular.copyWith(
-                            color: AppColors.neutralColor1000,
-                          ),
-                          text2: timerText,
-                          textStyle2: Styles.captionRegular.copyWith(
-                            color: AppColors.primaryColor900,
-                          ),
-                          text3: "resend".tr(),
-                          textStyle3: Styles.captionRegular.copyWith(
-                            color: isTimerFinished
-                                ? AppColors.primaryColor700
-                                : AppColors.neutralColor600,
-                          ),
-                          onTap3: !isTimerFinished
-                              ? () {
-                                  if (widget.data['screenName'] == "Register") {
-                                    cubit.userRegister(isResend: true);
-                                  } else {
-                                    cubit.forgetPassword(
-                                        email: widget.data['email'],
-                                        isOtp: false);
-                                  }
-                                }
-                              : null,
-                          textAlign: TextAlign.center,
-                        );
-                      },
-                    ),
-                  ),
+                  CountDownWidget(
+                      resendKey: _resendKey, data: data, cubit: cubit),
                 ],
               ),
             ),
@@ -205,7 +154,7 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                 }
               },
               child: CustomButtonWidget(
-                text: widget.data['screenName'] == 'forgetPassword'
+                text: data['screenName'] == 'forgetPassword'
                     ? 'verify'.tr()
                     : 'next'.tr(),
                 padding: EdgeInsets.symmetric(
@@ -215,7 +164,7 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                   color: AppColors.neutralColor100,
                 ),
                 onPressed: () {
-                  if (widget.data['screenName'] == 'forgetPassword') {
+                  if (data['screenName'] == 'forgetPassword') {
                     cubit.verifyOTP();
                   } else {
                     if (formKey.currentState!.validate()) {
@@ -229,7 +178,7 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
                 },
               ),
             ),
-            if (widget.data['screenName'] == 'forgetPassword')
+            if (data['screenName'] == 'forgetPassword')
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -279,17 +228,5 @@ class _VerifyOtpWidgetWidgetState extends State<VerifyOtpWidgetWidget> {
         ),
       ),
     );
-  }
-}
-
-Stream<String> countdownStream(Duration duration) async* {
-  int totalSeconds = duration.inSeconds;
-
-  while (totalSeconds >= 0) {
-    final minutes = (totalSeconds ~/ 60).toString().padLeft(2, '0');
-    final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
-    yield "($minutes m $seconds s)";
-    await Future.delayed(const Duration(seconds: 1));
-    totalSeconds--;
   }
 }
