@@ -52,8 +52,8 @@ void main() async {
 // await  CacheHelper.clearAllSecuredData();
   AppConstants.userToken =  
       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
-  logSuccess("User Token: ${AppConstants.userToken}");
-  logSuccess("fcmToken: ${CacheHelper.getData(key: CacheKeys.deviceToken)}");
+  // logSuccess("User Token: ${AppConstants.userToken}");
+  // logSuccess("fcmToken: ${CacheHelper.getData(key: CacheKeys.deviceToken)}");
 
   runApp(
     EasyLocalization(
