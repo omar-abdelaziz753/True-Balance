@@ -102,10 +102,12 @@ class SelectBookingWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        DetailsRowWidget(
-                          label:
-                              "${"Session".tr()} ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
-                          value: "",
+                        Expanded(
+                          child: DetailsRowWidget(
+                            label:
+                                "${"Session".tr()} ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
+                            value: "",
+                          ),
                         ),
                         const Spacer(),
                         if (selectedSession == null)

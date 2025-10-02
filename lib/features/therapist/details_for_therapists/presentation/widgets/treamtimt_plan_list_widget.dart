@@ -61,16 +61,22 @@ class TreamentPlanTherapistListWidget extends StatelessWidget {
                           .name!));
             },
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  cubit.treatmentPlansResponseUserForTherapists?.data
-                          ?.data?[index].name ??
-                      '',
-                  style: Styles.captionEmphasis.copyWith(
-                    color: AppColors.neutralColor600,
+                Expanded(
+                  child: Text(
+                    cubit.treatmentPlansResponseUserForTherapists?.data
+                            ?.data?[index].name ??
+                        '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Styles.captionEmphasis.copyWith(
+                      color: AppColors.neutralColor600,
+                    ),
                   ),
                 ),
-                const Spacer(),
+                // const Spacer(),
+                10.verticalSpace,
                 Text("seeDetails".tr(),
                     style: TextStyle(
                       fontSize: 14.sp,

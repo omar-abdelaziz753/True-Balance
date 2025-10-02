@@ -25,12 +25,17 @@ class DetailsRowWidget extends StatelessWidget {
             color: AppColors.neutralColor600,
           ),
         ),
-        Text(
-          value,
-          style: Styles.contentEmphasis.copyWith(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
-            color: AppColors.neutralColor1000,
+        Flexible(
+          child: Text(
+            value,
+            textAlign: TextAlign.end,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Styles.contentEmphasis.copyWith(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.neutralColor1000,
+            ),
           ),
         ),
       ],

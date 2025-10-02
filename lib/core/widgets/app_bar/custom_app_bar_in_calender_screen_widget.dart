@@ -18,14 +18,14 @@ class AppBarInCalenderScreenWidget extends StatelessWidget
   });
 
   @override
-  Size get preferredSize => Size.fromHeight(84.h);
+  Size get preferredSize => Size.fromHeight(85.sp);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          height: 180.h,
+          height: 180.sp,
           color: AppColors.primaryColor900,
           child: Opacity(
             opacity: 0.1,
@@ -37,7 +37,7 @@ class AppBarInCalenderScreenWidget extends StatelessWidget
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 60.h, left: 18.w, right: 18.w),
+          padding: EdgeInsets.only(top: 30.sp, left: 18.w, right: 18.w),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,12 +46,12 @@ class AppBarInCalenderScreenWidget extends StatelessWidget
                 child: CachedNetworkImage(
                   imageUrl: profileImageUrl,
                   width: 50.w,
-                  height: 50.h,
+                  height: 50.sp,
                   fit: BoxFit.cover,
                   errorWidget: (context, url, error) => Image.asset(
                     "assets/images/png/profile2.png",
                     width: 50.w,
-                    height: 50.h,
+                    height: 50.sp,
                     fit: BoxFit.cover,
                   ),
                 ),

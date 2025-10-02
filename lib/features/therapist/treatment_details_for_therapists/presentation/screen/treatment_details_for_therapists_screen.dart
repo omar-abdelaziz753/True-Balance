@@ -100,6 +100,7 @@ class TreatmentDetailsForTherapists extends StatelessWidget {
                         ],
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "typeoftreatment".tr(),
@@ -108,10 +109,14 @@ class TreatmentDetailsForTherapists extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          Text(
-                            treatmentName,
-                            style: Styles.contentEmphasis.copyWith(
-                              color: AppColors.neutralColor1000,
+                          Expanded(
+                            child: Text(
+                              treatmentName,
+                              textAlign: TextAlign.start,
+                              maxLines: 2,
+                              style: Styles.contentEmphasis.copyWith(
+                                color: AppColors.neutralColor1000,
+                              ),
                             ),
                           ),
                         ],

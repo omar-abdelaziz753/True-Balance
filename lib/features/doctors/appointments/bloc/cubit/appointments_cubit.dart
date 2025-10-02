@@ -43,11 +43,10 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
         consultationUsersResponse = data;
         currentPage = data.data?.meta?.currentPage ?? currentPage;
         lastPage = data.data?.meta?.lastPage ?? lastPage;
-        isNotEmpty = !(data.data?.data?.isEmpty ?? true);
 
-        // ✅ نخلي isFirstTime = true بس بعد ما يرجع أول API call
         if (!isFirstTime) {
           isFirstTime = true;
+          isNotEmpty = !(data.data?.data?.isEmpty ?? true);
         }
         emit(AppointmentsSuccess());
       },
@@ -57,7 +56,6 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
     );
   }
 
-  /// load more AllDoctorsConsultations
   Future<void> loadMoreAllDoctorsConsultations() async {
     if (isLoadingMore || currentPage >= lastPage) return;
 

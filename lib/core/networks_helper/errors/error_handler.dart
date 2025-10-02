@@ -12,10 +12,11 @@ class ErrorHandler {
   /// Handles API errors from the server
   static FailureException handleApiError(Response? response) {
     String message = "error.unknown".tr();
-
+    print(response);
     if (response == null) {
       message = "error.noResponse".tr();
     } else if (response.statusCode == 401) {
+      print("this");
       _navigateToUnAuthScreen();
       message = "error.sessionExpired".tr();
     } else if (response.statusCode! >= 500) {

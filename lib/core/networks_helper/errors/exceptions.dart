@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/error_model.dart';
 import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 
@@ -135,6 +136,10 @@ class ServerException implements Exception {
     debugPrint("Raw response: $response");
 
     final data = response is Response ? response.data : response;
+    if (response.statusCode == 401) {
+      AppConstants.navigatorKey.currentState
+          ?.pushNamedAndRemoveUntil(Routes.loginScreen, (route) => false);
+    }
 
     final errorData = data is String
         ? jsonDecode(data)
@@ -153,7 +158,7 @@ class ServerException implements Exception {
 
     final errorModel = ErrorModel(
       message: errorMessage,
-      error: errorField  is Map<String, dynamic> ? errorField : null,
+      error: errorField is Map<String, dynamic> ? errorField : null,
     );
 
     ToastManager.showCustomToast(
