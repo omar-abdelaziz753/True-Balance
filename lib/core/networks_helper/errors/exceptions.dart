@@ -133,7 +133,7 @@ class ServerException implements Exception {
 
   factory ServerException.fromResponse(int? statusCode, dynamic response,
       {String? message}) {
-    debugPrint("Raw response: $response");
+    // debugPrint("Raw response: $response");
 
     final data = response is Response ? response.data : response;
     if (response.statusCode == 401) {
@@ -147,7 +147,7 @@ class ServerException implements Exception {
             ? data
             : <String, dynamic>{}; // Safe fallback
 
-    debugPrint("Parsed errorData: $errorData");
+    // debugPrint("Parsed errorData: $errorData");
 
     final String errorMessage = errorData["message"] ??
         errorData["error"] ?? // <- used if "message" is missing

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
@@ -59,8 +58,8 @@ class CacheHelper {
     required dynamic value,
   }) async {
     const flutterSecureStorage = FlutterSecureStorage();
-    debugPrint(
-        "FlutterSecureStorage : setSecuredString with key : $key and value : $value");
+    // debugPrint(
+    //     "FlutterSecureStorage : setSecuredString with key : $key and value : $value");
     await flutterSecureStorage.write(key: key, value: value.toString());
   }
 
@@ -68,7 +67,7 @@ class CacheHelper {
     required String key,
   }) async {
     const flutterSecureStorage = FlutterSecureStorage();
-    debugPrint('FlutterSecureStorage : getSecuredString with key :');
+    // debugPrint('FlutterSecureStorage : getSecuredString with key :');
     try {
       return await flutterSecureStorage.read(key: key);
     } catch (e) {
@@ -77,7 +76,7 @@ class CacheHelper {
   }
 
   static Future clearAllSecuredData() async {
-    debugPrint('FlutterSecureStorage : all data has been cleared');
+    // debugPrint('FlutterSecureStorage : all data has been cleared');
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();
   }

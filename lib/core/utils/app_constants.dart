@@ -35,7 +35,7 @@ class AppConstants {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      debugPrint('Could not launch $url');
+      // debugPrint('Could not launch $url');
     }
   }
 
@@ -44,13 +44,13 @@ class AppConstants {
     // Remove any invisible characters, RTL marks, and extra spaces
     String cleanedPhone = phone.replaceAll(RegExp(r'[^\d+]'), '').trim();
 
-    debugPrint("Trying to launch: $cleanedPhone"); // Debugging output
+    // debugPrint("Trying to launch: $cleanedPhone"); // Debugging output
 
     final Uri uri = Uri.parse('tel:$cleanedPhone');
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      debugPrint('Could not launch $cleanedPhone');
+      // debugPrint('Could not launch $cleanedPhone');
     }
   }
 

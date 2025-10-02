@@ -124,7 +124,7 @@ class SettingsRepos {
             );
           },
           failure: (err) {
-            debugPrint("Failed to fetch updated profile data: $err");
+            // debugPrint("Failed to fetch updated profile data: $err");
           },
         );
         return ApiResult.success(response.data['status']);

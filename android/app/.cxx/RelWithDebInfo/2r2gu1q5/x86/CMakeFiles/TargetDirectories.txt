@@ -1,0 +1,2 @@
+C:/Users/user/Desktop/projects/True-Balance/android/app/.cxx/RelWithDebInfo/2r2gu1q5/x86/CMakeFiles/edit_cache.dir
+C:/Users/user/Desktop/projects/True-Balance/android/app/.cxx/RelWithDebInfo/2r2gu1q5/x86/CMakeFiles/rebuild_cache.dir
