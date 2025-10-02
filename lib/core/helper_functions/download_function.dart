@@ -81,7 +81,7 @@ import 'package:truee_balance_app/core/utils/app_constants.dart';
 
 Future<void> downloadPdfFile(String url, String fileName) async {
   try {
-    // debugPrint("Downloading from: $url");
+    debugPrint("Downloading from: $url");
     Directory? dir;
     if (Platform.isAndroid) {
       dir = Directory('/storage/emulated/0/Download');
@@ -128,6 +128,6 @@ Future<void> downloadPdfFile(String url, String fileName) async {
   } catch (e) {
     EasyLoading.dismiss();
     EasyLoading.showError("downloadFailed".tr());
-    // debugPrint("${"downloadFailed".tr()} $e");
+    debugPrint("${"downloadFailed".tr()} $e");
   }
 }

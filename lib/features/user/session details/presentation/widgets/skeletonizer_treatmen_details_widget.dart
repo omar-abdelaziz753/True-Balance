@@ -167,6 +167,7 @@ class SkeletonizerTreatmentDetailsWidget extends StatelessWidget {
                 Tab(text: 'Completed'.tr()),
               ],
             ),
+            18.verticalSpace,
             Expanded(
               child: TabBarView(
                 children: [

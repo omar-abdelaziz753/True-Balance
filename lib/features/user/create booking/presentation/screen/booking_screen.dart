@@ -2,9 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/helper_functions/flutter_toast.dart';
+import 'package:truee_balance_app/core/routing/routes_name.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
+import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/bottom_sheet/show_booking_sheet.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
@@ -117,7 +120,9 @@ class BookingScreen extends StatelessWidget {
                     buttonText: "bookings".tr(),
                     onPressed: () {
                       Navigator.pop(context);
-                      Navigator.pop(context);
+                      AppConstants.userMainLayoutInitialScreenIndex = 3;
+                      AppConstants.navigatorKey.currentContext
+                          ?.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
                     },
                   );
                 }

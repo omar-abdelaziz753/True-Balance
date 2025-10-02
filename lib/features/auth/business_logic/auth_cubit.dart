@@ -173,7 +173,7 @@ class AuthCubit extends Cubit<AuthState> {
       await CacheHelper.removeData(key: CacheKeys.userPhone);
       await CacheHelper.removeData(key: CacheKeys.userEmail);
       AppConstants.userToken = null;
-
+      AppConstants.userMainLayoutInitialScreenIndex = 0;
       emit(LogoutSuccess());
     }, failure: (error) {
       hideLoading();

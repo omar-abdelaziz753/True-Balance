@@ -223,7 +223,7 @@ class AppRouter {
         );
       case Routes.profileScreen:
         return transition(
-          screen: const ProfileScreen(),
+          screen:  ProfileScreen(),
           cubit: SettingsCubit(getIt())..getProfileData(),
         );
       case Routes.bookingDetailsScreen:

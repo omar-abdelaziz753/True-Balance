@@ -241,6 +241,10 @@
   "patinets":"المرضي", 
   "no_appointments":"لا توجد مواعيد",
   "Pleaselogin": "الرجاء تسجيل الدخول ",
+  "fullNameRequired": "الاسم الكامل مطلوب",
+  "fullNameTooShort": "يجب أن يكون الاسم الكامل 3 أحرف على الأقل",
+  "invalidPhone": "يرجى إدخال رقم هاتف صالح",
+  "invalidEmail": "يرجى إدخال بريد إلكتروني صالح",
   "noUpcomingSessions": "لا توجد جلسات قادمة",
   "noCompletedSessions": "لا توجد جلسات مكتملة", 
   "validation": {

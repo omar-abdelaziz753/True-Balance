@@ -41,8 +41,10 @@ class AppointmentData {
   final int? id;
   final DoctorModel? doctor;
   final dynamic file;
+  @JsonKey(name: 'doctor_evaluation')
   final dynamic doctorEvaluation;
   final dynamic doctorEvaluationAt;
+  @JsonKey(name: 'user_message')
   final dynamic userMessage;
   final dynamic rating;
   final String? date;

@@ -10,7 +10,6 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/core/extensions/log_util.dart';
 import 'package:truee_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
 import 'package:truee_balance_app/core/routing/app_router.dart';
 import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
@@ -50,7 +49,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
 //  await CacheHelper.clearAllData();
 // await  CacheHelper.clearAllSecuredData();
-  AppConstants.userToken =  
+  AppConstants.userToken =
       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   // logSuccess("User Token: ${AppConstants.userToken}");
   // logSuccess("fcmToken: ${CacheHelper.getData(key: CacheKeys.deviceToken)}");

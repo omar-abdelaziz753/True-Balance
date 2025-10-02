@@ -85,6 +85,7 @@ class TreatmentDetailsScreen extends StatelessWidget {
                       Tab(text: 'completed'.tr()),
                     ],
                   ),
+                  18.verticalSpace,
                   Expanded(
                     child: TabBarView(
                       children: [

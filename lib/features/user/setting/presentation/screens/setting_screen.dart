@@ -103,7 +103,8 @@ class SettingScreen extends StatelessWidget {
                                     child: BlocConsumer<AuthCubit, AuthState>(
                                       listener: (context, state) {
                                         if (state is LogoutSuccess) {
-                                          context.pushNamed(Routes.loginScreen);
+                                          context.pushNamedAndRemoveUntil(
+                                              Routes.mainLayoutScreen);
                                         }
                                       },
                                       builder: (context, state) {
@@ -172,7 +173,8 @@ class SettingScreen extends StatelessWidget {
                                     child: BlocConsumer<AuthCubit, AuthState>(
                                       listener: (context, state) {
                                         if (state is LogoutSuccess) {
-                                          context.pushNamed(Routes.loginScreen);
+                                          context.pushNamedAndRemoveUntil(
+                                              Routes.mainLayoutScreen);
                                         }
                                       },
                                       builder: (context, state) {
@@ -275,7 +277,8 @@ class SettingScreen extends StatelessWidget {
                                     child: BlocConsumer<AuthCubit, AuthState>(
                                       listener: (context, state) {
                                         if (state is LogoutSuccess) {
-                                          context.pushNamed(Routes.loginScreen);
+                                          context.pushNamedAndRemoveUntil(
+                                              Routes.mainLayoutScreen);
                                         }
                                       },
                                       builder: (context, state) {
