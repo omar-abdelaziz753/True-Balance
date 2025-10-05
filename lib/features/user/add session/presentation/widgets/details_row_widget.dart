@@ -17,6 +17,7 @@ class DetailsRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      spacing: 40.sp,
       children: [
         Text(
           label,
@@ -28,7 +29,7 @@ class DetailsRowWidget extends StatelessWidget {
         Flexible(
           child: Text(
             value,
-            textAlign: TextAlign.end,
+            textAlign: TextAlign.start,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Styles.contentEmphasis.copyWith(
