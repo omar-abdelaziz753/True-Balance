@@ -2,10 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/assets.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 import 'package:truee_balance_app/features/chat/presentation/widgets/chat_list_widget.dart';
@@ -108,15 +106,10 @@ class ChatScreen extends StatelessWidget {
                               onTap: () {
                                 cubit.sendMessage(ticketId: id.toString());
                               },
-                              child: Transform(
-                                alignment: Alignment.center,
-                                transform: context.locale.languageCode == "ar"
-                                    ? Matrix4.rotationY(3.1416) // 180 درجة
-                                    : Matrix4.identity(),
-                                child: SvgPicture.asset(
-                                  Assets.assetsImagesSvgSendIcon,
-                                  fit: BoxFit.scaleDown,
-                                ),
+                              child: Icon(
+                                size: 25.sp,
+                                Icons.send,
+                                color: AppColors.primaryColor900,
                               ),
                             ),
                             isChat: true,
@@ -128,7 +121,6 @@ class ChatScreen extends StatelessWidget {
                             },
                           ),
                         ),
-     
                 ],
               ),
             ),

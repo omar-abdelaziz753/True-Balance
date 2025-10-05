@@ -210,18 +210,10 @@ class RewviewWidget extends StatelessWidget {
               child: Column(
                 spacing: 10.sp,
                 children: [
-                  Row(
-                    children: [
-                      DetailsRowWidget(
-                        label:
-                            "Session ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
-                        value: "",
-                      ),
-                      // _buildRow(
-                      //   "Session ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
-                      //   "",
-                      // ),
-                    ],
+                  DetailsRowWidget(
+                    label:
+                        "Session ${index + 1 + cubit.treatmentPlanDetail.sessions.length}",
+                    value: "",
                   ),
                   if (selectedSession != null) ...[
                     Container(
