@@ -10,6 +10,7 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/utils/app_constants.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:truee_balance_app/core/widgets/drop_down/custom_drop_down_widget.dart';
 import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:truee_balance_app/features/auth/presentation/screens/verify_otp_screen.dart';
@@ -93,6 +94,56 @@ class ResisterFormWidget extends StatelessWidget {
                   return 'phoneRequired'.tr();
                 } else if (!RegExp(r'^\+?\d{9,15}$').hasMatch(value.trim())) {
                   return 'phoneInvalid'.tr();
+                }
+                return null;
+              },
+            ),
+            18.verticalSpace,
+
+            Text(
+              'gender'.tr(),
+              style: Styles.contentEmphasis.copyWith(
+                color: AppColors.neutralColor1000,
+              ),
+            ),
+            8.verticalSpace,
+            CustomDropdownButtonWidget(
+              hint: 'enterYourGender'.tr(),
+              items: ['male', 'female'],
+              isString: true,
+              value: cubit.genderController.text.isNotEmpty
+                  ? cubit.genderController.text
+                  : null,
+              onChanged: (value) {
+                cubit.genderController.text = value ?? '';
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'genderRequired'.tr();
+                }
+                return null;
+              },
+            ),
+            18.verticalSpace,
+            Text(
+              'age'.tr(),
+              style: Styles.contentEmphasis.copyWith(
+                color: AppColors.neutralColor1000,
+              ),
+            ),
+            8.verticalSpace,
+            CustomTextFormFieldWidget(
+              controller: cubit.ageController,
+              keyboardType: TextInputType.number,
+              hintText: 'enterYourAge'.tr(),
+              hintStyle: Styles.captionRegular
+                  .copyWith(color: AppColors.neutralColor600),
+              borderColor: AppColors.neutralColor600,
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'ageRequired'.tr();
+                } else if (int.tryParse(value) == null) {
+                  return 'ageInvalid'.tr();
                 }
                 return null;
               },

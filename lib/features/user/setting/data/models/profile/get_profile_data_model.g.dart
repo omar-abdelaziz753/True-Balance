@@ -26,6 +26,8 @@ Map<String, dynamic> _$GetProfileDataModelToJson(
     };
 
 ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) => ProfileData(
+      json['gender'] as String?,
+      (json['age'] as num?)?.toInt(),
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       email: json['email'] as String?,
@@ -42,4 +44,6 @@ Map<String, dynamic> _$ProfileDataToJson(ProfileData instance) =>
       'phone': instance.phone,
       'image': instance.image,
       'type': instance.type,
+      'gender': instance.gender,
+      'age': instance.age,
     };

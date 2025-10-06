@@ -19,6 +19,9 @@ class AuthCubit extends Cubit<AuthState> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
@@ -62,6 +65,8 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await authRepository.userRegister(
       name: nameController.text,
       phone: phoneController.text,
+      age: int.parse(ageController.text),
+      gender: genderController.text,
       email: emailController.text,
       password: passwordController.text,
       rePassword: passwordController.text,

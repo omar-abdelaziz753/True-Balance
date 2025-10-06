@@ -26,14 +26,21 @@ class AuthApiServices {
     required String name,
     required String phone,
     required String email,
+    required int age,
+    required String gender,
+    
+
     required String password,
     required String rePassword,
+
     String? verificationCode,
   }) async {
     Map<String, dynamic> formDataMap = {
       "name": name,
       "phone": phone,
       "email": email,
+      "age": age,
+      "gender": gender,
       "password": password,
       "repassword": rePassword,
       "verification_code": verificationCode,

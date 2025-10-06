@@ -100,7 +100,7 @@ class ChatScreen extends StatelessWidget {
                           child: CustomTextFormFieldWidget(
                             hintText: "writeYourMessage".tr(),
                             controller: cubit.messageController,
-                            borderWidth: 1.w,
+                            borderWidth: 1.w, 
                             borderColor: AppColors.neutralColor300,
                             suffixIcon: GestureDetector(
                               onTap: () {
