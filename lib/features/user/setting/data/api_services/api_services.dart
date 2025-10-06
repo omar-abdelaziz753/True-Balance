@@ -22,11 +22,15 @@ class SettingsApiServices {
     String? email,
     String? phone,
     File? image,
+    String ?gender,
+    int? age,
   }) async {
     // Return null if no valid data is provided
     if ((name == null || name.isEmpty) &&
         (email == null || email.isEmpty) &&
         (phone == null || phone.isEmpty) &&
+        gender == null &&
+        age == null &&
         image == null) {
       return null;
     }
@@ -42,6 +46,12 @@ class SettingsApiServices {
     }
     if (phone != null && phone.isNotEmpty) {
       formData.fields.add(MapEntry('phone', phone));
+    }
+    if (gender != null) {
+      formData.fields.add(MapEntry('gender', gender));
+    }
+    if (age != null) {
+      formData.fields.add(MapEntry('age', age.toString()));
     }
 
     /// Add image file only if it is provided

@@ -193,6 +193,7 @@ import 'package:truee_balance_app/core/themes/app_colors.dart';
 import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:truee_balance_app/core/widgets/drop_down/custom_drop_down_widget.dart';
 import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
 import 'package:truee_balance_app/features/user/setting/presentation/widgets/profile_image_widget.dart';
@@ -239,7 +240,7 @@ class ProfileScreen extends StatelessWidget {
                       key: _formKey,
                       child: Column(
                         children: [
-                          18.verticalSpace,
+                          // 13.verticalSpace,
                           ProfileImageWidget(cubit: cubit),
                           10.verticalSpace,
                           Text(
@@ -250,7 +251,7 @@ class ProfileScreen extends StatelessWidget {
                               color: AppColors.neutralColor1000,
                             ),
                           ),
-                          18.verticalSpace,
+                          13.verticalSpace,
 
                           /// Full Name
                           Row(
@@ -288,7 +289,7 @@ class ProfileScreen extends StatelessWidget {
                             },
                           ),
 
-                          18.verticalSpace,
+                          13.verticalSpace,
 
                           /// Phone Number
                           Row(
@@ -328,7 +329,7 @@ class ProfileScreen extends StatelessWidget {
                             },
                           ),
 
-                          18.verticalSpace,
+                          13.verticalSpace,
 
                           /// Email
                           Row(
@@ -365,6 +366,73 @@ class ProfileScreen extends StatelessWidget {
                                 return 'invalidEmail'.tr();
                               }
                               return null;
+                            },
+                          ),
+                          13.verticalSpace,
+                          Row(
+                            children: [
+                              Text(
+                                "age".tr(),
+                                style: Styles.contentEmphasis.copyWith(
+                                  color: AppColors.neutralColor1000,
+                                ),
+                              )
+                            ],
+                          ),
+                          8.verticalSpace,
+                          CustomTextFormFieldWidget(
+                            controller: cubit.ageController,
+                            hintText: cubit.getProfileDataModel == null
+                                ? 'Loading...'.tr()
+                                : cubit.getProfileDataModel!.data!.age!
+                                    .toString(),
+                            keyboardType: TextInputType.number,
+                            borderColor: AppColors.neutralColor1000,
+                            hintStyle: Styles.captionRegular.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
+                            textStyle: Styles.captionRegular.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'ageRequired'.tr();
+                              }
+                              return null;
+                            },
+                          ),
+
+                          13.verticalSpace,
+                          Row(
+                            children: [
+                              Text(
+                                "gender".tr(),
+                                style: Styles.contentEmphasis.copyWith(
+                                  color: AppColors.neutralColor1000,
+                                ),
+                              )
+                            ],
+                          ),
+                          8.verticalSpace,
+                          CustomDropdownButtonWidget(
+                            hint: cubit.genderController.text,
+                            items: ['male', 'female'],
+                            isString: true,
+                            value: cubit.genderController.text.isNotEmpty
+                                ? cubit.genderController.text
+                                : (cubit.getProfileDataModel?.data?.gender
+                                            ?.isNotEmpty ??
+                                        false)
+                                    ? cubit.getProfileDataModel!.data!.gender!
+                                    : null,
+                            onChanged: (value) {
+                              cubit.genderController.text = value ?? '';
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'genderRequired'.tr();
+                              }
+                              return null; 
                             },
                           ),
                         ],

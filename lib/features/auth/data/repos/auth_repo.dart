@@ -81,11 +81,15 @@ class AuthRepository {
     required String password,
     required String rePassword,
     String? verificationCode,
+    required int age , 
+    required String gender
   }) async {
     final response = await authApiServices.register(
       name: name,
       phone: phone,
       email: email,
+      age: age,
+      gender: gender,
       password: password,
       rePassword: rePassword,
       verificationCode: verificationCode,

@@ -19,6 +19,8 @@ class SettingsCubit extends Cubit<SettingsState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController specialityController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
 
   File? profileImage;
   final ImagePicker picker = ImagePicker();
@@ -33,6 +35,8 @@ class SettingsCubit extends Cubit<SettingsState> {
         fullNameController.text = getProfileDataModel!.data!.name ?? '';
         phoneController.text = getProfileDataModel!.data!.phone ?? '';
         emailController.text = getProfileDataModel!.data!.email ?? '';
+        ageController.text = getProfileDataModel!.data!.age.toString();
+        genderController.text = getProfileDataModel!.data!.gender.toString();
         emit(GetProfileDataSuccessState());
       },
       failure: (error) {
@@ -50,6 +54,8 @@ class SettingsCubit extends Cubit<SettingsState> {
       email: emailController.text,
       phone: phoneController.text,
       image: profileImage,
+      age: int.parse(ageController.text),
+      gender: genderController.text,
     );
     result.when(
       success: (data) {

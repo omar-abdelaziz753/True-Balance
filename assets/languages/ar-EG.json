@@ -245,6 +245,13 @@
   "fullNameTooShort": "يجب أن يكون الاسم الكامل 3 أحرف على الأقل",
   "invalidPhone": "يرجى إدخال رقم هاتف صالح",
   "invalidEmail": "يرجى إدخال بريد إلكتروني صالح",
+  "ageRequired":"يرجى ادخال العمر",
+  "enterYourGender":"أدخل جنسك",
+  "enterYourAge":"ادخل عمرك",
+  "female": "انثى",
+  "male": "ذكر",
+  "genderRequired":"يرجى ادخال الجنس",
+  "gender":"الجنس",
   "noUpcomingSessions": "لا توجد جلسات قادمة",
   "noCompletedSessions": "لا توجد جلسات مكتملة", 
   "validation": {

@@ -88,14 +88,17 @@ class SettingsRepos {
     String? email,
     String? phone,
     File? image,
+    String? gender,
+    int? age,
   }) async {
     try {
       final response = await settingsApiServices.updateProfileData(
-        name: name,
-        email: email,
-        phone: phone,
-        image: image,
-      );
+          name: name,
+          email: email,
+          phone: phone,
+          image: image,
+          age: age,
+          gender: gender);
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         ToastManager.showCustomToast(
@@ -120,8 +123,16 @@ class SettingsRepos {
             );
             await CacheHelper.saveData(
               key: CacheKeys.userImage,
-              value: profileModel.data?.image,  
+              value: profileModel.data?.image,
             );
+            // await CacheHelper.saveData(
+            //   key: CacheKeys.userGender,
+            //   value: profileModel.data?.gender,
+            // );
+            // await CacheHelper.saveData(
+            //   key: CacheKeys.userAge,
+            //   value: profileModel.data?.age.toString(),
+            // );
           },
           failure: (err) {
             // debugPrint("Failed to fetch updated profile data: $err");

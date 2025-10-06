@@ -79,10 +79,14 @@ class _CustomMainAppBarInHomeWidgetState
                                   height: 50.h,
                                   fit: BoxFit.cover,
                                   errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error), //
-                                ),
+                                      Image.asset(
+                                        "assets/images/png/profile2.png",
+                                        width: 50.w,
+                                        height: 50.h,
+                                        fit: BoxFit.cover,
+                                      ) //
+                                  ),
                         ),
-
                         // ClipRRect(
                         //   borderRadius: BorderRadius.circular(25.r),
                         //   child: CachedNetworkImage(
@@ -164,5 +168,3 @@ class _CustomMainAppBarInHomeWidgetState
     );
   }
 }
-
-

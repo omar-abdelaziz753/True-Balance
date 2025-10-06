@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -51,8 +52,8 @@ void main() async {
 // await  CacheHelper.clearAllSecuredData();
   AppConstants.userToken =
       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
-  // logSuccess("User Token: ${AppConstants.userToken}");
-  // logSuccess("fcmToken: ${CacheHelper.getData(key: CacheKeys.deviceToken)}");
+  log("User Token: ${AppConstants.userToken}");
+  log("fcmToken: ${CacheHelper.getData(key: CacheKeys.deviceToken)}");
 
   runApp(
     EasyLocalization(

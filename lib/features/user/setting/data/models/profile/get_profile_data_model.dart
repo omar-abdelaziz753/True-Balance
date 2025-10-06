@@ -30,8 +30,12 @@ class ProfileData {
   final String? phone;
   final String? image;
   final String? type;
+  final String? gender;
+  final int? age;
 
-  ProfileData({
+  ProfileData(
+    this.gender,
+    this.age, {
     this.id,
     this.name,
     this.email,
