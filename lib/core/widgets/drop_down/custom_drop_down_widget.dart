@@ -226,12 +226,19 @@ class CustomDropdownButtonWidgetState<T>
               Padding(
                 padding: EdgeInsets.only(top: 5.h, left: 8.w, right: 8.w),
                 child: Align(
-                  alignment: CacheHelper.getCurrentLanguage() == "ar"
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight,
-                  child: Text(
-                    state.errorText ?? '',
-                    style: TextStyle(color: Colors.red, fontSize: 12.sp),
+                  // alignment: CacheHelper.getCurrentLanguage() == "en"
+                  //     ? Alignment.centerLeft
+                  //     : Alignment.centerRight,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      textAlign: CacheHelper.getCurrentLanguage() == "en"
+                          ? TextAlign.start
+                          : TextAlign.end,
+                      state.errorText ?? '',
+                      style: TextStyle(
+                          color: AppColors.redColor200, fontSize: 12.sp),
+                    ),
                   ),
                 ),
               ),
