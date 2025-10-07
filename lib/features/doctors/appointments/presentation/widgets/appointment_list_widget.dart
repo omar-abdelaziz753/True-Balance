@@ -75,8 +75,10 @@ class AppointmentListWidget extends StatelessWidget {
                       },
                       child: CustomAppointmentContainerWidget(
                         title: item.name ?? '',
-                        phone: item.phone ?? '',
+                        phone: item.phone ?? '', 
                         imagePath: item.image ?? '',
+                        age: item.age,
+                        gender: item.gender,
                       ),
                     );
                   },

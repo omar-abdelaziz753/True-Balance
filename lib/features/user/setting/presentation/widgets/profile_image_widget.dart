@@ -27,17 +27,6 @@ class ProfileImageWidget extends StatelessWidget {
             backgroundColor: AppColors.neutralColor200,
             child: cubit.profileImage != null
                 ? ClipOval(
-                    // child: Image.file(
-                    //   cubit.profileImage!,
-                    //   width: 90.r,
-                    //   height: 90.r,
-                    //   fit: BoxFit.cover,
-                    //   errorBuilder: (context, error, stackTrace) => Icon(
-                    //     Icons.person,
-                    //     size: 45.r,
-                    //     color: AppColors.neutralColor600,
-                    //   ),
-                    // ),
                     child: CacheNetworkImagesWidget(
                       image: cubit.profileImage?.path == ''
                           ? "assets/images/png/profile2.png"
@@ -48,8 +37,6 @@ class ProfileImageWidget extends StatelessWidget {
                     ),
                   )
                 : cubit.getProfileDataModel?.data?.image != null
-
-                    /// Omar.1234.@..
                     ? ClipOval(
                         child: CachedNetworkImage(
                           imageUrl: cubit.getProfileDataModel!.data!.image!,

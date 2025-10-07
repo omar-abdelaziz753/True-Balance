@@ -50,6 +50,8 @@ Map<String, dynamic> _$ConsultationUsersDataToJson(
     };
 
 UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
+      json['gender'] as String?,
+      (json['age'] as num?)?.toInt(),
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       email: json['email'] as String?,
@@ -66,6 +68,8 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
       'phone': instance.phone,
       'image': instance.image,
       'token': instance.token,
+      'gender': instance.gender,
+      'age': instance.age,
       'type': instance.type,
     };
 

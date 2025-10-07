@@ -139,8 +139,11 @@ class UserModel {
   final String? phone;
   final String? image;
   final String? type;
-
+  final int? age;
+  final String? gender;
   UserModel({
+    this.age,
+    this.gender,
     this.id,
     this.name,
     this.email,

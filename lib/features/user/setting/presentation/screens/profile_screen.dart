@@ -239,31 +239,31 @@ class ProfileScreen extends StatelessWidget {
                     child: Form(
                       key: _formKey,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // 13.verticalSpace,
-                          ProfileImageWidget(cubit: cubit),
+                          Center(child: ProfileImageWidget(cubit: cubit)),
                           10.verticalSpace,
-                          Text(
-                            cubit.getProfileDataModel == null
-                                ? 'Loading...'.tr()
-                                : cubit.getProfileDataModel!.data!.name!,
-                            style: Styles.highlightEmphasis.copyWith(
-                              color: AppColors.neutralColor1000,
+                          Center(
+                            child: Text(
+                              cubit.getProfileDataModel == null
+                                  ? 'Loading...'.tr()
+                                  : cubit.getProfileDataModel!.data!.name!,
+                              style: Styles.highlightEmphasis.copyWith(
+                                color: AppColors.neutralColor1000,
+                              ),
                             ),
                           ),
                           13.verticalSpace,
 
                           /// Full Name
-                          Row(
-                            children: [
-                              Text(
-                                'fullName'.tr(),
-                                style: Styles.contentEmphasis.copyWith(
-                                  color: AppColors.neutralColor1000,
-                                ),
-                              ),
-                            ],
+
+                          Text(
+                            'fullName'.tr(),
+                            style: Styles.contentEmphasis.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
                           ),
+
                           8.verticalSpace,
                           CustomTextFormFieldWidget(
                             controller: cubit.fullNameController,
@@ -292,16 +292,14 @@ class ProfileScreen extends StatelessWidget {
                           13.verticalSpace,
 
                           /// Phone Number
-                          Row(
-                            children: [
-                              Text(
-                                'phoneNumberOnly'.tr(),
-                                style: Styles.contentEmphasis.copyWith(
-                                  color: AppColors.neutralColor1000,
-                                ),
-                              ),
-                            ],
+
+                          Text(
+                            'phoneNumberOnly'.tr(),
+                            style: Styles.contentEmphasis.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
                           ),
+
                           8.verticalSpace,
                           CustomTextFormFieldWidget(
                             controller: cubit.phoneController,
@@ -332,16 +330,14 @@ class ProfileScreen extends StatelessWidget {
                           13.verticalSpace,
 
                           /// Email
-                          Row(
-                            children: [
-                              Text(
-                                'emailOnly'.tr(),
-                                style: Styles.contentEmphasis.copyWith(
-                                  color: AppColors.neutralColor1000,
-                                ),
-                              ),
-                            ],
+
+                          Text(
+                            'emailOnly'.tr(),
+                            style: Styles.contentEmphasis.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
                           ),
+
                           8.verticalSpace,
                           CustomTextFormFieldWidget(
                             controller: cubit.emailController,
@@ -369,23 +365,23 @@ class ProfileScreen extends StatelessWidget {
                             },
                           ),
                           13.verticalSpace,
-                          Row(
-                            children: [
-                              Text(
-                                "age".tr(),
-                                style: Styles.contentEmphasis.copyWith(
-                                  color: AppColors.neutralColor1000,
-                                ),
-                              )
-                            ],
+
+                          Text(
+                            "age".tr(),
+                            style: Styles.contentEmphasis.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
                           ),
+
                           8.verticalSpace,
                           CustomTextFormFieldWidget(
                             controller: cubit.ageController,
                             hintText: cubit.getProfileDataModel == null
                                 ? 'Loading...'.tr()
-                                : cubit.getProfileDataModel!.data!.age!
-                                    .toString(),
+                                : cubit.getProfileDataModel!.data!.age != null
+                                    ? cubit.getProfileDataModel!.data!.age
+                                        .toString()
+                                    : "age".tr(),
                             keyboardType: TextInputType.number,
                             borderColor: AppColors.neutralColor1000,
                             hintStyle: Styles.captionRegular.copyWith(
@@ -403,19 +399,22 @@ class ProfileScreen extends StatelessWidget {
                           ),
 
                           13.verticalSpace,
-                          Row(
-                            children: [
-                              Text(
-                                "gender".tr(),
-                                style: Styles.contentEmphasis.copyWith(
-                                  color: AppColors.neutralColor1000,
-                                ),
-                              )
-                            ],
+
+                          Text(
+                            "gender".tr(),
+                            style: Styles.contentEmphasis.copyWith(
+                              color: AppColors.neutralColor1000,
+                            ),
                           ),
                           8.verticalSpace,
                           CustomDropdownButtonWidget(
-                            hint: cubit.genderController.text,
+                            hint: cubit.genderController.text.isNotEmpty
+                                ? cubit.genderController.text
+                                : (cubit.getProfileDataModel?.data?.gender
+                                            ?.isNotEmpty ??
+                                        false)
+                                    ? cubit.getProfileDataModel!.data!.gender!
+                                    : "gender".tr(),
                             items: ['male', 'female'],
                             isString: true,
                             value: cubit.genderController.text.isNotEmpty
@@ -432,7 +431,7 @@ class ProfileScreen extends StatelessWidget {
                               if (value == null || value.isEmpty) {
                                 return 'genderRequired'.tr();
                               }
-                              return null; 
+                              return null;
                             },
                           ),
                         ],

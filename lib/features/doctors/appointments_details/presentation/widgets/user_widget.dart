@@ -44,14 +44,12 @@ class UserWidget extends StatelessWidget {
           Hero(
             tag: userData.image ?? "",
             child: CachedNetworkImage(
-                imageUrl: userData.image ?? "",
-                width: 55.w,
-                height: 55.h,
-                errorWidget: (context, url, error) => Icon(
-                      Icons.error,
-                      size: 55.sp,
-                      color: Colors.grey,
-                    )),
+              imageUrl: userData.image ?? "",
+              width: 55.w,
+              height: 55.h,
+              errorWidget: (context, url, error) =>
+                  Image.asset("assets/images/png/profile2.png"),
+            ),
           ),
           // CachedNetworkImage(
           //   imageUrl: userData.image!,
@@ -87,6 +85,24 @@ class UserWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              if (userData.age != null) ...[
+                SizedBox(height: 4.h),
+                Text(
+                  "${"age".tr()}: ${userData.age}".toString(),
+                  style: Styles.footnoteEmphasis.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
+                ),
+              ],
+              if (userData.gender != null) ...[
+                SizedBox(height: 2.h),
+                Text(
+                  "${"gender".tr()}: ${userData.gender}",
+                  style: Styles.footnoteEmphasis.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
+                ),
+              ],
             ],
           )
         ],

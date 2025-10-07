@@ -48,9 +48,13 @@ class UserData {
   final String? phone;
   final String? image;
   final String? token;
+  final String? gender;
+  final int? age;
   final String? type;
 
-  UserData({
+  UserData(
+    this.gender,
+    this.age, {
     this.id,
     this.name,
     this.email,
@@ -80,8 +84,7 @@ class Links {
     this.next,
   });
 
-  factory Links.fromJson(Map<String, dynamic> json) =>
-      _$LinksFromJson(json);
+  factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinksToJson(this);
 }
@@ -111,8 +114,7 @@ class Meta {
     this.total,
   });
 
-  factory Meta.fromJson(Map<String, dynamic> json) =>
-      _$MetaFromJson(json);
+  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
 
   Map<String, dynamic> toJson() => _$MetaToJson(this);
 }
