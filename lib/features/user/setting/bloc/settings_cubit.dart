@@ -35,8 +35,12 @@ class SettingsCubit extends Cubit<SettingsState> {
         fullNameController.text = getProfileDataModel!.data!.name ?? '';
         phoneController.text = getProfileDataModel!.data!.phone ?? '';
         emailController.text = getProfileDataModel!.data!.email ?? '';
-        ageController.text = getProfileDataModel!.data!.age.toString();
-        genderController.text = getProfileDataModel!.data!.gender.toString();
+
+        ageController.text = getProfileDataModel!.data!.age != null
+            ? getProfileDataModel!.data!.age.toString()
+            : '';
+        print('age: ${getProfileDataModel!.data!.age != null}');
+        genderController.text = getProfileDataModel!.data!.gender ?? '';
         emit(GetProfileDataSuccessState());
       },
       failure: (error) {

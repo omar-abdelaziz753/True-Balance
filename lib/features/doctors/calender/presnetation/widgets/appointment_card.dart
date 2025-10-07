@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:truee_balance_app/core/themes/text_colors.dart';
 
 class AppointmentCard extends StatelessWidget {
   final String time;
@@ -9,6 +10,8 @@ class AppointmentCard extends StatelessWidget {
   final String specialization;
   final String status;
   final String imageUrl;
+  final int? age;
+  final String? gender;
 
   const AppointmentCard({
     super.key,
@@ -17,6 +20,8 @@ class AppointmentCard extends StatelessWidget {
     required this.specialization,
     required this.status,
     required this.imageUrl,
+    this.age,
+    this.gender,
   });
 
   Color _statusColor() {
@@ -113,6 +118,24 @@ class AppointmentCard extends StatelessWidget {
                   ),
                 ),
               ),
+              if (age != null) ...[
+                SizedBox(height: 4.h),
+                Text(
+                  "${"age".tr()}: $age".toString(),
+                  style: Styles.footnoteEmphasis.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
+                ),
+              ],
+              if (gender != null) ...[
+                SizedBox(height: 2.h),
+                Text(
+                  "${"gender".tr()}: $gender",
+                  style: Styles.footnoteEmphasis.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
+                ),
+              ],
             ],
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
@@ -48,27 +49,44 @@ class UserWidgetTheripst extends StatelessWidget {
           ),
           12.horizontalSpace,
           Expanded(
-            child: Column(
-              spacing: 4.h,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  userData.name!,
-                  style: Styles.contentBold.copyWith(
-                    color: AppColors.neutralColor1000,
-                  ),
+              child: Column(
+            spacing: 4.h,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                userData.name!,
+                style: Styles.contentBold.copyWith(
+                  color: AppColors.neutralColor1000,
                 ),
+              ),
+              Text(
+                userData.phone!,
+                style: Styles.footnoteEmphasis.copyWith(
+                  color: AppColors.neutralColor600,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              if (userData.age != null) ...[
+                SizedBox(height: 4.h),
                 Text(
-                  userData.phone!,
+                  "${"age".tr()}: ${userData.age}".toString(),
                   style: Styles.footnoteEmphasis.copyWith(
                     color: AppColors.neutralColor600,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ],
-            ),
-          ),
+              if (userData.gender != null) ...[
+                SizedBox(height: 2.h),
+                Text(
+                  "${"gender".tr()}: ${userData.gender}",
+                  style: Styles.footnoteEmphasis.copyWith(
+                    color: AppColors.neutralColor600,
+                  ),
+                ),
+              ],
+            ],
+          )),
         ],
       ),
     );

@@ -97,6 +97,8 @@ Map<String, dynamic> _$TreatmentPlanToJson(TreatmentPlan instance) =>
     };
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
+      age: (json['age'] as num?)?.toInt(),
+      gender: json['gender'] as String?,
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       email: json['email'] as String?,
@@ -112,4 +114,6 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'phone': instance.phone,
       'image': instance.image,
       'type': instance.type,
+      'age': instance.age,
+      'gender': instance.gender,
     };

@@ -50,6 +50,23 @@ void main() async {
   Bloc.observer = MyBlocObserver();
 //  await CacheHelper.clearAllData();
 // await  CacheHelper.clearAllSecuredData();
+ // Get system locale
+  final systemLocale = PlatformDispatcher.instance.locale.languageCode;
+
+  // Check if we already saved a language before
+  final savedLocale =
+      CacheHelper.getData(key: CacheKeys.currentLanguage) as String?;
+
+  // If not saved, use system locale or fallback to 'en'
+  if (savedLocale == null) {
+    await CacheHelper.saveData(
+      key: CacheKeys.currentLanguage,
+      value: systemLocale,
+    );
+    log("Locale saved in cache: $systemLocale");
+  } else {
+    log("Loaded locale from cache: $savedLocale");
+  }
   AppConstants.userToken =
       await CacheHelper.getSecuredString(key: CacheKeys.userToken);
   log("User Token: ${AppConstants.userToken}");
@@ -59,7 +76,7 @@ void main() async {
     EasyLocalization(
       saveLocale: true,
       useFallbackTranslations: true,
-      fallbackLocale: const Locale('en', 'UK'),
+      fallbackLocale: const Locale('ar', 'EG'),
       supportedLocales: const [
         Locale('ar', 'EG'),
         Locale('en', 'UK'),
