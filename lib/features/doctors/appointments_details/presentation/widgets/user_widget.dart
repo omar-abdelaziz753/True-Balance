@@ -16,7 +16,7 @@ class UserWidget extends StatelessWidget {
   });
 
   final UserData userData;
-  final AppointmentsDetailsCubit cubit;
+  final AppointmentsDetailsCubit cubit; 
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +51,6 @@ class UserWidget extends StatelessWidget {
                   Image.asset("assets/images/png/profile2.png"),
             ),
           ),
-          // CachedNetworkImage(
-          //   imageUrl: userData.image!,
-          //   width: 55.w,
-          //   height: 55.h,
-          // ),
           12.horizontalSpace,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +88,7 @@ class UserWidget extends StatelessWidget {
                     color: AppColors.neutralColor600,
                   ),
                 ),
-              ], 
+              ],
               if (userData.gender != null) ...[
                 SizedBox(height: 2.h),
                 Text(

@@ -46,8 +46,8 @@ class ListWidget extends StatelessWidget {
                         time: item.time ?? "",
                         name: item.user?.name ?? "Unknown",
                         specialization: item.user?.phone ?? "",
-                        age: item.user!.age,
-                        gender: item.user!.gender,
+                        age: item.user?.age,
+                        gender: item.user?.gender,
                         status: item.status ?? "pending",
                         imageUrl: item.user?.image ?? '',
                       );
@@ -55,8 +55,8 @@ class ListWidget extends StatelessWidget {
                       final item = items[index] as TherapistSchedule;
                       return AppointmentCard(
                         time: item.time ?? "",
-                        age: item.user!.age,
-                        gender: item.user!.gender,
+                        age: item.user?.age,
+                        gender: item.user?.gender,
                         name: item.user?.name ?? "Treatment Plan",
                         specialization: item.user?.phone ?? "",
                         status: item.status ?? "pending",

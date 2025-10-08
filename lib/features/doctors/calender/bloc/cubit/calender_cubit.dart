@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
@@ -11,6 +12,7 @@ class CalenderCubit extends Cubit<CalenderState> {
   CalenderCubit(this._repos) : super(CalenderInitial());
   DateTime selectedDate = DateTime.now();
   DateTime endDate = DateTime.now().add(const Duration(days: 7));
+
   final AppointmentsRepos _repos;
   void chooseBookingDate(DateTime dateTime) async {
     selectedDate = dateTime;
@@ -68,10 +70,14 @@ class CalenderCubit extends Cubit<CalenderState> {
   }
 
   void thierpistFIlter() {
+    print(therapistScheduleModel!.data!.data!);
+    String formattedEndDate = DateFormat('dd-MM-yyyy').format(selectedDate);
     therapistFiletrList = therapistScheduleModel!.data!.data!
         .where((element) =>
-            element.date == selectedDate.toString().split(' ').first)
+            element.date == formattedEndDate.toString().split(' ').first)
         .toList();
+    print(formattedEndDate);
+    print(therapistFiletrList);
   }
 
   void getApiBaseonRole() async {
