@@ -93,7 +93,7 @@ class UserWidget extends StatelessWidget {
                     color: AppColors.neutralColor600,
                   ),
                 ),
-              ],
+              ], 
               if (userData.gender != null) ...[
                 SizedBox(height: 2.h),
                 Text(
