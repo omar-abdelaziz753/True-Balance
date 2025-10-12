@@ -62,8 +62,11 @@ class AppointmentCard extends StatelessWidget {
             backgroundImage:
                 imageUrl.isNotEmpty ? NetworkImage(imageUrl) : null,
             child: imageUrl.isEmpty
-                ? Icon(Icons.person,
-                    size: 32.sp, color: AppColors.neutralColor600)
+                ? Icon(
+                    Icons.person,
+                    size: 32.sp,
+                    color: AppColors.neutralColor600,
+                  )
                 : null,
           ),
           SizedBox(width: 12.w),
