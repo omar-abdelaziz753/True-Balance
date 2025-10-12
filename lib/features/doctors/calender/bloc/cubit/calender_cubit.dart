@@ -70,14 +70,13 @@ class CalenderCubit extends Cubit<CalenderState> {
   }
 
   void thierpistFIlter() {
-    print(therapistScheduleModel!.data!.data!);
+    // print(therapistScheduleModel!.data!.data!);
     String formattedEndDate = DateFormat('dd-MM-yyyy').format(selectedDate);
     therapistFiletrList = therapistScheduleModel!.data!.data!
         .where((element) =>
             element.date == formattedEndDate.toString().split(' ').first)
         .toList();
-    print(formattedEndDate);
-    print(therapistFiletrList);
+  
   }
 
   void getApiBaseonRole() async {

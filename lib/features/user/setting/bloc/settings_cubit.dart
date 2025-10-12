@@ -39,7 +39,6 @@ class SettingsCubit extends Cubit<SettingsState> {
         ageController.text = getProfileDataModel!.data!.age != null
             ? getProfileDataModel!.data!.age.toString()
             : '';
-        print('age: ${getProfileDataModel!.data!.age != null}');
         genderController.text = getProfileDataModel!.data!.gender ?? '';
         emit(GetProfileDataSuccessState());
       },

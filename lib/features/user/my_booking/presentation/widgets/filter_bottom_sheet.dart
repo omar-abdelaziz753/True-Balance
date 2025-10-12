@@ -169,12 +169,12 @@ Future<DateTime?> showAppDatePicker({
             onSurface: AppColors.neutralColor900,
             surface: AppColors.neutralColor100,
           ),
-          dialogBackgroundColor: Colors.white,
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
               foregroundColor: AppColors.primaryColor800,
             ),
           ),
+          dialogTheme: const DialogThemeData(backgroundColor: Colors.white),
         ),
         child: child!,
       );
