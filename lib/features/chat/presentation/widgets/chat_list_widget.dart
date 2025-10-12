@@ -11,7 +11,7 @@ class ChatListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<TechnicalSupportCubit>();
-
+ 
     return ListView.separated(
       shrinkWrap: true,
       padding: EdgeInsets.only(

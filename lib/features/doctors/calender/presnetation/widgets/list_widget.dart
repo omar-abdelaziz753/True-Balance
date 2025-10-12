@@ -56,7 +56,7 @@ class ListWidget extends StatelessWidget {
                       return AppointmentCard(
                         time: item.time ?? "",
                         age: item.user?.age,
-                        gender: item.user?.gender,
+                        gender: item.user?.gender, 
                         name: item.user?.name ?? "Treatment Plan",
                         specialization: item.user?.phone ?? "",
                         status: item.status ?? "pending",
