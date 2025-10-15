@@ -31,7 +31,8 @@ class AddSessionScreen extends StatelessWidget {
           onPressed: () {
             if (cubit.currentStep == 1 || cubit.currentStep == 2) {
               cubit.previousStep();
-            } else {
+            } else 
+            {
               Navigator.pop(context);
             }
           },

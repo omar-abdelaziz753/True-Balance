@@ -72,7 +72,7 @@ class TreatmentPlanForTherapists extends StatelessWidget {
                         color: Colors.black.withAlpha(20),
                       ),
                     ],
-                  ),
+                  ),  
                   child: Row(
                     children: [
                       Text(

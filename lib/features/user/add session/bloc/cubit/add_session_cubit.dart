@@ -27,6 +27,7 @@ class AddSessionCubit extends Cubit<AddSessionState> {
   }
 
   List<SelecteItem> selectedItems = [];
+  
 
   void addSelectedItem(SelecteItem item) {
     selectedItems.add(item);
