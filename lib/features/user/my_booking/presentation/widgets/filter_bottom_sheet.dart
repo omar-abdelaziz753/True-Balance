@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:truee_balance_app/core/themes/text_colors.dart';
 import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
 import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
 import 'package:truee_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
@@ -96,6 +97,36 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               Expanded(
                 child: CustomButtonWidget(
                   onPressed: () {
+                    if (doctorNameController.text.isEmpty &&
+                        fromDateController.text.isEmpty &&
+                        toDateController.text.isEmpty) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text(
+                            style: Styles.highlightBold,
+                            "warning".tr(),
+                          ),
+                          content: Text(
+                            style: Styles.captionEmphasis
+                                .copyWith(color: AppColors.neutralColor500),
+                            "pleaseSelectdoctorName".tr(),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: Text(
+                                "ok".tr(),
+                                style: TextStyle(
+                                  color: AppColors.primaryColor900,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                      return;
+                    }
                     widget.cubit.doctorName =
                         doctorNameController.text.isNotEmpty
                             ? doctorNameController.text
