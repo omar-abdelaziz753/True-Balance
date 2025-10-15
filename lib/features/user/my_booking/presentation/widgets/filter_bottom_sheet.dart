@@ -103,6 +103,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
+                          backgroundColor: Colors.white,
                           title: Text(
                             style: Styles.highlightBold,
                             "warning".tr(),
