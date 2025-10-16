@@ -57,7 +57,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
                   ? AppColors.primaryColor700
                   : AppColors.neutralColor600,
             ),
-            onTap3: !isTimerFinished
+            onTap3: isTimerFinished
                 ? () {
                     if (widget.data['screenName'] == "Register") {
                       widget.cubit.userRegister(isResend: true);
