@@ -28,7 +28,7 @@ void navigateBasedOnRole() {
           break;
         default:
           AppConstants.navigatorKey.currentContext
-              ?.pushNamedAndRemoveUntil(Routes.loginScreen);
+              ?.pushNamedAndRemoveUntil(Routes.mainLayoutScreen);
       }
     }
   } else {

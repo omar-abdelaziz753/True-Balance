@@ -99,7 +99,6 @@ class ResisterFormWidget extends StatelessWidget {
               },
             ),
             18.verticalSpace,
-
             Text(
               'gender'.tr(),
               style: Styles.contentEmphasis.copyWith(
@@ -229,7 +228,8 @@ class ResisterFormWidget extends StatelessWidget {
                       .copyWith(color: AppColors.neutralColor300),
                 ),
                 TextButton(
-                  onPressed: () => context.pushNamed(Routes.loginScreen),
+                  onPressed: () =>
+                      context.pushNamedAndRemoveUntil(Routes.loginScreen),
                   style: TextButton.styleFrom(
                     padding:
                         EdgeInsets.only(left: 6.w, top: 18.w, bottom: 18.w),

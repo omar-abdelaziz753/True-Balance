@@ -18,13 +18,15 @@ Future<bool> showRatingBottomSheetForUserConsultaion(
     backgroundColor: Colors.transparent,
     builder: (_) {
       return BlocProvider(
-        create: (_) => MybookCubit(getIt()),
+        create: (_) => MybookCubit(
+          getIt(),
+        ),
         child: StatefulBuilder(
           builder: (statefulContext, setState) {
             return BlocListener<MybookCubit, MybookState>(
               listener: (listenerContext, state) {
                 if (state is AddRateSuccess) {
-                  Navigator.pop(listenerContext, true); // ✅ return true
+                  Navigator.pop(listenerContext, true); 
                   ScaffoldMessenger.of(listenerContext).showSnackBar(
                     SnackBar(
                       content: Text('ratingSubmittedSuccessfully'.tr()),
@@ -32,7 +34,7 @@ Future<bool> showRatingBottomSheetForUserConsultaion(
                     ),
                   );
                 } else if (state is AddRateFailure) {
-                  Navigator.pop(listenerContext, false); // ✅ return false
+                  Navigator.pop(listenerContext, false); 
                   ScaffoldMessenger.of(listenerContext).showSnackBar(
                     SnackBar(
                       content: Text('failedToSubmitRating'.tr()),
@@ -78,7 +80,7 @@ Future<bool> showRatingBottomSheetForUserConsultaion(
                       );
                 },
                 onCancelPressed: () {
-                  Navigator.pop(statefulContext, false); // ✅ return false
+                  Navigator.pop(statefulContext, false); 
                 },
               ),
             );
@@ -88,5 +90,5 @@ Future<bool> showRatingBottomSheetForUserConsultaion(
     },
   );
 
-  return result ?? false; // default false if dismissed
+  return result ?? false;
 }
