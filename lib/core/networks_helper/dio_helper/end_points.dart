@@ -83,4 +83,13 @@ class EndPoints {
       'api/frontend/doctor/consultations/weekly-consultations';
   static String getTheipstCalender =
       'api/frontend/therapist/treatment-plans/weekly-treatment-plans';
+
+  // ==================== Geidea Payment ====================
+  static const String geideaInitiate = 'api/v1/payment/geidea/initiate';
+  static const String geideaCallback = 'api/v1/payment/geidea/callback';
+  static const String geideaCheckoutUrl = 'api/v1/payment/geidea/checkout-url';
+  static const String geideaStatus = 'api/v1/payment/geidea/status';
+  static const String geideaRefund = 'api/v1/payment/geidea/refund';
+  static const String geideaVoid = 'api/v1/payment/geidea/void';
+  static const String geideaHistory = 'api/v1/payment/geidea/history';
 }
