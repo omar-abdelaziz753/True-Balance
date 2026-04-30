@@ -3,7 +3,7 @@
 
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:truee_balance_app/features/chat/cubit/chat_state.dart';
+// import 'package:true_balance_app/features/chat/cubit/chat_state.dart';
 
 // class ChatCubit extends Cubit<ChatState> {
 //   ChatCubit(this.chatRepo) : super(ChatInitial());

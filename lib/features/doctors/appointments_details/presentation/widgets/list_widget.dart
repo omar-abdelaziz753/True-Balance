@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/presentation/screens/appoimntet_item_details_screen.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/presentation/screens/appoimntet_item_details_screen.dart';
 
 class ListWidget extends StatelessWidget {
   const ListWidget({

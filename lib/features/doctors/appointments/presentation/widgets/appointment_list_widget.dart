@@ -2,15 +2,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/app_router.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
-import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
-import 'package:truee_balance_app/features/doctors/appointments/presentation/widgets/custom_appointment_counter_widget.dart';
-import 'package:truee_balance_app/features/doctors/appointments/presentation/widgets/skeleton_widget.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/core/extensions/navigation_extension.dart';
+import 'package:true_balance_app/core/routing/app_router.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
+import 'package:true_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
+import 'package:true_balance_app/features/doctors/appointments/presentation/widgets/custom_appointment_counter_widget.dart';
+import 'package:true_balance_app/features/doctors/appointments/presentation/widgets/skeleton_widget.dart';
 
 class AppointmentListWidget extends StatelessWidget {
   const AppointmentListWidget({

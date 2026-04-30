@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
-import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
-import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
+import 'package:true_balance_app/features/doctors/appointments/bloc/cubit/appointments_cubit.dart';
+import 'package:true_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
 
 import '../widgets/appointment_list_widget.dart';
 

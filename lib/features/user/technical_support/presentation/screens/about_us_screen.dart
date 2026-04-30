@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
-import 'package:truee_balance_app/features/user/technical_support/presentation/widgets/custom_section_in_about_us_widget.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
+import 'package:true_balance_app/features/user/technical_support/presentation/widgets/custom_section_in_about_us_widget.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key, required this.data});

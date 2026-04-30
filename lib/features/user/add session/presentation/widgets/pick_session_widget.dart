@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/features/user/add%20session/bloc/cubit/add_session_cubit.dart';
 
 Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   final availableAppointments = cubit.treatmentPlanDetail.availableAppointments;
@@ -63,19 +64,18 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   final times =
       availableAppointments.firstWhere((a) => a.day == formattedDate).slots;
 
-  String? selectedTime = await showDialog<String>(
+  // Remove duplicates from times
+  final uniqueTimes = times.toSet().toList()..sort();
+
+  String? selectedTime = await showModalBottomSheet<String>(
     context: context,
-    builder: (_) => SimpleDialog(
-      backgroundColor: Colors.white,
-      title: Text("selectTime".tr()),
-      children: times
-          .map(
-            (time) => SimpleDialogOption(
-              onPressed: () => Navigator.pop(context, time),
-              child: Text(time),
-            ),
-          )
-          .toList(),
+    backgroundColor: Colors.white,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) => _TimeSlotPicker(
+      date: formattedDate,
+      times: uniqueTimes,
     ),
   );
 
@@ -95,4 +95,92 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   cubit.addSelectedItem(
     SelecteItem(date: formattedDate, time: selectedTime),
   );
+}
+
+class _TimeSlotPicker extends StatelessWidget {
+  final String date;
+  final List<String> times;
+
+  const _TimeSlotPicker({required this.date, required this.times});
+
+  @override
+  Widget build(BuildContext context) {
+    final parsedDate = DateFormat('dd-MM-yyyy', 'en_US').parse(date);
+    final formattedDisplay = DateFormat('EEEE, MMMM d').format(parsedDate);
+
+    return Container(
+      padding: EdgeInsets.all(20.sp),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ),
+          SizedBox(height: 20.h),
+          Text(
+            formattedDisplay,
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.neutralColor900,
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            '${times.length} available times',
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: AppColors.neutralColor600,
+            ),
+          ),
+          SizedBox(height: 20.h),
+          Wrap(
+            spacing: 12.w,
+            runSpacing: 12.h,
+            children: times.map((time) {
+              return _TimeSlotChip(time: time);
+            }).toList(),
+          ),
+          SizedBox(height: 20.h),
+        ],
+      ),
+    );
+  }
+}
+
+class _TimeSlotChip extends StatelessWidget {
+  final String time;
+
+  const _TimeSlotChip({required this.time});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => Navigator.pop(context, time),
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.neutralColor300),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(
+          time,
+          style: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w500,
+            color: AppColors.neutralColor900,
+          ),
+        ),
+      ),
+    );
+  }
 }

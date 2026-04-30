@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/row_treatment_plan_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/total_of_treatment_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/treatment_plan_item_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/treatment_plan_widget_skelton.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/row_treatment_plan_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/total_of_treatment_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/treatment_plan_item_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/treatment_plan_widget_skelton.dart';
 
 class TreatmentPlansScreen extends StatelessWidget {
   const TreatmentPlansScreen({super.key});

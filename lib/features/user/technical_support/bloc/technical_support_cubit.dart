@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/repos/repos.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
+import 'package:true_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
+import 'package:true_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
+import 'package:true_balance_app/features/user/technical_support/data/repos/repos.dart';
 
 part 'technical_support_state.dart';
 

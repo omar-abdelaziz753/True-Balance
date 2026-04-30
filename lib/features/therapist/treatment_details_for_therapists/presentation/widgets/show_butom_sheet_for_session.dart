@@ -4,11 +4,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/helper_functions/flutter_toast.dart';
-import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/bloc/cubit/treatment_details_for_therapist_cubit.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/presentation/widgets/shared_buttom_sheet_for_session_theripist.dart';
+import 'package:true_balance_app/core/helper_functions/flutter_toast.dart';
+import 'package:true_balance_app/core/services/di/dependency_injection.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/bloc/cubit/treatment_details_for_therapist_cubit.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/presentation/widgets/shared_buttom_sheet_for_session_theripist.dart';
 
 void showRatingBottomSheetForSession(BuildContext context, int id, int index) {
   final TextEditingController commentController = TextEditingController();

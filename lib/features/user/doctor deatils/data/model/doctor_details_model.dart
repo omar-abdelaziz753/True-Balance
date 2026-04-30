@@ -47,7 +47,7 @@
 //     required this.rate,
 //     required this.ratesCount,
 //     required this.ratings,
-//     required this .age , 
+//     required this .age ,
 //     required this.gender
 
 //   });
@@ -142,6 +142,8 @@ class DoctorModelDetails {
   final num? rate;
   final int? rateCount;
   final Ratings? ratings;
+  final double? consultationPrice;
+  final double? sessionPrice;
 
   DoctorModelDetails({
     this.id,
@@ -157,6 +159,8 @@ class DoctorModelDetails {
     this.rate,
     this.rateCount,
     this.ratings,
+    this.consultationPrice,
+    this.sessionPrice,
   });
 
   factory DoctorModelDetails.fromJson(Map<String, dynamic> json) =>
@@ -194,6 +198,13 @@ class UserRating {
   @JsonKey(name: 'user_message')
   final String? userMessage;
 
+  // New API fields support
+  final int? id;
+  final String? name;
+  final String? text;
+  final String? image;
+  final int? rating;
+
   final String? date;
 
   UserRating({
@@ -203,10 +214,47 @@ class UserRating {
     this.userRate,
     this.userMessage,
     this.date,
+    this.id,
+    this.name,
+    this.text,
+    this.image,
+    this.rating,
   });
 
-  factory UserRating.fromJson(Map<String, dynamic> json) =>
-      _$UserRatingFromJson(json);
+  // Factory to create from new API format (id, name, text, rating)
+  factory UserRating.fromNewApi(Map<String, dynamic> json) {
+    return UserRating(
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      text: json['text'] as String?,
+      image: json['image'] as String?,
+      rating: json['rating'] as int?,
+      date: json['date'] as String?,
+    );
+  }
+
+  factory UserRating.fromJson(Map<String, dynamic> json) {
+    // Check if it's new format (has 'id' field) or old format (has 'user_id')
+    if (json['id'] != null && json['user_id'] == null) {
+      return UserRating(
+        id: json['id'] as int?,
+        name: json['name'] as String?,
+        text: json['text'] as String?,
+        image: json['image'] as String?,
+        rating: json['rating'] as int?,
+        date: json['date'] as String?,
+      );
+    }
+    // Old format
+    return UserRating(
+      userId: json['user_id'] as int?,
+      userName: json['user_name'] as String?,
+      userImage: json['user_image'] as String?,
+      userRate: json['user_rate'] as int?,
+      userMessage: json['user_message'] as String?,
+      date: json['date'] as String?,
+    );
+  }
 
   Map<String, dynamic> toJson() => _$UserRatingToJson(this);
 }

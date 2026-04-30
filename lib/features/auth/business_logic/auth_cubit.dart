@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/core/helper_functions/navigate_based_on_role.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/auth/data/repos/auth_repo.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/core/helper_functions/navigate_based_on_role.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/auth/data/repos/auth_repo.dart';
 
 part 'auth_state.dart';
 

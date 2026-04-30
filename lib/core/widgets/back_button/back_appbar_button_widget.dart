@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
+import 'package:true_balance_app/core/extensions/navigation_extension.dart';
 
 class AppBarBackButtonWidget extends StatelessWidget {
   const AppBarBackButtonWidget({super.key, this.onTap});

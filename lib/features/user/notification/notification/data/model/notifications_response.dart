@@ -62,6 +62,8 @@ class NotificationItem {
   final String? description;
   @JsonKey(name: "created_at")
   final String? createdAtString;
+  @JsonKey(name: "is_read")
+  final bool? isRead;
 
   NotificationItem({
     this.id,
@@ -69,6 +71,7 @@ class NotificationItem {
     this.title,
     this.description,
     this.createdAtString,
+    this.isRead,
   });
 
   /// Helper getter to parse `created_at` into a DateTime if possible

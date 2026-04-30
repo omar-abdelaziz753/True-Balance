@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/features/user/home/presentation/widgets/service_card_widget.dart';
+import 'package:true_balance_app/features/user/home/presentation/widgets/service_card_widget.dart';
 
 class OurServicesSkeltonizer extends StatelessWidget {
   const OurServicesSkeltonizer({

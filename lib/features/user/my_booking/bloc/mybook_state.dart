@@ -31,3 +31,27 @@ class AddRateSuccess extends MybookState {}
 
 /// Add Rate Failure
 class AddRateFailure extends MybookState {}
+
+/// Initiate Payment Loading
+class InitiatePaymentLoading extends MybookState {}
+
+/// Initiate Payment Success
+class InitiatePaymentSuccess extends MybookState {
+  final String paymentUrl;
+  final int transactionId;
+  final int consultationId;
+  final double amount;
+
+  InitiatePaymentSuccess({
+    required this.paymentUrl,
+    required this.transactionId,
+    required this.consultationId,
+    required this.amount,
+  });
+}
+
+/// Initiate Payment Failure
+class InitiatePaymentFailure extends MybookState {
+  final String message;
+  InitiatePaymentFailure(this.message);
+}

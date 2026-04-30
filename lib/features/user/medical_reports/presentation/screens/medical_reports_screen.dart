@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/helper_functions/date_formate.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/features/user/medical_reports/bloc/cubit/reports_cubit.dart';
-import 'package:truee_balance_app/features/user/medical_reports/presentation/widgets/medical_report_item_widget.dart';
-import 'package:truee_balance_app/features/user/medical_reports/presentation/widgets/medical_reports_skeleton_widget.dart';
+import 'package:true_balance_app/core/helper_functions/date_formate.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/features/user/medical_reports/bloc/cubit/reports_cubit.dart';
+import 'package:true_balance_app/features/user/medical_reports/presentation/widgets/medical_report_item_widget.dart';
+import 'package:true_balance_app/features/user/medical_reports/presentation/widgets/medical_reports_skeleton_widget.dart';
 
 class MedicalReportsScreen extends StatelessWidget {
   const MedicalReportsScreen({super.key});

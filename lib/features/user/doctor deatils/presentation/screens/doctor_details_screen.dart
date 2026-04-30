@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/best_therapists_and_review_widget.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/doctor_details_widget.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/review_item_widget.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/skeletonizer_for_doctor_details.dart';
+import 'package:true_balance_app/core/extensions/navigation_extension.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/presentation/widgets/best_therapists_and_review_widget.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/presentation/widgets/doctor_details_widget.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/presentation/widgets/review_item_widget.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/presentation/widgets/skeletonizer_for_doctor_details.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
   const DoctorDetailsScreen({

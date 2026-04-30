@@ -5,12 +5,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/error_model.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/error_model.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
 
 class ToastManager {
   static OverlayEntry? _overlayEntry;

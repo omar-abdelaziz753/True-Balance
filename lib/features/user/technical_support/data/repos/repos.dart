@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/api_services/api_services.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/features/user/technical_support/data/api_services/api_services.dart';
+import 'package:true_balance_app/features/user/technical_support/data/models/about_us/about_us_model.dart';
+import 'package:true_balance_app/features/user/technical_support/data/models/tickets/all_tickets_data_model.dart';
+import 'package:true_balance_app/features/user/technical_support/data/models/tickets/ticket_details_data_model.dart';
 
 class TechnicalSupportRepo {
   final TechnicalSupportApiServices technicalSupportApiServices;

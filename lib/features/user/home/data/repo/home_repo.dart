@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/user/home/data/apiServices/home_api_services.dart';
-import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
-import 'package:truee_balance_app/features/user/home/data/model/services/service_model.dart';
-import 'package:truee_balance_app/features/user/home/data/model/sliders/slider_model.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/features/user/home/data/apiServices/home_api_services.dart';
+import 'package:true_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
+import 'package:true_balance_app/features/user/home/data/model/services/service_model.dart';
+import 'package:true_balance_app/features/user/home/data/model/sliders/slider_model.dart';
 
 class HomeRepo {
   final HomeApiServices api;

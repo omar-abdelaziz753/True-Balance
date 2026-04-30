@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
-import 'package:truee_balance_app/features/user/home/presentation/widgets/custom_service_card_widget.dart';
-import 'package:truee_balance_app/features/user/home/presentation/widgets/our_services_skeltonizer_in_home.dart';
+import 'package:true_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
+import 'package:true_balance_app/features/user/home/presentation/widgets/custom_service_card_widget.dart';
+import 'package:true_balance_app/features/user/home/presentation/widgets/our_services_skeltonizer_in_home.dart';
 
 class OurServicesWidget extends StatelessWidget {
   const OurServicesWidget({

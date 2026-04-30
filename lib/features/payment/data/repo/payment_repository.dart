@@ -34,6 +34,48 @@ class PaymentRepository {
     }
   }
 
+  Future<GeideaCheckoutResponse> initiateConsultationCheckout({
+    required int consultationId,
+  }) async {
+    try {
+      final response = await DioHelper.dio.post(
+        EndPoints.initiateConsultationPayment,
+        data: {'consultation_id': consultationId},
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final data = response.data['data'];
+        return GeideaCheckoutResponse(
+          success: true,
+          data: GeideaCheckoutData(
+            transactionId: data['transaction_id'] ?? 0,
+            sessionId: data['session_id'] ?? '',
+            checkoutUrl: data['payment_url'] ?? '',
+            merchantReferenceId: '',
+            expiresAt:
+                DateTime.now().add(const Duration(hours: 2)).toIso8601String(),
+          ),
+          message: 'Success',
+        );
+      }
+
+      return GeideaCheckoutResponse(
+        success: false,
+        message: response.data['message'] ?? 'Failed to initiate checkout',
+      );
+    } on DioException catch (e) {
+      return GeideaCheckoutResponse(
+        success: false,
+        message: _handleDioError(e),
+      );
+    } catch (e) {
+      return GeideaCheckoutResponse(
+        success: false,
+        message: 'An unexpected error occurred',
+      );
+    }
+  }
+
   Future<GeideaCheckoutResponse> getCheckoutUrl({
     required int transactionId,
   }) async {

@@ -1,8 +1,8 @@
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/core/extensions/navigation_extension.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
 
 void navigateBasedOnRole() {
   final rawType = CacheHelper.getData(key: CacheKeys.type);

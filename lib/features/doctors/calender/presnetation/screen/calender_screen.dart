@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_in_calender_screen_widget.dart';
-import 'package:truee_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
-import 'package:truee_balance_app/features/doctors/calender/presnetation/widgets/calender_widget.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_in_calender_screen_widget.dart';
+import 'package:true_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
+import 'package:true_balance_app/features/doctors/calender/presnetation/widgets/calender_widget.dart';
 
 import '../widgets/list_widget.dart';
 import '../widgets/skelton_widget.dart';

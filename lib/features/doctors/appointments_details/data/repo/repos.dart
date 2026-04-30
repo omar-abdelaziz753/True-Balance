@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/helper_functions/flutter_toast.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/data/api%20services/api_services.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/data/model/appointment_details_model.dart';
+import 'package:true_balance_app/core/helper_functions/flutter_toast.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/data/api%20services/api_services.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/data/model/appointment_details_model.dart';
 
 class AppointmentsDetailsRepos {
   final AppointmentsDetailsApiServices appointmentsApiServices;

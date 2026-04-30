@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
-import 'package:truee_balance_app/features/user/setting/bloc/settings_cubit.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
+import 'package:true_balance_app/features/user/setting/bloc/settings_cubit.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   const ProfileImageWidget({

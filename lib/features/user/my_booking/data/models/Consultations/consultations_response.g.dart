@@ -51,6 +51,18 @@ Consultation _$ConsultationFromJson(Map<String, dynamic> json) => Consultation(
       date: json['date'] as String,
       time: json['time'] as String,
       status: json['status'] as String,
+      price: (json['price'] as num?)?.toDouble(),
+      consultationType: json['consultation_type'] as String?,
+      clinicName: json['clinic_name'] as String?,
+      clinicAddress: json['clinic_address'] as String?,
+      clinicPhone: json['clinic_phone'] as String?,
+      clinicEmail: json['clinic_email'] as String?,
+      clinicWorkingHours: json['clinic_working_hours'] as String?,
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
+      payment: json['payment'] == null
+          ? null
+          : PaymentInfo.fromJson(json['payment'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ConsultationToJson(Consultation instance) =>
@@ -65,6 +77,37 @@ Map<String, dynamic> _$ConsultationToJson(Consultation instance) =>
       'date': instance.date,
       'time': instance.time,
       'status': instance.status,
+      'price': instance.price,
+      'consultation_type': instance.consultationType,
+      'clinic_name': instance.clinicName,
+      'clinic_address': instance.clinicAddress,
+      'clinic_phone': instance.clinicPhone,
+      'clinic_email': instance.clinicEmail,
+      'clinic_working_hours': instance.clinicWorkingHours,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+      'payment': instance.payment,
+    };
+
+PaymentInfo _$PaymentInfoFromJson(Map<String, dynamic> json) => PaymentInfo(
+      transactionId: (json['transaction_id'] as num?)?.toInt(),
+      geideaOrderId: json['geidea_order_id'] as String?,
+      amount: (json['amount'] as num?)?.toDouble(),
+      currency: json['currency'] as String?,
+      paymentMethod: json['payment_method'] as String?,
+      paidAt: json['paid_at'] as String?,
+      createdAt: json['created_at'] as String?,
+    );
+
+Map<String, dynamic> _$PaymentInfoToJson(PaymentInfo instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'geidea_order_id': instance.geideaOrderId,
+      'amount': instance.amount,
+      'currency': instance.currency,
+      'payment_method': instance.paymentMethod,
+      'paid_at': instance.paidAt,
+      'created_at': instance.createdAt,
     };
 
 Doctor _$DoctorFromJson(Map<String, dynamic> json) => Doctor(

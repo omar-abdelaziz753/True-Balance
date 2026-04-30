@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/core/helper_functions/download_function.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/assets.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/core/helper_functions/download_function.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/assets.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 
 class MediaclReportSkeletonWidget extends StatelessWidget {
   const MediaclReportSkeletonWidget({super.key});

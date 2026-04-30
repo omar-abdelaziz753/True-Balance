@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:truee_balance_app/core/helper_functions/download_function.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/assets.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/helper_functions/download_function.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/assets.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
 
 class MedicalReportItemWidget extends StatelessWidget {
   const MedicalReportItemWidget({

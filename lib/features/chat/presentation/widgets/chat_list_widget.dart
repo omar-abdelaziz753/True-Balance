@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/features/chat/presentation/widgets/chat_item_widget.dart';
-import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/features/chat/presentation/widgets/chat_item_widget.dart';
+import 'package:true_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
 
 class ChatListWidget extends StatelessWidget {
   const ChatListWidget({super.key});

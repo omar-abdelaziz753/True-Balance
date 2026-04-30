@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/features/doctors/calender/presnetation/widgets/calender_widget.dart';
+import 'package:true_balance_app/features/doctors/calender/presnetation/widgets/calender_widget.dart';
 
 import 'appointment_card.dart';
 

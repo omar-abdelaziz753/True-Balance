@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/data/model/treatment_sessions_response_for_therapists.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/data/repo/repo.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/data/model/treatment_sessions_response_for_therapists.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/data/repo/repo.dart';
 
 part 'treatment_details_for_therapist_state.dart';
 

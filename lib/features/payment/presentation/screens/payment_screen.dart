@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart' show StringTranslateExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../bloc/payment_cubit.dart';
 import '../../bloc/payment_state.dart';
 import '../widgets/geidea_checkout_webview.dart';
@@ -11,6 +13,7 @@ class PaymentScreen extends StatefulWidget {
   final VoidCallback? onPaymentSuccess;
   final VoidCallback? onPaymentFailed;
   final VoidCallback? onPaymentCancelled;
+  final bool isForConsultation;
 
   const PaymentScreen({
     super.key,
@@ -20,6 +23,7 @@ class PaymentScreen extends StatefulWidget {
     this.onPaymentSuccess,
     this.onPaymentFailed,
     this.onPaymentCancelled,
+    this.isForConsultation = false,
   });
 
   @override
@@ -39,7 +43,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   Future<void> _initiatePayment() async {
-    await _paymentCubit.initiatePayment(bookingId: widget.bookingId);
+    if (widget.isForConsultation) {
+      await _paymentCubit.initiateConsultationPayment(
+          consultationId: widget.bookingId);
+    } else {
+      await _paymentCubit.initiatePayment(bookingId: widget.bookingId);
+    }
   }
 
   @override
@@ -53,10 +62,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return BlocProvider.value(
       value: _paymentCubit,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Payment'),
-          leading: IconButton(
-            icon: const Icon(Icons.close),
+        appBar: AppBar(elevation: 0,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        toolbarHeight: 0,
+          leading: BackButton(
             onPressed: () {
               widget.onPaymentCancelled?.call();
               Navigator.of(context).pop();
@@ -84,13 +94,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
           },
           builder: (context, state) {
             if (state is PaymentLoading) {
-              return const Center(
+              return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 16),
-                    Text('Initializing payment...'),
+                    const CircularProgressIndicator(),
+                    const SizedBox(height: 16),
+                    Text('initializingPayment'.tr(), style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),),
                   ],
                 ),
               );

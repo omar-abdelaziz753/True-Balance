@@ -25,3 +25,17 @@ final class NotificationMarkAllAsReadLoading extends NotificationState {}
 final class NotificationMarkAllAsReadSuccess extends NotificationState {}
 
 final class NotificationMarkAllAsReadError extends NotificationState {}
+
+/// Mark Single Notification as Read
+final class NotificationMarkSingleAsReadLoading extends NotificationState {}
+
+final class NotificationMarkSingleAsReadSuccess extends NotificationState {}
+
+final class NotificationMarkSingleAsReadError extends NotificationState {}
+
+/// Delete Single Notification
+final class NotificationDeleteSingleLoading extends NotificationState {}
+
+final class NotificationDeleteSingleSuccess extends NotificationState {}
+
+final class NotificationDeleteSingleError extends NotificationState {}

@@ -1,4 +1,4 @@
-import 'package:truee_balance_app/core/themes/hex_colors.dart';
+import 'package:true_balance_app/core/themes/hex_colors.dart';
 
 class AppColors {
   /// PRIMARY Colors

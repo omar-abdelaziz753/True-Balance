@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/api%20servies/create_booking_api_services.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/model/free_slots_model.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/features/user/create%20booking/data/api%20servies/create_booking_api_services.dart';
+import 'package:true_balance_app/features/user/create%20booking/data/model/free_slots_model.dart';
 
 class CreateBookingRepo {
   final CreateBookingApiServices _api;
@@ -42,12 +42,14 @@ class CreateBookingRepo {
     required int doctorId,
     required String date,
     required String time,
+    String? notes,
   }) async {
     try {
       final response = await _api.bookSession(
         doctorId: doctorId,
         data: date,
         time: time,
+        notes: notes,
       );
 
       if (response?.statusCode == 200 || response?.statusCode == 201) {

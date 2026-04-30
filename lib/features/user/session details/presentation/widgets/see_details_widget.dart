@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
+import 'package:true_balance_app/core/extensions/navigation_extension.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
 
 class SeeDetailsWidget extends StatelessWidget {
   const SeeDetailsWidget({

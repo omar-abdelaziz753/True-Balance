@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
 
 class CustomScrollAbleContentWidget extends StatelessWidget {
   const CustomScrollAbleContentWidget({super.key, required this.scrollController, required this.contentWidget});

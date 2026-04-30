@@ -27,6 +27,28 @@ class PaymentCubit extends Cubit<PaymentState> {
     }
   }
 
+  Future<void> initiateConsultationPayment({
+    required int consultationId,
+  }) async {
+    emit(PaymentLoading());
+
+    final response = await _repository.initiateConsultationCheckout(
+        consultationId: consultationId);
+
+    if (response.success && response.data != null) {
+      _currentTransactionId = response.data!.transactionId;
+      // For consultations, we already have the checkout URL, so emit CheckoutUrlLoaded directly
+      emit(CheckoutUrlLoaded(
+        checkoutUrl: response.data!.checkoutUrl,
+        sessionId: response.data!.sessionId,
+        transactionId: response.data!.transactionId,
+        expiresAt: DateTime.parse(response.data!.expiresAt),
+      ));
+    } else {
+      emit(PaymentFailed(response.message));
+    }
+  }
+
   Future<void> getCheckoutUrl({
     required int transactionId,
   }) async {

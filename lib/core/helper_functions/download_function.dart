@@ -6,8 +6,8 @@
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:path_provider/path_provider.dart';
 // import 'package:permission_handler/permission_handler.dart';
-// import 'package:truee_balance_app/core/themes/app_colors.dart';
-// import 'package:truee_balance_app/core/utils/app_constants.dart';
+// import 'package:true_balance_app/core/themes/app_colors.dart';
+// import 'package:true_balance_app/core/utils/app_constants.dart';
 
 // Future<void> downloadPdfFile(String url, String fileName) async {
 //   try {
@@ -76,8 +76,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
 
 Future<void> downloadPdfFile(String url, String fileName) async {
   try {

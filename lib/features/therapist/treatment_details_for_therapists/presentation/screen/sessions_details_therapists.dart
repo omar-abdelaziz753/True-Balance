@@ -2,15 +2,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:truee_balance_app/core/helper_functions/download_function.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/assets.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/data/model/treatment_sessions_response_for_therapists.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/presentation/widgets/show_butom_sheet_for_session.dart';
-import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/details_row_widget.dart';
+import 'package:true_balance_app/core/helper_functions/download_function.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/assets.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/data/model/treatment_sessions_response_for_therapists.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/presentation/widgets/show_butom_sheet_for_session.dart';
+import 'package:true_balance_app/features/user/add%20session/presentation/widgets/details_row_widget.dart';
 
 class SessionsDetailsTherapists extends StatelessWidget {
   const SessionsDetailsTherapists(

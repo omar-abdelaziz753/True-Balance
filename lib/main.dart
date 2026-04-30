@@ -9,15 +9,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
-import 'package:truee_balance_app/core/routing/app_router.dart';
-import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
-import 'package:truee_balance_app/core/services/firebase/fcm.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/firebase_options.dart';
-import 'package:truee_balance_app/true_balance.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
+import 'package:true_balance_app/core/routing/app_router.dart';
+import 'package:true_balance_app/core/services/di/dependency_injection.dart';
+import 'package:true_balance_app/core/services/firebase/fcm.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/firebase_options.dart';
+import 'package:true_balance_app/true_balance.dart';
 
 import 'core/utils/bloc_observer.dart';
 

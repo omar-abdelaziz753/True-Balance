@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({super.key});

@@ -1,34 +1,34 @@
 import 'package:get_it/get_it.dart';
-import 'package:truee_balance_app/features/auth/data/api_services/api_services.dart';
-import 'package:truee_balance_app/features/auth/data/repos/auth_repo.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/api%20services/api_services.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/repo/repos.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/data/api%20services/api_services.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/data/repo/repos.dart';
-import 'package:truee_balance_app/features/therapist/details_for_therapists/data/api%20services/api_services.dart';
-import 'package:truee_balance_app/features/therapist/details_for_therapists/data/repo/repo.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/data/api%20services/api_services.dart';
-import 'package:truee_balance_app/features/therapist/treatment_details_for_therapists/data/repo/repo.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/api%20servies/create_booking_api_services.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/repo/create_booking_repo.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/data/api%20services/doctor_api_services.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/data/repo/doctor_repo.dart';
-import 'package:truee_balance_app/features/user/home/data/apiServices/home_api_services.dart';
-import 'package:truee_balance_app/features/user/home/data/repo/home_repo.dart';
-import 'package:truee_balance_app/features/user/medical_reports/data/api%20services/reports_api_services.dart';
-import 'package:truee_balance_app/features/user/medical_reports/data/repo/reports_repo.dart';
-import 'package:truee_balance_app/features/user/my_booking/data/api_services/api_services.dart';
-import 'package:truee_balance_app/features/user/my_booking/data/repos/repos.dart';
-import 'package:truee_balance_app/features/user/notification/notification/data/api%20services/api_services_notification.dart';
-import 'package:truee_balance_app/features/user/notification/notification/data/repo/notification_repo.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/api%20servies/sessions_details_api_services.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/repo/sessions_details_repo.dart';
-import 'package:truee_balance_app/features/user/sessions/data/api%20servies/sessions_api_services.dart';
-import 'package:truee_balance_app/features/user/sessions/data/repo/sessions_repo.dart';
-import 'package:truee_balance_app/features/user/setting/data/api_services/api_services.dart';
-import 'package:truee_balance_app/features/user/setting/data/repos/repos.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/api_services/api_services.dart';
-import 'package:truee_balance_app/features/user/technical_support/data/repos/repos.dart';
+import 'package:true_balance_app/features/auth/data/api_services/api_services.dart';
+import 'package:true_balance_app/features/auth/data/repos/auth_repo.dart';
+import 'package:true_balance_app/features/doctors/appointments/data/api%20services/api_services.dart';
+import 'package:true_balance_app/features/doctors/appointments/data/repo/repos.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/data/api%20services/api_services.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/data/repo/repos.dart';
+import 'package:true_balance_app/features/therapist/details_for_therapists/data/api%20services/api_services.dart';
+import 'package:true_balance_app/features/therapist/details_for_therapists/data/repo/repo.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/data/api%20services/api_services.dart';
+import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/data/repo/repo.dart';
+import 'package:true_balance_app/features/user/create%20booking/data/api%20servies/create_booking_api_services.dart';
+import 'package:true_balance_app/features/user/create%20booking/data/repo/create_booking_repo.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/data/api%20services/doctor_api_services.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/data/repo/doctor_repo.dart';
+import 'package:true_balance_app/features/user/home/data/apiServices/home_api_services.dart';
+import 'package:true_balance_app/features/user/home/data/repo/home_repo.dart';
+import 'package:true_balance_app/features/user/medical_reports/data/api%20services/reports_api_services.dart';
+import 'package:true_balance_app/features/user/medical_reports/data/repo/reports_repo.dart';
+import 'package:true_balance_app/features/user/my_booking/data/api_services/api_services.dart';
+import 'package:true_balance_app/features/user/my_booking/data/repos/repos.dart';
+import 'package:true_balance_app/features/user/notification/notification/data/api%20services/api_services_notification.dart';
+import 'package:true_balance_app/features/user/notification/notification/data/repo/notification_repo.dart';
+import 'package:true_balance_app/features/user/session%20details/data/api%20servies/sessions_details_api_services.dart';
+import 'package:true_balance_app/features/user/session%20details/data/repo/sessions_details_repo.dart';
+import 'package:true_balance_app/features/user/sessions/data/api%20servies/sessions_api_services.dart';
+import 'package:true_balance_app/features/user/sessions/data/repo/sessions_repo.dart';
+import 'package:true_balance_app/features/user/setting/data/api_services/api_services.dart';
+import 'package:true_balance_app/features/user/setting/data/repos/repos.dart';
+import 'package:true_balance_app/features/user/technical_support/data/api_services/api_services.dart';
+import 'package:true_balance_app/features/user/technical_support/data/repos/repos.dart';
 
 import '../../networks_helper/dio_helper/dio_helper.dart';
 
@@ -102,6 +102,11 @@ Future<void> setupDependencyInjection() async {
 
   getIt.registerLazySingleton<ApiServicesNotification>(
       () => ApiServicesNotification(getIt()));
-  getIt.registerLazySingleton<NotificationRepo>(
-      () => NotificationRepo(getIt()));
+  getIt
+      .registerLazySingleton<NotificationRepo>(() => NotificationRepo(getIt()));
+
+  // Packages
+  // getIt.registerLazySingleton<ApiServicesPackages>(
+  //     () => ApiServicesPackages(getIt()));
+  // getIt.registerLazySingleton<PackagesRepo>(() => PackagesRepo(getIt()));
 }

@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/repo/repos.dart';
-import 'package:truee_balance_app/features/doctors/calender/data/model/doctor_schedule_model.dart';
-import 'package:truee_balance_app/features/doctors/calender/data/model/therapist_schedule_model.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/features/doctors/appointments/data/repo/repos.dart';
+import 'package:true_balance_app/features/doctors/calender/data/model/doctor_schedule_model.dart';
+import 'package:true_balance_app/features/doctors/calender/data/model/therapist_schedule_model.dart';
 
 part 'calender_state.dart';
 

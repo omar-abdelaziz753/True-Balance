@@ -1,0 +1,54 @@
+{
+  "app": {
+    "name": "True Balance",
+    "bundleId": "com.truebalance.app",
+    "sku": "TRUEBALANCE001",
+    "primaryLocale": "en-US",
+    "versionString": "1.0.0"
+  },
+  "localizations": {
+    "en-US": {
+      "name": "True Balance - Physiotherapy",
+      "subtitle": "Physiotherapy & Rehabilitation",
+      "privacyPolicyURL": "https://truebalance.com.sa/privacy",
+      "description": "True Balance is a premier physiotherapy and rehabilitation center in Saudi Arabia. Book appointments with certified therapists, access advanced treatment programs, and restore your mobility.\n\nOur Services:\n• Physiotherapy - Restore mobility, improve strength and flexibility\n• Occupational Therapy - Empower independent daily living\n• Hydrotherapy - Water-based rehabilitation\n\nWhy Choose Us:\n• Certified expert therapists\n• Personalized treatment plans\n• Advanced equipment\n• 10+ years experience\n• 500+ happy clients\n\nContact us:\n• Phone: 0558509595\n• Email: info@truebalance.com.sa\n• Location: Al Khobar - Al Shurtas Park, Saudi Arabia",
+      "keywords": [
+        "physiotherapy",
+        "rehabilitation",
+        "therapy",
+        "occupational therapy",
+        "hydrotherapy",
+        "saudi arabia",
+        "khobar",
+        "العلاج الطبيعي",
+        "physical therapy",
+        "sports injury",
+        "back pain",
+        "mobility",
+        "rehab center",
+        "clinic",
+        "physiotherapist"
+      ],
+      "promotionalText": "Book your physiotherapy appointment today! Expert physiotherapy services in Al Khobar. Restore your mobility with certified therapists.",
+      "marketingURL": "https://truebalance.com.sa",
+      "supportURL": "https://truebalance.com.sa/contact",
+      "releaseNotes": "Bug fixes and performance improvements"
+    }
+  },
+  "rating": "4+",
+  "copyright": "© 2026 True Balance Center",
+  "tradeRepresentativeContact": {
+    "firstName": "True Balance",
+    "lastName": "Team",
+    "emailAddress": "info@truebalance.com.sa",
+    "phoneNumber": "+966558509595"
+  },
+  "category": {
+    "primary": {
+      "code": "6016"
+    },
+    "secondary": {
+      "code": "6002"
+    }
+  }
+}

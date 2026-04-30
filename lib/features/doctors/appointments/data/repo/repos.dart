@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/api%20services/api_services.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
-import 'package:truee_balance_app/features/doctors/calender/data/model/doctor_schedule_model.dart';
-import 'package:truee_balance_app/features/doctors/calender/data/model/therapist_schedule_model.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/features/doctors/appointments/data/api%20services/api_services.dart';
+import 'package:true_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
+import 'package:true_balance_app/features/doctors/calender/data/model/doctor_schedule_model.dart';
+import 'package:true_balance_app/features/doctors/calender/data/model/therapist_schedule_model.dart';
 
 class AppointmentsRepos {
   final AppointmentsApiServices appointmentsApiServices;

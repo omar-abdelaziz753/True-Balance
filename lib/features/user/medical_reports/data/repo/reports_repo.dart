@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/user/medical_reports/data/api%20services/reports_api_services.dart';
-import 'package:truee_balance_app/features/user/medical_reports/data/model/reports_model.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/features/user/medical_reports/data/api%20services/reports_api_services.dart';
+import 'package:true_balance_app/features/user/medical_reports/data/model/reports_model.dart';
 
 class ReportsRepo {
 

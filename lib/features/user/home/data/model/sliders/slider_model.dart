@@ -28,18 +28,18 @@ class SliderItem {
   final String background;
   final String title;
   final String text;
-  final String btnTitle;
-  final String btnUrl;
-  final String btnActive;
+  final String? btnTitle;
+  final String? btnUrl;
+  final String? btnActive;
 
   SliderItem({
     required this.id,
     required this.background,
     required this.title,
     required this.text,
-    required this.btnTitle,
-    required this.btnUrl,
-    required this.btnActive,
+    this.btnTitle,
+    this.btnUrl,
+    this.btnActive,
   });
 
   factory SliderItem.fromJson(Map<String, dynamic> json) =>

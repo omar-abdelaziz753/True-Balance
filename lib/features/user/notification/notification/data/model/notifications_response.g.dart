@@ -76,6 +76,7 @@ NotificationItem _$NotificationItemFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       description: json['description'] as String?,
       createdAtString: json['created_at'] as String?,
+      isRead: json['is_read'] as bool?,
     );
 
 Map<String, dynamic> _$NotificationItemToJson(NotificationItem instance) =>
@@ -85,6 +86,7 @@ Map<String, dynamic> _$NotificationItemToJson(NotificationItem instance) =>
       'title': instance.title,
       'description': instance.description,
       'created_at': instance.createdAtString,
+      'is_read': instance.isRead,
     };
 
 OlderNotifications _$OlderNotificationsFromJson(Map<String, dynamic> json) =>

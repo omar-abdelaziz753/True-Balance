@@ -1,0 +1,59 @@
+# True Balance - App Store Metadata
+
+## App Information
+
+**App Name:** True Balance
+**Bundle ID:** com.truebalance.app
+**SKU:** TRUEBALANCE001
+
+## Localized Metadata
+
+### English (en-US)
+
+**Title:** True Balance - Physiotherapy
+
+**Promotional Text:**
+Book your physiotherapy appointment today! True Balance offers expert physiotherapy, occupational therapy, and hydrotherapy services in Al Khobar. Restore your mobility with certified therapists.
+
+**Description:**
+True Balance is a premier physiotherapy and rehabilitation center in Saudi Arabia. We provide comprehensive therapeutic care based on modern scientific methods to support your recovery and help you regain your quality of life.
+
+Our Services:
+• Physiotherapy - Advanced therapeutic programs to restore mobility, improve strength and flexibility, and reduce pain
+• Occupational Therapy - Specialized plans that empower individuals to independently perform daily life activities
+• Hydrotherapy - Rehabilitation exercises performed in water for musculoskeletal conditions and sports injuries
+
+Why Choose Us:
+• Certified expert therapists with 10+ years of experience
+• Personalized treatment plans tailored to your unique needs
+• Advanced equipment and modern techniques
+• Aesthetic and private environment
+• 500+ happy clients
+• 120+ therapy sessions completed
+
+Contact us:
+• Phone: 0558509595
+• Email: info@truebalance.com.sa
+• Location: Al Khobar - Al Shurtas Park, Saudi Arabia
+
+Download now and start your journey to recovery!
+
+**Keywords:**
+physiotherapy, rehabilitation, therapy, occupational therapy, hydrotherapy, saudi arabia, khobar, Al Khobar,علاج طبيعي, physical therapy, sports injury, back pain, mobility, rehab center, clinic, physiotherapist
+
+**Release Notes:**
+Bug fixes and performance improvements
+
+**Marketing URL:** https://truebalance.com.sa
+**Support URL:** https://truebalance.com.sa/contact
+**Privacy Policy URL:** https://truebalance.com.sa/privacy
+
+### Arabic (ar)
+
+**Title:** ترو بالانس - العلاج الطبيعي
+
+**Description:**
+مركز ترو بالانس للعلاج الطبيعي والتأهيل في الخبر، المملكة العربية السعودية. نوفر خدمات العلاج الطبيعي المتقدمة، العلاج الوظيفي، والعلاج المائي. حجز موعدك الآن!
+
+**Keywords:**
+علاج طبيعي, تأهيل, علاج طبيعي الخبر, السعودية, العلاج الوظيفي, العلاج المائي

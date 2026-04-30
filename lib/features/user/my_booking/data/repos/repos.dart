@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/user/my_booking/data/api_services/api_services.dart';
-import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/features/user/my_booking/data/api_services/api_services.dart';
+import 'package:true_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 
 class MyBookingRepos {
   final MyBookingApiServices myBookingApiServices;
@@ -92,6 +92,35 @@ class MyBookingRepos {
       if (response?.statusCode == 200 || response?.statusCode == 201) {
         final message = response?.data['message'] ?? 'Rate added successfully';
         return ApiResult.success(message);
+      } else {
+        return ApiResult.failure(
+          ServerException.fromResponse(response?.statusCode, response),
+        );
+      }
+    } on DioException catch (e) {
+      try {
+        handleDioException(e);
+      } on ServerException catch (ex) {
+        return ApiResult.failure(ex.errorModel.message);
+      }
+    }
+
+    return ApiResult.failure(
+      FailureException(errMessage: 'Unexpected error occurred'),
+    );
+  }
+
+  Future<ApiResult<Map<String, dynamic>>> initiateConsultationPayment({
+    required int consultationId,
+  }) async {
+    try {
+      final response = await myBookingApiServices.initiateConsultationPayment(
+        consultationId: consultationId,
+      );
+
+      if (response?.statusCode == 200 || response?.statusCode == 201) {
+        final data = response?.data['data'] as Map<String, dynamic>;
+        return ApiResult.success(data);
       } else {
         return ApiResult.failure(
           ServerException.fromResponse(response?.statusCode, response),

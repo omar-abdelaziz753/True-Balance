@@ -60,6 +60,33 @@ class Consultation {
   final String date;
   final String time;
   final String status;
+  final double? price;
+
+  @JsonKey(name: 'consultation_type')
+  final String? consultationType;
+
+  @JsonKey(name: 'clinic_name')
+  final String? clinicName;
+
+  @JsonKey(name: 'clinic_address')
+  final String? clinicAddress;
+
+  @JsonKey(name: 'clinic_phone')
+  final String? clinicPhone;
+
+  @JsonKey(name: 'clinic_email')
+  final String? clinicEmail;
+
+  @JsonKey(name: 'clinic_working_hours')
+  final String? clinicWorkingHours;
+
+  @JsonKey(name: 'created_at')
+  final String? createdAt;
+
+  @JsonKey(name: 'updated_at')
+  final String? updatedAt;
+
+  final PaymentInfo? payment;
 
   Consultation({
     required this.id,
@@ -72,12 +99,73 @@ class Consultation {
     required this.date,
     required this.time,
     required this.status,
+    this.price,
+    this.consultationType,
+    this.clinicName,
+    this.clinicAddress,
+    this.clinicPhone,
+    this.clinicEmail,
+    this.clinicWorkingHours,
+    this.createdAt,
+    this.updatedAt,
+    this.payment,
   });
 
   factory Consultation.fromJson(Map<String, dynamic> json) =>
       _$ConsultationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ConsultationToJson(this);
+}
+
+@JsonSerializable()
+class PaymentInfo {
+  @JsonKey(name: 'transaction_id')
+  final int? transactionId;
+
+  @JsonKey(name: 'geidea_order_id')
+  final String? geideaOrderId;
+
+  final double? amount;
+  final String? currency;
+
+  @JsonKey(name: 'payment_method')
+  final String? paymentMethod;
+
+  @JsonKey(name: 'paid_at')
+  final String? paidAt;
+
+  @JsonKey(name: 'created_at')
+  final String? createdAt;
+
+  PaymentInfo({
+    this.transactionId,
+    this.geideaOrderId,
+    this.amount,
+    this.currency,
+    this.paymentMethod,
+    this.paidAt,
+    this.createdAt,
+  });
+
+  factory PaymentInfo.fromJson(Map<String, dynamic> json) => PaymentInfo(
+        transactionId: json['transaction_id'] as int?,
+        geideaOrderId: json['geidea_order_id'] as String?,
+        amount: (json['amount'] as num?)?.toDouble(),
+        currency: json['currency'] as String?,
+        paymentMethod: json['payment_method'] as String?,
+        paidAt: json['paid_at'] as String?,
+        createdAt: json['created_at'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'transaction_id': transactionId,
+        'geidea_order_id': geideaOrderId,
+        'amount': amount,
+        'currency': currency,
+        'payment_method': paymentMethod,
+        'paid_at': paidAt,
+        'created_at': createdAt,
+      };
 }
 
 @JsonSerializable()

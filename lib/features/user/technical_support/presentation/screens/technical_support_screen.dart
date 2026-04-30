@@ -2,15 +2,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/core/widgets/container/custom_divider_widget.dart';
-import 'package:truee_balance_app/features/user/setting/presentation/widgets/custom_row_in_technnical_support_widget.dart';
-import 'package:truee_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
+import 'package:true_balance_app/core/extensions/navigation_extension.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:true_balance_app/core/widgets/container/custom_divider_widget.dart';
+import 'package:true_balance_app/features/user/setting/presentation/widgets/custom_row_in_technnical_support_widget.dart';
+import 'package:true_balance_app/features/user/technical_support/bloc/technical_support_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TechnicalSupportScreen extends StatelessWidget {

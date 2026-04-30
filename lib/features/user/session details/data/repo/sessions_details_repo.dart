@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/api_results/api_result.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/features/user/create%20booking/data/model/treatment_plans_response.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/api%20servies/sessions_details_api_services.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
+import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/features/user/create%20booking/data/model/treatment_plans_response.dart';
+import 'package:true_balance_app/features/user/session%20details/data/api%20servies/sessions_details_api_services.dart';
+import 'package:true_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
 
 class SessionsDetailsRepo {
   final SessionsDetailsApiServices _api;

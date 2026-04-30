@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
 
 part 'main_layout_state.dart';
 

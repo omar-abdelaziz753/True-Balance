@@ -2,7 +2,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_svg/svg.dart';
 // import 'package:skeletonizer/skeletonizer.dart';
-// import 'package:truee_balance_app/core/utils/app_constants.dart';
+// import 'package:true_balance_app/core/utils/app_constants.dart';
 //
 // class CacheNetworkImagesWidget extends StatelessWidget {
 //   const CacheNetworkImagesWidget({
@@ -74,7 +74,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
 
 class CacheNetworkImagesWidget extends StatelessWidget {
   const CacheNetworkImagesWidget({

@@ -1,6 +1,8 @@
 class EndPoints {
-  /// BaseUrl
-  static const String baseUrl = 'https://backend.truebalance.com.sa/';
+  /// BaseUrl - Change to localhost for testing
+  // static const String baseUrl = 'http://10.0.2.2:8000/'; // Android emulator
+  // static const String baseUrl = 'http://localhost:8000/'; // iOS simulator
+  static const String baseUrl = 'https://backend.truebalance.com.sa/'; // Production
 
   /// Auth
   static const String login = 'api/user/auth/login';
@@ -28,13 +30,22 @@ class EndPoints {
   static const String getconsultations = 'api/frontend/user/consultations';
   static const String deleteConsultation =
       'api/frontend/user/consultations/cancel';
+  static const String initiateConsultationPayment =
+      'api/frontend/user/consultations/initiate-payment';
 
   static const String getReports =
-      'api/frontend/treatment-plans/medical-reports/all';
+      "api/frontend/treatment-plans/medical-reports/all";
+
+  // Package booking
+  static const String bookPackage = 'api/frontend/book';
+  static const String getPackages = 'api/frontend/packages';
 
   static const String getOrDeleteNotifications = "api/frontend/notifications";
   static const String makeAsRead =
       "api/frontend/notifications/mark-all-as-read";
+  static String markAsRead(int id) =>
+      "api/frontend/notifications/mark-as-read/$id";
+  static String deleteNotification(int id) => "api/frontend/notifications/$id";
 
   /// Treatment Plans for Therapist
   static String treatmentPlans(int therapistId) =>

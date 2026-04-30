@@ -1,6 +1,6 @@
 // import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:truee_balance_app/features/user/create%20booking/data/model/all_therapist_data_model.dart';
-// import 'package:truee_balance_app/features/user/sessions/data/repo/sessions_repo.dart';
+// import 'package:true_balance_app/features/user/create%20booking/data/model/all_therapist_data_model.dart';
+// import 'package:true_balance_app/features/user/sessions/data/repo/sessions_repo.dart';
 
 // part 'sessions_state.dart';
 
@@ -28,8 +28,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/features/user/create booking/data/model/all_therapist_data_model.dart';
-import 'package:truee_balance_app/features/user/sessions/data/repo/sessions_repo.dart';
+import 'package:true_balance_app/features/user/create booking/data/model/all_therapist_data_model.dart';
+import 'package:true_balance_app/features/user/sessions/data/repo/sessions_repo.dart';
 
 part 'sessions_state.dart';
 

@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/widgets/text/custom_text_rich_widget.dart';
-import 'package:truee_balance_app/features/auth/business_logic/auth_cubit.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/widgets/text/custom_text_rich_widget.dart';
+import 'package:true_balance_app/features/auth/business_logic/auth_cubit.dart';
 
 class CountDownWidget extends StatefulWidget {
   CountDownWidget({

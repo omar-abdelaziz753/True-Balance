@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
-import 'package:truee_balance_app/core/networks_helper/dio_helper/end_points.dart';
+import 'package:true_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
+import 'package:true_balance_app/core/networks_helper/dio_helper/end_points.dart';
 
 class MyBookingApiServices {
   final DioHelper _dioHelper;
@@ -44,6 +44,16 @@ class MyBookingApiServices {
         "user_rate": userRate,
         "user_message": userMessage,
       },
+    );
+  }
+
+  /// Initiate payment for pending consultation
+  Future<Response?> initiateConsultationPayment({
+    required int consultationId,
+  }) async {
+    return _dioHelper.post(
+      endPoint: EndPoints.initiateConsultationPayment,
+      data: {"consultation_id": consultationId},
     );
   }
 }

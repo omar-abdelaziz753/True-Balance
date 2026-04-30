@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/features/therapist/details_for_therapists/data/model/treatment_plans_response_user_for_therapists.dart';
-import 'package:truee_balance_app/features/therapist/details_for_therapists/data/repo/repo.dart';
+import 'package:true_balance_app/features/therapist/details_for_therapists/data/model/treatment_plans_response_user_for_therapists.dart';
+import 'package:true_balance_app/features/therapist/details_for_therapists/data/repo/repo.dart';
 
 part 'details_for_therapists_state.dart';
 

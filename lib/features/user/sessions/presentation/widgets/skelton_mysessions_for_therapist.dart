@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
 
 class SkeltonMySessionsForTherapist extends StatelessWidget {
   const SkeltonMySessionsForTherapist({super.key});

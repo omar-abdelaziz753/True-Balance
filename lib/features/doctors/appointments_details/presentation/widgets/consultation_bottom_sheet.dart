@@ -5,11 +5,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/helper_functions/flutter_toast.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
+import 'package:true_balance_app/core/helper_functions/flutter_toast.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:true_balance_app/core/widgets/text_field/custom_text_form_field_widget.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
 
 class ConsultationBottomSheet extends StatefulWidget {
   final int consultationId;

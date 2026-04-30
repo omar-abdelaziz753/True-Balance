@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/features/user/add%20session/presentation/widgets/details_row_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/session_completed_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/show_rating_botom_sheet_for_user_sesions.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:true_balance_app/features/user/add%20session/presentation/widgets/details_row_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/session_completed_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/show_rating_botom_sheet_for_user_sesions.dart';
 
 class SessionDetails extends StatelessWidget {
   const SessionDetails({super.key, required this.session});

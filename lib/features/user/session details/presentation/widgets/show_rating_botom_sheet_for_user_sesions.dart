@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/helper_functions/flutter_toast.dart';
-import 'package:truee_balance_app/core/services/di/dependency_injection.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/rating%20dailoug/rating_dailoug.dart';
-import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
+import 'package:true_balance_app/core/helper_functions/flutter_toast.dart';
+import 'package:true_balance_app/core/services/di/dependency_injection.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/rating%20dailoug/rating_dailoug.dart';
+import 'package:true_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
 
 // void showRatingBottomSheetForUserSessions(BuildContext context, int id) {
 //   final TextEditingController commentController = TextEditingController();

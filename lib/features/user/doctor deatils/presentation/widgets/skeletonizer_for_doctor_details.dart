@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/themes/assets.dart';
-import 'package:truee_balance_app/core/themes/text_colors.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/presentation/widgets/review_item_widget.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/themes/assets.dart';
+import 'package:true_balance_app/core/themes/text_colors.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/presentation/widgets/review_item_widget.dart';
 
 class SkeletonizerForDoctorDetails extends StatelessWidget {
   const SkeletonizerForDoctorDetails({

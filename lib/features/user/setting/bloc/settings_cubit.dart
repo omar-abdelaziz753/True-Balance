@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/user/setting/data/models/profile/get_profile_data_model.dart';
-import 'package:truee_balance_app/features/user/setting/data/repos/repos.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/user/setting/data/models/profile/get_profile_data_model.dart';
+import 'package:true_balance_app/features/user/setting/data/repos/repos.dart';
 
 part 'settings_state.dart';
 

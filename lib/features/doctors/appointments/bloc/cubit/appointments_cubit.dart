@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
-import 'package:truee_balance_app/features/doctors/appointments/data/repo/repos.dart';
+import 'package:true_balance_app/features/doctors/appointments/bloc/cubit/appointments_state.dart';
+import 'package:true_balance_app/features/doctors/appointments/data/model/consultation_users_model.dart';
+import 'package:true_balance_app/features/doctors/appointments/data/repo/repos.dart';
 
 class AppointmentsCubit extends Cubit<AppointmentsState> {
   AppointmentsCubit(this.appointmentsRepos) : super(AppointmentsInitial());

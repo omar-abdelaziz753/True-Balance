@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:truee_balance_app/core/helper_functions/navigate_based_on_role.dart';
+import 'package:true_balance_app/core/helper_functions/navigate_based_on_role.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {

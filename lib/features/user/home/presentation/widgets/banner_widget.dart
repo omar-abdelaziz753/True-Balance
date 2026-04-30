@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
-import 'package:truee_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
-import 'package:truee_balance_app/features/user/home/presentation/widgets/banner_widget_skelton.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/images/cache_network_image/image_widget.dart';
+import 'package:true_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
+import 'package:true_balance_app/features/user/home/presentation/widgets/banner_widget_skelton.dart';
 
 class BannerWidget extends StatelessWidget {
   const BannerWidget({super.key});

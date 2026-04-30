@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/data/model/appointment_details_model.dart';
-import 'package:truee_balance_app/features/doctors/appointments_details/data/repo/repos.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/data/model/appointment_details_model.dart';
+import 'package:true_balance_app/features/doctors/appointments_details/data/repo/repos.dart';
 
 part 'appointments_details_state.dart';
 

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/exceptions.dart';
-import 'package:truee_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
-import 'package:truee_balance_app/features/error_screens/server/server_error_scereen.dart';
-import 'package:truee_balance_app/features/error_screens/unauth/un_auth_screen.dart';
+import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
+import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/features/error_screens/server/server_error_scereen.dart';
+import 'package:true_balance_app/features/error_screens/unauth/un_auth_screen.dart';
 
 class ErrorHandler {
   /// Handles API errors from the server

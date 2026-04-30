@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
-import 'package:truee_balance_app/core/networks_helper/dio_helper/end_points.dart';
+import 'package:true_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
+import 'package:true_balance_app/core/networks_helper/dio_helper/end_points.dart';
 
 class AppointmentsDetailsApiServices {
   final DioHelper _dioHelper;

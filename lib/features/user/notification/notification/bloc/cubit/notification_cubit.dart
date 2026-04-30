@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/user/notification/notification/data/model/notifications_response.dart';
-import 'package:truee_balance_app/features/user/notification/notification/data/repo/notification_repo.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/user/notification/notification/data/model/notifications_response.dart';
+import 'package:true_balance_app/features/user/notification/notification/data/repo/notification_repo.dart';
 
 part 'notification_state.dart';
 
@@ -25,7 +25,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   void setupNotificationScrollController() {
     notificationScrollController.addListener(() {
       if (notificationScrollController.position.pixels >=
-          notificationScrollController.position.maxScrollExtent - 100 &&
+              notificationScrollController.position.maxScrollExtent - 100 &&
           !isLoadingMore) {
         loadMoreNotifications();
       }
@@ -119,7 +119,36 @@ class NotificationCubit extends Cubit<NotificationState> {
         emit(NotificationMarkAllAsReadSuccess());
       },
       failure: (error) {
-        emit(NotificationMarkAllAsReadError());},
+        emit(NotificationMarkAllAsReadError());
+      },
+    );
+  }
+
+  /// Mark Single Notification as Read
+  Future<void> markAsRead(int id) async {
+    emit(NotificationMarkSingleAsReadLoading());
+    final result = await notificationRepo.markAsRead(id);
+    result.when(
+      success: (data) {
+        emit(NotificationMarkSingleAsReadSuccess());
+      },
+      failure: (error) {
+        emit(NotificationMarkSingleAsReadError());
+      },
+    );
+  }
+
+  /// Delete Single Notification
+  Future<void> deleteNotification(int id) async {
+    emit(NotificationDeleteSingleLoading());
+    final result = await notificationRepo.deleteNotification(id);
+    result.when(
+      success: (data) {
+        emit(NotificationDeleteSingleSuccess());
+      },
+      failure: (error) {
+        emit(NotificationDeleteSingleError());
+      },
     );
   }
 }

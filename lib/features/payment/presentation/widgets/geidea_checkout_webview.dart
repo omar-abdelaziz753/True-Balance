@@ -117,21 +117,13 @@ class _GeideaCheckoutWebViewState extends State<GeideaCheckoutWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Payment'),
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            widget.onComplete(PaymentResult(
-              status: PaymentStatus.cancelled,
-              message: 'Payment cancelled by user',
-            ));
-          },
-        ),
-      ),
+      
       body: Stack(
         children: [
-          WebViewWidget(controller: _controller),
+          
+          WebViewWidget(controller: _controller,
+          
+          ),
           if (_isLoading)
             const Center(
               child: CircularProgressIndicator(),

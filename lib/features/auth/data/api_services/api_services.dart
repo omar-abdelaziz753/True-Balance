@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_helper.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
-import 'package:truee_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
-import 'package:truee_balance_app/core/networks_helper/dio_helper/end_points.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/core/networks_helper/dio_helper/dio_helper.dart';
+import 'package:true_balance_app/core/networks_helper/dio_helper/end_points.dart';
 
 class AuthApiServices {
   AuthApiServices(this._dioFactory);
@@ -17,7 +17,7 @@ class AuthApiServices {
     return _dioFactory.post(endPoint: EndPoints.login, data: {
       'email': email,
       'password': password,
-      'fcm_token': CacheHelper.getData(key: CacheKeys.deviceToken),
+      'fcm_token': CacheHelper.getData(key: CacheKeys.deviceToken) ?? 'null',
     });
   }
 
@@ -28,11 +28,8 @@ class AuthApiServices {
     required String email,
     required int age,
     required String gender,
-    
-
     required String password,
     required String rePassword,
-
     String? verificationCode,
   }) async {
     Map<String, dynamic> formDataMap = {
@@ -44,6 +41,7 @@ class AuthApiServices {
       "password": password,
       "repassword": rePassword,
       "verification_code": verificationCode,
+      "fcm_token": CacheHelper.getData(key: CacheKeys.deviceToken) ?? 'null',
     };
 
     formDataMap

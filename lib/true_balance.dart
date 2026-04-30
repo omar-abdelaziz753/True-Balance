@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/routing/app_router.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/utils/app_constants.dart';
+import 'package:true_balance_app/core/routing/app_router.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/core/themes/app_theme.dart';
+import 'package:true_balance_app/core/utils/app_constants.dart';
 
 class TrueBalanceApp extends StatelessWidget {
   const TrueBalanceApp({
@@ -37,6 +38,9 @@ class TrueBalanceApp extends StatelessWidget {
             navigatorKey: AppConstants.navigatorKey,
             initialRoute: Routes.splashScreen,
             onGenerateRoute: appRouter.generateRoute,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: ThemeMode.light,
             // home: const TestScreen(),
             builder: EasyLoading.init(),
           ),

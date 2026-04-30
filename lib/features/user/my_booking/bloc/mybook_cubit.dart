@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
-import 'package:truee_balance_app/features/user/my_booking/data/repos/repos.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
+import 'package:true_balance_app/features/user/my_booking/data/repos/repos.dart';
 
 part 'mybook_state.dart';
 
@@ -129,5 +129,40 @@ class MybookCubit extends Cubit<MybookState> {
   void updateHasRated(bool value) {
     hasRated = value;
     emit(MybookInitial()); // or any state to refresh UI
+  }
+
+  /// Initiate Payment for pending consultation
+  Future<void> initiatePayment({required int consultationId}) async {
+    emit(InitiatePaymentLoading());
+    showLoading();
+    final result = await myBookingRepos.initiateConsultationPayment(
+      consultationId: consultationId,
+    );
+
+    result.when(
+      success: (data) {
+        hideLoading();
+        final amountValue = data['amount'];
+        double amount;
+        if (amountValue is String) {
+          amount = double.tryParse(amountValue) ?? 0;
+        } else if (amountValue is num) {
+          amount = amountValue.toDouble();
+        } else {
+          amount = 0;
+        }
+
+        emit(InitiatePaymentSuccess(
+          paymentUrl: data['payment_url'] ?? '',
+          transactionId: data['transaction_id'] ?? 0,
+          consultationId: data['consultation_id'] ?? consultationId,
+          amount: amount,
+        ));
+      },
+      failure: (error) {
+        hideLoading();
+        emit(InitiatePaymentFailure(error.toString()));
+      },
+    );
   }
 }

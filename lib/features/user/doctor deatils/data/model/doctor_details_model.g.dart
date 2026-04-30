@@ -43,6 +43,8 @@ DoctorModelDetails _$DoctorModelDetailsFromJson(Map<String, dynamic> json) =>
       ratings: json['ratings'] == null
           ? null
           : Ratings.fromJson(json['ratings'] as Map<String, dynamic>),
+      consultationPrice: (json['consultationPrice'] as num?)?.toDouble(),
+      sessionPrice: (json['sessionPrice'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$DoctorModelDetailsToJson(DoctorModelDetails instance) =>
@@ -60,6 +62,8 @@ Map<String, dynamic> _$DoctorModelDetailsToJson(DoctorModelDetails instance) =>
       'rate': instance.rate,
       'rateCount': instance.rateCount,
       'ratings': instance.ratings,
+      'consultationPrice': instance.consultationPrice,
+      'sessionPrice': instance.sessionPrice,
     };
 
 Ratings _$RatingsFromJson(Map<String, dynamic> json) => Ratings(
@@ -79,6 +83,11 @@ UserRating _$UserRatingFromJson(Map<String, dynamic> json) => UserRating(
       userRate: (json['user_rate'] as num?)?.toInt(),
       userMessage: json['user_message'] as String?,
       date: json['date'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      text: json['text'] as String?,
+      image: json['image'] as String?,
+      rating: (json['rating'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$UserRatingToJson(UserRating instance) =>
@@ -88,5 +97,10 @@ Map<String, dynamic> _$UserRatingToJson(UserRating instance) =>
       'user_image': instance.userImage,
       'user_rate': instance.userRate,
       'user_message': instance.userMessage,
+      'id': instance.id,
+      'name': instance.name,
+      'text': instance.text,
+      'image': instance.image,
+      'rating': instance.rating,
       'date': instance.date,
     };

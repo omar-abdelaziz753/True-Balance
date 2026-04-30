@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:truee_balance_app/core/cache_helper/cache_keys.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
 
 class CacheHelper {
   static late SharedPreferences sharedPreferences;

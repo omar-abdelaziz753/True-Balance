@@ -28,9 +28,9 @@ SliderItem _$SliderItemFromJson(Map<String, dynamic> json) => SliderItem(
       background: json['background'] as String,
       title: json['title'] as String,
       text: json['text'] as String,
-      btnTitle: json['btnTitle'] as String,
-      btnUrl: json['btnUrl'] as String,
-      btnActive: json['btnActive'] as String,
+      btnTitle: json['btnTitle'] as String?,
+      btnUrl: json['btnUrl'] as String?,
+      btnActive: json['btnActive'] as String?,
     );
 
 Map<String, dynamic> _$SliderItemToJson(SliderItem instance) =>

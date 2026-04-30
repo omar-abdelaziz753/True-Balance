@@ -1,6 +1,6 @@
 // doctor_reviews_models.dart
 import 'package:json_annotation/json_annotation.dart';
-import 'package:truee_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
 
 part 'doctor_reviews_models.g.dart';
 
@@ -32,7 +32,7 @@ class ReviewsResponse {
 /// =======================
 @JsonSerializable(explicitToJson: true)
 class ReviewsData {
-  /// الحقل اسمه "data" في الـ JSON وهو List من التقييمات
+  /// Use UserRating from doctor_details_model.dart
   @JsonKey(name: 'data')
   final List<UserRating>? reviews;
 
@@ -50,7 +50,6 @@ class ReviewsData {
 
   Map<String, dynamic> toJson() => _$ReviewsDataToJson(this);
 }
-
 
 @JsonSerializable()
 class PageLinks {

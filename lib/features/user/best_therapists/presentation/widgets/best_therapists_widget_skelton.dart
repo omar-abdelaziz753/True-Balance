@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:truee_balance_app/features/user/best_therapists/presentation/widgets/therapist_card_widget.dart';
-import 'package:truee_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
+import 'package:true_balance_app/features/user/best_therapists/presentation/widgets/therapist_card_widget.dart';
+import 'package:true_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
 
 class BestTherapistsWidgetSkelton extends StatelessWidget {
   const BestTherapistsWidgetSkelton({

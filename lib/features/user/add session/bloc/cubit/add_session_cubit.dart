@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:truee_balance_app/core/utils/easy_loading.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
-import 'package:truee_balance_app/features/user/session%20details/data/repo/sessions_details_repo.dart';
+import 'package:true_balance_app/core/utils/easy_loading.dart';
+import 'package:true_balance_app/features/user/session%20details/data/model/treatment_plan_detail.dart';
+import 'package:true_balance_app/features/user/session%20details/data/repo/sessions_details_repo.dart';
 
 part 'add_session_state.dart';
 

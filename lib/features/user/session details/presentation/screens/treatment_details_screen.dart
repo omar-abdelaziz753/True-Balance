@@ -2,16 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:truee_balance_app/core/extensions/navigation_extension.dart';
-import 'package:truee_balance_app/core/routing/routes_name.dart';
-import 'package:truee_balance_app/core/themes/app_colors.dart';
-import 'package:truee_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:truee_balance_app/core/widgets/button/custom_button_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/row_treatment_plan_details_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/see_details_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/skeletonizer_treatmen_details_widget.dart';
-import 'package:truee_balance_app/features/user/session%20details/presentation/widgets/total_of_sessions_and_type_of_treatment_details_widget.dart';
+import 'package:true_balance_app/core/extensions/navigation_extension.dart';
+import 'package:true_balance_app/core/routing/routes_name.dart';
+import 'package:true_balance_app/core/themes/app_colors.dart';
+import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:true_balance_app/core/widgets/button/custom_button_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/bloc/cubit/session_details_cubit.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/row_treatment_plan_details_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/see_details_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/skeletonizer_treatmen_details_widget.dart';
+import 'package:true_balance_app/features/user/session%20details/presentation/widgets/total_of_sessions_and_type_of_treatment_details_widget.dart';
 
 class TreatmentDetailsScreen extends StatelessWidget {
   const TreatmentDetailsScreen({super.key});
