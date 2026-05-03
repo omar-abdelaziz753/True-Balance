@@ -10,11 +10,15 @@ class GeideaCheckoutResponse {
   });
 
   factory GeideaCheckoutResponse.fromJson(Map<String, dynamic> json) {
+    // Backend wraps responses as `{status: "success"|"fail", data, error, code}`.
+    // The previous version read `json['success']` (always missing) so success
+    // was always false even on a 200 OK with a valid payment URL.
+    final isSuccess = (json['status'] == 'success') || (json['success'] == true);
     return GeideaCheckoutResponse(
-      success: json['success'] ?? false,
-      message: json['message'] ?? '',
-      data: json['data'] != null
-          ? GeideaCheckoutData.fromJson(json['data'])
+      success: isSuccess,
+      message: json['message'] ?? json['error'] ?? '',
+      data: json['data'] is Map
+          ? GeideaCheckoutData.fromJson(Map<String, dynamic>.from(json['data']))
           : null,
     );
   }
@@ -36,9 +40,12 @@ class GeideaCheckoutData {
   });
 
   factory GeideaCheckoutData.fromJson(Map<String, dynamic> json) {
+    // The backend returns `payment_url` from the consultation route and
+    // `checkout_url` from the legacy /v1/payment/geidea/initiate route.
+    // Accept either so both flows surface the URL through the same field.
     return GeideaCheckoutData(
       sessionId: json['session_id'] ?? '',
-      checkoutUrl: json['checkout_url'] ?? '',
+      checkoutUrl: json['payment_url'] ?? json['checkout_url'] ?? '',
       expiresAt: json['expires_at'] ?? '',
       transactionId: json['transaction_id'] ?? 0,
       merchantReferenceId: json['merchant_reference_id'] ?? '',

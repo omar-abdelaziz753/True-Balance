@@ -344,6 +344,8 @@
   "paymentSuccess": "Payment Successful!",
   "paymentFailed": "Payment Failed",
   "paymentCancelled": "Payment Cancelled",
+  "initializingPayment": "Initializing payment…",
+  "verifyingPayment": "Verifying your payment…",
   "bookingFailed": "Booking Failed",
   "bookYourFirstConsultation": "Book your first consultation to get started",
   "appointmentDetails": "Appointment Details",

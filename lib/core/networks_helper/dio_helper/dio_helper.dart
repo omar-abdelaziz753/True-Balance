@@ -54,8 +54,8 @@ class DioHelper {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "lang": CacheHelper.getData(key: 'selectedLanguage'),
-      "authorization": token,
+      "lang": CacheHelper.getCurrentLanguage().toString(),
+      "authorization": "Bearer $token",
     };
     return await dio.put(endPoint, data: data);
   }

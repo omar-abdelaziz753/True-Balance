@@ -1,9 +1,26 @@
 import 'package:dio/dio.dart';
+import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
+import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
 import '../../../../core/networks_helper/dio_helper/dio_helper.dart';
 import '../../../../core/networks_helper/dio_helper/end_points.dart';
 import '../models/geidea_models.dart';
 
 class PaymentRepository {
+  // The previous version called DioHelper.dio.post directly, which bypasses
+  // the wrapper that injects the Authorization + lang headers. Every
+  // JWT-protected Geidea endpoint (status, refund, void, history) returned
+  // 401 as a result. We now attach an Options with the bearer token
+  // explicitly on every call instead of relying on globally-mutated headers.
+  Future<Options> _authOptions() async {
+    final token =
+        await CacheHelper.getSecuredString(key: CacheKeys.userToken);
+    return Options(headers: {
+      'Accept': 'application/json',
+      'lang': CacheHelper.getCurrentLanguage().toString(),
+      'authorization': 'Bearer $token',
+    });
+  }
+
   Future<GeideaCheckoutResponse> initiateCheckout({
     required int bookingId,
   }) async {
@@ -11,6 +28,7 @@ class PaymentRepository {
       final response = await DioHelper.dio.post(
         EndPoints.geideaInitiate,
         data: {'booking_id': bookingId},
+        options: await _authOptions(),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -41,6 +59,7 @@ class PaymentRepository {
       final response = await DioHelper.dio.post(
         EndPoints.initiateConsultationPayment,
         data: {'consultation_id': consultationId},
+        options: await _authOptions(),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -83,6 +102,7 @@ class PaymentRepository {
       final response = await DioHelper.dio.post(
         EndPoints.geideaCheckoutUrl,
         data: {'transaction_id': transactionId},
+        options: await _authOptions(),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -112,6 +132,7 @@ class PaymentRepository {
     try {
       final response = await DioHelper.dio.get(
         '${EndPoints.geideaStatus}/$transactionId',
+        options: await _authOptions(),
       );
 
       if (response.statusCode == 200) {
@@ -146,6 +167,7 @@ class PaymentRepository {
           'transaction_id': transactionId,
           if (amount != null) 'amount': amount,
         },
+        options: await _authOptions(),
       );
 
       if (response.statusCode == 200) {
@@ -176,6 +198,7 @@ class PaymentRepository {
       final response = await DioHelper.dio.post(
         EndPoints.geideaVoid,
         data: {'transaction_id': transactionId},
+        options: await _authOptions(),
       );
 
       if (response.statusCode == 200) {
@@ -205,6 +228,7 @@ class PaymentRepository {
     try {
       final response = await DioHelper.dio.get(
         '${EndPoints.geideaHistory}/$bookingId',
+        options: await _authOptions(),
       );
 
       if (response.statusCode == 200) {

@@ -48,7 +48,7 @@ class DoctorDetailsWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: ClipOval(
               child: Hero(
-                tag: cubit.doctorDetails!.data!.id.toString(),
+                tag: cubit.doctorDetails?.data?.id.toString() ?? '',
                 child: CachedNetworkImage(
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                   imageUrl: cubit.doctorDetails?.data?.image ?? '',

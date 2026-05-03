@@ -97,8 +97,17 @@ class AuthRepository {
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {
         if (verificationCode == null) {
+          // OTP-send step (no code submitted yet).
+          // Production API does NOT return the OTP in the response body.
+          // Dev/staging may echo `verification_code` for testing convenience.
+          final devCode = (response.data is Map &&
+                  response.data["data"] is Map)
+              ? response.data["data"]["verification_code"]
+              : null;
           customToast(
-            msg: response.data["data"]["verification_code"].toString(),
+            msg: devCode != null
+                ? devCode.toString()
+                : "sendCodeSuccessfully".tr(),
             color: AppColors.primaryColor400,
             time: 5,
           );
@@ -137,24 +146,18 @@ class AuthRepository {
 
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {
-        final data = response.data["data"];
-
-        if (data is Map && data["verification_code"] != null) {
-          customToast(
-            msg: "sendCodeSuccessfully".tr(),
-            color: AppColors.primaryColor400,
-          );
-          return ApiResult.success('emailSentSuccessfully'.tr());
-        } else {
-          customToast(
-            msg: "invalidpleaseCheckAgain".tr(),
-            color: Colors.red,
-          );
-          return ApiResult.failure(
-            FailureException(errMessage: "invalidEmailAddress".tr()),
-          );
-        }
+        customToast(
+          msg: "sendCodeSuccessfully".tr(),
+          color: AppColors.primaryColor400,
+        );
+        return ApiResult.success('emailSentSuccessfully'.tr());
       } else {
+        final errorMsg = response.data is Map
+            ? (response.data["message"] ??
+                response.data["error"] ??
+                "invalidpleaseCheckAgain".tr())
+            : "invalidpleaseCheckAgain".tr();
+        customToast(msg: errorMsg.toString(), color: Colors.red);
         return ApiResult.failure(
           ServerException.fromResponse(response.statusCode, response),
         );
@@ -203,8 +206,8 @@ class AuthRepository {
   }
 
   Future<ApiResult<VerifyOTPResponseDataModel>> verifyOTP(
-      {required String otp}) async {
-    final response = await authApiServices.verifyOTP(otp: otp);
+      {required String otp, required String email}) async {
+    final response = await authApiServices.verifyOTP(otp: otp, email: email);
 
     try {
       if (response!.statusCode == 200 || response.statusCode == 201) {

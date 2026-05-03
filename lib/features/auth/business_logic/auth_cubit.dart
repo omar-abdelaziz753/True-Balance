@@ -138,6 +138,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(VerfiyCodeLoadingState());
     final result = await authRepository.verifyOTP(
       otp: verificationCodeController.text,
+      email: emailController.text.trim(),
     );
     result.when(success: (data) {
       hideLoading();

@@ -345,6 +345,8 @@
   "paymentSuccess": "تم الدفع بنجاح!",
   "paymentFailed": "فشل الدفع",
   "paymentCancelled": "تم إلغاء الدفع",
+  "initializingPayment": "جاري بدء عملية الدفع...",
+  "verifyingPayment": "جاري التحقق من عملية الدفع...",
   "bookingFailed": "فشل الحجز",
   "bookYourFirstConsultation": "احجز استشارتك الأولى للبدء",
   "appointmentDetails": "تفاصيل الموعد",

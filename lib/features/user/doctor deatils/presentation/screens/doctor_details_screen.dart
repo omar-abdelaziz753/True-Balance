@@ -91,16 +91,17 @@ class DoctorDetailsScreen extends StatelessWidget {
                       style: Styles.contentEmphasis.copyWith(
                           fontWeight: FontWeight.w600, fontSize: 14.sp)),
                   const SizedBox(height: 8),
-                  Text(
-                    (cubit.doctorDetails?.data?.about?.isNotEmpty ?? false)
-                        ? cubit.doctorDetails!.data!.about!
-                        : 'noDetails'.tr(),
-                    style: Styles.contentEmphasis.copyWith(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14.sp,
-                      color: AppColors.neutralColor600,
-                    ),
-                  ),
+                  Builder(builder: (context) {
+                    final about = cubit.doctorDetails?.data?.about ?? '';
+                    return Text(
+                      about.isNotEmpty ? about : 'noDetails'.tr(),
+                      style: Styles.contentEmphasis.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14.sp,
+                        color: AppColors.neutralColor600,
+                      ),
+                    );
+                  }),
                   16.verticalSpace,
                   BestTherapistsAndReviewWidget(cubit: cubit),
                   cubit.doctorDetails?.data?.ratings?.ratings?.isEmpty ?? true
@@ -132,7 +133,8 @@ class DoctorDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: AppConstants.userToken == null
+          bottomNavigationBar: (AppConstants.userToken == null ||
+                  cubit.doctorDetails?.data == null)
               ? const SizedBox.shrink()
               : Container(
                   color: Colors.white,
@@ -144,8 +146,9 @@ class DoctorDetailsScreen extends StatelessWidget {
                       color: AppColors.neutralColor100,
                     ),
                     onPressed: () {
-                      context.pushNamed(Routes.bookingScreen,
-                          arguments: cubit.doctorDetails!.data);
+                      final data = cubit.doctorDetails?.data;
+                      if (data == null) return;
+                      context.pushNamed(Routes.bookingScreen, arguments: data);
                     },
                   ),
                 ),

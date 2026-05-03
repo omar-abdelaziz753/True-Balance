@@ -106,6 +106,30 @@ class _PaymentScreenState extends State<PaymentScreen> {
               );
             }
 
+            if (state is PaymentVerifying) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(
+                        'verifyingPayment'.tr(),
+                        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '${state.attempt} / ${state.maxAttempts}',
+                        style: TextStyle(fontSize: 12.sp, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
             if (state is PaymentFailed) {
               return Center(
                 child: Padding(

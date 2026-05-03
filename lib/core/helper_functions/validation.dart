@@ -124,7 +124,9 @@ class AppValidator {
       return 'validation.phone.required'.tr();
     }
 
-    final phoneRegExp = RegExp(r'^[0-9]{9}$');
+    // Saudi mobile format: 10 digits starting with 05 — must match backend
+    // (RegisterRequestValidation enforces ^05\d{8}$).
+    final phoneRegExp = RegExp(r'^05\d{8}$');
 
     if (!phoneRegExp.hasMatch(value)) {
       return 'validation.phone.invalid'.tr();

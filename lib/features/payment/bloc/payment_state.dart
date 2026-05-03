@@ -12,6 +12,25 @@ class PaymentInitial extends PaymentState {}
 
 class PaymentLoading extends PaymentState {}
 
+/// Emitted while we are polling Geidea for the final transaction status after
+/// the user returned from the hosted checkout page. Distinct from
+/// [PaymentLoading] so the UI can show a "verifying your payment…" message
+/// instead of a generic spinner.
+class PaymentVerifying extends PaymentState {
+  final int transactionId;
+  final int attempt;
+  final int maxAttempts;
+
+  const PaymentVerifying({
+    required this.transactionId,
+    required this.attempt,
+    required this.maxAttempts,
+  });
+
+  @override
+  List<Object?> get props => [transactionId, attempt, maxAttempts];
+}
+
 class CheckoutInitiated extends PaymentState {
   final GeideaCheckoutData checkoutData;
 

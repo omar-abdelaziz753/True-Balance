@@ -14,10 +14,15 @@ class AuthApiServices {
     required String email,
     required String password,
   }) async {
+    // Don't send the literal string "null" if the device hasn't registered
+    // for push yet — the backend would persist it as the FCM token and
+    // every push notification to this user would fail to deliver.
+    final fcmToken = CacheHelper.getData(key: CacheKeys.deviceToken);
     return _dioFactory.post(endPoint: EndPoints.login, data: {
       'email': email,
       'password': password,
-      'fcm_token': CacheHelper.getData(key: CacheKeys.deviceToken) ?? 'null',
+      if (fcmToken != null && fcmToken.toString().isNotEmpty)
+        'fcm_token': fcmToken,
     });
   }
 
@@ -41,7 +46,9 @@ class AuthApiServices {
       "password": password,
       "repassword": rePassword,
       "verification_code": verificationCode,
-      "fcm_token": CacheHelper.getData(key: CacheKeys.deviceToken) ?? 'null',
+      // Pass the raw token (or null) and let removeWhere drop it if absent.
+      // Sending the literal "null" string would corrupt the user's FCM record.
+      "fcm_token": CacheHelper.getData(key: CacheKeys.deviceToken),
     };
 
     formDataMap
@@ -81,10 +88,14 @@ class AuthApiServices {
     );
   }
 
-  Future<Response?> verifyOTP({required String otp}) {
+  Future<Response?> verifyOTP({
+    required String otp,
+    required String email,
+  }) {
     return _dioFactory.post(
       endPoint: EndPoints.verifyOTP,
       data: {
+        'email': email,
         'code': otp,
       },
     );

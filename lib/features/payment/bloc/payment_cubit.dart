@@ -71,28 +71,60 @@ class PaymentCubit extends Cubit<PaymentState> {
     }
   }
 
+  /// Polls the backend for the final transaction status, with bounded retries
+  /// and exponential backoff. Geidea posts the authoritative result via
+  /// server-to-server callback, so the client just needs to wait for it to
+  /// land. We give up after [_maxStatusPollAttempts] tries to avoid an
+  /// indefinite spinner if the callback is delayed or lost.
+  static const int _maxStatusPollAttempts = 6;
+  static const Duration _initialPollDelay = Duration(seconds: 2);
+
   Future<void> checkPaymentStatus({
     required int transactionId,
   }) async {
-    emit(PaymentLoading());
+    Duration delay = _initialPollDelay;
 
-    final response = await _repository.getPaymentStatus(
-      transactionId: transactionId,
-    );
+    for (int attempt = 1; attempt <= _maxStatusPollAttempts; attempt++) {
+      if (isClosed) return;
+      emit(PaymentVerifying(
+        transactionId: transactionId,
+        attempt: attempt,
+        maxAttempts: _maxStatusPollAttempts,
+      ));
 
-    if (response.success && response.transaction != null) {
+      final response = await _repository.getPaymentStatus(
+        transactionId: transactionId,
+      );
+
+      if (!response.success || response.transaction == null) {
+        // Network/API error — surface it; don't keep hammering.
+        emit(PaymentError(response.message));
+        return;
+      }
+
       final transaction = response.transaction!;
-
       if (transaction.isPaid) {
         emit(PaymentSuccess(transaction));
-      } else if (transaction.isFailed) {
-        emit(PaymentFailed('Payment failed', transactionId: transactionId));
-      } else {
-        emit(PaymentLoading());
+        return;
       }
-    } else {
-      emit(PaymentError(response.message));
+      if (transaction.isFailed) {
+        emit(PaymentFailed('Payment failed', transactionId: transactionId));
+        return;
+      }
+
+      // Still pending — wait before polling again, then back off.
+      if (attempt < _maxStatusPollAttempts) {
+        await Future.delayed(delay);
+        delay *= 2;
+      }
     }
+
+    // Exhausted retries — Geidea callback hasn't arrived yet. Tell the user
+    // their payment is still being verified rather than locking the UI.
+    emit(PaymentFailed(
+      'Payment verification is taking longer than expected. Check back in a few moments.',
+      transactionId: transactionId,
+    ));
   }
 
   Future<void> processRefund({
