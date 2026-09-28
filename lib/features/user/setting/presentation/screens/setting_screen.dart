@@ -13,7 +13,7 @@ import 'package:true_balance_app/core/themes/text_colors.dart';
 import 'package:true_balance_app/core/utils/app_constants.dart';
 import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
 import 'package:true_balance_app/core/widgets/container/custom_divider_widget.dart';
-import 'package:true_balance_app/core/widgets/please%20login%20Buttom/please_login_buttom.dart';
+import 'package:true_balance_app/core/widgets/please_login_button/please_login_button.dart';
 import 'package:true_balance_app/features/auth/business_logic/auth_cubit.dart';
 import 'package:true_balance_app/features/localization/presentation/localization_screen.dart';
 import 'package:true_balance_app/features/user/setting/presentation/widgets/custom_row_in_setting_widget.dart';

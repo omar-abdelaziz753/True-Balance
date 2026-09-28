@@ -5,6 +5,7 @@ import 'payment_state.dart';
 class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepository _repository;
   int? _currentTransactionId;
+  bool _isInitiating = false;
 
   PaymentCubit({PaymentRepository? repository})
       : _repository = repository ?? PaymentRepository(),
@@ -15,15 +16,21 @@ class PaymentCubit extends Cubit<PaymentState> {
   Future<void> initiatePayment({
     required int bookingId,
   }) async {
-    emit(PaymentLoading());
+    if (_isInitiating) return;
+    _isInitiating = true;
+    try {
+      emit(PaymentLoading());
 
-    final response = await _repository.initiateCheckout(bookingId: bookingId);
+      final response = await _repository.initiateCheckout(bookingId: bookingId);
 
-    if (response.success && response.data != null) {
-      _currentTransactionId = response.data!.transactionId;
-      emit(CheckoutInitiated(response.data!));
-    } else {
-      emit(PaymentFailed(response.message));
+      if (response.success && response.data != null) {
+        _currentTransactionId = response.data!.transactionId;
+        emit(CheckoutInitiated(response.data!));
+      } else {
+        emit(PaymentFailed(response.message));
+      }
+    } finally {
+      _isInitiating = false;
     }
   }
 
@@ -42,7 +49,8 @@ class PaymentCubit extends Cubit<PaymentState> {
         checkoutUrl: response.data!.checkoutUrl,
         sessionId: response.data!.sessionId,
         transactionId: response.data!.transactionId,
-        expiresAt: DateTime.parse(response.data!.expiresAt),
+        expiresAt: DateTime.tryParse(response.data!.expiresAt) ??
+            DateTime.now().add(const Duration(hours: 2)),
       ));
     } else {
       emit(PaymentFailed(response.message));
@@ -64,7 +72,8 @@ class PaymentCubit extends Cubit<PaymentState> {
         checkoutUrl: response.data!.checkoutUrl,
         sessionId: response.data!.sessionId,
         transactionId: transactionId,
-        expiresAt: DateTime.parse(response.data!.expiresAt),
+        expiresAt: DateTime.tryParse(response.data!.expiresAt) ??
+            DateTime.now().add(const Duration(hours: 2)),
       ));
     } else {
       emit(PaymentFailed(response.message));

@@ -58,7 +58,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                 children: [
                   Pinput(
                     controller: cubit.verificationCodeController,
-                    length: 5,
+                    length: 6,
                     autofocus: true,
                     obscureText: false,
                     keyboardType: TextInputType.number,
@@ -66,7 +66,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                     pinAnimationType: PinAnimationType.fade,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(5),
+                      LengthLimitingTextInputFormatter(6),
                     ],
                     onChanged: (pin) {},
                     onCompleted: (pin) {},
@@ -97,7 +97,7 @@ class VerifyOtpWidgetWidget extends StatelessWidget {
                       ),
                     ),
                     validator: (pin) {
-                      if (pin?.length != 5) {
+                      if (pin?.length != 6) {
                         return 'enterYourCodeComplete'.tr();
                       }
                       return null;

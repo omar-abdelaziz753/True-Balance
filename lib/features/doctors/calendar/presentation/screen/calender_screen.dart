@@ -5,8 +5,8 @@ import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
 import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_in_calender_screen_widget.dart';
-import 'package:true_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
-import 'package:true_balance_app/features/doctors/calender/presnetation/widgets/calender_widget.dart';
+import 'package:true_balance_app/features/doctors/calendar/bloc/cubit/calender_cubit.dart';
+import 'package:true_balance_app/features/doctors/calendar/presentation/widgets/calender_widget.dart';
 
 import '../widgets/list_widget.dart';
 import '../widgets/skelton_widget.dart';

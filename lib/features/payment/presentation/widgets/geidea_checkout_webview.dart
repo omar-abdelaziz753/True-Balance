@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -47,10 +48,18 @@ class _GeideaCheckoutWebViewState extends State<GeideaCheckoutWebView> {
             });
           },
           onNavigationRequest: (NavigationRequest request) {
-            // Check if this is the return URL
-            if (request.url.startsWith(widget.returnUrl)) {
-              final uri = Uri.parse(request.url);
-              _handleReturnUrl(uri);
+            // Exact return-URL match on scheme + host + path only.
+            // The query string carries the payment result params,
+            // so it must be ignored here (and prefix matching would
+            // accept lookalike URLs attacker-controlled pages could use).
+            final requestUri = Uri.tryParse(request.url);
+            final returnUri = Uri.tryParse(widget.returnUrl);
+            if (requestUri != null &&
+                returnUri != null &&
+                requestUri.scheme == returnUri.scheme &&
+                requestUri.host == returnUri.host &&
+                requestUri.path == returnUri.path) {
+              _handleReturnUrl(requestUri);
               return NavigationDecision.prevent;
             }
 
@@ -65,8 +74,18 @@ class _GeideaCheckoutWebViewState extends State<GeideaCheckoutWebView> {
             widget.onError?.call();
           },
         ),
-      )
-      ..loadRequest(Uri.parse(widget.checkoutUrl));
+      );
+
+    // Never load a non-HTTPS checkout page in release builds.
+    if (kReleaseMode &&
+        Uri.tryParse(widget.checkoutUrl)?.scheme != 'https') {
+      _errorMessage = 'Invalid checkout URL';
+      _isLoading = false;
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => widget.onError?.call());
+    } else {
+      _controller.loadRequest(Uri.parse(widget.checkoutUrl));
+    }
   }
 
   void _handleReturnUrl(Uri uri) {

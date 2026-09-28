@@ -354,5 +354,21 @@
   "rateYourExperience": "قيّم تجربتك",
   "thankYouForRating": "شكراً لك على تقييمك!",
   "doctorNotes": "ملاحظات الطبيب",
-  "yourAppointmentIsConfirmed": "تم تأكيد موعدك"
+  "yourAppointmentIsConfirmed": "تم تأكيد موعدك",
+  "bookingConfirmed": "تم تأكيد الحجز",
+  "days": "يوم",
+  "hours": "ساعة",
+  "minutes": "دقيقة",
+  "appointmentPassed": "موعد هذا الحجز قد مر.",
+  "onlineConsultation": "استشارة عبر الإنترنت",
+  "onlineConsultationDescription": "سيتم إرسال رابط الجلسة إلى بريدك الإلكتروني قبل الموعد.",
+  "inPersonConsultationAt": "استشارة في عيادة {clinic}",
+  "getDirections": "الاتجاهات",
+  "bookingRef": "رقم الحجز",
+  "amountPaid": "المبلغ المدفوع",
+  "transactionRef": "رقم المعاملة",
+  "paidOn": "تاريخ الدفع",
+  "addToCalendar": "إضافة إلى التقويم",
+  "share": "مشاركة",
+  "consultationWithDr": "استشارة مع د. {name}"
 }

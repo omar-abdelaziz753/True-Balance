@@ -16,8 +16,8 @@ import 'package:true_balance_app/features/doctors/appointments/bloc/cubit/appoin
 import 'package:true_balance_app/features/doctors/appointments/presentation/screens/appointments_screen.dart';
 import 'package:true_balance_app/features/doctors/appointments_details/bloc/cubit/appointments_details_cubit.dart';
 import 'package:true_balance_app/features/doctors/appointments_details/presentation/screens/appointments_details_screen.dart';
-import 'package:true_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
-import 'package:true_balance_app/features/doctors/calender/presnetation/screen/calender_screen.dart';
+import 'package:true_balance_app/features/doctors/calendar/bloc/cubit/calender_cubit.dart';
+import 'package:true_balance_app/features/doctors/calendar/presentation/screen/calender_screen.dart';
 import 'package:true_balance_app/features/doctors/main_layout_doctors/business_logic/main_layout_doctors_cubit.dart';
 import 'package:true_balance_app/features/doctors/main_layout_doctors/presentation/main_layout_doctors.dart';
 import 'package:true_balance_app/features/onBoarding/Bloc/on_boarding_cubit.dart';
@@ -34,10 +34,10 @@ import 'package:true_balance_app/features/user/best_therapists/cubit/all_doctors
 import 'package:true_balance_app/features/user/best_therapists/presentation/screens/best_therapists_screen.dart';
 import 'package:true_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:true_balance_app/features/user/create%20booking/presentation/screen/booking_screen.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/presentation/screens/all_revirws.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/presentation/screens/doctor_details_screen.dart';
+import 'package:true_balance_app/features/user/doctor_details/bloc/cubit/doctor_details_cubit.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor_details/presentation/screens/all_reviews.dart';
+import 'package:true_balance_app/features/user/doctor_details/presentation/screens/doctor_details_screen.dart';
 import 'package:true_balance_app/features/user/home/bloc/cubit/home_cubit.dart';
 import 'package:true_balance_app/features/user/home/data/model/doctors/all_doctors_data_model.dart';
 import 'package:true_balance_app/features/user/home/presentation/screens/home_screen.dart';

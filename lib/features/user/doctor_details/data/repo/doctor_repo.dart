@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:true_balance_app/core/networks_helper/api_results/api_result.dart';
 import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
 import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/api%20services/doctor_api_services.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_reviews_models.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/api%20services/doctor_api_services.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_reviews_models.dart';
 
 class DoctorRepo {
   final DoctorApiServices api;

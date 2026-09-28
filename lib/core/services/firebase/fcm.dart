@@ -6,7 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:true_balance_app/core/utils/app_constants.dart';
-import 'package:true_balance_app/core/widgets/notification/notifcation_snack_bar.dart';
+import 'package:true_balance_app/core/widgets/notification/notification_snack_bar.dart';
 
 Future<void> handleBackgroundMessage(RemoteMessage message) async {}
 

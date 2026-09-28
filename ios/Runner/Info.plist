@@ -65,6 +65,23 @@
 	<string>True Balance needs camera access to take photos for profile pictures and attach images to your bookings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>True Balance uses your location to find nearby physiotherapy clinics.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>True Balance needs access to your calendar to save your physiotherapy appointments when you tap “Add to Calendar”.</string>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>True Balance needs calendar access to save your physiotherapy appointments when you tap Add to Calendar.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>True Balance needs microphone access to record audio when capturing videos for your bookings.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>truebalance</string>
+			</array>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

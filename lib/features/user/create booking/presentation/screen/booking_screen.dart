@@ -13,7 +13,7 @@ import 'package:true_balance_app/features/payment/presentation/screens/payment_s
 import 'package:true_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
 import 'package:true_balance_app/features/user/create%20booking/presentation/widgets/booking_summary_card.dart';
 import 'package:true_balance_app/features/user/create%20booking/presentation/widgets/enhanced_session_selector.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_details_model.dart';
 
 class BookingScreen extends StatelessWidget {
   const BookingScreen({super.key, required this.doctorModel});
@@ -127,12 +127,18 @@ class BookingScreen extends StatelessWidget {
                       color: AppColors.redColor200);
                 }
               },
-              buildWhen: (previous, current) => current is ChangeStepState,
+              buildWhen: (previous, current) =>
+                  current is ChangeStepState ||
+                  current is BookingLoadingState ||
+                  current is BookingSuccessState ||
+                  current is BookingFailureState ||
+                  current is BookingPaymentRequired,
               builder: (context, state) {
                 final cubit = context.read<CreateBookingCubit>();
-                final canProceed = cubit.currentStep == 0
-                    ? cubit.selectedTimeIndex != -1
-                    : true;
+                final canProceed = (cubit.currentStep == 0
+                        ? cubit.selectedTimeIndex != -1
+                        : true) &&
+                    state is! BookingLoadingState;
 
                 return Column(
                   children: [

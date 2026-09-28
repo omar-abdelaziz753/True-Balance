@@ -1,0 +1,7 @@
+# Copy to key.properties (gitignored), never commit.
+# key.properties lives next to this template at android/key.properties
+# and is loaded by android/app/build.gradle via rootProject.file('key.properties').
+storeFile=/absolute/path/to/upload-keystore.jks
+storePassword=XXXXXX
+keyAlias=upload
+keyPassword=XXXXXX

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_balance_app/core/helper_functions/date_formate.dart';
+import 'package:true_balance_app/core/helper_functions/date_format.dart';
 import 'package:true_balance_app/core/utils/easy_loading.dart';
 import 'package:true_balance_app/features/user/create%20booking/data/model/free_slots_model.dart';
 import 'package:true_balance_app/features/user/create%20booking/data/repo/create_booking_repo.dart';
@@ -54,6 +54,7 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
 
   FreeSlotsModel? freeSlotsModel;
   int doctorId = 0;
+  bool _isBooking = false;
 
   Future<void> getAvailableSlots({
     required int doctorId,
@@ -76,43 +77,49 @@ class CreateBookingCubit extends Cubit<CreateBookingState> {
   }
 
   Future<void> bookSelectedSession() async {
-    emit(BookingLoadingState());
-    showLoading();
+    if (_isBooking) return;
+    _isBooking = true;
+    try {
+      emit(BookingLoadingState());
+      showLoading();
 
-    final result = await _createBookingRepo!.bookSession(
-      doctorId: doctorId,
-      date: formatDate(data.toString()),
-      time: freeSlotsModel!.data[selectedTimeIndex],
-      notes: userNotes.isNotEmpty ? userNotes : null,
-    );
+      final result = await _createBookingRepo!.bookSession(
+        doctorId: doctorId,
+        date: formatDate(data.toString()),
+        time: freeSlotsModel!.data[selectedTimeIndex],
+        notes: userNotes.isNotEmpty ? userNotes : null,
+      );
 
-    result.when(
-      success: (data) {
-        hideLoading();
+      result.when(
+        success: (data) {
+          hideLoading();
 
-        // Extract payment data from response
-        final responseData = data as Map<String, dynamic>?;
-        paymentUrl = responseData?['payment_url'];
-        transactionId = responseData?['transaction_id'];
-        consultationId = responseData?['consultation_id'];
-        amount = (responseData?['amount'] ?? 0).toDouble();
+          // Extract payment data from response
+          final responseData = data as Map<String, dynamic>?;
+          paymentUrl = responseData?['payment_url'];
+          transactionId = responseData?['transaction_id'];
+          consultationId = responseData?['consultation_id'];
+          amount = (responseData?['amount'] ?? 0).toDouble();
 
-        if (paymentUrl != null) {
-          emit(BookingPaymentRequired(
-            paymentUrl: paymentUrl!,
-            transactionId: transactionId ?? 0,
-            consultationId: consultationId ?? 0,
-            amount: amount ?? 0,
-          ));
-        } else {
-          emit(BookingSuccessState());
-        }
-      },
-      failure: (error) {
-        hideLoading();
+          if (paymentUrl != null) {
+            emit(BookingPaymentRequired(
+              paymentUrl: paymentUrl!,
+              transactionId: transactionId ?? 0,
+              consultationId: consultationId ?? 0,
+              amount: amount ?? 0,
+            ));
+          } else {
+            emit(BookingSuccessState());
+          }
+        },
+        failure: (error) {
+          hideLoading();
 
-        emit(BookingFailureState(error.toString()));
-      },
-    );
+          emit(BookingFailureState(error.toString()));
+        },
+      );
+    } finally {
+      _isBooking = false;
+    }
   }
 }

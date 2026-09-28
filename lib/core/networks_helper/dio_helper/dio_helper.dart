@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
@@ -8,14 +9,26 @@ class DioHelper {
   static Dio dio = Dio();
 
   static Future<void> init() {
+    assert(
+      !kReleaseMode ||
+          Uri.tryParse(EndPoints.baseUrl)?.scheme == 'https',
+      'API_BASE_URL must be https in release',
+    );
     BaseOptions baseOptions = BaseOptions(
       baseUrl: EndPoints.baseUrl,
+      connectTimeout: const Duration(seconds: 15),
+      sendTimeout: const Duration(seconds: 15),
+      receiveTimeout: const Duration(seconds: 30),
       receiveDataWhenStatusError: true,
+      // Contract: responses never throw on HTTP error statuses;
+      // every caller must branch on response statusCode.
       validateStatus: (status) => true,
     );
 
     dio = Dio(baseOptions);
-    addDioInterceptor();
+    if (kDebugMode) {
+      addDioInterceptor();
+    }
     return Future.value();
   }
 
@@ -29,57 +42,79 @@ class DioHelper {
   }) async {
     String? token = await _getAuthorizationToken();
 
-    dio.options.headers = {
+    final Map<String, dynamic> headers = {
       "Accept": "application/json",
       "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
-    return await dio.get(endPoint, queryParameters: data);
+    return await dio.get(
+      endPoint,
+      queryParameters: data,
+      options: Options(headers: headers),
+    );
   }
 
   Future<Response?> post(
       {required String endPoint, data, Options? options}) async {
     String? token = await _getAuthorizationToken();
 
-    dio.options.headers = {
+    final Map<String, dynamic> headers = {
       "Accept": "application/json",
       "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
-    return await dio.post(endPoint, data: data, options: options);
+    final Map<String, dynamic> mergedHeaders = {
+      ...headers,
+      ...?options?.headers,
+    };
+    final Options effectiveOptions =
+        (options ?? Options()).copyWith(headers: mergedHeaders);
+    return await dio.post(endPoint, data: data, options: effectiveOptions);
   }
 
   Future<Response?> put({required String endPoint, data}) async {
     String? token = await _getAuthorizationToken();
 
-    dio.options.headers = {
+    final Map<String, dynamic> headers = {
       "Accept": "application/json",
       "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
-    return await dio.put(endPoint, data: data);
+    return await dio.put(
+      endPoint,
+      data: data,
+      options: Options(headers: headers),
+    );
   }
 
   Future<Response?> patch({required String endPoint, data}) async {
     String? token = await _getAuthorizationToken();
 
-    dio.options.headers = {
+    final Map<String, dynamic> headers = {
       "Accept": "application/json",
       "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
-    return await dio.patch(endPoint, data: data);
+    return await dio.patch(
+      endPoint,
+      data: data,
+      options: Options(headers: headers),
+    );
   }
 
   Future<Response?> delete({required String endPoint, data}) async {
     String? token = await _getAuthorizationToken();
 
-    dio.options.headers = {
+    final Map<String, dynamic> headers = {
       "Accept": "application/json",
       "lang": CacheHelper.getCurrentLanguage().toString(),
       "authorization": "Bearer $token",
     };
-    return await dio.delete(endPoint, data: data);
+    return await dio.delete(
+      endPoint,
+      data: data,
+      options: Options(headers: headers),
+    );
   }
 
   static void addDioInterceptor() {

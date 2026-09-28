@@ -1,8 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:true_balance_app/core/utils/app_constants.dart';
 
 abstract class Styles {
   static TextStyle getLocalizedTextStyle({
@@ -11,9 +9,6 @@ abstract class Styles {
     Color color = Colors.black,
     double? letterSpacing,
   }) {
-    String locale =
-        AppConstants.navigatorKey.currentContext!.locale.languageCode;
-
     // Use IBM Plex Sans Arabic for both languages
     return TextStyle(
       fontFamily: GoogleFonts.ibmPlexSansArabic().fontFamily,

@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
 import 'package:true_balance_app/core/cache_helper/cache_keys.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
-import 'package:true_balance_app/features/doctors/calender/bloc/cubit/calender_cubit.dart';
-import 'package:true_balance_app/features/doctors/calender/data/model/doctor_schedule_model.dart';
-import 'package:true_balance_app/features/doctors/calender/data/model/therapist_schedule_model.dart';
+import 'package:true_balance_app/features/doctors/calendar/bloc/cubit/calender_cubit.dart';
+import 'package:true_balance_app/features/doctors/calendar/data/model/doctor_schedule_model.dart';
+import 'package:true_balance_app/features/doctors/calendar/data/model/therapist_schedule_model.dart';
 
 import 'appointment_card.dart';
 

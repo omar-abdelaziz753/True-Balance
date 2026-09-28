@@ -59,6 +59,7 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   );
 
   if (pickedDate == null) return;
+  if (!context.mounted) return;
 
   final formattedDate = DateFormat('dd-MM-yyyy', 'en_US').format(pickedDate);
   final times =
@@ -67,6 +68,7 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   // Remove duplicates from times
   final uniqueTimes = times.toSet().toList()..sort();
 
+  final messenger = ScaffoldMessenger.of(context);
   String? selectedTime = await showModalBottomSheet<String>(
     context: context,
     backgroundColor: Colors.white,
@@ -80,10 +82,11 @@ Future<void> pickSession(BuildContext context, AddSessionCubit cubit) async {
   );
 
   if (selectedTime == null) return;
+  if (!context.mounted) return;
 
   if (cubit.selectedItems
       .any((item) => item.date == formattedDate && item.time == selectedTime)) {
-    ScaffoldMessenger.of(context).showSnackBar(
+    messenger.showSnackBar(
       SnackBar(
         content: Text('sessionAlreadySelected'.tr()),
         backgroundColor: Colors.red,

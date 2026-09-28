@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_balance_app/core/cache_helper/cache_helper.dart';
@@ -165,22 +167,26 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
+  Future<void> _clearLogoutCache() async {
+    await CacheHelper.removeData(key: CacheKeys.doctorId);
+    await CacheHelper.removeData(key: CacheKeys.doctorName);
+    await CacheHelper.clearAllSecuredData();
+    await CacheHelper.removeData(key: CacheKeys.type);
+    await CacheHelper.removeData(key: CacheKeys.userName);
+    await CacheHelper.removeData(key: CacheKeys.userPhone);
+    await CacheHelper.removeData(key: CacheKeys.userEmail);
+    AppConstants.userToken = null;
+    AppConstants.userMainLayoutInitialScreenIndex = 0;
+    if (!isClosed) emit(LogoutSuccess());
+  }
+
   Future logout() async {
     showLoading();
     emit(LogoutLoading());
     final result = await authRepository.logout();
-    result.when(success: (success) async {
+    result.when(success: (success) {
       hideLoading();
-      await CacheHelper.removeData(key: CacheKeys.doctorId);
-      await CacheHelper.removeData(key: CacheKeys.doctorName);
-      await CacheHelper.clearAllSecuredData();
-      await CacheHelper.removeData(key: CacheKeys.type);
-      await CacheHelper.removeData(key: CacheKeys.userName);
-      await CacheHelper.removeData(key: CacheKeys.userPhone);
-      await CacheHelper.removeData(key: CacheKeys.userEmail);
-      AppConstants.userToken = null;
-      AppConstants.userMainLayoutInitialScreenIndex = 0;
-      emit(LogoutSuccess());
+      unawaited(_clearLogoutCache());
     }, failure: (error) {
       hideLoading();
       emit(LogoutError());

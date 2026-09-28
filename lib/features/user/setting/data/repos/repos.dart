@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -15,6 +16,25 @@ class SettingsRepos {
   final SettingsApiServices settingsApiServices;
 
   SettingsRepos(this.settingsApiServices);
+
+  Future<void> _cacheRefreshedProfile(GetProfileDataModel profileModel) async {
+    await CacheHelper.saveData(
+      key: CacheKeys.userName,
+      value: profileModel.data?.name,
+    );
+    await CacheHelper.saveData(
+      key: CacheKeys.userEmail,
+      value: profileModel.data?.email,
+    );
+    await CacheHelper.saveData(
+      key: CacheKeys.userPhone,
+      value: profileModel.data?.phone,
+    );
+    await CacheHelper.saveData(
+      key: CacheKeys.userImage,
+      value: profileModel.data?.image,
+    );
+  }
 
   /// Get Profile Data
   Future<ApiResult<GetProfileDataModel>> getProfileData() async {
@@ -108,31 +128,8 @@ class SettingsRepos {
         );
         final profileResult = await getProfileData();
         profileResult.when(
-          success: (profileModel) async {
-            await CacheHelper.saveData(
-              key: CacheKeys.userName,
-              value: profileModel.data?.name,
-            );
-            await CacheHelper.saveData(
-              key: CacheKeys.userEmail,
-              value: profileModel.data?.email,
-            );
-            await CacheHelper.saveData(
-              key: CacheKeys.userPhone,
-              value: profileModel.data?.phone,
-            );
-            await CacheHelper.saveData(
-              key: CacheKeys.userImage,
-              value: profileModel.data?.image,
-            );
-            // await CacheHelper.saveData(
-            //   key: CacheKeys.userGender,
-            //   value: profileModel.data?.gender,
-            // );
-            // await CacheHelper.saveData(
-            //   key: CacheKeys.userAge,
-            //   value: profileModel.data?.age.toString(),
-            // );
+          success: (profileModel) {
+            unawaited(_cacheRefreshedProfile(profileModel));
           },
           failure: (err) {
             // debugPrint("Failed to fetch updated profile data: $err");

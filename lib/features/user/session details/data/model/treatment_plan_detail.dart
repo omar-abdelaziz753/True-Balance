@@ -83,7 +83,7 @@ class Therapist {
 class Session {
   final int id;
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   int? index; // Not part of JSON, set programmatically
 
   @JsonKey(name: 'treatment_plan_id')

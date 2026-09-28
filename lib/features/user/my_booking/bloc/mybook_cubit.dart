@@ -14,18 +14,34 @@ class MybookCubit extends Cubit<MybookState> {
 
   ConsultationsResponse? consultationsResponse;
   final ScrollController consultationsScrollController = ScrollController();
+  bool _consultationsScrollListenerAdded = false;
   int currentPage = 1;
   int lastPage = 1;
   bool isLoadingMore = false;
 
+  /// Set on load-more failure while the already-loaded list is preserved
+  /// (the failure re-emits [ConsultationsSuccess] so the UI keeps its data).
+  String? loadMoreErrorMessage;
+
   void setupConsultationsScrollController() {
-    consultationsScrollController.addListener(() {
-      if (consultationsScrollController.position.pixels >=
-              consultationsScrollController.position.maxScrollExtent - 100 &&
-          !isLoadingMore) {
-        loadMoreConsultations();
-      }
-    });
+    if (_consultationsScrollListenerAdded) return;
+    _consultationsScrollListenerAdded = true;
+    consultationsScrollController.addListener(_onConsultationsScroll);
+  }
+
+  void _onConsultationsScroll() {
+    if (consultationsScrollController.position.pixels >=
+            consultationsScrollController.position.maxScrollExtent - 100 &&
+        !isLoadingMore) {
+      loadMoreConsultations();
+    }
+  }
+
+  @override
+  Future<void> close() {
+    consultationsScrollController.removeListener(_onConsultationsScroll);
+    consultationsScrollController.dispose();
+    return super.close();
   }
 
   bool? isPending;
@@ -47,8 +63,9 @@ class MybookCubit extends Cubit<MybookState> {
     result.when(
       success: (data) {
         consultationsResponse = data;
-        currentPage = data.data.meta.currentPage!;
-        lastPage = data.data.meta.lastPage!;
+        currentPage = data.data.meta.currentPage ?? 1;
+        lastPage = data.data.meta.lastPage ?? 1;
+        loadMoreErrorMessage = null;
         emit(ConsultationsSuccess());
       },
       failure: (error) {
@@ -62,6 +79,7 @@ class MybookCubit extends Cubit<MybookState> {
     if (isLoadingMore || currentPage >= lastPage) return;
 
     isLoadingMore = true;
+    loadMoreErrorMessage = null;
     emit(ConsultationsLoadingMore());
 
     final result = await myBookingRepos.getConsultations(
@@ -75,11 +93,17 @@ class MybookCubit extends Cubit<MybookState> {
     result.when(
       success: (data) {
         consultationsResponse?.data.data.addAll(data.data.data);
-        currentPage = data.data.meta.currentPage!;
+        currentPage = data.data.meta.currentPage ?? currentPage;
+        loadMoreErrorMessage = null;
         emit(ConsultationsSuccess());
       },
       failure: (error) {
-        emit(ConsultationsError());
+        // Preserve the already-loaded list: the UI reads
+        // `consultationsResponse`, and re-emitting success keeps the data
+        // while dismissing the load-more spinner. The error is carried on
+        // `loadMoreErrorMessage` instead of a wiping error state.
+        loadMoreErrorMessage = error.toString();
+        emit(ConsultationsSuccess());
       },
     );
     isLoadingMore = false;

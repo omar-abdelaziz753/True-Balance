@@ -11,8 +11,8 @@ import 'package:true_balance_app/features/therapist/treatment_details_for_therap
 import 'package:true_balance_app/features/therapist/treatment_details_for_therapists/data/repo/repo.dart';
 import 'package:true_balance_app/features/user/create%20booking/data/api%20servies/create_booking_api_services.dart';
 import 'package:true_balance_app/features/user/create%20booking/data/repo/create_booking_repo.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/api%20services/doctor_api_services.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/repo/doctor_repo.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/api%20services/doctor_api_services.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/repo/doctor_repo.dart';
 import 'package:true_balance_app/features/user/home/data/apiServices/home_api_services.dart';
 import 'package:true_balance_app/features/user/home/data/repo/home_repo.dart';
 import 'package:true_balance_app/features/user/medical_reports/data/api%20services/reports_api_services.dart';

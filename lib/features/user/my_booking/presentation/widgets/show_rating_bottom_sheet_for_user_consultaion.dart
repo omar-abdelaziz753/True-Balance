@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_balance_app/core/helper_functions/flutter_toast.dart';
 import 'package:true_balance_app/core/services/di/dependency_injection.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
-import 'package:true_balance_app/core/widgets/rating%20dailoug/rating_dailoug.dart';
+import 'package:true_balance_app/core/widgets/rating_dialog/rating_dialog.dart';
 import 'package:true_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 
 Future<bool> showRatingBottomSheetForUserConsultaion(

@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
 import 'package:true_balance_app/core/widgets/saudi_riyal_icon.dart';
 import 'package:true_balance_app/features/user/create%20booking/bloc/cubit/create_booking_cubit.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_details_model.dart';
 
 class EnhancedSessionSelector extends StatelessWidget {
   final DoctorModelDetails doctor;

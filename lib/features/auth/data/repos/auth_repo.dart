@@ -199,8 +199,15 @@ class AuthRepository {
       } on ServerException catch (ex) {
         return ApiResult.failure(ex.errorModel.error);
       }
+      final statusCode = e.response?.statusCode;
+      final response = e.response;
+      if (response == null) {
+        return ApiResult.failure(
+          FailureException(errMessage: 'Unexpected error occurred'),
+        );
+      }
       return ApiResult.failure(
-        ServerException.fromResponse(e.response!.statusCode, e.response!),
+        ServerException.fromResponse(statusCode, response),
       );
     }
   }
@@ -234,8 +241,15 @@ class AuthRepository {
       } on ServerException catch (ex) {
         return ApiResult.failure(ex.errorModel.error);
       }
+      final statusCode = e.response?.statusCode;
+      final response = e.response;
+      if (response == null) {
+        return ApiResult.failure(
+          FailureException(errMessage: 'Unexpected error occurred'),
+        );
+      }
       return ApiResult.failure(
-        ServerException.fromResponse(e.response!.statusCode, e.response!),
+        ServerException.fromResponse(statusCode, response),
       );
     }
   }
@@ -263,8 +277,15 @@ class AuthRepository {
       } on ServerException catch (ex) {
         return ApiResult.failure(ex.errorModel.error);
       }
+      final statusCode = e.response?.statusCode;
+      final response = e.response;
+      if (response == null) {
+        return ApiResult.failure(
+          FailureException(errMessage: 'Unexpected error occurred'),
+        );
+      }
       return ApiResult.failure(
-        ServerException.fromResponse(e.response!.statusCode, e.response!),
+        ServerException.fromResponse(statusCode, response),
       );
     }
   }
@@ -292,8 +313,15 @@ class AuthRepository {
       } on ServerException catch (ex) {
         return ApiResult.failure(ex.errorModel.error);
       }
+      final statusCode = e.response?.statusCode;
+      final response = e.response;
+      if (response == null) {
+        return ApiResult.failure(
+          FailureException(errMessage: 'Unexpected error occurred'),
+        );
+      }
       return ApiResult.failure(
-        ServerException.fromResponse(e.response!.statusCode, e.response!),
+        ServerException.fromResponse(statusCode, response),
       );
     }
   }

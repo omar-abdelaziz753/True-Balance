@@ -5,7 +5,7 @@ import 'package:true_balance_app/core/networks_helper/errors/exceptions.dart';
 import 'package:true_balance_app/core/networks_helper/errors/failure.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
 import 'package:true_balance_app/core/utils/app_constants.dart';
-import 'package:true_balance_app/features/error_screens/server/server_error_scereen.dart';
+import 'package:true_balance_app/features/error_screens/server/server_error_screen.dart';
 import 'package:true_balance_app/features/error_screens/unauth/un_auth_screen.dart';
 
 class ErrorHandler {
@@ -60,8 +60,9 @@ class ErrorHandler {
       case DioExceptionType.badResponse:
         return handleApiError(e.response);
       case DioExceptionType.cancel:
-        errorMessage = "error.requestCancelled".tr();
-        break;
+        // User-cancelled requests are not errors: surface the failure
+        // without a toast so intentional cancellations stay silent.
+        return FailureException(errMessage: "error.requestCancelled".tr());
       case DioExceptionType.unknown:
         errorMessage = "error.network".tr();
         break;

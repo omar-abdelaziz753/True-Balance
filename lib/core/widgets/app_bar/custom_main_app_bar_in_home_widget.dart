@@ -15,9 +15,9 @@ class CustomMainAppBarInHomeWidget extends StatefulWidget
   final String userName;
   final String location;
   final String profileImageAsset;
-  String notificationCount;
+  final String notificationCount;
 
-  CustomMainAppBarInHomeWidget({
+  const CustomMainAppBarInHomeWidget({
     super.key,
     required this.userName,
     required this.location,
@@ -35,6 +35,15 @@ class CustomMainAppBarInHomeWidget extends StatefulWidget
 
 class _CustomMainAppBarInHomeWidgetState
     extends State<CustomMainAppBarInHomeWidget> {
+  late String _notificationCount = widget.notificationCount;
+
+  @override
+  void didUpdateWidget(CustomMainAppBarInHomeWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.notificationCount != widget.notificationCount) {
+      _notificationCount = widget.notificationCount;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -136,7 +145,7 @@ class _CustomMainAppBarInHomeWidgetState
                             .pushNamed(Routes.notificationsScreen)
                             .then((context) {
                           setState(() {
-                            widget.notificationCount = 0.toString();
+                            _notificationCount = 0.toString();
                           });
                         });
                       }
@@ -154,10 +163,10 @@ class _CustomMainAppBarInHomeWidgetState
                       ),
                     ),
                   ),
-                  widget.notificationCount == "0"
+                  _notificationCount == "0"
                       ? const SizedBox.shrink()
                       : CustomCountOfNoOfNotificationsWidget(
-                          counter: widget.notificationCount,
+                          counter: _notificationCount,
                         ),
                 ],
               )

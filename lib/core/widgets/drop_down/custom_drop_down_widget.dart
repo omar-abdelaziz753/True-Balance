@@ -141,7 +141,7 @@ class CustomDropdownButtonWidgetState<T>
             ),
             SizeTransition(
               sizeFactor: _fadeAnimation,
-              axisAlignment: -1.0,
+              alignment: Alignment.topCenter,
               child: FadeTransition(
                 opacity: _fadeAnimation,
                 child: Container(
@@ -154,70 +154,75 @@ class CustomDropdownButtonWidgetState<T>
                     ),
                     color: AppColors.neutralColor100.withValues(alpha: 0.1),
                   ),
-                  child: Column(
-                    children: widget.items.map((T item) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedValue = item;
-                            isDropdownOpen = false;
-                          });
-                          _animationController.reverse();
-                          state.didChange(item); // مهم عشان الـ validator يشتغل
-                          if (widget.onChanged != null) widget.onChanged!(item);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10.h,
-                            horizontal: 10.w,
-                          ),
-                          child: Row(
-                            children: [
-                              if (widget.getItemIcon != null)
-                                Padding(
-                                  padding: EdgeInsets.only(right: 8.w),
-                                  child: CacheNetworkImagesWidget(
-                                    image: widget.getItemIcon!(item),
-                                    width: 24.w,
-                                    height: 24.h,
-                                    boxFit: BoxFit.contain,
+                  child: RadioGroup<T>(
+                    groupValue: selectedValue,
+                    onChanged: (T? newValue) {
+                      setState(() {
+                        selectedValue = newValue;
+                        isDropdownOpen = false;
+                      });
+                      _animationController.reverse();
+                      state.didChange(newValue);
+                      if (widget.onChanged != null) {
+                        widget.onChanged!(newValue);
+                      }
+                    },
+                    child: Column(
+                      children: widget.items.map((T item) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedValue = item;
+                              isDropdownOpen = false;
+                            });
+                            _animationController.reverse();
+                            state.didChange(
+                                item); // مهم عشان الـ validator يشتغل
+                            if (widget.onChanged != null) {
+                              widget.onChanged!(item);
+                            }
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10.h,
+                              horizontal: 10.w,
+                            ),
+                            child: Row(
+                              children: [
+                                if (widget.getItemIcon != null)
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 8.w),
+                                    child: CacheNetworkImagesWidget(
+                                      image: widget.getItemIcon!(item),
+                                      width: 24.w,
+                                      height: 24.h,
+                                      boxFit: BoxFit.contain,
+                                    ),
+                                  ),
+                                10.horizontalSpace,
+                                Expanded(
+                                  child: Text(
+                                    widget.isString
+                                        ? item.toString()
+                                        : widget.getItemText!(item),
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.black,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              10.horizontalSpace,
-                              Expanded(
-                                child: Text(
-                                  widget.isString
-                                      ? item.toString()
-                                      : widget.getItemText!(item),
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: Colors.black,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
+                                Radio<T>(
+                                  value: item,
+                                  visualDensity: VisualDensity.compact,
+                                  activeColor: AppColors.primaryColor700,
                                 ),
-                              ),
-                              Radio<T>(
-                                value: item,
-                                visualDensity: VisualDensity.compact,
-                                groupValue: selectedValue,
-                                onChanged: (T? newValue) {
-                                  setState(() {
-                                    selectedValue = newValue;
-                                    isDropdownOpen = false;
-                                  });
-                                  _animationController.reverse();
-                                  state.didChange(newValue);
-                                  if (widget.onChanged != null) {
-                                    widget.onChanged!(newValue);
-                                  }
-                                },
-                                activeColor: AppColors.primaryColor700,
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),

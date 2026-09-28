@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
 import 'package:true_balance_app/core/utils/app_constants.dart';
 import 'package:true_balance_app/core/widgets/app_bar/custom_app_bar_widget.dart';
-import 'package:true_balance_app/core/widgets/please login Buttom/please_login_buttom.dart';
+import 'package:true_balance_app/core/widgets/please_login_button/please_login_button.dart';
 import 'package:true_balance_app/features/user/my_booking/bloc/mybook_cubit.dart';
 import 'package:true_balance_app/features/user/my_booking/presentation/screens/booking_details_screen.dart';
 import 'package:true_balance_app/features/user/my_booking/presentation/widgets/consultation_card_widget.dart';
@@ -213,8 +213,8 @@ class MyBookingScreen extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.all(24.w),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF8F8F8),
+              decoration: const BoxDecoration(
+                color: Color(0xFFF8F8F8),
                 shape: BoxShape.circle,
               ),
               child: Icon(

@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
-import 'package:true_balance_app/core/themes/text_colors.dart';
 import 'package:true_balance_app/core/widgets/saudi_riyal_icon.dart';
 import 'package:true_balance_app/features/user/my_booking/data/models/Consultations/consultations_response.dart';
 

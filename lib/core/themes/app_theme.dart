@@ -7,8 +7,6 @@ class AppTheme {
   static final Color _primaryColor = AppColors.primaryColor10;
   static final Color _secondaryColor = AppColors.secondaryColor10;
   static final Color _errorColor = AppColors.redColor10;
-  static final Color _successColor = AppColors.greenColor10;
-  static final Color _warningColor = AppColors.yellowColor10;
 
   static ThemeData get lightTheme {
     return ThemeData(

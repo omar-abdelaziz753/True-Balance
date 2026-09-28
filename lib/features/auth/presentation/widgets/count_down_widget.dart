@@ -7,14 +7,14 @@ import 'package:true_balance_app/core/widgets/text/custom_text_rich_widget.dart'
 import 'package:true_balance_app/features/auth/business_logic/auth_cubit.dart';
 
 class CountDownWidget extends StatefulWidget {
-  CountDownWidget({
+  const CountDownWidget({
     super.key,
-    required int resendKey,
+    required this.resendKey,
     required this.data,
     required this.cubit,
-  }) : resendKey = resendKey;
+  });
 
-  int resendKey;
+  final int resendKey;
   final Map<String, dynamic> data;
   final AuthCubit cubit;
 
@@ -23,18 +23,20 @@ class CountDownWidget extends StatefulWidget {
 }
 
 class _CountDownWidgetState extends State<CountDownWidget> {
+  late int _resendKey = widget.resendKey;
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is ResendPasswordLoadingState) {
           setState(() {
-            widget.resendKey++;
+            _resendKey++;
           });
         }
       },
       child: StreamBuilder<String>(
-        key: ValueKey(widget.resendKey),
+        key: ValueKey(_resendKey),
         stream: countdownStream(const Duration(minutes: 2)),
         builder: (context, snapshot) {
           final timerText = snapshot.data ?? "(02 m 00 s)";

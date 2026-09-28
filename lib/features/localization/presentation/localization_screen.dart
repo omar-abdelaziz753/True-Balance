@@ -41,8 +41,10 @@ void showLocalizationBottomSheet(BuildContext context) {
                       localizationCubit
                           .changeLanguage(
                               context: context, lang: 'ar', country: 'EG')
-                          .then((value) => Phoenix.rebirth(context));
-
+                          .then((value) {
+                        if (!context.mounted) return;
+                        Phoenix.rebirth(context);
+                      });
                     },
                   ),
                   SizedBox(height: 10.h),
@@ -53,7 +55,10 @@ void showLocalizationBottomSheet(BuildContext context) {
                       localizationCubit
                           .changeLanguage(
                               context: context, lang: 'en', country: 'UK')
-                          .then((value) => Phoenix.rebirth(context));
+                          .then((value) {
+                        if (!context.mounted) return;
+                        Phoenix.rebirth(context);
+                      });
                     },
                   ),
                 ],

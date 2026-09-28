@@ -68,10 +68,12 @@
 //     debugPrint("Download failed: $e");
 //   }
 // }
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,22 +83,45 @@ import 'package:true_balance_app/core/utils/app_constants.dart';
 
 Future<void> downloadPdfFile(String url, String fileName) async {
   try {
-    debugPrint("Downloading from: $url");
+    final uri = Uri.tryParse(url);
+    assert(
+      !kReleaseMode || uri?.scheme == 'https',
+      'Download URL must be https in release',
+    );
+    if (uri == null || (uri.scheme != 'https' && uri.scheme != 'http')) {
+      unawaited(EasyLoading.showError("downloadFailed".tr()));
+      return;
+    }
+    // Strip any path components — the server-provided name must never escape
+    // the destination directory (path traversal).
+    final safeName = Uri.decodeComponent(fileName)
+        .split('/')
+        .last
+        .split('\\')
+        .last
+        .trim();
+    if (safeName.isEmpty || safeName == '.' || safeName == '..') {
+      unawaited(EasyLoading.showError("downloadFailed".tr()));
+      return;
+    }
+    if (kDebugMode) debugPrint("Downloading file: $safeName");
+
+    // App-private storage needs no storage permission on any API level
+    // (scoped storage compliant — no MANAGE_EXTERNAL_STORAGE required).
     Directory? dir;
     if (Platform.isAndroid) {
-      dir = Directory('/storage/emulated/0/Download');
-      if (!dir.existsSync()) {
-        dir = await getExternalStorageDirectory();
-      }
+      dir =
+          await getExternalStorageDirectory() ??
+          await getApplicationDocumentsDirectory();
     } else {
       dir = await getApplicationDocumentsDirectory();
     }
 
-    String savePath = "${dir!.path}/$fileName";
+    final savePath = "${dir.path}/$safeName";
 
     Dio dio = Dio();
     await dio.download(
-      url,
+      uri.toString(),
       savePath,
       onReceiveProgress: (received, total) {
         EasyLoading.instance
@@ -113,21 +138,23 @@ Future<void> downloadPdfFile(String url, String fileName) async {
 
         if (total != -1) {
           double progress = received / total;
-          EasyLoading.showProgress(
-            progress,
-            status: 'Downloading... ${(progress * 100).toStringAsFixed(0)}%',
-            maskType: EasyLoadingMaskType.clear,
+          unawaited(
+            EasyLoading.showProgress(
+              progress,
+              status: 'Downloading... ${(progress * 100).toStringAsFixed(0)}%',
+              maskType: EasyLoadingMaskType.clear,
+            ),
           );
         }
       },
     );
 
-    EasyLoading.dismiss();
-    EasyLoading.showSuccess("savedToDownloads".tr());
-    // debugPrint("${"fileDownLoadedTo".tr()} $savePath");
+    unawaited(EasyLoading.dismiss());
+    unawaited(EasyLoading.showSuccess("savedToDownloads".tr()));
   } catch (e) {
-    EasyLoading.dismiss();
-    EasyLoading.showError("downloadFailed".tr());
-    debugPrint("${"downloadFailed".tr()} $e");
+    unawaited(EasyLoading.dismiss());
+    unawaited(EasyLoading.showError("downloadFailed".tr()));
+    // Never log the URL/path — it can contain PHI-adjacent file locations.
+    if (kDebugMode) debugPrint("Download failed: ${e.runtimeType}");
   }
 }

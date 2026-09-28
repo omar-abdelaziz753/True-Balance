@@ -52,9 +52,10 @@ class _ConsultationBottomSheetState extends State<ConsultationBottomSheet> {
             );
 
     if (success) {
+      if (!mounted) return;
       Navigator.of(context).pop();
       Navigator.of(context).pop(true);
-    } else {}
+    }
   }
 
   @override

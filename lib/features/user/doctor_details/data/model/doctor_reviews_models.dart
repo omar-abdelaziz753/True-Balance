@@ -1,6 +1,6 @@
 // doctor_reviews_models.dart
 import 'package:json_annotation/json_annotation.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_details_model.dart';
 
 part 'doctor_reviews_models.g.dart';
 

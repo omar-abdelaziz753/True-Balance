@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_details_model.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/model/doctor_reviews_models.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/data/repo/doctor_repo.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_details_model.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/model/doctor_reviews_models.dart';
+import 'package:true_balance_app/features/user/doctor_details/data/repo/doctor_repo.dart';
 
 part 'doctor_details_state.dart';
 

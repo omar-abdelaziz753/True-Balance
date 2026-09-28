@@ -5,7 +5,7 @@ import 'package:true_balance_app/core/extensions/navigation_extension.dart';
 import 'package:true_balance_app/core/routing/routes_name.dart';
 import 'package:true_balance_app/core/themes/app_colors.dart';
 import 'package:true_balance_app/core/themes/text_colors.dart';
-import 'package:true_balance_app/features/user/doctor%20deatils/bloc/cubit/doctor_details_cubit.dart';
+import 'package:true_balance_app/features/user/doctor_details/bloc/cubit/doctor_details_cubit.dart';
 
 class BestTherapistsAndReviewWidget extends StatelessWidget {
   const BestTherapistsAndReviewWidget({

@@ -34,6 +34,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
   late final PaymentCubit _paymentCubit;
   String? _checkoutUrl;
   int? _transactionId;
+  // Hint from the checkout return URL while we wait for the authoritative
+  // server-side status check to complete.
+  PaymentResult? _pendingHint;
 
   @override
   void initState() {
@@ -55,6 +58,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
   void dispose() {
     _paymentCubit.close();
     super.dispose();
+  }
+
+  /// Fallback when there is no transaction to verify against:
+  /// trust the return-URL hint directly.
+  void _handleUnverifiedResult(PaymentResult result) {
+    if (result.isSuccess) {
+      widget.onPaymentSuccess?.call();
+    } else {
+      if (result.isCancelled) {
+        widget.onPaymentCancelled?.call();
+      } else {
+        widget.onPaymentFailed?.call();
+      }
+      Navigator.of(context).pop();
+    }
   }
 
   @override
@@ -85,9 +103,23 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 _transactionId = state.transactionId;
               });
             } else if (state is PaymentSuccess) {
+              _pendingHint = null;
               widget.onPaymentSuccess?.call();
             } else if (state is PaymentFailed) {
-              widget.onPaymentFailed?.call();
+              // A failure carrying a transaction id is the verdict of the
+              // server-side status check for a checkout return hint.
+              if (_pendingHint != null && state.transactionId != null) {
+                final hint = _pendingHint!;
+                _pendingHint = null;
+                if (hint.isCancelled) {
+                  widget.onPaymentCancelled?.call();
+                } else {
+                  widget.onPaymentFailed?.call();
+                }
+                if (mounted) Navigator.of(context).pop();
+              } else {
+                widget.onPaymentFailed?.call();
+              }
             } else if (state is PaymentCancelled) {
               widget.onPaymentCancelled?.call();
             }
@@ -200,19 +232,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 checkoutUrl: _checkoutUrl!,
                 returnUrl: 'truebalance://payment/return',
                 onComplete: (result) {
-                  if (result.isSuccess) {
-                    _paymentCubit.checkPaymentStatus(
-                        transactionId: _transactionId!);
-                  } else if (result.isCancelled) {
-                    widget.onPaymentCancelled?.call();
-                    Navigator.of(context).pop();
-                  } else {
-                    widget.onPaymentFailed?.call();
-                    Navigator.of(context).pop();
+                  if (_transactionId == null) {
+                    _handleUnverifiedResult(result);
+                    return;
                   }
+                  // The return-URL param is only a hint; the backend status
+                  // check is authoritative for every terminal outcome
+                  // (success, failed, cancelled, unknown).
+                  _pendingHint = result;
+                  _paymentCubit.checkPaymentStatus(
+                      transactionId: _transactionId!);
                 },
                 onError: () {
                   widget.onPaymentFailed?.call();
+                  if (mounted) Navigator.of(context).pop();
                 },
               );
             }

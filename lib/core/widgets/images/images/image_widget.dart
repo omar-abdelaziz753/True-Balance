@@ -49,7 +49,9 @@ class ImagesWidget extends StatelessWidget {
         width: width,
         height: height,
         fit: fit!,
-        color: color,
+        colorFilter: color == null
+            ? null
+            : ColorFilter.mode(color!, BlendMode.srcIn),
       );
     } else {
       return Image.asset(

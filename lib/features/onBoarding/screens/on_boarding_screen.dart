@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -70,10 +72,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
       curve: Curves.easeInOut,
     );
 
-    _animationController.reverse().then((_) {
-      onBoardingCubit.changeOnBoardingIndex(index);
-      _animationController.forward();
-    });
+    unawaited(
+      _animationController.reverse().then((_) {
+        onBoardingCubit.changeOnBoardingIndex(index);
+        _animationController.forward();
+      }),
+    );
   }
 
   @override
@@ -258,8 +262,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                                       await CacheHelper.saveData(
                                           key: CacheKeys.isFirstOpen,
                                           value: true);
-                                      context.pushNamedAndRemoveUntil(
-                                          Routes.mainLayoutScreen);
+                                      if (!context.mounted) return;
+                                      unawaited(context.pushNamedAndRemoveUntil(
+                                          Routes.mainLayoutScreen));
                                     } else {
                                       _animateToPage(
                                           onBoardingCubit.onBoardingIndex + 1);

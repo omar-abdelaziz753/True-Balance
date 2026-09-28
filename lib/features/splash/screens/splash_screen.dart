@@ -20,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     _controller = VideoPlayerController.asset('assets/videos/intro.mp4')
       ..initialize().then(
         (_) {
+          if (!mounted) return;
           setState(() {});
           _controller.play();
 
@@ -67,6 +68,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: IconButton(
               icon: const Icon(Icons.close, color: Colors.white),
               onPressed: () {
+                // Same flag the video-end listener sets: navigation runs once.
+                if (_videoEnded) return;
+                _videoEnded = true;
                 _controller.pause();
                 _navigateToNext();
               },

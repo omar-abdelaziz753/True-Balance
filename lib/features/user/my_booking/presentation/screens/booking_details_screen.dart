@@ -610,13 +610,13 @@ class BookingDetailsScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.r))),
                   child: isLoading
-                      ? SizedBox(
+                      ? const SizedBox(
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(
                               strokeWidth: 2,
                               valueColor:
-                                  const AlwaysStoppedAnimation(Colors.white)))
+                                  AlwaysStoppedAnimation(Colors.white)))
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
